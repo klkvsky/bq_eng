@@ -82,7 +82,7 @@ export default function Knowledge() {
       <h1 className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em] mt-[44px] pl-3">
         Мы развиваем архитектуру как культурную практику, реализуя различные
         форматы, такие как:{" "}
-        <span className="font-apercu opacity-30">Исследования</span>,
+        <span className="font-apercu opacity-30">Исследования</span>, {" "}
         <span className="font-apercu opacity-30">Экспедиции</span>,{" "}
         <span className="font-apercu opacity-30">Дайджесты</span>,{" "}
         <span className="font-apercu opacity-30">Подкасты</span> и{" "}
