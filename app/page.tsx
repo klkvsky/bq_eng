@@ -9,7 +9,6 @@ import project6 from "@/public/assets/images/project-6.png";
 import project7 from "@/public/assets/images/project-7.png";
 import project8 from "@/public/assets/images/project-8.png";
 import project9 from "@/public/assets/images/project-9.png";
-import { useEffect, useState } from "react";
 import ProjectItem from "@/components/Projects-Item";
 import { StaticImageData } from "next/image";
 

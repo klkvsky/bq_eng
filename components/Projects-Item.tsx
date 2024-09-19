@@ -17,10 +17,11 @@ export default function ProjectItem({
   mainImageSize: [number, number];
   secondaryImage?: StaticImageData;
   secondaryImageSize?: [number, number];
-  secondaryText?: String;
-  text: String;
+  secondaryText?: string;
+  text: string;
   displayMode: "gallery" | "list";
-  [key: string]: any;
+  className?: string; // Specify that className is a string
+  [key: string]: unknown; // Keep unknown for other props
 }) {
   return (
     <>

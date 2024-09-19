@@ -16,7 +16,7 @@ export default function Navbar() {
   const [localDisplayMode, setLocalDisplayMode] = useState<"gallery" | "list">(
     "gallery"
   );
-  const { displayMode, handleToggle } = useGallery();
+  const { handleToggle } = useGallery();
   const sidesheet = useSideSheet();
 
   useEffect(() => {

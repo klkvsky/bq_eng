@@ -8,7 +8,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 import { GalleryProvider } from "@/lib/ProjectDisplayModeContext";
-import { cn } from "@/lib/utils";
 
 import { SideSheetProvider } from "@/lib/SideSheetContext";
 import Main from "@/components/Main";

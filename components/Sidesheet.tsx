@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 
 import { useState, useEffect } from "react";
-import { usePathname, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 
 import { useSideSheet } from "@/lib/SideSheetContext";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,6 @@ import Digest from "./Digest";
 export default function Sidesheet() {
   const sidesheet = useSideSheet();
   const params = useParams();
-  const pathname = usePathname();
 
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
