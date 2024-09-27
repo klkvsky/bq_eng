@@ -21,11 +21,11 @@ body {
 
 @layer components {
   .custom-shadow-left {
-    @apply after:w-[40px] after:lg:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:right-[calc(100%+12px)] after:opacity-[6%] after:bg-blend-multiply;
+    @apply after:w-[40px] after:lg:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:right-[calc(100%+8px)] after:lg:right-[calc(100%+12px)] after:opacity-[6%] after:bg-blend-multiply;
   }
 
   .custom-shadow-right {
-    @apply after:w-[40px] after:lg:w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:left-[calc(100%+12px)] after:opacity-[6%] after:bg-blend-multiply;
+    @apply after:w-[40px] after:lg:w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:lg:left-[calc(100%+12px)] after:left-[calc(100%+8px)] after:opacity-[6%] after:bg-blend-multiply;
   }
 
   .custom-shadow-top {

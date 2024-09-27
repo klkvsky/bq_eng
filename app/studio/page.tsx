@@ -95,7 +95,7 @@ export default function Home() {
           <div
             className="flex flex-col"
             style={{
-              width: screenSize !== "sm" ? `${4 * 8.33}vw` : `${8 * 12.5}vw`,
+              width: screenSize !== "sm" ? `${4 * 8.33}vw` : "100%",
             }}
           >
             <p className="font-apercu font-normal text-[14px] lg:text-[16px] leading-[20px] lg:leading-[20px] -tracking-[0.28px] lg:-tracking-[0.02em]">
@@ -150,10 +150,10 @@ export default function Home() {
         уникальную возможность воплотить в жизнь новые идеи.
       </h1>
       <div
-        className="flex flex-col lg:flex-row justify-between px-2 lg:pl lg:pr-0 mt-[32px] lg:mt-[80px] gap-4 lg:gap-0"
+        className="flex flex-col lg:flex-row justify-between mt-[32px] lg:mt-[80px] gap-4 lg:gap-0"
         style={{
           paddingRight: screenSize !== "sm" ? `${0.5 * 8.33}vw` : `8px`,
-          paddingLeft: screenSize !== "sm" ? `0px` : `8px`,
+          paddingLeft: screenSize !== "sm" ? `12px` : `8px`,
         }}
       >
         <div

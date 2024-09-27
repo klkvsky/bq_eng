@@ -13,6 +13,7 @@ import ProjectItem from "@/components/Projects-Item";
 import { StaticImageData } from "next/image";
 
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
+import { useScreenSize } from "@/lib/hooks/useScreenSize";
 import { cn } from "@/lib/utils";
 
 const projectsData = [
@@ -21,7 +22,7 @@ const projectsData = [
     mainImage: project1,
     text: "BQ — B.01",
     displayMode: "gallery",
-    cols: 8
+    cols: 8,
   },
   {
     type: "right",
@@ -29,7 +30,7 @@ const projectsData = [
     secondaryImage: project3,
     text: "BQ — MK.04",
     secondaryText: "BQ — MK.04",
-    cols: 6
+    cols: 6,
   },
   {
     type: "left",
@@ -63,7 +64,7 @@ const projectsData = [
 
 export default function Home() {
   const { displayMode, visible } = useGallery();
-
+  const screenSize = useScreenSize();
   return (
     <div className="flex flex-col">
       <h1 className="px-2 lg:px-3 font-spectral text-[20px] md:text-[28px] lg:text-[36px] font-normal leading-[24px] lg:leading-[42px] -tracking-[0.6px] lg:-tracking-[0.03em]">
@@ -98,7 +99,10 @@ export default function Home() {
 
       {displayMode === "gallery" ? (
         <div
-          className={cn("flex flex-col transition-opacity duration-1000 gap-[80px] lg:gap-[160px] mt-[48px] lg:mt-[189px]", visible ? "opacity-100" : "opacity-0")}
+          className={cn(
+            "flex flex-col transition-opacity duration-1000 gap-[80px] lg:gap-[160px] mt-[48px] lg:mt-[189px]",
+            visible ? "opacity-100" : "opacity-0"
+          )}
         >
           {projectsData.map((item) => {
             return (
@@ -117,9 +121,12 @@ export default function Home() {
         </div>
       ) : (
         <div
-          className={`grid grid-cols-4 gap-x-[144px] gap-y-[160px] px-[78px] mt-[160px] transition-opacity duration-1000 ${
+          className={`lg:grid lg:grid-cols-4 lg:gap-x-[144px] lg:gap-y-[160px]  lg:px-[78px] mt-20 lg:mt-40 transition-opacity duration-1000 max-md:flex max-md:flex-col ${
             visible ? "opacity-100" : "opacity-0"
           }`}
+          style={{
+            gap: screenSize !== "sm" ? `${1 * 8.33}vw` : "16px",
+          }}
         >
           {projectsData.map((item) => {
             return (
