@@ -24,8 +24,8 @@ interface SideSheetPrivderProps {
 // Create a provider component
 export const SideSheetProvider = ({ children }: SideSheetPrivderProps) => {
   // State to track if the gallery is active or not
-  const [isOpen, setIsOpen] = useState(true);
-  const [page, setPage] = useState<"knowledge" | "news">("news");
+  const [isOpen, setIsOpen] = useState(false);
+  const [page, setPage] = useState<"knowledge" | "news">("knowledge");
   const [scrolledToEnd, setScrolledToEnd] = useState(false);
 
   return (

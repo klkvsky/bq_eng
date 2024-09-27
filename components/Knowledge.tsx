@@ -93,7 +93,8 @@ export default function Knowledge() {
         {knowledgeData.map((_, index) => (
           <div
             key={index}
-            className="w-[253px] h-[320px] relative group hover:custom-shadow-right cursor-pointer"
+            className="aspect-[253/320] relative group hover:custom-shadow-right cursor-pointer"
+            style={{ width: `${2 * 8.33}vw` }}
           >
             <Image src={_.image} alt="project-1" fill />
             <div className="absolute top-0 left-0 w-full h-full bg-white group-hover:opacity-100 opacity-0 flex flex-col transition-opacity">

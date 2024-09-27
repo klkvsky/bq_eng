@@ -39,7 +39,7 @@ export default function RootLayout({
       >
         <SideSheetProvider>
           <GalleryProvider>
-            <div className="flex flex-col w-screen min-h-screen relative">
+            <div className="flex flex-col w-screen min-h-screen relative max-w-[100vw] overflow-x-hidden">
               <Navbar />
               <Main>{children}</Main>
               <Sidesheet />

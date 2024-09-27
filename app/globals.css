@@ -21,26 +21,26 @@ body {
 
 @layer components {
   .custom-shadow-left {
-    @apply after:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%+12px)] after:opacity-[6%] after:bg-blend-multiply;
+    @apply after:w-[40px] after:lg:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:right-[calc(100%+12px)] after:opacity-[6%] after:bg-blend-multiply;
   }
 
   .custom-shadow-right {
-    @apply after:w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-[calc(100%+9px)] after:opacity-[6%] after:bg-blend-multiply;
+    @apply after:w-[40px] after:lg:w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:left-[calc(100%+12px)] after:opacity-[6%] after:bg-blend-multiply;
   }
 
   .custom-shadow-top {
-    @apply after:w-full after:h-[66px] after:bg-gradient-to-t after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-0 after:bottom-full after:opacity-[6%] after:bg-blend-multiply;
+    @apply  after:w-full after:h-[40px] lg:after:h-[66px] after:bg-gradient-to-t after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-0 after:bottom-full after:opacity-[6%] after:bg-blend-multiply;
   }
 
   .custom-shadow-left-no-margin {
-    @apply after:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
+    @apply  after:w-[40px] lg:after:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
   }
 
   .custom-shadow-right-no-margin {
-    @apply after:w-[66px] after:max-w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
+    @apply  after:w-[40px] lg:after:w-[66px] after:max-w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
   }
 
   .sidesheet-shadow {
-    @apply after:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%)] after:opacity-[6%] after:bg-blend-multiply;
+    @apply  after:w-[40px] lg:after:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%)] after:opacity-[6%] after:bg-blend-multiply;
   }
 }

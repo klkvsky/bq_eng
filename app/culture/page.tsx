@@ -6,18 +6,26 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="flex flex-col">
-      <div className="w-screen h-screen relative -mt-[44px] z-10">
-        <Image src={prjects1} alt="project-1" fill />
-      </div>
-      <h1 className="font-spectral font-normal text-[38px] leading-[42px] -tracking-[0.03em] px-3 pt-6">
+      <Image
+        src={prjects1}
+        alt="project-1"
+        width={0}
+        height={0}
+        style={{ width: "100%", height: "auto" }}
+        className="-mt-[44px] z-10"
+      />
+      <h1 className="font-spectral font-normal text-[20px] lg:text-[38px] leading-[24px] lg:leading-[42px] -tracking-[0.6px] lg:-tracking-[0.03em] px-2 lg:px-3 mt-4 lg:mt-6">
         BQ Studio – это более 40 специалистов с сильной экспертизой и творческим
         видением, которые готовы расти и обмениваться опытом вместе. Мы
         понимаем, что профессиональный путь каждого человека уникален, и создаем
         место, которое поддерживает индивидуальный рост, стремления и мотивацию,
         чтобы найти цель и смысл в нашей работе.
       </h1>
-      <div className="flex flex-row justify-between mt-[80px] pl-3 pr-[78px]">
-        <div className="flex flex-col gap-3">
+      <div
+        className="flex flex-row justify-between mt-[80px] pl-3"
+        style={{ paddingRight: `${0.5 * 8.33}vw` }}
+      >
+        <div className="flex flex-col gap-3" style={{ width: `${6 * 8.33}vw` }}>
           <p className="font-apercu font-normal text-[16px] leading-[20px] -tracking-[0.02em]">
             Вакансии
           </p>
@@ -32,7 +40,10 @@ export default function Home() {
             </a>
           </p>
         </div>
-        <div className="flex flex-col gap-10 w-[518px]">
+        <div
+          className="flex flex-col gap-10"
+          style={{ width: `${5 * 8.33}vw` }}
+        >
           <div className="flex flex-col gap-3">
             <p className="font-apercu font-normal text-[16px] leading-[20px] -tracking-[0.02em]">
               Образование сотрудников
@@ -66,7 +77,10 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-row items-end justify-end mt-[80px]">
-        <div className="flex flex-col gap-10 items-center justify-center w-[1257px] h-screen custom-shadow-left relative px-[144px]">
+        <div
+          className="flex flex-col gap-10 items-center justify-center h-screen custom-shadow-left relative px-[144px]"
+          style={{ width: `${9 * 8.33}vw` }}
+        >
           <p className="font-apercu font-normal text-[16px] leading-[20px] -tracking-[0.02em] absolute left-[12px] top-[20px]">
             Команда о BQ
           </p>
@@ -99,18 +113,33 @@ export default function Home() {
         в работе и за ее пределами для каждого человека.
       </h1>
       <div className="flex flex-row items-end justify-end mt-[80px]">
-        <div className="flex flex-col">
-          <div className="w-[1191px] h-[760px] relative custom-shadow-left">
-            <Image src={prjects1} alt="project-1" fill />
-          </div>
-          <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em] pr-3 mt-6 w-[1179px]">
+        <div className="flex flex-col items-end">
+          <Image
+            src={prjects1}
+            alt="project-1"
+            width={0}
+            height={0}
+            style={{ width: `${9 * 8.33}vw`, height: "auto" }}
+            className="relative custom-shadow-left"
+          />
+          <p
+            className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em] pr-3 mt-6"
+            style={{ width: `${9 * 8.33}vw` }}
+          >
             Мы понимаем, что профессиональный путь каждого человека уникален, и
             поэтому создаем разные форматы обучения в которых можно повысить
             квалификацию от ведущих специалистов индустрии, делясь опытом со
             своми коллегами.
           </p>
 
-          <div className="flex flex-row gap-[78px] pr-[78px] mt-[80px]">
+          <div
+            className="flex flex-row pr-[78px] mt-[80px]"
+            style={{
+              width: `${9 * 8.33}vw`,
+              gap: `${1 * 8.33}vw`,
+              paddingRight: `${0.5 * 8.33}vw`,
+            }}
+          >
             <div className="flex flex-col gap-3 w-[517px]">
               <p className="font-apercu font-normal text-[16px] leading-[20px] -tracking-[0.02em]">
                 Библиотека знаний
@@ -159,17 +188,35 @@ export default function Home() {
           Знания BQ Studio
         </p>
       </div>
-      <div className="flex flex-row mt-[160px] mb-[100px] px-[78px] justify-between">
-        <div className="w-[253px] h-[320px] relative">
+      <div
+        className="flex flex-row mt-[160px] mb-[100px] justify-between"
+        style={{
+          paddingLeft: `${0.5 * 8.33}vw`,
+          paddingRight: `${0.5 * 8.33}vw`,
+        }}
+      >
+        <div
+          className="aspect-[253/320] relative"
+          style={{ width: `${2 * 8.33}vw` }}
+        >
           <Image src={prjects1} alt="project-1" fill />
         </div>
-        <div className="w-[253px] h-[320px] relative">
+        <div
+          className="aspect-[253/320] relative"
+          style={{ width: `${2 * 8.33}vw` }}
+        >
           <Image src={prjects1} alt="project-1" fill />
         </div>
-        <div className="w-[253px] h-[320px] relative">
+        <div
+          className="aspect-[253/320] relative"
+          style={{ width: `${2 * 8.33}vw` }}
+        >
           <Image src={prjects1} alt="project-1" fill />
         </div>
-        <div className="w-[253px] h-[320px] relative">
+        <div
+          className="aspect-[253/320] relative"
+          style={{ width: `${2 * 8.33}vw` }}
+        >
           <Image src={prjects1} alt="project-1" fill />
         </div>
       </div>

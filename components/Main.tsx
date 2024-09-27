@@ -26,7 +26,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
         sidesheet.isOpen
           ? "-translate-x-full"
           : "translate-x-0",
-        "transition-transform duration-[2000ms] ease-in-out min-h-[75vh]"
+        "transition-transform duration-[2000ms] ease-in-out min-h-[75vh] z-30"
       )}
     >
       <PageAnimatePresence>{children}</PageAnimatePresence>

@@ -32,8 +32,13 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <div className="flex flex-row w-screen h-[44px] p-3 font-spectral text-[16px] leading-5 -tracking-[-0.02em] z-50 sticky top-0">
-      <div className="flex flex-row gap-1">
+    <div
+      className="flex flex-row w-screen h-[44px] p-3 font-spectral text-[16px] leading-5 -tracking-[-0.02em] z-50 sticky top-0"
+      style={{
+        position: "-webkit-sticky",
+      }}
+    >
+      <div className="flex flex-row gap-1 w-[16.66vw]">
         <Link
           href="/"
           onClick={() => {
@@ -77,7 +82,7 @@ export default function Navbar() {
           Культура
         </Link>
       </div>
-      <div className="flex flex-row gap-1 ml-[198px]">
+      <div className="hidden md:flex flex-row gap-1 ml-[8.33vw] w-[16.66vw]">
         <Link
           href={pathname + `/?knowledge`}
           onClick={() => {
@@ -112,7 +117,7 @@ export default function Navbar() {
 
       <div
         className={cn(
-          "flex flex-row gap-1 ml-auto transition-opacity duration-1000",
+          "hidden md:flex flex-row gap-1 ml-auto mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000",
           localPageTracker !== "/" ? "opacity-0" : "opacity-100"
         )}
       >
@@ -142,7 +147,7 @@ export default function Navbar() {
           Список
         </button>
       </div>
-      <div className="flex flex-row gap-1 ml-[198px]">
+      <div className="hidden md:flex flex-row gap-1 ml-[8.33vw] w-[9.33vw] justify-end">
         <Link
           href="/contacts"
           className={`transition-all ${

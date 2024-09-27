@@ -18,38 +18,6 @@ export default function Sidesheet() {
 
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
-  useEffect(() => {
-    const targetElement = document.getElementById("scrollable-element");
-
-    if (!targetElement) return;
-
-    const handleScroll = () => {
-      const scrollTop = targetElement.scrollTop;
-      const clientHeight = targetElement.clientHeight;
-      const scrollHeight = targetElement.scrollHeight;
-
-      // Check if scrolled exactly to the end
-      if (scrollTop + clientHeight >= scrollHeight) {
-        sidesheet.setScrolledToEnd(true);
-      }
-      // Check if user scrolls above the bottom (90% or more)
-      else if (scrollTop + clientHeight < scrollHeight) {
-        sidesheet.setScrolledToEnd(false);
-      }
-    };
-
-    targetElement.addEventListener("scroll", handleScroll);
-
-    return () => {
-      targetElement.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log(params);
-    setIsBottomSheetOpen(false);
-  }, [params]);
-
   return (
     <div
       className={cn(
@@ -57,15 +25,19 @@ export default function Sidesheet() {
         !sidesheet.isOpen ? " translate-x-full" : "translate-x-0"
       )}
     >
-      <div className="absolute top-0 right-0 h-screen w-[calc(100vw-12px-212px-198px)]">
+      <div
+        className="absolute top-0 right-0 h-screen"
+        style={{ width: `${9 * 8.33}vw` }}
+      >
         <div className="w-full h-full relative sidesheet-shadow" />
       </div>
 
       <div
         className={cn(
-          "flex flex-col h-screen w-[calc(100vw-212px-198px)] bg-white relative",
+          "flex flex-col h-screen bg-white relative",
           isBottomSheetOpen ? "overflow-hidden" : "overflow-scroll"
         )}
+        style={{ width: `${9 * 8.33}vw` }}
       >
         <AnimatePresence mode="wait">
           <motion.div

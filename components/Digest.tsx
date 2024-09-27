@@ -11,9 +11,14 @@ export default function Digest() {
         Новый центр Porsche в Памбио Норанко. Прочность древесины между
         скоростью и точностью
       </p>
-      <div className="w-[915px] h-[540px] relative custom-shadow-right mt-[24px]">
-        <Image src={Placeholder} alt="Placeholder" fill />
-      </div>
+      <Image
+        src={Placeholder}
+        alt="Placeholder"
+        width={0}
+        height={0}
+        style={{ width: `${7 * 8.33}vw`, height: "auto" }}
+        className="relative custom-shadow-right mt-[24px]"
+      />
       <div className="w-full h-px bg-[#E7E9EF] mt-[40px]" />
       <div className="flex flex-col items-center mt-[24px] relative w-full">
         <div className="flex flex-col gap-3 absolute top-0 left-3">
@@ -40,7 +45,10 @@ export default function Digest() {
             </button>
           </div>
         </div>
-        <p className="font-spectral font-normal text-[18px] leading-[24px] -tracking-[0.02em] w-[517px]">
+        <p
+          className="font-spectral font-normal text-[18px] leading-[24px] -tracking-[0.02em]"
+          style={{ width: `${4 * 8.33}vw` }}
+        >
           Уже совсем скоро в Гостином дворе пройдет одно из главных событий
           сферы дизайна и арта — международная выставка мебели, интерьерных
           решений и искусства ARTDOM. С 16 по 18 февраля посетители смогут не
@@ -59,9 +67,12 @@ export default function Digest() {
           промышленного дизайна.
         </p>
         <div className="flex flex-col gap-3 mt-[80px] items-start w-full">
-          <div className="w-[860px] h-[580px] relative custom-shadow-right">
-            <Image src={Placeholder} alt="Placeholder" fill />
-          </div>
+          <Image
+            src={Placeholder}
+            alt="Placeholder"
+            style={{ width: `${6.5 * 8.33}vw`, height: "auto" }}
+            className="relative custom-shadow-right"
+          />
           <p className="font-spectral font-normal text-[16px] leading-[20px] -tracking-[0.02em] opacity-30 w-[860px] pl-3">
             Уже совсем скоро в Гостином дворе пройдет одно из главных событий
             сферы дизайна и арта — международная выставка мебели, интерьерных
@@ -69,16 +80,27 @@ export default function Digest() {
           </p>
         </div>
         <div className="flex flex-col gap-3 mt-[80px] items-end w-full">
-          <div className="w-[860px] h-[580px] relative custom-shadow-right">
-            <Image src={Placeholder} alt="Placeholder" fill />
-          </div>
-          <p className="font-spectral font-normal text-[16px] leading-[20px] -tracking-[0.02em] opacity-30 w-[860px]">
+          <Image
+            src={Placeholder}
+            alt="Placeholder"
+            width={0}
+            height={0}
+            style={{ width: `${6.5 * 8.33}vw`, height: "auto" }}
+            className="relative custom-shadow-right"
+          />
+          <p
+            className="font-spectral font-normal text-[16px] leading-[20px] -tracking-[0.02em] opacity-30"
+            style={{ width: `${6.5 * 8.33}vw` }}
+          >
             Уже совсем скоро в Гостином дворе пройдет одно из главных событий
             сферы дизайна и арта — международная выставка мебели, интерьерных
             решений и искусства ARTDOM.{" "}
           </p>
         </div>
-        <p className="font-spectral font-normal text-[18px] leading-[24px] -tracking-[0.02em] w-[517px] mt-[80px]">
+        <p
+          className="font-spectral font-normal text-[18px] leading-[24px] -tracking-[0.02em] mt-[80px]"
+          style={{ width: `${4 * 8.33}vw` }}
+        >
           Выступление Карима Рашида — не единственное, чем порадует деловая
           программа: организаторы запланировали более двух десятков интересных
           мероприятий. Посетители узнают о том, как дизайнеру выстроить личный
@@ -92,7 +114,10 @@ export default function Digest() {
           президент Giorgio Collection Фабио Мазоло, арт-директор компании
           «Мария» Денис Юдин — и это лишь небольшая часть имен.
         </p>
-        <p className="font-spectral font-normal text-[18px] leading-[24px] -tracking-[0.02em] w-[517px] mt-[80px]">
+        <p
+          className="font-spectral font-normal text-[18px] leading-[24px] -tracking-[0.02em] mt-[80px]"
+          style={{ width: `${4 * 8.33}vw` }}
+        >
           Поинт 1
           <br />
           <br />
@@ -130,7 +155,7 @@ export default function Digest() {
         <div className="w-full h-[780px] relative mt-[80px] cursor-pointer">
           <Image src={Placeholder} alt="Placeholder" fill className="z-0" />
           <p className="font-spectral text-[64px] leading-[68px] -tracking-[0.04em] font-normal text-white z-10 absolute bottom-6 left-3">
-            ▶ 04:23
+            ▶
           </p>
         </div>
         <p className="font-normal text-[28px] leading-[32px] -tracking-[0.02em] font-spectral pl-3 mt-20">
@@ -142,7 +167,10 @@ export default function Digest() {
           образа единого результата у всех участников проекта.”
         </p>
 
-        <div className="flex flex-col gap-6 w-[517px] mt-[80px]">
+        <div
+          className="flex flex-col gap-6 mt-[80px]"
+          style={{ width: `${4 * 8.33}vw` }}
+        >
           <p className="font-spectral font-normal text-[18px] leading-[24px] -tracking-[0.02em] opacity-30">
             ARTDOM 2023
           </p>
@@ -177,26 +205,49 @@ export default function Digest() {
           </p>
         </div>
         <div className="flex flex-col gap-3 mt-20 items-start w-full">
-          <div className="w-[860px] h-[860px] relative custom-shadow-right">
-            <Image src={Placeholder} alt="Placeholder" fill />
-          </div>
+          <Image
+            src={Placeholder}
+            alt="Placeholder"
+            width={0}
+            height={0}
+            style={{ width: `${6.5 * 8.33}vw`, height: "auto" }}
+            className="relative custom-shadow-right"
+          />
         </div>
         <div className="flex flex-col gap-3 mt-20 items-end w-full">
-          <div className="w-[860px] h-[500px] relative custom-shadow-left">
-            <Image src={Placeholder} alt="Placeholder" fill />
-          </div>
+          <Image
+            src={Placeholder}
+            alt="Placeholder"
+            width={0}
+            height={0}
+            style={{ width: `${6.5 * 8.33}vw`, height: "auto" }}
+            className="relative custom-shadow-left"
+          />
         </div>
         <div className="flex flex-col gap-3 mt-20 items-start w-full">
-          <div className="w-[860px] h-[860px] relative custom-shadow-right">
-            <Image src={Placeholder} alt="Placeholder" fill />
-          </div>
+          <Image
+            src={Placeholder}
+            alt="Placeholder"
+            width={0}
+            height={0}
+            style={{ width: `${6.5 * 8.33}vw`, height: "auto" }}
+            className="relative custom-shadow-right"
+          />
         </div>
         <div className="flex flex-col gap-3 mt-20 items-end w-full">
-          <div className="w-[860px] h-[500px] relative custom-shadow-left">
-            <Image src={Placeholder} alt="Placeholder" fill />
-          </div>
+          <Image
+            src={Placeholder}
+            alt="Placeholder"
+            width={0}
+            height={0}
+            style={{ width: `${6.5 * 8.33}vw`, height: "auto" }}
+            className="relative custom-shadow-left"
+          />
         </div>
-        <div className="flex flex-col gap-6 w-[517px] mt-[80px]">
+        <div
+          className="flex flex-col gap-6 mt-[80px]"
+          style={{ width: `${4 * 8.33}vw` }}
+        >
           <p className="font-spectral font-normal text-[18px] leading-[24px] -tracking-[0.02em] opacity-30">
             ARTDOM 2023
           </p>
@@ -215,7 +266,10 @@ export default function Digest() {
             открыта на официальном сайте.
           </p>
         </div>
-        <div className="flex flex-col gap-6 w-[517px] mt-[80px]">
+        <div
+          className="flex flex-col gap-6 mt-[80px]"
+          style={{ width: `${4 * 8.33}vw` }}
+        >
           <p className="font-spectral font-normal text-[18px] leading-[24px] -tracking-[0.02em]">
             Среди участников ARTDOM 2024:
           </p>
@@ -233,13 +287,22 @@ export default function Digest() {
             </p>
           </div>
           <div className="flex flex-row mt-[120px] px-[78px] justify-between w-full">
-            <div className="w-[253px] h-[320px] relative cursor-pointer">
+            <div
+              className="aspect-[253/320] relative cursor-pointer"
+              style={{ width: `${2 * 8.33}vw` }}
+            >
               <Image src={Placeholder} alt="project-1" fill />
             </div>
-            <div className="w-[253px] h-[320px] relative cursor-pointer">
+            <div
+              className="aspect-[253/320] relative cursor-pointer"
+              style={{ width: `${2 * 8.33}vw` }}
+            >
               <Image src={Placeholder} alt="project-1" fill />
             </div>
-            <div className="w-[253px] h-[320px] relative cursor-pointer">
+            <div
+              className="aspect-[253/320] relative cursor-pointer"
+              style={{ width: `${2 * 8.33}vw` }}
+            >
               <Image src={Placeholder} alt="project-1" fill />
             </div>
           </div>
