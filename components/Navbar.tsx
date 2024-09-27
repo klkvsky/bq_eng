@@ -33,10 +33,7 @@ export default function Navbar() {
 
   return (
     <div
-      className="flex flex-row w-screen h-[44px] p-3 font-spectral text-[16px] leading-5 -tracking-[-0.02em] z-50 sticky top-0"
-      style={{
-        position: "-webkit-sticky",
-      }}
+      className="sticky top-0 flex flex-row w-screen h-[44px] p-3 font-spectral text-[16px] leading-5 -tracking-[-0.02em] z-50"
     >
       <div className="flex flex-row gap-1 w-[16.66vw]">
         <Link
