@@ -12,6 +12,7 @@ import { GalleryProvider } from "@/lib/ProjectDisplayModeContext";
 import { SideSheetProvider } from "@/lib/SideSheetContext";
 import Main from "@/components/Main";
 import Sidesheet from "@/components/Sidesheet";
+import MobileProjectsFooter from "@/components/MobileProjectsFooter";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -43,6 +44,7 @@ export default function RootLayout({
               <Navbar />
               <Main>{children}</Main>
               <Sidesheet />
+              <MobileProjectsFooter />
               <Footer />
             </div>
           </GalleryProvider>

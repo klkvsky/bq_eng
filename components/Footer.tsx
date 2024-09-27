@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSideSheet } from "@/lib/SideSheetContext";
 import { useScreenSize } from "@/lib/hooks/useScreenSize";
 import { cn } from "@/lib/utils";
@@ -8,16 +9,18 @@ import { cn } from "@/lib/utils";
 export default function Footer() {
   const sidesheet = useSideSheet();
   const screenSize = useScreenSize();
+  const pathname = usePathname();
 
   return (
     <div
       className={cn(
-        "flex flex-row max-md:items-end w-screen h-auto md:h-[44px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px] leading-4 md:leading-5 -tracking-[0.28px] md:-tracking-[-0.02em] mt-[80px] md:mt-[160px] z-50 transition-opacity",
+        "flex flex-row max-md:items-end w-screen h-auto md:h-[44px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px] leading-4 md:leading-5 -tracking-[0.28px] md:-tracking-[-0.02em] md:mt-[160px] z-50 transition-opacity",
         sidesheet.isOpen
           ? sidesheet.scrolledToEnd
             ? "opacity-100"
             : "opacity-0"
-          : "opacity-100"
+          : "opacity-100",
+        pathname === "/" ? "mt-0" : "mt-[80px]"
       )}
     >
       <p
