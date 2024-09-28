@@ -15,12 +15,8 @@ export default function Footer() {
     <div
       className={cn(
         "flex flex-row max-md:items-end w-screen h-auto md:h-[44px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px] leading-4 md:leading-5 -tracking-[0.28px] md:-tracking-[-0.02em] md:mt-[160px] z-50 transition-opacity",
-        sidesheet.isOpen
-          ? sidesheet.scrolledToEnd
-            ? "opacity-100"
-            : "opacity-0"
-          : "opacity-100",
-        pathname === "/" ? "mt-0" : "mt-[80px]"
+        pathname === "/" ? "mt-0" : "mt-[80px]",
+        pathname === "/knowledge" && "lg:hidden"
       )}
     >
       <p

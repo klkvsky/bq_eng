@@ -1,29 +1,103 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import FrozenRoute from "./FrozenRoute";
+import { useEffect, useRef, useCallback } from "react";
+
+type Direction = "left" | "right" | "none" | "up";
 
 const PageAnimatePresence = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
+  const prevPathnameRef = useRef(pathname);
+
+  useEffect(() => {
+    prevPathnameRef.current = pathname;
+  }, [pathname]);
+
+  const isKnowledgeOrNews = useCallback(
+    (path: string) => path === "/knowledge" || path === "/news",
+    []
+  );
+
+  const isSideContent = useCallback(
+    (path: string) => path.startsWith("/projects/") || path === "/about",
+    []
+  );
+
+  const getDirection = useCallback((): Direction => {
+    const prevPath = prevPathnameRef.current;
+    const currentPath = pathname;
+
+    if (isSideContent(currentPath) && !isSideContent(prevPath)) {
+      return "up";
+    }
+
+    if (isKnowledgeOrNews(prevPath) && isKnowledgeOrNews(currentPath)) {
+      return "none";
+    }
+
+    if (isKnowledgeOrNews(currentPath)) {
+      return "right";
+    }
+
+    if (isKnowledgeOrNews(prevPath)) {
+      return "left";
+    }
+
+    return "none";
+  }, [pathname, isKnowledgeOrNews, isSideContent]);
+
+  const getAnimationDuration = useCallback((direction: Direction): number => {
+    return direction === 'left' || direction === 'right' ? 1 : 0.5;
+  }, []);
+
+  const variants = {
+    initial: (direction: Direction) => {
+      switch (direction) {
+        case "up":
+          return { y: "100%", opacity: 0 };
+        case "right":
+          return { x: "100%", opacity: 0 };
+        case "left":
+          return { x: "-100%", opacity: 0 };
+        default:
+          return { x: 0, opacity: 0 };
+      }
+    },
+    animate: { x: 0, y: 0, opacity: 1 },
+    exit: (direction: Direction) => {
+      switch (direction) {
+        case "up":
+          return { y: "-100%", opacity: 0 };
+        case "right":
+          return { x: "-100%", opacity: 0 };
+        case "left":
+          return { x: "100%", opacity: 0 };
+        default:
+          return { x: 0, opacity: 0 };
+      }
+    },
+  };
+
+  const direction = getDirection();
+  const duration = getAnimationDuration(direction);
 
   return (
-    <AnimatePresence mode="wait">
-      {/**
-       * We use `motion.div` as the first child of `<AnimatePresence />` Component so we can specify page animations at the page level.
-       * The `motion.div` Component gets re-evaluated when the `key` prop updates, triggering the animation's lifecycles.
-       * During this re-evaluation, the `<FrozenRoute />` Component also gets updated with the new route components.
-       */}
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ type: "spring", duration: 1 }}
-      >
-        <FrozenRoute>{children}</FrozenRoute>
-      </motion.div>
-    </AnimatePresence>
+    <MotionConfig transition={{ type: "tween", duration }}>
+      <AnimatePresence mode="wait" custom={direction}>
+        <motion.div
+          key={pathname}
+          custom={direction}
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
+          <FrozenRoute>{children}</FrozenRoute>
+        </motion.div>
+      </AnimatePresence>
+    </MotionConfig>
   );
 };
 

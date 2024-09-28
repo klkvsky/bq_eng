@@ -131,11 +131,11 @@ export default function Navbar() {
       >
         <div className="flex flex-col gap-1 justify-start items-center h-full font-spectral font-normal text-[14px] leading-5 -tracking-[0.28px] divide-y-[1px] border-y-[#E7E9EF] relative">
           <Link
-            href={pathname + `/?knowledge`}
+            href={`/knowledge`}
             onClick={() => {
               setLocalPageTracker("/knowledge");
-              sidesheet.setIsOpen(true);
-              sidesheet.setPage("knowledge");
+              // sidesheet.setIsOpen(true);
+              // sidesheet.setPage("knowledge");
               setIsMobileMenuOpen(false);
             }}
             className={`transition-all w-full p-2  border-t-[1px] border-t-[#E7E9EF] ${
@@ -147,10 +147,10 @@ export default function Navbar() {
             Знания
           </Link>
           <Link
-            href={pathname + `/?news`}
+            href={`/news`}
             onClick={() => {
-              sidesheet.setIsOpen(true);
-              sidesheet.setPage("news");
+              // sidesheet.setIsOpen(true);
+              // sidesheet.setPage("news");
               setLocalPageTracker("/news");
               setIsMobileMenuOpen(false);
             }}
@@ -227,11 +227,9 @@ export default function Navbar() {
 
       <div className="hidden md:flex flex-row gap-1 ml-[8.33vw] w-[16.66vw]">
         <Link
-          href={pathname + `/?knowledge`}
+          href={`/knowledge`}
           onClick={() => {
             setLocalPageTracker("/knowledge");
-            sidesheet.setIsOpen(true);
-            sidesheet.setPage("knowledge");
           }}
           className={`transition-all ${
             localPageTracker == "/knowledge"
@@ -242,10 +240,10 @@ export default function Navbar() {
           Знания,
         </Link>
         <Link
-          href={pathname + `/?news`}
+          href={`/news`}
           onClick={() => {
-            sidesheet.setIsOpen(true);
-            sidesheet.setPage("news");
+            // sidesheet.setIsOpen(true);
+            // sidesheet.setPage("news");
             setLocalPageTracker("/news");
           }}
           className={`transition-all ${
