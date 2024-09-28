@@ -31,14 +31,32 @@ export default function Navbar() {
     );
   }, [pathname]);
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    // Cleanup function to remove the class when component unmounts
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isMobileMenuOpen]);
+
   return (
-    <div className="sticky top-0 flex flex-row w-screen h-[44px] p-3 font-spectral text-[16px] leading-5 -tracking-[-0.02em] z-50">
-      <div className="flex flex-row gap-1 w-[16.66vw]">
+    <div className="sticky top-0 bg-white md:bg-transparent flex flex-row w-screen md:h-[44px] p-2 md:p-3 font-spectral text-[14px] md:text-[16px] leading-5 -tracking-[0.28px] md:-tracking-[-0.02em] z-50">
+      <div className="flex flex-row gap-1 md:w-[16.66vw]">
         <Link
           href="/"
           onClick={() => {
             setLocalPageTracker("/");
             sidesheet.setIsOpen(false);
+            if (isMobileMenuOpen) {
+              setIsMobileMenuOpen(false);
+            }
           }}
           className={`transition-all ${
             localPageTracker === "/"
@@ -53,6 +71,9 @@ export default function Navbar() {
           onClick={() => {
             setLocalPageTracker("/studio");
             sidesheet.setIsOpen(false);
+            if (isMobileMenuOpen) {
+              setIsMobileMenuOpen(false);
+            }
           }}
           className={`transition-all ${
             localPageTracker === "/studio"
@@ -67,6 +88,9 @@ export default function Navbar() {
           onClick={() => {
             setLocalPageTracker("/culture");
             sidesheet.setIsOpen(false);
+            if (isMobileMenuOpen) {
+              setIsMobileMenuOpen(false);
+            }
           }}
           className={`transition-all ${
             localPageTracker === "/culture"
@@ -77,6 +101,130 @@ export default function Navbar() {
           Культура
         </Link>
       </div>
+      <div
+        className={cn(
+          "md:hidden flex flex-col gap-1 pr-2 justify-center ml-auto",
+          isMobileMenuOpen ? "-translate-x-2" : ""
+        )}
+        onClick={() => {
+          setIsMobileMenuOpen(!isMobileMenuOpen);
+        }}
+      >
+        <div
+          className={cn(
+            " h-px bg-black transition-all duration-500",
+            isMobileMenuOpen ? "rotate-45 w-4 translate-y-[3px] " : "w-7"
+          )}
+        />
+        <div
+          className={cn(
+            "h-px bg-black transition-all duration-500",
+            isMobileMenuOpen ? "-rotate-45 w-4 -translate-y-[2px]" : "w-7"
+          )}
+        />
+      </div>
+      <div
+        className={cn(
+          "fixed top-[36px] left-0 w-screen h-[calc(100vh-36px)] bg-white z-50 transition-opacity duration-300",
+          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="flex flex-col gap-1 justify-start items-center h-full font-spectral font-normal text-[14px] leading-5 -tracking-[0.28px] divide-y-[1px] border-y-[#E7E9EF] relative">
+          <Link
+            href={pathname + `/?knowledge`}
+            onClick={() => {
+              setLocalPageTracker("/knowledge");
+              sidesheet.setIsOpen(true);
+              sidesheet.setPage("knowledge");
+              setIsMobileMenuOpen(false);
+            }}
+            className={`transition-all w-full p-2  border-t-[1px] border-t-[#E7E9EF] ${
+              localPageTracker == "/knowledge"
+                ? "opacity-30 cursor-default"
+                : "opacity-100"
+            }`}
+          >
+            Знания
+          </Link>
+          <Link
+            href={pathname + `/?news`}
+            onClick={() => {
+              sidesheet.setIsOpen(true);
+              sidesheet.setPage("news");
+              setLocalPageTracker("/news");
+              setIsMobileMenuOpen(false);
+            }}
+            className={`transition-all w-full p-2 ${
+              localPageTracker == "/news"
+                ? "opacity-30 cursor-default"
+                : "opacity-100"
+            }`}
+          >
+            Новости
+          </Link>
+          <Link
+            href="/contacts"
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+            }}
+            className="transition-all w-full p-2"
+          >
+            Контакты
+          </Link>
+
+          <div className="absolute bottom-2 left-2 w-full flex flex-row border-none">
+            <a href="/">Телеграм канал,</a>
+            <a href="/">Youtube</a>
+          </div>
+
+          <svg
+            width={`${7 * 12.5}vw`}
+            height={`${7 * 12.5}vw`}
+            viewBox="0 0 334 355"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="absolute top-[180px] right-0 border-none"
+          >
+            <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
+              <path
+                d="M339 354C67.8937 354 7.72459 118.667 6 0.999969H339V354Z"
+                fill="url(#paint0_linear_5287_1446)"
+              />
+            </g>
+            <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
+              <path
+                d="M334 355C62.0796 355 1.72977 118.333 0 0H334V355Z"
+                fill="url(#paint1_linear_5287_1446)"
+              />
+            </g>
+            <defs>
+              <linearGradient
+                id="paint0_linear_5287_1446"
+                x1="-103.982"
+                y1="202.729"
+                x2="61.3561"
+                y2="45.5788"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0.233439" stopOpacity="0.45" />
+                <stop offset="1" stopColor="white" stopOpacity="0.05" />
+              </linearGradient>
+              <linearGradient
+                id="paint1_linear_5287_1446"
+                x1="-110.313"
+                y1="202.872"
+                x2="55.9397"
+                y2="45.2716"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0.233439" stopOpacity="0.45" />
+                <stop offset="1" stopColor="white" stopOpacity="0.05" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
       <div className="hidden md:flex flex-row gap-1 ml-[8.33vw] w-[16.66vw]">
         <Link
           href={pathname + `/?knowledge`}

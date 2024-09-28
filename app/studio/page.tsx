@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <h1 className="font-spectral font-normal text-[20px] lg:text-[38px]  leading-[24px] lg:leading-[42px] -tracking-[0.6px] lg:-tracking-[0.03em] p-3">
+      <h1 className="font-spectral font-normal text-[20px] lg:text-[38px]  leading-[24px] lg:leading-[42px] -tracking-[0.6px] lg:-tracking-[0.03em]  p-2 lg:p-3">
         В BQ мы исследуем широкий спектр направлений, включая пространственные
         проекты, инсайды и медиа работу. Каждое средство предлагает нам
         уникальную возможность воплотить в жизнь новые идеи.
