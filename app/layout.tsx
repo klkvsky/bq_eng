@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 
 import { GalleryProvider } from "@/lib/ProjectDisplayModeContext";
 
-import { SideSheetProvider } from "@/lib/SideSheetContext";
 import MobileProjectsFooter from "@/components/MobileProjectsFooter";
 import PageAnimatePresence from "@/components/HOC/PageAnimatePresence";
 import { cn } from "@/lib/utils";
@@ -34,27 +33,26 @@ export default function RootLayout({
       <body
         className={`${apercuPro.variable} ${spectral.variable} antialiased`}
       >
-        <SideSheetProvider>
-          <GalleryProvider>
-            <div className="flex flex-col w-screen min-h-screen relative max-w-[100vw] z-30">
-              <Navbar />
-              <PageAnimatePresence>{children}</PageAnimatePresence>
-              <MobileProjectsFooter />
-              <Footer />
-              <div
-                className={cn(
-                  "hidden lg:block absolute top-0 right-0 h-[calc(100vh+44px)] -mt-[44px] transition-transform pointer-events-none",
-                  pathname === "/knowledge" || pathname === "/news"
-                    ? "translate-x-0 duration-[700ms] delay-[1100ms] ease-linear"
-                    : "translate-x-full delay-0 duration-[600ms] ease-linear"
-                )}
-                style={{ width: `${9 * 8.33}vw` }}
-              >
-                <div className="w-full h-full relative sidesheet-shadow" />
-              </div>
+        <GalleryProvider>
+          <div className="flex flex-col w-screen min-h-screen relative max-w-[100vw] z-30">
+            <Navbar />
+            <PageAnimatePresence>{children}</PageAnimatePresence>
+            <MobileProjectsFooter />
+            <Footer />
+            <div
+              className={cn(
+                "hidden lg:block absolute top-0 right-0 h-[calc(100vh+44px)] -mt-[44px] transition-transform pointer-events-none",
+                pathname.startsWith("/knowledge") ||
+                  pathname.startsWith("/news")
+                  ? "translate-x-0 duration-[700ms] delay-[1100ms] ease-linear"
+                  : "translate-x-full delay-0 duration-[600ms] ease-linear"
+              )}
+              style={{ width: `${9 * 8.33}vw` }}
+            >
+              <div className="w-full h-full relative sidesheet-shadow" />
             </div>
-          </GalleryProvider>
-        </SideSheetProvider>
+          </div>
+        </GalleryProvider>
       </body>
     </html>
   );

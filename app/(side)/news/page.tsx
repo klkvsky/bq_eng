@@ -1,101 +1,114 @@
 export default function News() {
   return (
-    <div className="mt-[78px] flex flex-col mb-[120px]">
-      <div className="flex flex-col">
-        <p className="font-spectral font-normal text-[16px] leading-[20px] -tracking-[0.02em] pl-3 pb-3">
-          Пресса о нас →
-        </p>
-        <div className="flex flex-col gap-10">
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              РБК: <span className="opacity-30">22.07.2024</span>
-            </p>
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Завершение строительства Bund City Hall Plaza в Шанхае
-            </p>
-          </div>
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              Forbes: <span className="opacity-30">18.07.2024</span>
-            </p>
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Церемония закладки первого камня в основание штаб-квартиры BVK
-            </p>
-          </div>
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              Bluesprint: <span className="opacity-30">18.07.2024</span>
-            </p>
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Греческая православная церковь по проекту Сантьяго Калатравы в
-              Нью-Йорке
-            </p>
-          </div>
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              WOL: <span className="opacity-30">14.07.2024</span>
-            </p>
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Zaha Hadid Architects: энергоэффективное здание BEEAH Group в ОАЭ
-            </p>
-          </div>
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              Nodome <span className="opacity-30">12.07.2024</span>
-            </p>
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Победа в конкурсе для 4G Wine Estate, Franschhoek
-            </p>
-          </div>
-        </div>
+    <div className="lg:mt-[78px] flex flex-col lg:mb-[120px] gap-8 lg:gap-32">
+      <NewsSection
+        title="Новости"
+        items={[
+          {
+            title: "Завершение строительства Bund City Hall Plaza в Шанхае",
+            date: "22.07.2024",
+            source: "РБК",
+          },
+          {
+            title:
+              "Церемония закладки первого камня в основание штаб-квартиры BVK",
+            date: "18.07.2024",
+            source: "Forbes",
+          },
+          {
+            title:
+              "Греческая православная церковь по проекту Сантьяго Калатравы в Нью-Йорке",
+            date: "18.07.2024",
+            source: "Bluesprint",
+          },
+          {
+            title:
+              "Zaha Hadid Architects: энергоэффективное здание BEEAH Group в ОАЭ",
+            date: "14.07.2024",
+            source: "WOL",
+          },
+          {
+            title: "Победа в конкурсе для 4G Wine Estate, Franschhoek",
+            date: "12.07.2024",
+            source: "Nodome",
+          },
+        ]}
+      />
+      <NewsSection
+        title="Материалы BQ"
+        items={[
+          {
+            title: "Завершение строительства Bund City Hall Plaza в Шанхае",
+            date: "22.07.2024",
+            source: "РБК",
+          },
+          {
+            title:
+              "Церемония закладки первого камня в основание штаб-квартиры BVK",
+            date: "18.07.2024",
+            source: "Forbes",
+          },
+          {
+            title:
+              "Греческая православная церковь по проекту Сантьяго Калатравы в Нью-Йорке",
+            date: "18.07.2024",
+            source: "Bluesprint",
+          },
+          {
+            title:
+              "Zaha Hadid Architects: энергоэффективное здание BEEAH Group в ОАЭ",
+            date: "14.07.2024",
+            source: "WOL",
+          },
+          {
+            title: "Победа в конкурсе для 4G Wine Estate, Franschhoek",
+            date: "12.07.2024",
+            source: "Nodome",
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function NewsSection({
+  title,
+  items,
+}: {
+  title: string;
+  items: {
+    title: string;
+    date: string;
+    source: string;
+  }[];
+}): React.ReactNode {
+  return (
+    <div className="flex flex-col">
+      <p className="font-spectral font-normal text-[14px] lg:text-[16px] leading-[20px] -tracking-[0.28px] lg:-tracking-[0.02em] p-2 lg:pl-3 lg:pb-3 lg:pt-0 lg:px-0">
+        {title} →
+      </p>
+      <div className="flex flex-col gap-8 lg:gap-10">
+        {items.map((item, index) => (
+          <NewsItem key={index} {...item} />
+        ))}
       </div>
-      <div className="flex flex-col mt-[120px]">
-        <p className="font-spectral font-normal text-[16px] leading-[20px] -tracking-[0.02em] pl-3 pb-3">
-          Материалы BQ →
-        </p>
-        <div className="flex flex-col gap-10">
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Вечная прокуратура на площади Сан-Марко» в CASABELLAlaboratorio
-            </p>
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              <span className="opacity-30">12.07.2024</span>
-            </p>
-          </div>
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Роль практики, лекция Притцкеровской премии
-            </p>
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              <span className="opacity-30">10.07.2024 </span>
-            </p>
-          </div>
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Архитектура: социально значимый продукт
-            </p>
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              <span className="opacity-30">04.07.2024 </span>
-            </p>
-          </div>
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Значение, память и наследие
-            </p>
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              <span className="opacity-30">01.07.2024</span>
-            </p>
-          </div>
-          <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-3">
-            <p className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em]">
-              Значение, память и наследие
-            </p>
-            <p className="font-apercu font-normal text-[28px] leading-[32px gap-0] -tracking-[0.02em]">
-              <span className="opacity-30">29.06.2024 </span>
-            </p>
-          </div>
-        </div>
-      </div>
+    </div>
+  );
+}
+
+export function NewsItem(item: {
+  title: string;
+  date: string;
+  source: string;
+}): React.ReactNode {
+  return (
+    <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-2 lg:p-3">
+      <p className="font-apercu font-normal text-[20px] lg:text-[28px] leading-6 lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em] opacity-30 lg:opacity-100">
+        {item.source} <span className="lg:opacity-30">{item.date}</span>
+      </p>
+      <p className="font-spectral font-normal text-[20px] lg:text-[28px] leading-6 lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
+        {item.title}
+      </p>
     </div>
   );
 }

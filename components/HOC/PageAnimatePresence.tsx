@@ -49,7 +49,7 @@ const PageAnimatePresence = ({ children }: { children: React.ReactNode }) => {
   }, [pathname, isKnowledgeOrNews, isSideContent]);
 
   const getAnimationDuration = useCallback((direction: Direction): number => {
-    return direction === 'left' || direction === 'right' ? 1 : 0.5;
+    return direction === "left" || direction === "right" ? 1 : 0.5;
   }, []);
 
   const variants = {

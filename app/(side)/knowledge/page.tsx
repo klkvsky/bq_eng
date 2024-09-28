@@ -79,15 +79,17 @@ const knowledgeData = [
 ];
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Knowledge() {
   const screenSize = useScreenSize();
 
   return (
     <div className="flex flex-col">
-      <h1 className="font-spectral font-normal text-[28px] leading-[32px] -tracking-[0.02em] mt-[44px] pl-3">
+      <h1 className="font-spectral font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em] lg:mt-[44px] p-2 lg:pl-3 lg:py-0">
         Мы развиваем архитектуру как культурную практику, реализуя различные
-        форматы, такие как:{" "}
+        форматы, такие как: <br className=" lg:hidden" />
+        <br className=" lg:hidden" />
         <span className="font-apercu opacity-30">Исследования</span>,{" "}
         <span className="font-apercu opacity-30">Экспедиции</span>,{" "}
         <span className="font-apercu opacity-30">Дайджесты</span>,{" "}
@@ -95,28 +97,39 @@ export default function Knowledge() {
         <span className="font-apercu opacity-30">Галереи</span>.
       </h1>
 
-      <div className="flex flex-col lg:grid lg:grid-cols-3 lg:px-[78px] lg:gap-x-[144px] lg:gap-y-[120px] lg:mt-[80px] pb-[120px]">
+      <div className="flex flex-col max-md:items-center lg:grid lg:grid-cols-3 lg:px-[78px] lg:gap-x-[144px] lg:gap-y-[120px] mt-20 lg:pb-[120px] gap-y-20">
         {knowledgeData.map((_, index) => (
-          <div
+          <Link
+            href={`/knowledge?item=${index}`}
+            scroll={false}
             key={index}
-            className="aspect-[253/320] relative group hover:custom-shadow-right cursor-pointer"
+            className="lg:aspect-[253/320] relative group lg:hover:custom-shadow-right cursor-pointer max-md:gap-4 max-md:flex max-md:flex-col"
             style={{
               width: screenSize !== "sm" ? `${2 * 8.33}vw` : `${6 * 12.5}vw`,
+              height: "auto",
             }}
           >
-            <Image src={_.image} alt="project-1" fill />
-            <div className="absolute top-0 left-0 w-full h-full bg-white group-hover:opacity-100 opacity-0 flex flex-col transition-opacity">
-              <p className="font-apercu font-normal text-[16px] leading-[20px] -tracking-[0.02em] opacity-30 pt-3">
-                {_.title}
-              </p>
-              <p className="font-spectral font-normal text-[16px] leading-[20px] -tracking-[0.02em]">
+            <Image
+              src={_.image}
+              alt="project-1"
+              style={{
+                width: screenSize !== "sm" ? `${2 * 8.33}vw` : `${6 * 12.5}vw`,
+                height: "auto",
+              }}
+            />
+            <div className="lg:absolute lg:top-0 lg:left-0 lg:w-full lg:h-full lg:bg-white lg:group-hover:opacity-100 lg:opacity-0 flex flex-col lg:transition-opacity max-md:gap-1">
+              <div className="max-md:flex max-md:flex-row max-md:gap-2 font-apercu font-normal text-[14px] lg:text-[16px] leading-[20px] -tracking-[0.28px] lg:-tracking-[0.02em] opacity-30">
+                <p className="lg:pt-3">{_.title}</p>
+                <p className="lg:hidden">{_.date}</p>
+              </div>
+              <p className="font-spectral font-normal text-[14px] lg:text-[16px] leading-[20px] -tracking-[0.28px] lg:-tracking-[0.02em]">
                 {_.subtitle}
               </p>
-              <p className="mt-auto font-apercu text-[16px] leading-[20px] -tracking-[0.02em] opacity-30 pb-3">
+              <p className="mt-auto font-apercu text-[16px] leading-[20px] -tracking-[0.02em] opacity-30 pb-3 hidden lg:block">
                 {_.date}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

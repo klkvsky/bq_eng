@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
-import { useSideSheet } from "@/lib/SideSheetContext";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [localPageTracker, setLocalPageTracker] = useState<
     "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact"
   >("/");
@@ -17,7 +18,6 @@ export default function Navbar() {
     "gallery"
   );
   const { handleToggle } = useGallery();
-  const sidesheet = useSideSheet();
 
   useEffect(() => {
     setLocalPageTracker(
@@ -51,12 +51,16 @@ export default function Navbar() {
       <div className="flex flex-row gap-1 md:w-[16.66vw]">
         <Link
           href="/"
+          scroll={false}
           onClick={() => {
             setLocalPageTracker("/");
-            sidesheet.setIsOpen(false);
             if (isMobileMenuOpen) {
               setIsMobileMenuOpen(false);
             }
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }}
           className={`transition-all ${
             localPageTracker === "/"
@@ -68,12 +72,16 @@ export default function Navbar() {
         </Link>
         <Link
           href="/studio"
+          scroll={false}
           onClick={() => {
             setLocalPageTracker("/studio");
-            sidesheet.setIsOpen(false);
             if (isMobileMenuOpen) {
               setIsMobileMenuOpen(false);
             }
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }}
           className={`transition-all ${
             localPageTracker === "/studio"
@@ -85,12 +93,16 @@ export default function Navbar() {
         </Link>
         <Link
           href="/culture"
+          scroll={false}
           onClick={() => {
             setLocalPageTracker("/culture");
-            sidesheet.setIsOpen(false);
             if (isMobileMenuOpen) {
               setIsMobileMenuOpen(false);
             }
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }}
           className={`transition-all ${
             localPageTracker === "/culture"
@@ -123,116 +135,26 @@ export default function Navbar() {
           )}
         />
       </div>
-      <div
-        className={cn(
-          "fixed top-[36px] left-0 w-screen h-[calc(100vh-36px)] bg-white z-50 transition-opacity duration-300",
-          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        )}
-      >
-        <div className="flex flex-col gap-1 justify-start items-center h-full font-spectral font-normal text-[14px] leading-5 -tracking-[0.28px] divide-y-[1px] border-y-[#E7E9EF] relative">
-          <Link
-            href={`/knowledge`}
-            onClick={() => {
-              setLocalPageTracker("/knowledge");
-              // sidesheet.setIsOpen(true);
-              // sidesheet.setPage("knowledge");
-              setIsMobileMenuOpen(false);
-            }}
-            className={`transition-all w-full p-2  border-t-[1px] border-t-[#E7E9EF] ${
-              localPageTracker == "/knowledge"
-                ? "opacity-30 cursor-default"
-                : "opacity-100"
-            }`}
-          >
-            Знания
-          </Link>
-          <Link
-            href={`/news`}
-            onClick={() => {
-              // sidesheet.setIsOpen(true);
-              // sidesheet.setPage("news");
-              setLocalPageTracker("/news");
-              setIsMobileMenuOpen(false);
-            }}
-            className={`transition-all w-full p-2 ${
-              localPageTracker == "/news"
-                ? "opacity-30 cursor-default"
-                : "opacity-100"
-            }`}
-          >
-            Новости
-          </Link>
-          <Link
-            href="/contacts"
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-            }}
-            className="transition-all w-full p-2"
-          >
-            Контакты
-          </Link>
-
-          <div className="absolute bottom-2 left-2 w-full flex flex-row border-none">
-            <a href="/">Телеграм канал,</a>
-            <a href="/">Youtube</a>
-          </div>
-
-          <svg
-            width={`${7 * 12.5}vw`}
-            height={`${7 * 12.5}vw`}
-            viewBox="0 0 334 355"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute top-[180px] right-0 border-none"
-          >
-            <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
-              <path
-                d="M339 354C67.8937 354 7.72459 118.667 6 0.999969H339V354Z"
-                fill="url(#paint0_linear_5287_1446)"
-              />
-            </g>
-            <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
-              <path
-                d="M334 355C62.0796 355 1.72977 118.333 0 0H334V355Z"
-                fill="url(#paint1_linear_5287_1446)"
-              />
-            </g>
-            <defs>
-              <linearGradient
-                id="paint0_linear_5287_1446"
-                x1="-103.982"
-                y1="202.729"
-                x2="61.3561"
-                y2="45.5788"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop offset="0.233439" stopOpacity="0.45" />
-                <stop offset="1" stopColor="white" stopOpacity="0.05" />
-              </linearGradient>
-              <linearGradient
-                id="paint1_linear_5287_1446"
-                x1="-110.313"
-                y1="202.872"
-                x2="55.9397"
-                y2="45.2716"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop offset="0.233439" stopOpacity="0.45" />
-                <stop offset="1" stopColor="white" stopOpacity="0.05" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-      </div>
-
+      <NavbarMobile
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+        localPageTracker={localPageTracker}
+        setLocalPageTracker={setLocalPageTracker}
+        searchParams={searchParams}
+      />
       <div className="hidden md:flex flex-row gap-1 ml-[8.33vw] w-[16.66vw]">
         <Link
           href={`/knowledge`}
+          scroll={false}
           onClick={() => {
             setLocalPageTracker("/knowledge");
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }}
           className={`transition-all ${
-            localPageTracker == "/knowledge"
+            localPageTracker == "/knowledge" && !searchParams.has("item")
               ? "opacity-30 cursor-default"
               : "opacity-100"
           }`}
@@ -241,9 +163,12 @@ export default function Navbar() {
         </Link>
         <Link
           href={`/news`}
+          scroll={false}
           onClick={() => {
-            // sidesheet.setIsOpen(true);
-            // sidesheet.setPage("news");
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
             setLocalPageTracker("/news");
           }}
           className={`transition-all ${
@@ -255,7 +180,6 @@ export default function Navbar() {
           Новости
         </Link>
       </div>
-
       <div
         className={cn(
           "hidden md:flex flex-row gap-1 ml-auto mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000",
@@ -299,6 +223,120 @@ export default function Navbar() {
         >
           Контакты
         </Link>
+      </div>
+    </div>
+  );
+}
+
+export function NavbarMobile({
+  isMobileMenuOpen,
+  setIsMobileMenuOpen,
+  localPageTracker,
+  setLocalPageTracker,
+  searchParams
+}: {
+  isMobileMenuOpen: boolean;
+  setIsMobileMenuOpen: (value: boolean) => void;
+  localPageTracker: "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact";
+  setLocalPageTracker: (value: "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact") => void;
+  searchParams: ReturnType<typeof useSearchParams>;
+}) {
+  return (
+    <div
+      className={cn(
+        "fixed top-[36px] left-0 w-screen h-[calc(100vh-36px)] bg-white z-50 transition-opacity duration-300",
+        isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+      )}
+    >
+      <div className="flex flex-col gap-1 justify-start items-center h-full font-spectral font-normal text-[14px] leading-5 -tracking-[0.28px] divide-y-[1px] border-y-[#E7E9EF] relative">
+        <Link
+          href={`/knowledge`}
+          onClick={() => {
+            setLocalPageTracker("/knowledge");
+            setIsMobileMenuOpen(false);
+          }}
+          className={`transition-all w-full p-2  border-t-[1px] border-t-[#E7E9EF] ${
+            localPageTracker == "/knowledge" && !searchParams.has("item")
+              ? "opacity-30 cursor-default"
+              : "opacity-100"
+          }`}
+        >
+          Знания
+        </Link>
+        <Link
+          href={`/news`}
+          onClick={() => {
+            setLocalPageTracker("/news");
+            setIsMobileMenuOpen(false);
+          }}
+          className={`transition-all w-full p-2 ${
+            localPageTracker == "/news"
+              ? "opacity-30 cursor-default"
+              : "opacity-100"
+          }`}
+        >
+          Новости
+        </Link>
+        <Link
+          href="/contacts"
+          onClick={() => {
+            setIsMobileMenuOpen(false);
+          }}
+          className="transition-all w-full p-2"
+        >
+          Контакты
+        </Link>
+
+        <div className="absolute bottom-2 left-2 w-full flex flex-row border-none">
+          <a href="/">Телеграм канал,</a>
+          <a href="/">Youtube</a>
+        </div>
+
+        <svg
+          width={`${7 * 12.5}vw`}
+          height={`${7 * 12.5}vw`}
+          viewBox="0 0 334 355"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute top-[180px] right-0 border-none"
+        >
+          <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
+            <path
+              d="M339 354C67.8937 354 7.72459 118.667 6 0.999969H339V354Z"
+              fill="url(#paint0_linear_5287_1446)"
+            />
+          </g>
+          <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
+            <path
+              d="M334 355C62.0796 355 1.72977 118.333 0 0H334V355Z"
+              fill="url(#paint1_linear_5287_1446)"
+            />
+          </g>
+          <defs>
+            <linearGradient
+              id="paint0_linear_5287_1446"
+              x1="-103.982"
+              y1="202.729"
+              x2="61.3561"
+              y2="45.5788"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0.233439" stopOpacity="0.45" />
+              <stop offset="1" stopColor="white" stopOpacity="0.05" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_5287_1446"
+              x1="-110.313"
+              y1="202.872"
+              x2="55.9397"
+              y2="45.2716"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0.233439" stopOpacity="0.45" />
+              <stop offset="1" stopColor="white" stopOpacity="0.05" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
     </div>
   );
