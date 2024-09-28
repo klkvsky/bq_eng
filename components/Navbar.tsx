@@ -103,7 +103,7 @@ export default function Navbar() {
       </div>
       <div
         className={cn(
-          "md:hidden flex flex-col gap-1 pr-2 justify-center ml-auto",
+          "md:hidden flex flex-col gap-1 pr-2 justify-center ml-auto transition-transform duration-500",
           isMobileMenuOpen ? "-translate-x-2" : ""
         )}
         onClick={() => {
