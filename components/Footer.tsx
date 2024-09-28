@@ -2,12 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSideSheet } from "@/lib/SideSheetContext";
 import { useScreenSize } from "@/lib/hooks/useScreenSize";
 import { cn } from "@/lib/utils";
 
 export default function Footer() {
-  const sidesheet = useSideSheet();
   const screenSize = useScreenSize();
   const pathname = usePathname();
 
