@@ -1,7 +1,5 @@
 "use client";
 
-import { useScreenSize } from "@/lib/hooks/useScreenSize";
-
 import Book1 from "@/public/assets/images/Books/book-1.png";
 import Book2 from "@/public/assets/images/Books/book-2.png";
 import Book4 from "@/public/assets/images/Books/book-4.png";
@@ -82,8 +80,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Knowledge() {
-  const screenSize = useScreenSize();
-
   return (
     <div className="flex flex-col">
       <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] xl:mt-[44px] p-2 md:pl-3 md:py-0">

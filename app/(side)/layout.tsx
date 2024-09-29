@@ -1,14 +1,12 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useScreenSize } from "@/lib/hooks/useScreenSize";
 import { useEffect, useState } from "react";
 import Digest from "@/components/Digest";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const screenSize = useScreenSize();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
   const searchParams = useSearchParams();
