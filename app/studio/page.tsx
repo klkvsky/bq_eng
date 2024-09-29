@@ -1,70 +1,48 @@
 "use client";
 
-import { useScreenSize } from "@/lib/hooks/useScreenSize";
+import { cn } from "@/lib/utils";
 
 import prjects1 from "@/public/assets/images/project-1.png";
 import Image from "next/image";
 
 export default function Home() {
-  const screenSize = useScreenSize();
-
   return (
-    <div className="flex flex-col min-h-screen">
-      <h1 className="font-spectral font-normal text-[20px] lg:text-[38px]  leading-[24px] lg:leading-[42px] -tracking-[0.6px] lg:-tracking-[0.03em]  px-2 lg:px-3">
+    <div className="flex flex-col">
+      <h1 className="px-2 md:px-3 font-spectral text-[20px] md:text-[28px] xl:text-[36px] 2xl:text-[91.2px] font-normal leading-[24px] md:leading-[32px] xl:leading-[42px] 2xl:leading-[100.8px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[0.03em] 2xl:-tracking-[2.736px]">
         В BQ мы исследуем широкий спектр направлений, включая пространственные
         проекты, инсайды и медиа работу. Каждое средство предлагает нам
         уникальную возможность воплотить в жизнь новые идеи.
       </h1>
 
-      <div className="flex flex-col items-end mt-[32px] lg:mt-[80px]">
-        <div
-          className="custom-shadow-left relative"
-          style={{
-            width: screenSize !== "sm" ? `${9 * 8.33}vw` : `${7 * 12.5}vw`,
-            height: "auto",
-          }}
-        >
+      <div className="flex flex-col items-end mt-[32px] md:mt-[24px] xl:mt-[80px]">
+        <div className="custom-shadow-left md:after:hidden xl:after:block relative w-[calc(7*12.5vw)] md:w-full xl:w-[calc(9*8.33vw)] h-auto">
           <Image
             src={prjects1}
             alt="project-1"
             width={0}
             height={0}
-            style={{
-              width: screenSize !== "sm" ? `${9 * 8.33}vw` : `${7 * 12.5}vw`,
-              height: "auto",
-            }}
+            className={cn(
+              "w-[calc(7*12.5vw)] md:w-screen xl:w-[calc(9*8.33vw)] h-auto"
+            )}
           />
         </div>
         <p
-          className="font-spectral font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em] mt-[16px] lg:mt-[24px] px-2 lg:pr-3 lg:pl-0"
-          style={{
-            width: screenSize !== "sm" ? `${9 * 8.33}vw` : `${8 * 12.5}vw`,
-          }}
+          className={cn(
+            "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] mt-[16px] md:mt-[24px] xl:mt-[24px] px-2 md:px-3 xl:pl-0",
+            "w-full xl:w-[calc(9*8.33vw)]"
+          )}
         >
           В BQ мы исследуем широкий спектр направлений, включая пространственные
           проекты, инсайды и медиа работу. Каждое средство предлагает нам
           уникальную возможность воплотить в жизнь новые идеи.
         </p>
 
-        <div
-          className="flex flex-col lg:flex-row mt-[32px] lg:mt-[80px]"
-          style={{
-            paddingRight: screenSize !== "sm" ? `${1 * 8.33}vw` : `8px`,
-            paddingLeft: screenSize !== "sm" ? `0px` : `8px`,
-            gap: screenSize !== "sm" ? `${8.33 * 1}vw` : `16px`,
-            width: screenSize !== "sm" ? `${9 * 8.33}vw` : `100vw`,
-          }}
-        >
-          <div
-            className="flex flex-col max-sm:gap-[16px]"
-            style={{
-              width: screenSize !== "sm" ? `${3 * 8.33}vw` : `100%`,
-            }}
-          >
-            <p className="font-apercu font-normal text-[14px] lg:text-[16px] leading-[20px] -tracking-[0.28px] lg:-tracking-[0.02em] max-sm:mt-[8px]">
+        <div className="flex flex-col md:flex-row mt-[32px] md:mt-[24px] xl:mt-[80px] px-2 md:px-3 xl:pr-[9.33vw] xl:pl-0 gap-[16px] md:gap-[8.33vw] w-full xl:w-[calc(9*8.33vw)]">
+          <div className="flex flex-col max-sm:gap-[16px] w-full md:w-[calc(5*8.33vw)] xl:w-[calc(3*8.33vw)]">
+            <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] max-sm:mt-[8px]">
               Контакты
             </p>
-            <div className="flex flex-col gap-0 font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
+            <div className="flex flex-col gap-0 font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em]">
               <p className="font-spectral">BQ Studio:</p>
               <a
                 href="emailto:hello@bqstudio.co"
@@ -73,7 +51,7 @@ export default function Home() {
                 hello@bqstudio.co
               </a>
             </div>
-            <div className="flex flex-col gap-0 lg:mt-[24px] font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
+            <div className="flex flex-col gap-0 xl:mt-[24px] font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em]">
               <p className="font-spectral">BQ Studio Education:</p>
               <a
                 href="emailto:edu@bqstudio.co"
@@ -82,7 +60,7 @@ export default function Home() {
                 edu@bqstudio.co
               </a>
             </div>
-            <div className="flex flex-col gap-0 lg:mt-[24px] font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
+            <div className="flex flex-col gap-0 xl:mt-[24px] font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em]">
               <p className="font-spectral">BQ Studio Communications:</p>
               <a
                 href="emailto:pr@bqstudio.co"
@@ -92,16 +70,11 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div
-            className="flex flex-col"
-            style={{
-              width: screenSize !== "sm" ? `${4 * 8.33}vw` : "100%",
-            }}
-          >
-            <p className="font-apercu font-normal text-[14px] lg:text-[16px] leading-[20px] lg:leading-[20px] -tracking-[0.28px] lg:-tracking-[0.02em]">
+          <div className="flex flex-col w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)]">
+            <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]">
               Направления работ
             </p>
-            <div className="flex flex-col gap-px mt-3 font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
+            <div className="flex flex-col gap-px mt-3 font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em]">
               <p className="font-spectral">Архитектурное проектирование</p>
               <p className="font-spectral opacity-30">
                 Мастер-план территории <br />
@@ -113,13 +86,13 @@ export default function Home() {
                 Бренд-урбанизм
               </p>
             </div>
-            <div className="flex flex-col gap-px mt-6 font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
+            <div className="flex flex-col gap-px mt-6 font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em]">
               <p className="font-spectral">Консалтинг</p>
               <p className="font-spectral opacity-30 pr-4">
                 Методические рекомендации и чек-листов
               </p>
             </div>
-            <div className="flex flex-col gap-px mt-4 lg:mt-6 font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
+            <div className="flex flex-col gap-px mt-4 xl:mt-6 font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em]">
               <p className="font-spectral">Образовательные проекты</p>
               <p className="font-spectral opacity-30">
                 Архитектурные экспедиции <br />
@@ -142,49 +115,36 @@ export default function Home() {
           width: "100vw",
           height: "auto",
         }}
-        className="mt-[80px] lg:mt-[160px]"
+        className="mt-[80px] md:mt-[160px]"
       />
-      <h1 className="font-spectral font-normal text-[20px] lg:text-[38px] leading-[24px] lg:leading-[42px] -tracking-[0.6px] lg:-tracking-[0.03em] px-2 lg:px-3 mt-4 lg:mt-6">
+      <h1 className="font-spectral font-normal text-[20px] md:text-[28px] xl:text-[38px] leading-[24px] md:leading-[32px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[0.03em] px-2 md:px-3 mt-4 md:mt-6">
         В BQ мы исследуем широкий спектр направлений, включая пространственные
         проекты, инсайды и медиа работу. Каждое средство предлагает нам
         уникальную возможность воплотить в жизнь новые идеи.
       </h1>
-      <div
-        className="flex flex-col lg:flex-row justify-between mt-[32px] lg:mt-[80px] gap-4 lg:gap-0"
-        style={{
-          paddingRight: screenSize !== "sm" ? `${0.5 * 8.33}vw` : `8px`,
-          paddingLeft: screenSize !== "sm" ? `12px` : `8px`,
-        }}
-      >
-        <div
-          className="flex flex-col gap-3"
-          style={{ width: screenSize !== "sm" ? `${6 * 8.33}vw` : `100%` }}
-        >
-          <p className="font-apercu font-normal text-[14px] lg:text-[16px] leading-[20px] lg:leading-[20px] -tracking-[0.02em]">
+      <div className="flex flex-col md:flex-row justify-between mt-[32px] md:mt-20 xl:mt-[80px] gap-4 xl:gap-0 px-2 md:px-3 xl:pl-3 xl:pr-[calc(0.5*8.33vw)]">
+        <div className="flex flex-col gap-3 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)]">
+          <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]">
             Партнерство и коллаборации
           </p>
-          <p className="font-spectral font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
+          <p className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em]">
             Для рассмотрения вариантов сотрудничества напишите{" "}
-            <br className="hidden lg:block" /> на почту:
+            <br className="hidden xl:block" /> на почту:
+            <br className="hidden md:block xl:hidden" />
             <a
               href="emailto:hello@bqstudio.co"
-              className="font-spectral lg:font-apercu font-normal opacity-100 lg:opacity-30 pl-1"
+              className="font-spectral xl:font-apercu font-normal opacity-100 xl:opacity-30 md:pl-0 xl:pl-1 pl-1"
             >
               hello@bqstudio.co.
             </a>
           </p>
         </div>
-        <div
-          className="flex flex-col gap-10"
-          style={{
-            width: screenSize !== "sm" ? `${4 * 8.33}vw` : `100%`,
-          }}
-        >
+        <div className="flex flex-col gap-4 md:gap-6 xl:gap-10 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)">
           <div className="flex flex-col gap-3">
-            <p className="font-apercu font-normal text-[14px] lg:text-[16px] leading-[20px] lg:leading-[20px] -tracking-[0.02em]">
+            <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]">
               Наши клиенты
             </p>
-            <p className="font-spectral font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
+            <p className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em]">
               STONE, MONO <br />
               MR Group <br />
               ГК ПИК <br />
@@ -199,18 +159,21 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col gap-3">
-            <p className="font-apercu font-normal text-[14px] lg:text-[16px] leading-[20px] lg:leading-[20px] -tracking-[0.02em]">
-              Награды
+            <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]">
+              Наши клиенты
             </p>
-            <p className="font-spectral font-normal text-[20px] lg:text-[28px] leading-[24px] lg:leading-[32px] -tracking-[0.6px] lg:-tracking-[0.02em]">
-              PUBLIC SPACE Award <br />
-              Открытый международный конкурс <br />
-              Золотое сечение 2019 <br />
-              Золотой Тризини <br />
-              WAF China 2020 <br />
-              Best Office Awards 2020 <br />
-              Build School Project 2018 <br />
-              WAF China 2021 <br />
+            <p className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em]">
+              STONE, MONO <br />
+              MR Group <br />
+              ГК ПИК <br />
+              FORMA <br />
+              INGRAD <br />
+              SBER <br />
+              Granard <br />
+              Hutton Development <br />
+              Capital Group <br />
+              СМУ-88 <br />
+              НМ-10
             </p>
           </div>
         </div>

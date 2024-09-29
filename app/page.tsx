@@ -13,7 +13,6 @@ import ProjectItem from "@/components/Projects-Item";
 import { StaticImageData } from "next/image";
 
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
-import { useScreenSize } from "@/lib/hooks/useScreenSize";
 import { cn } from "@/lib/utils";
 
 const projectsData = [
@@ -64,10 +63,9 @@ const projectsData = [
 
 export default function Home() {
   const { displayMode, visible } = useGallery();
-  const screenSize = useScreenSize();
   return (
-    <div className="flex flex-col">
-      <h1 className="px-2 lg:px-3 font-spectral text-[20px] md:text-[28px] lg:text-[36px] font-normal leading-[24px] lg:leading-[42px] -tracking-[0.6px] lg:-tracking-[0.03em]">
+    <div className="flex flex-col min-h-[90vh]">
+      <h1 className="px-2 md:px-3 font-spectral text-[20px] md:text-[28px] xl:text-[36px] 2xl:text-[91.2px] font-normal leading-[24px] md:leading-[32px] xl:leading-[42px] 2xl:leading-[100.8px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[0.03em] 2xl:-tracking-[2.736px]">
         Развиваем архитектуру как культурную практику, реализуя различные
         форматы, такие как:
         <br className="md:hidden" />
@@ -100,7 +98,7 @@ export default function Home() {
       {displayMode === "gallery" ? (
         <div
           className={cn(
-            "flex flex-col transition-opacity duration-1000 gap-[80px] lg:gap-[160px] mt-[48px] lg:mt-[189px]",
+            "flex flex-col transition-opacity duration-1000 gap-[80px] md:gap-[160px] 2xl:gap-[422px] mt-[48px] md:mt-20 xl:mt-[189px] 2xl:mt-[454px]",
             visible ? "opacity-100" : "opacity-0"
           )}
         >
@@ -121,12 +119,10 @@ export default function Home() {
         </div>
       ) : (
         <div
-          className={`lg:grid lg:grid-cols-4 lg:gap-x-[144px] lg:gap-y-[160px]  lg:px-[78px] mt-20 lg:mt-40 transition-opacity duration-1000 max-md:flex max-md:flex-col ${
+          className={cn(
+            "xl:grid xl:grid-cols-4 xl:gap-x-[0.5*8.33vw] xl:px-[8.33vw] xl:gap-y-[160px] mt-20 xl:mt-40 transition-opacity duration-1000 flex flex-col gap-[16px] xl:gap-[8.33vw] xl:justify-items-center",
             visible ? "opacity-100" : "opacity-0"
-          }`}
-          style={{
-            gap: screenSize !== "sm" ? `${1 * 8.33}vw` : "16px",
-          }}
+          )}
         >
           {projectsData.map((item) => {
             return (

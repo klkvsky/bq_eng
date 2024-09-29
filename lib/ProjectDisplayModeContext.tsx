@@ -22,7 +22,7 @@ interface GalleryProviderProps {
 // Create a provider component
 export const GalleryProvider = ({ children }: GalleryProviderProps) => {
   // State to track if the gallery is active or not
-  const [displayMode, setDisplayMode] = useState<"gallery" | "list">("gallery");
+  const [displayMode, setDisplayMode] = useState<"gallery" | "list">("list");
   const [visible, setVisible] = useState(true);
 
   // Function to toggle the gallery state

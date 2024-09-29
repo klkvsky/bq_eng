@@ -13,9 +13,16 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        apercu: ['var(--apercu)'],
-        spectral: ['var(--spectral)']
-      }
+        apercu: ["var(--apercu)"],
+        spectral: ["var(--spectral)"],
+      },
+    },
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "2048px", // Changed from the default 1536px to 2048px (2K)
     },
   },
   plugins: [],

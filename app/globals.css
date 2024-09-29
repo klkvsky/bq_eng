@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root {
+  --lightness: 80; /* Adjust this value based on your background */
+  --threshold: 60; /* Lightness threshold */
 }
 
+/*
 body {
   color: var(--foreground);
   background: var(--background);
@@ -21,26 +22,30 @@ body {
 
 @layer components {
   .custom-shadow-left {
-    @apply after:w-[40px] after:lg:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:right-[calc(100%+8px)] after:lg:right-[calc(100%+12px)] after:opacity-[6%] after:bg-blend-multiply;
+    @apply after:w-[40px] after:md:w-[38px] after:xl:w-[66px] after:2xl:w-[158px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:right-[calc(100%+8px)] after:xl:right-[calc(100%+12px)] after:opacity-[4%] after:bg-blend-multiply;
   }
 
   .custom-shadow-right {
-    @apply after:w-[40px] after:lg:w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:lg:left-[calc(100%+12px)] after:left-[calc(100%+8px)] after:opacity-[6%] after:bg-blend-multiply;
+    @apply after:w-[40px] after:md:w-[38px] after:xl:w-[66px] after:2xl:w-[158px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:xl:left-[calc(100%+12px)] after:left-[calc(100%+8px)] after:opacity-[6%] after:bg-blend-multiply;
   }
 
   .custom-shadow-top {
-    @apply  after:w-full after:h-[40px] lg:after:h-[66px] after:bg-gradient-to-t after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-0 after:bottom-full after:opacity-[6%] after:bg-blend-multiply;
+    @apply after:w-full after:md:h-[38px] after:h-[40px] after:xl:h-[66px] after:2xl:h-[158px] after:bg-gradient-to-t after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-0 after:bottom-full after:opacity-[6%] after:bg-blend-multiply;
+  }
+
+  .custom-shadow-botton {
+    @apply after:w-full after:md:h-[38px] after:h-[40px] after:xl:h-[66px] after:2xl:h-[158px] after:bg-gradient-to-b after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-0 after:bottom-full after:opacity-[6%] after:bg-blend-multiply;
   }
 
   .custom-shadow-left-no-margin {
-    @apply  after:w-[40px] lg:after:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
+    @apply after:w-[40px] after:md:w-[38px] after:xl:w-[66px] after:2xl:w-[158px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
   }
 
   .custom-shadow-right-no-margin {
-    @apply  after:w-[40px] lg:after:w-[66px] after:max-w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
+    @apply after:w-[40px] after:md:w-[38px] after:xl:w-[66px] after:2xl:w-[158px] after:max-w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
   }
 
   .sidesheet-shadow {
-    @apply  after:w-[40px] lg:after:w-[66px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%)] after:opacity-[6%] after:bg-blend-multiply;
+    @apply after:w-[40px] after:md:w-[38px] after:xl:w-[66px] after:2xl:w-[158px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%)] after:opacity-[6%] after:bg-blend-multiply;
   }
 }

@@ -31,21 +31,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${apercuPro.variable} ${spectral.variable} antialiased`}
+        className={`${apercuPro.variable} ${spectral.variable} antialiased max-w-[100vw] overflow-x-hidden`}
       >
         <GalleryProvider>
-          <div className="flex flex-col w-screen min-h-screen relative max-w-[100vw] z-30">
+          <div className="flex flex-col w-screen min-h-screen relative z-30">
             <Navbar />
             <PageAnimatePresence>{children}</PageAnimatePresence>
             <MobileProjectsFooter />
             <Footer />
             <div
               className={cn(
-                "hidden lg:block absolute top-0 right-0 h-[calc(100vh+44px)] -mt-[44px] transition-transform pointer-events-none",
+                "hidden xl:block fixed top-0 right-0 h-[calc(100vh+44px)] -mt-[44px] transition-all pointer-events-none",
                 pathname.startsWith("/knowledge") ||
                   pathname.startsWith("/news")
-                  ? "translate-x-0 duration-[700ms] delay-[1100ms] ease-linear"
-                  : "translate-x-full delay-0 duration-[600ms] ease-linear"
+                  ? "translate-x-0 duration-[700ms] delay-[1100ms] ease-linear opacity-100"
+                  : "translate-x-full delay-0 duration-[600ms] ease-linear opacity-0"
               )}
               style={{ width: `${9 * 8.33}vw` }}
             >

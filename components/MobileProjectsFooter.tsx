@@ -12,7 +12,7 @@ export default function MobileProjectsFooter() {
   return (
     <div
       className={cn(
-        "md:hidden w-screen h-[36px] bg-white sticky left-0 bottom-0 z-50 p-2 border-t border-t-[#E7E9EF] flex flex-row items-center justify-center gap-2",
+        "xl:hidden w-screen h-[36px] md:h-[44px] bg-white sticky left-0 bottom-0 z-50 p-2 md:p-3 border-t border-t-[#E7E9EF] flex flex-row items-center justify-center gap-2",
         pathname === "/" ? "mt-20" : "hidden"
       )}
     >

@@ -12,7 +12,7 @@ function calculateWidth(
     return `${2 * 8.33}vw`;
   }
   if (screenSize === "sm") return "87.5vw";
-  return `${8 * cols}vw`;
+  return `${8.33 * cols}vw`;
 }
 
 export default function ProjectItem({
@@ -38,54 +38,51 @@ export default function ProjectItem({
   return (
     <>
       {type === "left" ? (
-        <div className="flex flex-col gap-2 lg:gap-3">
+        <div className="flex flex-col gap-2 md:gap-3">
           <div
             className={cn(
               "relative cursor-pointer",
               displayMode === "gallery"
                 ? "custom-shadow-right"
-                : "group lg:h-[320px] max-md:flex max-md:flex-row-reverse w-full max-md:p-2 md:py-0 max-md:gap-[12.5vw]"
+                : "group max-xl:flex max-xl:flex-row-reverse w-full max-xl:p-2 md:py-0 max-xl:gap-[12.5vw] h-[110px] md:h-[200px] xl:h-[320px] 2xl:h-[520px] max-h-[110px] md:max-h-[200px] xl:max-h-[320px] 2xl:max-h-[520px]"
             )}
             style={{
               width:
-                screenSize !== "sm"
+                screenSize === "xl" || screenSize === "2xl"
                   ? calculatedWidth
                   : displayMode === "list"
                   ? "100%"
+                  : screenSize === "lg" || screenSize === "md"
+                  ? calculatedWidth
                   : "87.5vw",
-              // maxWidth: screenSize !== "sm" ? calculatedWidth : "100%",
             }}
           >
-            <div className="max-md:min-h-[110px] max-md:relative max-md:custom-shadow-left">
-              <Image
-                src={mainImage}
-                alt="project-1"
-                width={0}
-                height={0}
-                style={{
-                  width: calculatedWidth,
-                  height: displayMode === "gallery" ? "auto" : `auto`,
-                }}
-                className={cn(
-                  displayMode !== "gallery" &&
-                    "lg:w-[320px] lg:h-auto lg:max-h-[320px] max-h-[110px] object-cover"
-                )}
-              />
+            <div className="relative max-xl:custom-shadow-left h-full">
+              <div className="w-full h-full overflow-hidden">
+                <Image
+                  src={mainImage}
+                  alt="project-1"
+                  width={0}
+                  height={0}
+                  style={{ width: calculatedWidth, height: "auto" }}
+                  className={cn(displayMode !== "gallery" && "object-cover")}
+                />
+              </div>
             </div>
             {displayMode === "list" && (
-              <div className="lg:absolute lg:left-0 lg:top-0 w-full h-full lg:bg-white lg:opacity-0 transition-opacity lg:custom-shadow-right-no-margin lg:group-hover:opacity-100 flex lg:flex-col flex-col-reverse max-md:justify-end">
-                <p className="font-apercu font-normal text-[14px] lg:text-[16px] leading-[20px] -tracking-[0.28px] lg:-tracking-[0.02em] lg:pt-3">
-                  Живой паркинг. <br className="lg:hidden" />
+              <div className="xl:absolute xl:left-0 xl:top-0 w-full h-full xl:bg-white xl:opacity-0 transition-opacity xl:custom-shadow-right-no-margin xl:group-hover:opacity-100 flex md:flex-row-reverse xl:flex-col flex-col-reverse max-xl:justify-end">
+                <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] leading-[20px] md:leading-[32px] xl:leading-[20px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 md:pl-[calc(2*8.33vw)] xl:pl-0">
+                  Живой паркинг. <br className="xl:hidden" />
                   <span className="opacity-30">Интерьеры, Москва 2024</span>
                 </p>
-                <p className="font-apercu font-normal text-[14px] lg:text-[28px] leading-[20px] lg:leading-[32px] -tracking-[0.28px] lg:-tracking-[0.02em] lg:mt-auto lg:pb-1">
+                <p className="font-apercu font-normal text-[14px] md:text-[28px] leading-[20px] md:leading-[32px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1">
                   KG-12.
                 </p>
               </div>
             )}
           </div>
           {displayMode === "gallery" && (
-            <p className="font-apercu font-normal text-[16px] leading-[20px] -tracking-[0.02em] pl-3">
+            <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px]">
               {text}
             </p>
           )}
@@ -93,11 +90,11 @@ export default function ProjectItem({
       ) : (
         <div
           className={cn(
-            "flex flex-col md:flex-row max-md:items-end lg:justify-end align-top gap-20 lg:gap-3"
+            "flex flex-col md:flex-row max-md:items-end md:justify-end align-top gap-20 md:gap-3"
           )}
         >
           {displayMode === "gallery" && (
-            <div className="flex flex-col gap-2 lg:gap-3">
+            <div className="flex flex-col gap-2 md:gap-3">
               <div className="relative">
                 <Image
                   src={secondaryImage!}
@@ -106,18 +103,17 @@ export default function ProjectItem({
                     width: screenSize !== "sm" ? `${8 * 4}vw` : "62.5vw",
                     height: displayMode === "gallery" ? "auto" : `320px`,
                   }}
-                  className=""
                 />
               </div>
-              <p className="font-apercu font-normal text-[16px] leading-[20px] -tracking-[0.02em]">
+              <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px]">
                 {secondaryText}
               </p>
             </div>
           )}
           <div
             className={cn(
-              "lg:flex lg:flex-col gap-2 lg:gap-3",
-              displayMode === "list" && "max-md:w-full"
+              "flex flex-col gap-2 md:gap-3",
+              displayMode === "list" && "max-xl:w-full"
             )}
           >
             <div
@@ -125,43 +121,41 @@ export default function ProjectItem({
                 "relative cursor-pointer",
                 displayMode === "gallery"
                   ? "custom-shadow-left"
-                  : "group lg:h-[320px] max-md:h-[110px] max-md:flex max-md:flex-row-reverse max-md:p-2 md:py-0 max-md:gap-[12.5vw] max-md:justify-between"
+                  : "group max-xl:h-[110px] max-xl:flex max-xl:flex-row-reverse max-xl:p-2 md:py-0 max-xl:gap-[12.5vw] max-xl:justify-between h-[110px] md:h-[200px] xl:h-[320px] 2xl:h-[520px] max-h-[110px] md:max-h-[200px] xl:max-h-[320px] 2xl:max-h-[520px]"
               )}
               style={{
-                width: screenSize !== "sm" ? calculatedWidth : "100%",
-                maxWidth: screenSize !== "sm" ? calculatedWidth : "100%",
+                width:
+                  screenSize === "xl" || screenSize === "2xl"
+                    ? calculatedWidth
+                    : "100%",
               }}
             >
-              <div className="max-md:min-h-[110px] max-md:relative max-md:custom-shadow-left">
-                <Image
-                  src={mainImage}
-                  alt="project-1"
-                  width={0}
-                  height={0}
-                  style={{
-                    width: calculatedWidth,
-                    height: displayMode === "gallery" ? "auto" : `auto`,
-                  }}
-                  className={cn(
-                    displayMode !== "gallery" &&
-                      "lg:w-[320px] lg:h-auto lg:max-h-[320px] max-h-[110px] object-cover"
-                  )}
-                />
+              <div className="relative max-xl:custom-shadow-left h-full">
+                <div className="w-full h-full overflow-hidden">
+                  <Image
+                    src={mainImage}
+                    alt="project-1"
+                    width={0}
+                    height={0}
+                    style={{ width: calculatedWidth, height: "auto" }}
+                    className={cn(displayMode !== "gallery" && "object-cover")}
+                  />
+                </div>
               </div>
               {displayMode === "list" && (
-                <div className="lg:absolute lg:left-0 lg:top-0 w-full h-full lg:bg-white lg:opacity-0 transition-opacity lg:custom-shadow-right-no-margin lg:group-hover:opacity-100 flex lg:flex-col flex-col-reverse max-md:justify-end">
-                  <p className="font-apercu font-normal text-[14px] lg:text-[16px] leading-[20px] -tracking-[0.28px] lg:-tracking-[0.02em] lg:pt-3">
-                    Живой паркинг. <br className="lg:hidden" />
+                <div className="xl:absolute xl:left-0 xl:top-0 w-full h-full xl:bg-white xl:opacity-0 transition-opacity xl:custom-shadow-right-no-margin xl:group-hover:opacity-100 flex md:flex-row-reverse xl:flex-col flex-col-reverse max-xl:justify-end">
+                  <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] leading-[20px] md:leading-[32px] xl:leading-[20px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 md:pl-[calc(2*8.33vw)] xl:pl-0">
+                    Живой паркинг. <br className="xl:hidden" />
                     <span className="opacity-30">Интерьеры, Москва 2024</span>
                   </p>
-                  <p className="font-apercu font-normal text-[14px] lg:text-[28px] leading-[20px] lg:leading-[32px] -tracking-[0.28px] lg:-tracking-[0.02em] lg:mt-auto lg:pb-1">
+                  <p className="font-apercu font-normal text-[14px] md:text-[28px] leading-[20px] md:leading-[32px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1">
                     KG-12.
                   </p>
                 </div>
               )}
             </div>
             {displayMode === "gallery" && (
-              <p className="font-apercu font-normal text-[16px] leading-[20px] -tracking-[0.02em]">
+              <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px]">
                 {text}
               </p>
             )}

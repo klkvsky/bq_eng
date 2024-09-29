@@ -6,7 +6,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
 import { useEffect, useState } from "react";
-
+import { useScreenSize } from "@/lib/hooks/useScreenSize";
 export default function Navbar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -40,14 +40,13 @@ export default function Navbar() {
       document.body.classList.remove("overflow-hidden");
     }
 
-    // Cleanup function to remove the class when component unmounts
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
   }, [isMobileMenuOpen]);
 
   return (
-    <div className="sticky top-0 bg-white md:bg-transparent flex flex-row w-screen md:h-[44px] p-2 md:p-3 font-spectral text-[14px] md:text-[16px] leading-5 -tracking-[0.28px] md:-tracking-[-0.02em] z-50">
+    <div className="sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[-0.02em] 2xl:-tracking-[0.76px] z-50">
       <div className="flex flex-row gap-1 md:w-[16.66vw]">
         <Link
           href="/"
@@ -115,7 +114,7 @@ export default function Navbar() {
       </div>
       <div
         className={cn(
-          "md:hidden flex flex-col gap-1 pr-2 justify-center ml-auto transition-transform duration-500",
+          "xl:hidden flex flex-col gap-1 pr-2 justify-center ml-auto transition-transform duration-500 cursor-pointer",
           isMobileMenuOpen ? "-translate-x-2" : ""
         )}
         onClick={() => {
@@ -142,7 +141,7 @@ export default function Navbar() {
         setLocalPageTracker={setLocalPageTracker}
         searchParams={searchParams}
       />
-      <div className="hidden md:flex flex-row gap-1 ml-[8.33vw] w-[16.66vw]">
+      <div className="hidden xl:flex flex-row gap-1 ml-[8.33vw] w-[16.66vw]">
         <Link
           href={`/knowledge`}
           scroll={false}
@@ -182,7 +181,7 @@ export default function Navbar() {
       </div>
       <div
         className={cn(
-          "hidden md:flex flex-row gap-1 ml-auto mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000",
+          "hidden xl:flex flex-row gap-1 ml-auto mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000",
           localPageTracker !== "/" ? "opacity-0" : "opacity-100"
         )}
       >
@@ -212,7 +211,7 @@ export default function Navbar() {
           Список
         </button>
       </div>
-      <div className="hidden md:flex flex-row gap-1 ml-[8.33vw] w-[9.33vw] justify-end">
+      <div className="hidden xl:flex flex-row gap-1 ml-[8.33vw] w-[9.33vw] justify-end">
         <Link
           href="/contacts"
           className={`transition-all ${
@@ -233,14 +232,23 @@ export function NavbarMobile({
   setIsMobileMenuOpen,
   localPageTracker,
   setLocalPageTracker,
-  searchParams
+  searchParams,
 }: {
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (value: boolean) => void;
-  localPageTracker: "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact";
-  setLocalPageTracker: (value: "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact") => void;
+  localPageTracker:
+    | "/"
+    | "/studio"
+    | "/culture"
+    | "/knowledge"
+    | "/news"
+    | "/contact";
+  setLocalPageTracker: (
+    value: "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact"
+  ) => void;
   searchParams: ReturnType<typeof useSearchParams>;
 }) {
+  const screenSize = useScreenSize();
   return (
     <div
       className={cn(
@@ -293,12 +301,12 @@ export function NavbarMobile({
         </div>
 
         <svg
-          width={`${7 * 12.5}vw`}
-          height={`${7 * 12.5}vw`}
+          width={screenSize !== "sm" ? `${7 * 8.33}vw` : `${7 * 12.5}vw`}
+          height={screenSize !== "sm" ? `${7 * 8.33}vw` : `${7 * 12.5}vw`}
           viewBox="0 0 334 355"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute top-[180px] right-0 border-none"
+          className="absolute top-[180px] lg:top-[376px] right-0 border-none"
         >
           <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
             <path
