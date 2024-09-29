@@ -70,27 +70,27 @@ export default function Home() {
         форматы, такие как:
         <br className="md:hidden" />
         <br className="md:hidden" />{" "}
-        <span className="opacity-30 font-apercu whitespace-nowrap">
+        <span className="opacity-30 hover:opacity-100 transition-opacity font-apercu whitespace-nowrap cursor-pointer duration-500">
           Бренд-урбанизм
         </span>
         ,{" "}
-        <span className="opacity-30 font-apercu whitespace-nowrap">
+        <span className="opacity-30 hover:opacity-100 transition-opacity font-apercu whitespace-nowrap cursor-pointer duration-500">
           Интерьеры
         </span>
         ,{" "}
-        <span className="opacity-30 font-apercu whitespace-nowrap">
+        <span className="opacity-30 hover:opacity-100 transition-opacity font-apercu whitespace-nowrap cursor-pointer duration-500">
           Общественные проекты
         </span>
         ,{" "}
-        <span className="opacity-30 font-apercu whitespace-nowrap">
+        <span className="opacity-30 hover:opacity-100 transition-opacity font-apercu whitespace-nowrap cursor-pointer duration-500">
           Ландшафт и благоустройство
         </span>
         ,{" "}
-        <span className="opacity-30 font-apercu whitespace-nowrap">
+        <span className="opacity-30 hover:opacity-100 transition-opacity font-apercu whitespace-nowrap cursor-pointer duration-500">
           Мастер-план территории
         </span>{" "}
         и{" "}
-        <span className="opacity-30 font-apercu whitespace-nowrap">
+        <span className="opacity-30 hover:opacity-100 transition-opacity font-apercu whitespace-nowrap cursor-pointer duration-500">
           Жилая застройка.
         </span>
       </h1>

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Digest from "@/components/Digest";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
-
+import SideFooter from "@/components/SideFooter";
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
@@ -60,6 +60,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         )}
       >
         {children}
+        <SideFooter />
         <motion.div
           id="scrollable-digest"
           className="fixed top-full right-0 h-screen max-h-screen bg-white mt-[80px] md:mt-0 pb-32 md:pb-0 pt-[44px] overflow-y-scroll w-full xl:w-[calc(9*8.33vw)]"
@@ -74,6 +75,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="w-full h-full relative custom-shadow-top" />
           </div>
           <Digest />
+          <SideFooter />
         </motion.div>
       </div>
     </div>

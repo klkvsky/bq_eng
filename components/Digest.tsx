@@ -5,7 +5,7 @@ import Placeholder from "@/public/assets/images/project-4.png";
 
 export default function Digest() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center pb-20">
       <div className="font-normal text-[20px] md:text-[32px] xl:text-[38px] leading-[24px] md:leading-[36px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.96px] xl:-tracking-[0.03em] text-center">
         <p className="font-spectral xl:font-apercu xl:opacity-30">Дайджест:</p>
         <p className="font-spectral">
@@ -164,7 +164,7 @@ export function DigestImage({
             />
           </div>
           {subtext && (
-            <p className="font-spectral font-normal text-[14px] md:text-[16px] leading-[20px] -tracking-[0.28px] md:-tracking-[0.02em] opacity-30 pl-2 md:pl-3 w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(6.5*12.5vw)] h-auto">
+            <p className="font-spectral font-normal text-[14px] md:text-[16px] leading-[20px] -tracking-[0.28px] md:-tracking-[0.02em] opacity-30 pl-2 md:pl-3 w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto">
               {subtext}
             </p>
           )}
@@ -182,7 +182,7 @@ export function DigestImage({
             />
           </div>
           {subtext && (
-            <p className="font-spectral font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] opacity-30 pr-2 md:pr-3 w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(6.5*12.5vw)] h-auto">
+            <p className="font-spectral font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] opacity-30 pr-2 md:pr-3 w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto">
               {subtext}
             </p>
           )}

@@ -71,11 +71,11 @@ export default function ProjectItem({
             </div>
             {displayMode === "list" && (
               <div className="xl:absolute xl:left-0 xl:top-0 w-full h-full xl:bg-white xl:opacity-0 transition-opacity xl:custom-shadow-right-no-margin xl:group-hover:opacity-100 flex md:flex-row-reverse xl:flex-col flex-col-reverse max-xl:justify-end">
-                <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] leading-[20px] md:leading-[32px] xl:leading-[20px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 md:pl-[calc(2*8.33vw)] xl:pl-0">
+                <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] 2xl:text-[32px] leading-[20px] md:leading-[32px] xl:leading-[20px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 2xl:pt-6 md:pl-[calc(2*8.33vw)] xl:pl-0">
                   Живой паркинг. <br className="xl:hidden" />
                   <span className="opacity-30">Интерьеры, Москва 2024</span>
                 </p>
-                <p className="font-apercu font-normal text-[14px] md:text-[28px] leading-[20px] md:leading-[32px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1">
+                <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px]  2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1 2xl:pb-3">
                   KG-12.
                 </p>
               </div>
@@ -144,11 +144,11 @@ export default function ProjectItem({
               </div>
               {displayMode === "list" && (
                 <div className="xl:absolute xl:left-0 xl:top-0 w-full h-full xl:bg-white xl:opacity-0 transition-opacity xl:custom-shadow-right-no-margin xl:group-hover:opacity-100 flex md:flex-row-reverse xl:flex-col flex-col-reverse max-xl:justify-end">
-                  <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] leading-[20px] md:leading-[32px] xl:leading-[20px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 md:pl-[calc(2*8.33vw)] xl:pl-0">
+                  <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] 2xl:text-[32px] leading-[20px] md:leading-[32px] xl:leading-[20px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 2xl:pt-6 md:pl-[calc(2*8.33vw)] xl:pl-0">
                     Живой паркинг. <br className="xl:hidden" />
                     <span className="opacity-30">Интерьеры, Москва 2024</span>
                   </p>
-                  <p className="font-apercu font-normal text-[14px] md:text-[28px] leading-[20px] md:leading-[32px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1">
+                  <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1">
                     KG-12.
                   </p>
                 </div>

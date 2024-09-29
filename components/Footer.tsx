@@ -12,7 +12,8 @@ export default function Footer() {
       className={cn(
         "flex flex-row max-md:items-end w-screen h-auto md:h-[44px] 2xl:h-[104px] max-md:px-2 max-md:py-3 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] md:text-[16px] 2xl:text-[38px] leading-4 md:leading-5 2xl:leading-[48px] -tracking-[0.28px] md:-tracking-[-0.02em] 2xl:-tracking-[0.76px] xl:mt-[160px] 2xl:mt-[352px] z-50 transition-opacity",
         pathname === "/" ? "mt-0" : "mt-[80px]",
-        pathname === "/knowledge" && "lg:hidden"
+        (pathname.startsWith("/knowledge") || pathname.startsWith("/news")) &&
+          "lg:hidden"
       )}
     >
       <p className="whitespace-nowrap w-auto md:w-[calc(1.5*8.33vw)] xl:w-[8.33vw]">
