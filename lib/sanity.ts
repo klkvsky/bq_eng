@@ -1,12 +1,11 @@
 import { client } from "@/sanity/lib/client";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
 
 import { HomeData, StudioPage } from "@/components/home/types";
 
 const builder = imageUrlBuilder(client);
 
-export function urlFor(source: SanityImageSource) {
+export function urlFor(source: string) {
   return builder.image(source);
 }
 

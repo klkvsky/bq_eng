@@ -96,11 +96,15 @@ export default function ProjectPage() {
                   return (
                     <ArticleImage
                       key={index}
-                      src={urlFor(item.image).url()}
+                      src={
+                        item.image?.asset.url
+                          ? urlFor(item.image.asset.url).url()
+                          : ""
+                      }
                       type={item.imagePosition || "center"}
                       secondaryImage={
                         item.secondaryImage
-                          ? urlFor(item.secondaryImage).url()
+                          ? urlFor(item.secondaryImage.asset.url).url()
                           : undefined
                       }
                     />
@@ -140,7 +144,7 @@ export default function ProjectPage() {
                 <div className="flex flex-col gap-3 w-[calc(2*8.33vw)] ml-auto mr-3">
                   <Image
                     src={urlFor(
-                      project.connectedResearch.images[0].asset
+                      project.connectedResearch.images[0].asset.url
                     ).url()}
                     width={0}
                     height={0}
@@ -192,7 +196,7 @@ export default function ProjectPage() {
                       }}
                     >
                       <Image
-                        src={urlFor(relatedProject.image).url()}
+                        src={urlFor(relatedProject.image.asset.url).url()}
                         width={0}
                         height={0}
                         alt={relatedProject.title}

@@ -16,7 +16,7 @@ export default function Home() {
         alt="project-1"
         width={0}
         height={0}
-        style={{ width: "100%", height: "auto" }}
+        style={{ width: "100%", height: "100vh" }}
         className="-mt-[44px] z-10"
       />
       <div className="mt-4 md:mt-6">

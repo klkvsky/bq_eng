@@ -17,7 +17,7 @@ export default async function Home() {
       <div className="flex flex-col items-end mt-[32px] md:mt-[24px] xl:mt-[80px]">
         <div className="custom-shadow-left md:after:hidden xl:after:block relative w-[calc(7*12.5vw)] md:w-full xl:w-[calc(9*8.33vw)] h-auto">
           <Image
-            src={urlFor(data.heroImage).url()}
+            src={urlFor(data.heroImage.asset.url).url()}
             alt="project-1"
             width={0}
             height={0}
@@ -78,7 +78,7 @@ export default async function Home() {
       </div>
 
       <Image
-        src={urlFor(data.bottomImage).url()}
+        src={urlFor(data.bottomImage.asset.url).url()}
         alt="project-1"
         width={0}
         height={0}
