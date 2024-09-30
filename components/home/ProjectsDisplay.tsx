@@ -10,8 +10,8 @@ interface HomeData {
   categories: { _id: string; title: string }[];
   projects: {
     type: "left" | "right";
-    mainImage: any;
-    secondaryImage?: any;
+    mainImage: string;
+    secondaryImage?: string;
     text: string;
     secondaryText?: string;
     cols: number;

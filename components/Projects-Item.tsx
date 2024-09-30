@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useScreenSize } from "@/lib/hooks/useScreenSize";
 
 function calculateWidth(

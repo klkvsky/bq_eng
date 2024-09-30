@@ -27,8 +27,8 @@ interface HomeData {
   categories: { _id: string; title: string }[];
   projects: {
     type: "left" | "right";
-    mainImage: any;
-    secondaryImage?: any;
+    mainImage: string;
+    secondaryImage?: string;
     text: string;
     secondaryText?: string;
     cols: number;
@@ -58,7 +58,7 @@ export default async function Home() {
         {data.categories.map((category, index, array) => (
           <>
             <span
-              key={category._id}
+              key={index}
               className="opacity-30 hover:opacity-100 transition-opacity font-apercu whitespace-nowrap cursor-pointer duration-500"
             >
               {category.title}
