@@ -25,9 +25,10 @@ export default function ProjectItem({
   cols,
 }: {
   type: "left" | "right";
-  mainImage: StaticImageData;
-  secondaryImage?: StaticImageData;
+  mainImage: string;
+  secondaryImage?: string;
   secondaryText?: string;
+  categories: string[];
   text: string;
   displayMode: "gallery" | "list";
   cols: number;
@@ -66,6 +67,7 @@ export default function ProjectItem({
                   height={0}
                   style={{ width: calculatedWidth, height: "auto" }}
                   className={cn(displayMode !== "gallery" && "object-cover")}
+                  unoptimized
                 />
               </div>
             </div>
@@ -82,7 +84,7 @@ export default function ProjectItem({
             )}
           </div>
           {displayMode === "gallery" && (
-            <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px]">
+            <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px] pl-2 md:pl-3">
               {text}
             </p>
           )}
@@ -99,10 +101,13 @@ export default function ProjectItem({
                 <Image
                   src={secondaryImage!}
                   alt="project-1"
+                  width={0}
+                  height={0}
                   style={{
                     width: screenSize !== "sm" ? `${8 * 4}vw` : "62.5vw",
                     height: displayMode === "gallery" ? "auto" : `320px`,
                   }}
+                  unoptimized
                 />
               </div>
               <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px]">
@@ -139,6 +144,7 @@ export default function ProjectItem({
                     height={0}
                     style={{ width: calculatedWidth, height: "auto" }}
                     className={cn(displayMode !== "gallery" && "object-cover")}
+                    unoptimized
                   />
                 </div>
               </div>

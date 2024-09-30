@@ -2,24 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --lightness: 80; /* Adjust this value based on your background */
-  --threshold: 60; /* Lightness threshold */
-}
-
-/*
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-} */
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
 @layer components {
   .custom-shadow-left {
     @apply after:w-[40px] after:md:w-[38px] after:xl:w-[66px] after:2xl:w-[158px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:right-[calc(100%+8px)] after:xl:right-[calc(100%+12px)] after:opacity-[4%] after:bg-blend-multiply;
