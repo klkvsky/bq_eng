@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils";
+
 import Image from "next/image";
 import { useScreenSize } from "@/lib/hooks/useScreenSize";
+
+import { Project } from "@/components/home/types";
+import { urlFor } from "@/sanity/lib/image";
 
 function calculateWidth(
   displayMode: "gallery" | "list",
@@ -16,29 +20,18 @@ function calculateWidth(
 }
 
 export default function ProjectItem({
-  type,
-  mainImage,
-  secondaryImage,
-  text,
-  secondaryText,
+  project,
   displayMode,
-  cols,
 }: {
-  type: "left" | "right";
-  mainImage: string;
-  secondaryImage?: string;
-  secondaryText?: string;
-  categories: string[];
-  text: string;
+  project: Project;
   displayMode: "gallery" | "list";
-  cols: number;
 }) {
   const screenSize = useScreenSize();
-  const calculatedWidth = calculateWidth(displayMode, cols, screenSize);
+  const calculatedWidth = calculateWidth(displayMode, project.cols, screenSize);
 
   return (
     <>
-      {type === "left" ? (
+      {project.image?.alignment === "left" ? (
         <div className="flex flex-col gap-2 md:gap-3">
           <div
             className={cn(
@@ -52,16 +45,16 @@ export default function ProjectItem({
                 screenSize === "xl" || screenSize === "2xl"
                   ? calculatedWidth
                   : displayMode === "list"
-                  ? "100%"
-                  : screenSize === "lg" || screenSize === "md"
-                  ? calculatedWidth
-                  : "87.5vw",
+                    ? "100%"
+                    : screenSize === "lg" || screenSize === "md"
+                      ? calculatedWidth
+                      : "87.5vw",
             }}
           >
             <div className="relative max-xl:custom-shadow-left h-full">
               <div className="w-full h-full overflow-hidden">
                 <Image
-                  src={mainImage}
+                  src={urlFor(project.image).url()}
                   alt="project-1"
                   width={0}
                   height={0}
@@ -74,18 +67,23 @@ export default function ProjectItem({
             {displayMode === "list" && (
               <div className="xl:absolute xl:left-0 xl:top-0 w-full h-full xl:bg-white xl:opacity-0 transition-opacity xl:custom-shadow-right-no-margin xl:group-hover:opacity-100 flex md:flex-row-reverse xl:flex-col flex-col-reverse max-xl:justify-end">
                 <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] 2xl:text-[32px] leading-[20px] md:leading-[32px] xl:leading-[20px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 2xl:pt-6 md:pl-[calc(2*8.33vw)] xl:pl-0">
-                  Живой паркинг. <br className="xl:hidden" />
-                  <span className="opacity-30">Интерьеры, Москва 2024</span>
+                  {project.title} <br className="xl:hidden" />
+                  {project.categories.map((category, index) => (
+                    <span key={index} className="opacity-30">
+                      {category.name}
+                      {index < project.categories.length - 1 && ", "}
+                    </span>
+                  ))}
                 </p>
-                <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px]  2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1 2xl:pb-3">
-                  KG-12.
+                <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px]  2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1 2xl:pb-3 whitespace-nowrap">
+                  {project.projectCodeName}
                 </p>
               </div>
             )}
           </div>
           {displayMode === "gallery" && (
             <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px] pl-2 md:pl-3">
-              {text}
+              {project.projectCodeName}
             </p>
           )}
         </div>
@@ -95,11 +93,11 @@ export default function ProjectItem({
             "flex flex-col md:flex-row max-md:items-end md:justify-end align-top gap-20 md:gap-3"
           )}
         >
-          {displayMode === "gallery" && (
+          {displayMode === "gallery" && project.secondImage?.asset && (
             <div className="flex flex-col gap-2 md:gap-3">
               <div className="relative">
                 <Image
-                  src={secondaryImage!}
+                  src={urlFor(project.secondImage?.asset).url()}
                   alt="project-1"
                   width={0}
                   height={0}
@@ -111,7 +109,7 @@ export default function ProjectItem({
                 />
               </div>
               <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px]">
-                {secondaryText}
+                {project.secondCodeName}
               </p>
             </div>
           )}
@@ -138,7 +136,7 @@ export default function ProjectItem({
               <div className="relative max-xl:custom-shadow-left h-full">
                 <div className="w-full h-full overflow-hidden">
                   <Image
-                    src={mainImage}
+                    src={urlFor(project.image.asset).url()}
                     alt="project-1"
                     width={0}
                     height={0}
@@ -151,18 +149,25 @@ export default function ProjectItem({
               {displayMode === "list" && (
                 <div className="xl:absolute xl:left-0 xl:top-0 w-full h-full xl:bg-white xl:opacity-0 transition-opacity xl:custom-shadow-right-no-margin xl:group-hover:opacity-100 flex md:flex-row-reverse xl:flex-col flex-col-reverse max-xl:justify-end">
                   <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] 2xl:text-[32px] leading-[20px] md:leading-[32px] xl:leading-[20px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 2xl:pt-6 md:pl-[calc(2*8.33vw)] xl:pl-0">
-                    Живой паркинг. <br className="xl:hidden" />
-                    <span className="opacity-30">Интерьеры, Москва 2024</span>
+                    {project.title} <br className="xl:hidden" />
+                    <span className="opacity-30">
+                      {project.categories.map((category, index) => (
+                        <span key={index}>
+                          {category.name}
+                          {index < project.categories.length - 1 && ", "}
+                        </span>
+                      ))}
+                    </span>
                   </p>
                   <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1">
-                    KG-12.
+                    {project.projectCodeName}
                   </p>
                 </div>
               )}
             </div>
             {displayMode === "gallery" && (
               <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px]">
-                {text}
+                {project.projectCodeName}
               </p>
             )}
           </div>

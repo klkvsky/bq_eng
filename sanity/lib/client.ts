@@ -8,3 +8,10 @@ export const client = createClient({
   apiVersion,
   useCdn: true,
 });
+
+export async function getProjectBySlug(slug: string) {
+  return client.fetch(
+    `*[_type == "project" && slug.current == $slug][0]`,
+    { slug }
+  );
+}

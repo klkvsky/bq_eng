@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function MobileProjectsFooter() {
   const pathname = usePathname();
-  const { displayMode, handleToggle } = useGallery();
+  const { displayMode, changeDisplayMode } = useGallery();
 
   return (
     <div
@@ -23,7 +23,7 @@ export default function MobileProjectsFooter() {
       <button
         className="font-spectral text-[14px] leading-[20px] -tracking-[0.28px] w-[50vw] relative"
         onClick={() => {
-          handleToggle(displayMode === "gallery" ? "list" : "gallery");
+          changeDisplayMode(displayMode === "gallery" ? "list" : "gallery");
         }}
       >
         <AnimatePresence mode="wait">

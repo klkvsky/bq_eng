@@ -1,27 +1,24 @@
 "use client";
 
+import Link from "next/link";
+
 import ProjectItem from "@/components/Projects-Item";
+
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
 import { cn } from "@/lib/utils";
-import { urlFor } from "@/sanity/lib/image";
 
-interface HomeData {
-  title: string;
-  categories: { _id: string; title: string }[];
-  projects: {
-    type: "left" | "right";
-    mainImage: string;
-    secondaryImage?: string;
-    text: string;
-    secondaryText?: string;
-    cols: number;
-    category: { _id: string; title: string };
-  }[];
-}
-
+import { HomeData } from "./types";
 
 export default function ProjectsDisplay({ data }: { data: HomeData }) {
-  const { displayMode, visible } = useGallery();
+  const { displayMode, visible, selectedCategory } = useGallery();
+
+  const filteredProjects = selectedCategory
+    ? data.featuredProjects.filter((project) =>
+        project.categories.some(
+          (category) => category.name === selectedCategory
+        )
+      )
+    : data.featuredProjects;
 
   return (
     <div>
@@ -32,22 +29,14 @@ export default function ProjectsDisplay({ data }: { data: HomeData }) {
             visible ? "opacity-100" : "opacity-0"
           )}
         >
-          {data.projects.map((item, index) => (
-            <ProjectItem
+          {data.featuredProjects.map((item, index) => (
+            <Link
+              href={`?project=${item.slug.current}`}
               key={index}
-              type={item.type}
-              mainImage={urlFor(item.mainImage).url()}
-              secondaryImage={
-                item.secondaryImage
-                  ? urlFor(item.secondaryImage).url()
-                  : undefined
-              }
-              cols={item.cols}
-              text={item.text}
-              secondaryText={item.secondaryText}
-              displayMode="gallery"
-              categories={[item.category.title]}
-            />
+              scroll={false}
+            >
+              <ProjectItem key={index} project={item} displayMode="gallery" />
+            </Link>
           ))}
         </div>
       ) : (
@@ -57,22 +46,14 @@ export default function ProjectsDisplay({ data }: { data: HomeData }) {
             visible ? "opacity-100" : "opacity-0"
           )}
         >
-          {data.projects.map((item, index) => (
-            <ProjectItem
+          {filteredProjects.map((item, index) => (
+            <Link
+              href={`?project=${item.slug.current}`}
               key={index}
-              type={item.type}
-              mainImage={urlFor(item.mainImage).url()}
-              text={item.text}
-              secondaryText={item.secondaryText}
-              secondaryImage={
-                item.secondaryImage
-                  ? urlFor(item.secondaryImage).url()
-                  : undefined
-              }
-              displayMode="list"
-              cols={item.cols}
-              categories={[item.category.title]}
-            />
+              scroll={false}
+            >
+              <ProjectItem key={index} project={item} displayMode="list" />
+            </Link>
           ))}
         </div>
       )}

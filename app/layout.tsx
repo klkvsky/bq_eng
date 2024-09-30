@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${apercuPro.variable} ${spectral.variable} antialiased max-w-[100vw] overflow-x-hidden`}
+        className={`${apercuPro.variable} ${spectral.variable} antialiased max-w-[100vw] overflow-x-hidden max-h-screen overflow-hidden`}
       >
         {children}
       </body>

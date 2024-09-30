@@ -14,10 +14,7 @@ export default function Navbar() {
   const [localPageTracker, setLocalPageTracker] = useState<
     "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact"
   >("/");
-  const [localDisplayMode, setLocalDisplayMode] = useState<"gallery" | "list">(
-    "gallery"
-  );
-  const { handleToggle } = useGallery();
+  const { changeDisplayMode, displayMode } = useGallery();
 
   useEffect(() => {
     setLocalPageTracker(
@@ -56,13 +53,15 @@ export default function Navbar() {
             if (isMobileMenuOpen) {
               setIsMobileMenuOpen(false);
             }
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
+            if (!searchParams.has("project")) {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }
           }}
           className={`transition-all ${
-            localPageTracker === "/"
+            localPageTracker === "/" && !searchParams.has("project")
               ? "opacity-30 cursor-default"
               : "opacity-100"
           }`}
@@ -187,12 +186,11 @@ export default function Navbar() {
       >
         <button
           className={cn(
-            localDisplayMode === "gallery" ? "opacity-30" : "opacity-100",
+            displayMode === "gallery" ? "opacity-30" : "opacity-100",
             "transition-opacity duration-1000"
           )}
           onClick={() => {
-            setLocalDisplayMode("gallery");
-            handleToggle("gallery");
+            changeDisplayMode("gallery");
           }}
         >
           Галерея
@@ -200,12 +198,11 @@ export default function Navbar() {
         <p>/</p>
         <button
           className={cn(
-            localDisplayMode === "list" ? "opacity-30" : "opacity-100",
+            displayMode === "list" ? "opacity-30" : "opacity-100",
             "transition-opacity duration-1000"
           )}
           onClick={() => {
-            setLocalDisplayMode("list");
-            handleToggle("list");
+            changeDisplayMode("list");
           }}
         >
           Список

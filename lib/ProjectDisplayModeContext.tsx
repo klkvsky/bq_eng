@@ -1,12 +1,19 @@
-"use client"
+"use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+} from "react";
 
 // Define the type for the context value
 interface ProjectsContextType {
   displayMode: "gallery" | "list";
   visible: boolean;
-  handleToggle: (value: "gallery" | "list") => void;
+  selectedCategory: string | null;
+  changeDisplayMode: (value: "gallery" | "list") => void;
+  setSelectedCategory: (value: string | null) => void;
 }
 
 // Create the context with an initial value
@@ -24,12 +31,9 @@ export const GalleryProvider = ({ children }: GalleryProviderProps) => {
   // State to track if the gallery is active or not
   const [displayMode, setDisplayMode] = useState<"gallery" | "list">("gallery");
   const [visible, setVisible] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Function to toggle the gallery state
-  const toggleDisplayMode = (value: "gallery" | "list") => {
-    setDisplayMode(value);
-  };
-
   const handleRouteChange = () => {
     window.scrollTo({
       top: 0,
@@ -38,18 +42,26 @@ export const GalleryProvider = ({ children }: GalleryProviderProps) => {
     });
   };
 
-  const handleToggle = (value: "gallery" | "list") => {
+  const changeDisplayMode = (mode: "gallery" | "list") => {
     handleRouteChange();
-    setVisible(false); // Start hiding the current items
+    setVisible(false);
+
     setTimeout(() => {
-      // After 1s, switch the display mode and make items visible again
-      toggleDisplayMode(value);
+      setDisplayMode(mode);
       setVisible(true);
-    }, 1000); // 1 second delay
+    }, 1000);
   };
 
   return (
-    <ProjectsContext.Provider value={{ displayMode, visible, handleToggle }}>
+    <ProjectsContext.Provider
+      value={{
+        displayMode,
+        visible,
+        selectedCategory,
+        changeDisplayMode,
+        setSelectedCategory,
+      }}
+    >
       {children}
     </ProjectsContext.Provider>
   );
