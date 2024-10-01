@@ -27,6 +27,7 @@ export default function Gradient() {
   const prevAngle = useRef(0);
 
   const [isActive, setIsActive] = useState(false);
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -43,16 +44,18 @@ export default function Gradient() {
   }, [mouseX, mouseY]);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust this breakpoint as needed
+    const handleResize = () => {
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+      setWindowSize({ width: newWidth, height: newHeight });
+      setIsMobile(newWidth <= 768); // Adjust this breakpoint as needed
     };
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
+    // Initial call to set the window size and check if mobile
+    handleResize();
 
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useAnimationFrame((t) => {
@@ -75,8 +78,8 @@ export default function Gradient() {
   );
 
   const calculateAngle = ([x, y]: number[]) => {
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    const centerX = windowSize.width / 2;
+    const centerY = windowSize.height / 2;
     let angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI) + 90;
 
     // Normalize the angle
@@ -92,10 +95,11 @@ export default function Gradient() {
     { stiffness: 5, damping: 10 }
   );
 
-
   useEffect(() => {
     if (isMobile) {
       setIsActive(true);
+    } else {
+      setIsActive(false); // Reset to false for non-mobile devices
     }
   }, [isMobile]);
 
@@ -109,9 +113,9 @@ export default function Gradient() {
         opacity: !isActive ? 1 : 0,
         transition: { duration: 3 },
         pointerEvents: !isActive ? ("auto" as const) : ("none" as const),
-        cursor: isActive ? "none" as const : "pointer" as const,
+        cursor: !isActive ? "pointer" as const : "none" as const,
       }}
-      onClick={() => setIsActive(true)}
+      onClick={() => !isMobile && setIsActive(true)}
     />
   );
 }
