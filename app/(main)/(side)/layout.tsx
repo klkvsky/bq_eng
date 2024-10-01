@@ -1,52 +1,7 @@
-"use client";
-
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
-// import Digest from "@/components/Digest";
-// import { motion } from "framer-motion";
-import { useSearchParams } from "next/navigation";
-import SideFooter from "@/components/SideFooter";
+import SideFooter from "@/components/side/SideFooter";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const item = searchParams.get("item");
-    setIsSheetOpen(item !== null);
-
-    // Add this block to handle body scrolling
-    if (item !== null) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    // Clean up function
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [searchParams]);
-
-  const scrollToTop = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if ((event.metaKey || event.ctrlKey) && event.key === "ArrowUp") {
-      event.preventDefault();
-      const scrollableDiv = document.getElementById("scrollable-digest");
-      scrollableDiv?.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
-  useEffect(() => {
-    if (isSheetOpen) {
-      const handleKeyDown = (event: KeyboardEvent) =>
-        scrollToTop(event as unknown as React.KeyboardEvent<HTMLDivElement>);
-      document.addEventListener("keydown", handleKeyDown);
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-      };
-    }
-  }, [isSheetOpen]);
-
   return (
     <div
       className={cn(
@@ -60,22 +15,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         {children}
         <SideFooter />
-        {/* <motion.div
-          id="scrollable-digest"
-          className="fixed top-full right-0 h-screen max-h-screen bg-white mt-[80px] md:mt-0 pb-32 md:pb-0 pt-[44px] overflow-y-scroll w-full xl:w-[calc(9*8.33vw)]"
-          initial={{ y: initialLoad && isSheetOpen ? "-100%" : "0%" }}
-          animate={{
-            y: isSheetOpen ? "-100%" : "0%",
-          }}
-          transition={{ duration: 1 }}
-          tabIndex={0}
-        >
-          <div className="absolute top-[76px] md:top-0 right-0 h-screen w-full pointer-events-none">
-            <div className="w-full h-full relative custom-shadow-top" />
-          </div>
-          <Digest />
-          <SideFooter />
-        </motion.div> */}
       </div>
     </div>
   );

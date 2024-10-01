@@ -5,7 +5,7 @@ export default function SideFooter() {
   return (
     <div
       className={cn(
-        "flex flex-row max-md:items-end w-full h-auto md:h-[44px] 2xl:h-[104px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px] 2xl:text-[38px] leading-4 md:leading-5 2xl:leading-[48px] -tracking-[0.28px] md:-tracking-[-0.02em] 2xl:-tracking-[0.76px] xl:mt-[20px] z-50 transition-opacity"
+        "flex-row hidden md:flex max-md:items-end w-full h-auto md:h-[44px] 2xl:h-[104px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px] 2xl:text-[38px] leading-4 md:leading-5 2xl:leading-[48px] -tracking-[0.28px] md:-tracking-[-0.02em] 2xl:-tracking-[0.76px] xl:mt-[20px] z-50 transition-opacity"
       )}
     >
       <Link

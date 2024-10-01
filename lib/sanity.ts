@@ -1,7 +1,12 @@
 import { client } from "@/sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 
-import { HomeData, StudioPage } from "@/components/home/types";
+import {
+  HomeData,
+  StudioPage,
+  CulturePage,
+  Article,
+} from "@/components/home/types";
 
 const builder = imageUrlBuilder(client);
 
@@ -177,5 +182,232 @@ export async function getStudioData() {
     {
       next: { revalidate: 30 },
     }
+  );
+}
+
+export async function getCultureData() {
+  return client.fetch<CulturePage>(
+    `*[_type == "culturePage"][0]{
+      pageTitle,
+      heroImage{
+        asset->{
+          url
+        },
+        hotspot
+      },
+      content[]{
+        type,
+        text,
+        image{
+          asset->{
+            url
+          }
+        },
+        imagePosition,
+        imageCaption,
+        teamBlock{
+          title,
+          teamMembers[]{
+            name,
+            position,
+            quote,
+            image{
+              asset->{
+                url
+              }
+            }
+          }
+        },
+        columns{
+          width,
+          columnContent[]{
+            title,
+            items[]{
+              type,
+              text,
+              email
+            }
+          }
+        }
+      },
+      "relatedArticles": relatedArticles[]->{
+        id,
+        title,
+        image{
+          asset->{
+            url
+          }
+        },
+        slug,
+        date,
+        type
+      }
+    }`,
+    {},
+    {
+      next: { revalidate: 30 },
+    }
+  );
+}
+
+export async function getArticles(limit: number = 100) {
+  return client.fetch<Article[]>(
+    `*[_type == "article"] | order(date desc)[0...$limit]{
+      id,
+      slug,
+      type,
+      date,
+      source,
+      pressReleaseCategory,
+      title,
+      description,
+      image{
+        asset->{
+          url
+        }
+      },
+      images[]{
+        asset->{
+          url
+        }
+      }
+    }`,
+    { limit },
+    {
+      next: { revalidate: 30 },
+    }
+  );
+}
+
+export async function getArticle(slug: string) {
+  return client.fetch<Article>(
+    `*[_type == "article" && slug.current == $slug][0]{
+      id,
+      slug,
+      type,
+      date,
+      source,
+      pressReleaseCategory,
+      title,
+      description,
+      image{
+        asset->{
+          url
+        }
+      },
+      images[]{
+        asset->{
+          url
+        }
+      },
+      content[]{
+        type,
+        textTitle,
+        textSubtitle,
+        text,
+        image{
+          asset->{
+            url
+          }
+        },
+        imagePosition,
+        imageCaption,
+        videoUrl,
+        videoThumbnail{
+          asset->{
+            url
+          }
+        },
+        quote,
+        quoteAuthor,
+        quoteAuthorPosition,
+        listTitle,
+        list
+      },
+      connectedResearch->{
+        _ref,
+        _type
+      },
+      "relatedArticles": relatedArticles[]->{
+        id,
+        title,
+        image{
+          asset->{
+            url
+          }
+        },
+        slug,
+        date,
+        type
+      }
+    }`,
+    { slug },
+    {
+      next: { revalidate: 30 },
+    }
+  );
+}
+
+export async function getArticleBySlug(slug: string) {
+  return client.fetch(
+    `*[_type == "article" && slug.current == $slug][0]{
+      _id,
+      title,
+      slug,
+      type,
+      date,
+      source,
+      pressReleaseCategory,
+      description,
+      images[]{
+        asset->{
+          url
+        }
+      },
+      image{
+        asset->{
+          url
+        }
+      },
+      content[]{
+        ...,
+        image{
+          asset->{
+            url
+          }
+        },
+        videoThumbnail{
+          asset->{
+            url
+          }
+        }
+      },
+      relatedArticles[]->{
+        id,
+        slug,
+        image{
+          asset->{
+            url
+          }
+        },
+        title,
+        source,
+        date,
+        type,
+      },
+      connectedResearch->{
+        _ref,
+        _type,
+        slug,
+        image{
+          asset->{
+            url
+          }
+        },
+        title,
+        type,
+      }
+    }`,
+    { slug }
   );
 }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import ProjectItem from "@/components/Projects-Item";
+import ProjectItem from "@/components/home/Projects-Item";
 
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
 import { cn } from "@/lib/utils";

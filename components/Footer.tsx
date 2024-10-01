@@ -16,25 +16,29 @@ export default function Footer() {
           "lg:hidden"
       )}
     >
-      <p className="whitespace-nowrap w-auto md:w-[calc(1.5*8.33vw)] xl:w-[8.33vw]">
+      <Link
+        href="/"
+        className="whitespace-nowrap w-auto md:w-[calc(1.5*8.33vw)] xl:w-[8.33vw]"
+      >
         BQStudio, 2024
-      </p>
+      </Link>
       <div className="flex flex-col max-md:gap-1 md:flex-row max-md:ml-[12.5vw] ml-auto">
         <Link
           className="whitespace-nowrap md:w-[calc(3*8.33vw)] xl:w-[16.66vw]"
-          href="/"
+          href="/privacy-policy"
         >
           Политика конфиденциальности
         </Link>
 
         <div className="flex flex-row gap-1 md:w-[calc(2*8.33vw)] xl:w-[8.33vw] xl:ml-[calc(2.5*8.33vw)] md:ml-[calc(1*8.33vw)]">
-          <Link href="/">Вакансии,</Link>
-          <Link href="/">Контакты</Link>
+          <Link href="/studio">Вакансии,</Link>
+          <Link href="/contacts">Контакты</Link>
         </div>
 
         <Link
           className="whitespace-nowrap md:w-[calc(2*8.33vw)] md:ml-[calc(2*8.33vw)] xl:ml-[calc(1.5*8.33vw)] xl:text-right"
-          href="/"
+          href="http://vosk.design/"
+          target="_blank"
         >
           Дизайн сайта VOSK
         </Link>

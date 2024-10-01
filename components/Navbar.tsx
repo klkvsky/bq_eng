@@ -43,7 +43,7 @@ export default function Navbar() {
   }, [isMobileMenuOpen]);
 
   return (
-    <div className="sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[-0.02em] 2xl:-tracking-[0.76px] z-50">
+    <div className="sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[-0.02em] 2xl:-tracking-[0.76px] z-30">
       <div className="flex flex-row gap-1 md:w-[16.66vw]">
         <Link
           href="/"
@@ -152,7 +152,7 @@ export default function Navbar() {
             });
           }}
           className={`transition-all ${
-            localPageTracker == "/knowledge" && !searchParams.has("item")
+            localPageTracker == "/knowledge" && !searchParams.has("article")
               ? "opacity-30 cursor-default"
               : "opacity-100"
           }`}
@@ -170,7 +170,7 @@ export default function Navbar() {
             setLocalPageTracker("/news");
           }}
           className={`transition-all ${
-            localPageTracker == "/news"
+            localPageTracker == "/news" && !searchParams.has("article")
               ? "opacity-30 cursor-default"
               : "opacity-100"
           }`}

@@ -16,7 +16,7 @@ const PageAnimatePresence = ({ children }: { children: React.ReactNode }) => {
   }, [pathname]);
 
   const isKnowledgeOrNews = useCallback(
-    (path: string) => path === "/knowledge" || path === "/news",
+    (path: string) => path === "/knowledge" || path.startsWith("/news"),
     []
   );
 

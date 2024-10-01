@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField } from "sanity";
 
 export const home = defineType({
   name: "home",
@@ -19,4 +19,4 @@ export const home = defineType({
       of: [{ type: "reference", to: [{ type: "project" }] }],
     }),
   ],
-})
+});

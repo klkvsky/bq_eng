@@ -162,7 +162,7 @@ export const project = defineType({
       name: "connectedResearch",
       title: "Connected Research",
       type: "reference",
-      to: [{ type: "research" }], // Assuming you have a "research" document type
+      to: [{ type: "article" }],
     }),
     defineField({
       name: "relatedProjects",

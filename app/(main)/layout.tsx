@@ -5,11 +5,13 @@ import Footer from "@/components/Footer";
 
 import { GalleryProvider } from "@/lib/ProjectDisplayModeContext";
 
-import MobileProjectsFooter from "@/components/MobileProjectsFooter";
+import BottomSheet from "@/components/side/BottomSheet";
+import MobileProjectsFooter from "@/components/home/MobileProjectsFooter";
 import PageAnimatePresence from "@/components/HOC/PageAnimatePresence";
-import SideShadow from "@/components/SideShadow";
+import SideShadow from "@/components/side/SideShadow";
 import ProjectPage from "@/components/home/ProjectPage";
 import Logo from "@/components/Logo";
+import Gradient from "@/components/Gradient";
 
 export default function RootLayout({
   children,
@@ -18,17 +20,25 @@ export default function RootLayout({
 }>) {
   return (
     <GalleryProvider>
-      <Suspense>
-        <div className="flex flex-col w-full min-h-screen relative z-30">
+      <div className="flex flex-col w-full min-h-screen relative z-30">
+        <Suspense>
           <ProjectPage />
+        </Suspense>
+        <Suspense>
           <Navbar />
-          <Logo />
-          <PageAnimatePresence>{children}</PageAnimatePresence>
-          <MobileProjectsFooter />
+        </Suspense>
+        <Logo />
+        <Gradient />
+        <PageAnimatePresence>{children}</PageAnimatePresence>
+        <MobileProjectsFooter />
+        <Suspense>
           <Footer />
-          <SideShadow />
-        </div>
-      </Suspense>
+        </Suspense>
+        <SideShadow />
+        <Suspense>
+          <BottomSheet />
+        </Suspense>
+      </div>
     </GalleryProvider>
   );
 }

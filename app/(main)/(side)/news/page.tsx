@@ -1,74 +1,52 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
 import { NewsSection } from "@/components/news/NewSection";
 
+import { Article } from "@/components/home/types";
+import { getArticles } from "@/lib/sanity";
+import { AnimatePresence, motion } from "framer-motion";
+
 export default function News() {
+  const [magazineArticles, setMagazineArticles] = useState<Article[]>([]);
+  const [bqArticles, setBqArticles] = useState<Article[]>([]);
+
+  useEffect(() => {
+    getArticles(20).then((articles) => {
+      const magazineArticles = articles.filter(
+        (article) => article.pressReleaseCategory === "magazines"
+      );
+      const bqArticles = articles.filter(
+        (article) => article.pressReleaseCategory === "bq"
+      );
+      setMagazineArticles(magazineArticles);
+      setBqArticles(bqArticles);
+    });
+  }, []);
+
   return (
-    <div className="md:mt-10 xl:mt-20 flex flex-col xl:mb-32 gap-8 xl:gap-32">
-      <NewsSection
-        title="Пресса о нас"
-        items={[
-          {
-            title: "Завершение строительства Bund City Hall Plaza в Шанхае",
-            date: "22.07.2024",
-            source: "РБК",
-          },
-          {
-            title:
-              "Церемония закладки первого камня в основание штаб-квартиры BVK",
-            date: "18.07.2024",
-            source: "Forbes",
-          },
-          {
-            title:
-              "Греческая православная церковь по проекту Сантьяго Калатравы в Нью-Йорке",
-            date: "18.07.2024",
-            source: "Bluesprint",
-          },
-          {
-            title:
-              "Zaha Hadid Architects: энергоэффективное здание BEEAH Group в ОАЭ",
-            date: "14.07.2024",
-            source: "WOL",
-          },
-          {
-            title: "Победа в конкурсе для 4G Wine Estate, Franschhoek",
-            date: "12.07.2024",
-            source: "Nodome",
-          },
-        ]}
-      />
-      <NewsSection
-        title="Материалы BQ"
-        items={[
-          {
-            title: "Завершение строительства Bund City Hall Plaza в Шанхае",
-            date: "22.07.2024",
-            source: "РБК",
-          },
-          {
-            title:
-              "Церемония закладки первого камня в основание штаб-квартиры BVK",
-            date: "18.07.2024",
-            source: "Forbes",
-          },
-          {
-            title:
-              "Греческая православная церковь по проекту Сантьяго Калатравы в Нью-Йорке",
-            date: "18.07.2024",
-            source: "Bluesprint",
-          },
-          {
-            title:
-              "Zaha Hadid Architects: энергоэффективное здание BEEAH Group в ОАЭ",
-            date: "14.07.2024",
-            source: "WOL",
-          },
-          {
-            title: "Победа в конкурсе для 4G Wine Estate, Franschhoek",
-            date: "12.07.2024",
-            source: "Nodome",
-          },
-        ]}
-      />
+    <div className="md:mt-10 xl:mt-20 flex flex-col xl:mb-32 gap-8 xl:gap-32 min-h-[70vh]">
+      <AnimatePresence>
+        {magazineArticles.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <NewsSection title="Пресса о нас" items={magazineArticles} />
+          </motion.div>
+        )}
+        {bqArticles.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <NewsSection title="Материалы BQ" items={bqArticles} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

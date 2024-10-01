@@ -27,7 +27,24 @@
     @apply after:w-[40px] after:md:w-[38px] after:xl:w-[66px] after:2xl:w-[158px] after:max-w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:left-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
   }
 
+  .custom-shadow-right-articles {
+    @apply after:w-[40px] after:md:w-[38px] after:xl:w-[66px] after:2xl:w-[158px] after:max-w-[66px] after:h-full after:bg-gradient-to-r after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:top-0 after:left-0 after:left-[calc(100%)] after:opacity-[4%] after:bg-blend-multiply;
+  }
+
   .sidesheet-shadow {
     @apply after:w-[40px] after:md:w-[38px] after:xl:w-[66px] after:2xl:w-[158px] after:h-full after:bg-gradient-to-l after:from-[#202020] after:to-[#FFFFFF00] after:absolute after:right-[calc(100%)] after:opacity-[6%] after:bg-blend-multiply;
   }
+}
+
+/* add the code bellow */ 
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+      display: none;
+  }
+ /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+}
 }

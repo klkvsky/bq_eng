@@ -15,7 +15,7 @@ export default async function Home() {
     <div className="flex flex-col">
       <PageTitle title={data.heroDescription} categories={[]} />
       <div className="flex flex-col items-end mt-[32px] md:mt-[24px] xl:mt-[80px]">
-        <div className="custom-shadow-left md:after:hidden xl:after:block relative w-[calc(7*12.5vw)] md:w-full xl:w-[calc(9*8.33vw)] h-auto">
+        <div className="custom-shadow-left md:after:hidden xl:after:block relative w-[calc(7*12.5vw)] md:w-full xl:w-[calc(9*8.33vw)] h-auto bg-red-500">
           <Image
             src={urlFor(data.heroImage.asset.url).url()}
             alt="project-1"
@@ -23,21 +23,21 @@ export default async function Home() {
             height={0}
             unoptimized
             className={cn(
-              "w-[calc(7*12.5vw)] md:w-screen xl:w-[calc(9*8.33vw)] h-auto"
+              "w-[calc(7*12.5vw)] md:w-screen xl:w-[calc(9*8.33vw)] h-auto",
             )}
           />
         </div>
         <p
           className={cn(
             "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] mt-[16px] md:mt-[24px] xl:mt-[24px] px-2 md:px-3 xl:pl-0",
-            "w-full xl:w-[calc(9*8.33vw)]"
+            "w-full xl:w-[calc(9*8.33vw)]",
           )}
         >
           {data.heroDescription}
         </p>
 
         <div className="flex flex-col md:flex-row mt-[32px] md:mt-[24px] xl:mt-[80px] px-2 md:px-3 xl:pr-[9.33vw] xl:pl-0 gap-[16px] md:gap-[8.33vw] w-full xl:w-[calc(9*8.33vw)]">
-          <div className="flex flex-col max-sm:gap-[16px] w-full md:w-[calc(5*8.33vw)] xl:w-[calc(3*8.33vw)]">
+          <div className="flex flex-col max-sm:gap-[16px] w-full md:w-[calc(5*8.33vw)] xl:w-[calc(3*8.33vw)]" id="positions">
             <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] max-sm:mt-[8px]">
               {data.contactSection.title}
             </p>
