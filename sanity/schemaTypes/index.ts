@@ -6,6 +6,7 @@ import { studio } from "./studio";
 import { culture } from "./culture";
 import { teamMember } from "./team";
 import { article } from "./article";
+import { position } from "./position";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -16,5 +17,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     culture,
     teamMember,
     article,
+    position,
   ],
 };

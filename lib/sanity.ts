@@ -6,6 +6,7 @@ import {
   StudioPage,
   CulturePage,
   Article,
+  Position,
 } from "@/components/home/types";
 
 const builder = imageUrlBuilder(client);
@@ -410,4 +411,11 @@ export async function getArticleBySlug(slug: string) {
     }`,
     { slug }
   );
+}
+
+export async function getPositions() {
+  return client.fetch<Position[]>(`*[_type == "position"] {
+    title,
+    link
+  }`);
 }

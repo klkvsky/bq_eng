@@ -57,7 +57,7 @@ export default function ProjectPage() {
     <AnimatePresence mode="sync">
       {isSheetOpen && (
         <motion.div
-          className="fixed top-0 left-0 h-full max-h-screen w-full z-50"
+          className="fixed top-0 left-0 h-full max-h-screen w-full z-30"
           initial={{ y: "100%" }}
           animate={{ y: "0%" }}
           exit={{ y: "100%" }}
@@ -70,7 +70,7 @@ export default function ProjectPage() {
       {isSheetOpen && (
         <motion.div
           id="project-page"
-          className="fixed top-0 left-0 h-full max-h-screen bg-white md:pb-0 overflow-y-auto w-full z-50 pt-[44px]"
+          className="fixed top-0 left-0 h-full max-h-screen bg-white md:pb-0 overflow-y-auto w-full z-30 pt-[44px]"
           initial={{ y: "100%" }}
           animate={{ y: "0%" }}
           exit={{ y: "100%" }}

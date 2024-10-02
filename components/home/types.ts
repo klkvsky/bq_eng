@@ -200,3 +200,8 @@ export interface ArticleContent {
   listTitle?: string;
   list?: string[];
 }
+
+export interface Position {
+  title: string;
+  link: string;
+}
