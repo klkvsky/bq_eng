@@ -7,6 +7,10 @@ import { cn } from "@/lib/utils";
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
 import { useEffect, useState } from "react";
 import { useScreenSize } from "@/lib/hooks/useScreenSize";
+import { AnimatePresence, motion } from "framer-motion";
+
+import { getHomeData } from "@/lib/sanity";
+
 export default function Navbar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -14,7 +18,12 @@ export default function Navbar() {
   const [localPageTracker, setLocalPageTracker] = useState<
     "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact"
   >("/");
-  const { changeDisplayMode, displayMode } = useGallery();
+  const {
+    changeDisplayMode,
+    displayMode,
+    selectedCategory,
+    setSelectedCategory,
+  } = useGallery();
 
   useEffect(() => {
     setLocalPageTracker(
@@ -41,6 +50,37 @@ export default function Navbar() {
       document.body.classList.remove("overflow-hidden");
     };
   }, [isMobileMenuOpen]);
+
+  const [isCategoriesInNavbar, setIsCategoriesInNavbar] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      if (scrollPosition > windowHeight) {
+        setIsCategoriesInNavbar(true);
+      } else {
+        setIsCategoriesInNavbar(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const [homeCategories, setHomeCategories] = useState<{ name: string }[]>([]);
+
+  useEffect(() => {
+    const fetchHomeData = async () => {
+      const data = await getHomeData();
+      setHomeCategories(data.categories);
+    };
+    fetchHomeData();
+  }, []);
 
   return (
     <div className="sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[-0.02em] 2xl:-tracking-[0.76px] z-30">
@@ -178,37 +218,149 @@ export default function Navbar() {
           Новости
         </Link>
       </div>
+      <AnimatePresence mode="sync">
+        {searchParams.has("project") && (
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={cn("transition-opacity duration-1000 ml-[8.33vw]")}
+            onClick={() => {
+              const projectAbout = document.getElementById("project-about");
+              for (let i = 0; i < 100; i++) {
+                projectAbout?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center",
+                  inline: "center",
+                });
+              }
+              setTimeout(() => {
+                for (let i = 0; i < 100; i++) {
+                  projectAbout?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "start",
+                  });
+                }
+                setTimeout(() => {
+                  for (let i = 0; i < 10; i++) {
+                    projectAbout?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                      inline: "start",
+                    });
+                  }
+
+                  setTimeout(() => {
+                    for (let i = 0; i < 10; i++) {
+                      projectAbout?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                        inline: "start",
+                      });
+                    }
+                  }, 100);
+                }, 100);
+              }, 100);
+            }}
+          >
+            О проекте
+          </motion.button>
+        )}
+      </AnimatePresence>
+      <AnimatePresence mode="sync">
+        {isCategoriesInNavbar && !searchParams.has("project") && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={cn(
+              "hidden xl:flex flex-row gap-1 ml-[8.33vw] w-[calc(2*8.33vw)] transition-opacity duration-1000 relative group"
+            )}
+          >
+            Направления работ{" "}
+            <span className="group-hover:rotate-180 transition-transform duration-300">
+              ▼
+            </span>
+            <div className="flex flex-col items-start absolute top-full left-0 w-full h-full  opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mt-3 font-apercu text-[16px] leading-[20px] -tracking-[0.32px] whitespace-nowrap">
+              {homeCategories.map((category) => (
+                <p
+                  key={category.name}
+                  className={cn(
+                    selectedCategory === category.name
+                      ? "opacity-100 hover:opacity-30"
+                      : "opacity-30 hover:opacity-100",
+                    "transition-opacity duration-1000 cursor-pointer"
+                  )}
+                  onClick={() => {
+                    if (selectedCategory !== category.name) {
+                      if (selectedCategory !== category.name) {
+                        changeDisplayMode("list");
+
+                        setTimeout(() => {
+                          setSelectedCategory(category.name);
+                        }, 1000);
+                      } else {
+                        changeDisplayMode("gallery");
+
+                        setTimeout(() => {
+                          setSelectedCategory(null);
+                        }, 1000);
+                      }
+                    }
+                  }}
+                >
+                  {category.name}
+                </p>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence mode="sync">
+        {localPageTracker === "/" && !searchParams.has("project") && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={cn(
+              "hidden xl:flex flex-row gap-1 mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000",
+              isCategoriesInNavbar ? "ml-[8.33vw]" : "ml-auto"
+            )}
+          >
+            <button
+              className={cn(
+                displayMode === "gallery" ? "opacity-30" : "opacity-100",
+                "transition-opacity duration-1000"
+              )}
+              onClick={() => {
+                changeDisplayMode("gallery");
+              }}
+            >
+              Галерея
+            </button>
+            <p>/</p>
+            <button
+              className={cn(
+                displayMode === "list" ? "opacity-30" : "opacity-100",
+                "transition-opacity duration-1000"
+              )}
+              onClick={() => {
+                changeDisplayMode("list");
+              }}
+            >
+              Список
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div
         className={cn(
-          "hidden xl:flex flex-row gap-1 ml-auto mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000",
-          localPageTracker !== "/" ? "opacity-0" : "opacity-100"
+          "hidden xl:flex flex-row gap-1 w-[9.33vw] justify-end",
+          searchParams.has("project") ? "ml-auto" : "ml-[8.33vw]",
+          pathname !== "/" && "ml-auto"
         )}
       >
-        <button
-          className={cn(
-            displayMode === "gallery" ? "opacity-30" : "opacity-100",
-            "transition-opacity duration-1000"
-          )}
-          onClick={() => {
-            changeDisplayMode("gallery");
-          }}
-        >
-          Галерея
-        </button>
-        <p>/</p>
-        <button
-          className={cn(
-            displayMode === "list" ? "opacity-30" : "opacity-100",
-            "transition-opacity duration-1000"
-          )}
-          onClick={() => {
-            changeDisplayMode("list");
-          }}
-        >
-          Список
-        </button>
-      </div>
-      <div className="hidden xl:flex flex-row gap-1 ml-[8.33vw] w-[9.33vw] justify-end">
         <Link
           href="/contacts"
           className={`transition-all ${

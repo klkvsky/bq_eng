@@ -205,3 +205,35 @@ export interface Position {
   title: string;
   link: string;
 }
+
+export interface ContactsPage {
+  pageTitle: string;
+  columns: Array<{
+    title: string;
+    items: Array<ContactItem>;
+  }>;
+  width: "full" | "short";
+}
+
+export interface ContactItem {
+  type: "regular" | "email" | "link";
+  text: string;
+  email?: string;
+  link?: string;
+}
+
+export interface PrivacyPolicy {
+  content: Array<PrivacyPolicyContent>;
+}
+
+export interface PrivacyPolicyContent {
+  type: "text" | "list" | "title";
+  title?: string;
+  subtitle?: string;
+  textTitle?: string;
+  text?: string;
+  listTitle?: string;
+  list?: string[];
+  pretext?: string;
+  posttext?: string;
+}

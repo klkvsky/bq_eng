@@ -1,18 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 export default function Footer() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   return (
     <div
       className={cn(
         "flex flex-row max-md:items-end w-screen h-auto md:h-[44px] 2xl:h-[104px] max-md:px-2 max-md:py-3 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] md:text-[16px] 2xl:text-[38px] leading-4 md:leading-5 2xl:leading-[48px] -tracking-[0.28px] md:-tracking-[-0.02em] 2xl:-tracking-[0.76px] xl:mt-[160px] 2xl:mt-[352px] z-40 transition-opacity",
         pathname === "/" ? "mt-0" : "mt-[80px]",
-        (pathname.startsWith("/knowledge") || pathname.startsWith("/news")) &&
+        (pathname.startsWith("/knowledge") ||
+          pathname.startsWith("/news") ||
+          searchParams.has("project") || pathname === "/contacts") || pathname === "/privacy-policy" &&
           "lg:hidden"
       )}
     >
@@ -31,7 +34,7 @@ export default function Footer() {
         </Link>
 
         <div className="flex flex-row gap-1 md:w-[calc(2*8.33vw)] xl:w-[8.33vw] xl:ml-[calc(2.5*8.33vw)] md:ml-[calc(1*8.33vw)]">
-          <Link href="/studio">Вакансии,</Link>
+          <Link href="/contacts">Вакансии,</Link>
           <Link href="/contacts">Контакты</Link>
         </div>
 

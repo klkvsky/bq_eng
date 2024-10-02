@@ -119,26 +119,28 @@ export default async function Home() {
               </a>
             </p>
           </div>
-          <div className="flex flex-col gap-0 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)]">
-            <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]">
-              {positions.length} открыт{positions.length === 1 ? "а" : "ы"}
-              {positions.length === 1 ? "я" : "х"} позици
-              {positions.length === 1 ? "я" : "и"}
-            </p>
-            {positions.map((position) => (
-              <Link
-                href={position.link}
-                target="_blank"
-                key={position.title}
-                className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] hover:opacity-30 transition-opacity duration-500 group"
-              >
-                {position.title}
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  ↗
-                </span>
-              </Link>
-            ))}
-          </div>
+          {positions && positions.length > 0 && (
+            <div className="flex flex-col gap-0 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)]">
+              <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]">
+                {positions.length} открыт{positions.length === 1 ? "а" : "ы"}
+                {positions.length === 1 ? "я" : "х"} позици
+                {positions.length === 1 ? "я" : "и"}
+              </p>
+              {positions.map((position) => (
+                <Link
+                  href={position.link}
+                  target="_blank"
+                  key={position.title}
+                  className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] hover:opacity-30 transition-opacity duration-500 group"
+                >
+                  {position.title}
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    ↗
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <div className="flex flex-col gap-4 md:gap-6 xl:gap-10 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)">
           <div className="flex flex-col gap-3">

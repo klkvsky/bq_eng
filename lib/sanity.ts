@@ -7,6 +7,8 @@ import {
   CulturePage,
   Article,
   Position,
+  ContactsPage,
+  PrivacyPolicy
 } from "@/components/home/types";
 
 const builder = imageUrlBuilder(client);
@@ -418,4 +420,48 @@ export async function getPositions() {
     title,
     link
   }`);
+}
+
+export async function getContactsData() {
+  return client.fetch<ContactsPage>(
+    `*[_type == "contactsPage"][0]{
+      pageTitle,
+      columns[]{
+        title,
+        items[]{
+          type,
+          text,
+          email,
+          link
+        }
+      },
+      width
+    }`,
+    {},
+    {
+      next: { revalidate: 30 },
+    }
+  );
+}
+
+export async function getPrivacyPolicy() {
+  return client.fetch<PrivacyPolicy>(
+    `*[_type == "privacyPolicy"][0]{
+      content[]{
+        type,
+        title,
+        subtitle,
+        textTitle,
+        text,
+        listTitle,
+        list,
+        pretext,
+        posttext
+      }
+    }`,
+    {},
+    {
+      next: { revalidate: 30 },
+    }
+  );
 }

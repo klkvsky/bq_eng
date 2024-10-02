@@ -44,7 +44,8 @@ export default function Logo() {
             : "bottom-11",
           (pathname.startsWith("/knowledge") ||
             pathname.startsWith("/news") ||
-            pathname.startsWith("/contact")) &&
+            pathname.startsWith("/contact") ||
+            pathname === "/privacy-policy") &&
             "w-[73px] h-[103px] left-3 bottom-14",
           (pathname === "/studio" || pathname === "/culture") &&
             "w-[82px] h-[116px] left-3 bottom-[87.8px]"
@@ -66,7 +67,8 @@ export default function Logo() {
               : "bottom-1.5",
           (pathname.startsWith("/knowledge") ||
             pathname.startsWith("/news") ||
-            pathname.startsWith("/contact")) &&
+            pathname.startsWith("/contact") ||
+            pathname === "/privacy-policy") &&
             "w-[73px] h-[103px] bottom-[828px] right-[calc(9*8.33vw+12px)]",
           (pathname === "/studio" || pathname === "/culture") &&
             "w-[100px] h-[140px] right-[calc(100vw-99px-100px)] bottom-[115px]"

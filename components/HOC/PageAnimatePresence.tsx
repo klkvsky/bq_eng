@@ -16,12 +16,12 @@ const PageAnimatePresence = ({ children }: { children: React.ReactNode }) => {
   }, [pathname]);
 
   const isKnowledgeOrNews = useCallback(
-    (path: string) => path === "/knowledge" || path.startsWith("/news"),
+    (path: string) => path === "/knowledge" || path.startsWith("/news") || path.startsWith("/contacts"),
     []
   );
 
   const isSideContent = useCallback(
-    (path: string) => path.startsWith("/projects/") || path === "/about",
+    (path: string) => path.startsWith("/projects/") || path === "/about" || path === "/contacts",
     []
   );
 

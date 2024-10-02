@@ -7,6 +7,8 @@ import { culture } from "./culture";
 import { teamMember } from "./team";
 import { article } from "./article";
 import { position } from "./position";
+import { contacts } from "./contacts";
+import { privacy } from "./privacy";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -18,5 +20,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     teamMember,
     article,
     position,
+    contacts,
+    privacy
   ],
 };

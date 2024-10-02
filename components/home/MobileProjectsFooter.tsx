@@ -16,7 +16,16 @@ export default function MobileProjectsFooter() {
         pathname === "/" ? "mt-20" : "hidden"
       )}
     >
-      <button className="font-spectral text-[14px] leading-[20px] -tracking-[0.28px] w-[50vw]">
+      <button
+        className="font-spectral text-[14px] leading-[20px] -tracking-[0.28px] w-[50vw]"
+        onClick={() => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+          changeDisplayMode("list");
+        }}
+      >
         Направления работ
       </button>
       <div className="w-px h-3 bg-[#E7E9EF]" />

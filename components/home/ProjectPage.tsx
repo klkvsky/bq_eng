@@ -120,7 +120,7 @@ export default function ProjectPage() {
               })}
             </div>
             <div className="flex flex-row w-full border-t border-[#E7E9EF] pt-3 mb-40">
-              <p className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] pl-3">
+              <p className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] pl-3" id="project-about">
                 О проекте
               </p>
               <div className="flex flex-col gap-10 w-[calc((4.5*8.33vw)-3px)]">
