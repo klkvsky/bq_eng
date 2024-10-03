@@ -6,7 +6,6 @@ import { urlFor, getProject } from "@/lib/sanity";
 import { ArticleText } from "../article/Text";
 import { ArticleImage } from "../article/Image";
 import PageTitle from "../PageTitle";
-import Footer from "../Footer";
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -33,14 +32,14 @@ export default function ProjectPage() {
     setIsSheetOpen(slug !== null);
 
     if (slug !== null) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("overflow-hidden-custom");
       fetchProject(slug);
     } else {
-      document.body.style.overflow = "auto";
+      document.body.classList.remove("overflow-hidden-custom");
     }
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.classList.remove("overflow-hidden-custom");
     };
   }, [searchParams]);
 
@@ -120,7 +119,10 @@ export default function ProjectPage() {
               })}
             </div>
             <div className="flex flex-row w-full border-t border-[#E7E9EF] pt-3 mb-40">
-              <p className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] pl-3" id="project-about">
+              <p
+                className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] pl-3"
+                id="project-about"
+              >
                 О проекте
               </p>
               <div className="flex flex-col gap-10 w-[calc((4.5*8.33vw)-3px)]">
@@ -176,7 +178,6 @@ export default function ProjectPage() {
                 />
               </div>
             )}
-            <Footer />
           </div>
         </motion.div>
       )}

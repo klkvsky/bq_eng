@@ -224,7 +224,9 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className={cn("transition-opacity duration-1000 ml-[8.33vw]")}
+            className={cn(
+              "transition-opacity duration-1000 ml-[8.33vw] hidden xl:flex"
+            )}
             onClick={() => {
               const projectAbout = document.getElementById("project-about");
               for (let i = 0; i < 100; i++) {

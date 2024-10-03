@@ -30,7 +30,9 @@ export default function RootLayout({
         <Logo />
         <Gradient />
         <PageAnimatePresence>{children}</PageAnimatePresence>
-        <MobileProjectsFooter />
+        <Suspense>
+          <MobileProjectsFooter />
+        </Suspense>
         <Suspense>
           <Footer />
         </Suspense>

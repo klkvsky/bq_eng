@@ -79,7 +79,7 @@ function ArticleList({
       <p className="font-spectral font-normal text-[17px] xl:text-[18px] leading-5 xl:leading-[24px] -tracking-[0.34px] xl:-tracking-[0.02em] whitespace-pre-wrap w-full md:w-[calc(6*8.33vw)] xl:w-[calc(4*8.33vw)]">
         {pretext}
       </p>
-      <ul className="list-disc list-inside">
+      <ul className="list-disc list-outside pl-4 font-spectral">
         {list?.map((item, index) => <li key={index}>{item}</li>)}
       </ul>
       <p className="font-spectral font-normal text-[17px] xl:text-[18px] leading-5 xl:leading-[24px] -tracking-[0.34px] xl:-tracking-[0.02em] whitespace-pre-wrap w-full md:w-[calc(6*8.33vw)] xl:w-[calc(4*8.33vw)]">

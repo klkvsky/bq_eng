@@ -18,7 +18,7 @@ export default function Footer() {
           searchParams.has("project") ||
           pathname === "/contacts" ||
           pathname === "/privacy-policy") &&
-          "lg:hidden"
+          "hidden"
       )}
     >
       <Link

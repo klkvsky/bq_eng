@@ -1,19 +1,21 @@
 "use client";
 
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function MobileProjectsFooter() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { displayMode, changeDisplayMode } = useGallery();
 
   return (
     <div
       className={cn(
-        "xl:hidden w-screen h-[36px] md:h-[44px] bg-white sticky left-0 bottom-0 z-50 p-2 md:p-3 border-t border-t-[#E7E9EF] flex flex-row items-center justify-center gap-2",
-        pathname === "/" ? "mt-20" : "hidden"
+        "xl:hidden w-screen h-[36px] md:h-[44px] bg-white sticky left-0 bottom-0 z-30 p-2 md:p-3 border-t border-t-[#E7E9EF] flex flex-row items-center justify-center gap-2",
+        pathname === "/" ? "mt-20" : "hidden",
+        searchParams.has("project") && "hidden"
       )}
     >
       <button
