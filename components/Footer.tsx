@@ -15,7 +15,9 @@ export default function Footer() {
         pathname === "/" ? "mt-0" : "mt-[80px]",
         (pathname.startsWith("/knowledge") ||
           pathname.startsWith("/news") ||
-          searchParams.has("project") || pathname === "/contacts") || pathname === "/privacy-policy" &&
+          searchParams.has("project") ||
+          pathname === "/contacts" ||
+          pathname === "/privacy-policy") &&
           "lg:hidden"
       )}
     >

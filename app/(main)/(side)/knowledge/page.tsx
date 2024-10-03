@@ -11,23 +11,33 @@ import { useState, useEffect } from "react";
 import { getArticles } from "@/lib/sanity";
 
 import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
 
 export default function Knowledge() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [filter, setFilter] = useState<string | null>(null);
 
   useEffect(() => {
-    getArticles(20).then((articles) => {
-      console.log(articles);
-      setArticles(articles);
+    getArticles(20).then((fetchedArticles) => {
+      // Ensure uniqueness by slug
+      const uniqueArticles = Array.from(
+        new Map(fetchedArticles.map(article => [article.slug.current, article])).values()
+      );
+      setArticles(uniqueArticles);
     });
   }, []);
 
-  const filteredArticles = articles.filter((article) => {
-    if (article.type === "press-release") return false;
-    if (!filter) return true;
-    return article.type === filter;
-  });
+  const filteredArticles = React.useMemo(() => {
+    return articles.filter((article) => {
+      if (article.type === "press-release") return false;
+      if (!filter) return true;
+      return article.type === filter;
+    });
+  }, [articles, filter]);
+
+  const toggleFilter = (newFilter: string) => {
+    setFilter(filter === newFilter ? null : newFilter);
+  };
 
   const getArticleType = (type: string) => {
     switch (type) {
@@ -52,93 +62,31 @@ export default function Knowledge() {
         Мы развиваем архитектуру как культурную практику, реализуя различные
         форматы, такие как: <br className="md:hidden" />
         <br className="md:hidden" />
-        <button
-          onClick={() => {
-            if (filter === "research") {
-              setFilter(null);
-            } else {
-              setFilter("research");
-            }
-          }}
-          className={cn(
-            "font-apercu transition-opacity duration-500",
-            filter === "research" ? "opacity-100" : "opacity-30"
-          )}
-        >
-          Исследования
-        </button>
-        ,{" "}
-        <button
-          onClick={() => {
-            if (filter === "expedition") {
-              setFilter(null);
-            } else {
-              setFilter("expedition");
-            }
-          }}
-          className={cn(
-            "font-apercu transition-opacity duration-500",
-            filter === "expedition" ? "opacity-100" : "opacity-30"
-          )}
-        >
-          Экспедиции
-        </button>
-        ,{" "}
-        <button
-          onClick={() => {
-            if (filter === "digest") {
-              setFilter(null);
-            } else {
-              setFilter("digest");
-            }
-          }}
-          className={cn(
-            "font-apercu transition-opacity duration-500",
-            filter === "digest" ? "opacity-100" : "opacity-30"
-          )}
-        >
-          Дайджесты
-        </button>
-        ,{" "}
-        <button
-          onClick={() => {
-            if (filter === "podcast") {
-              setFilter(null);
-            } else {
-              setFilter("podcast");
-            }
-          }}
-          className={cn(
-            "font-apercu transition-opacity duration-500",
-            filter === "podcast" ? "opacity-100" : "opacity-30"
-          )}
-        >
-          Подкасты
-        </button>{" "}
-        и{" "}
-        <button
-          onClick={() => {
-            if (filter === "gallery") {
-              setFilter(null);
-            } else {
-              setFilter("gallery");
-            }
-          }}
-          className={cn(
-            "font-apercu transition-opacity duration-500",
-            filter === "gallery" ? "opacity-100" : "opacity-30"
-          )}
-        >
-          Галереи
-        </button>
+        {["research", "expedition", "digest", "podcast", "gallery"].map(
+          (type) => (
+            <React.Fragment key={type}>
+              <button
+                onClick={() => toggleFilter(type)}
+                className={cn(
+                  "font-apercu transition-opacity duration-500",
+                  filter === type ? "opacity-100" : "opacity-30"
+                )}
+              >
+                {getArticleType(type)}
+              </button>
+              {type !== "gallery" && ", "}
+              {type === "podcast" && "и "}
+            </React.Fragment>
+          )
+        )}
       </h1>
 
       <div className="flex flex-col max-md:items-center md:grid md:grid-cols-2 xl:grid-cols-3 xl:px-[calc(0.5*8.33vw)] xl:gap-x-[calc(8.33vw)] xl:gap-y-[120px] mt-20 xl:pb-[120px] gap-y-20 md:justify-items-center md:min-h-screen">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           {filteredArticles.map((article) => (
             <Link
               href={`/knowledge?article=${article.slug.current}`}
-              key={article.id}
+              key={article.slug.current}
             >
               <motion.div
                 initial={{ opacity: 0 }}
