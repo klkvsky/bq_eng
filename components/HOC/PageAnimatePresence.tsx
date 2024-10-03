@@ -16,12 +16,20 @@ const PageAnimatePresence = ({ children }: { children: React.ReactNode }) => {
   }, [pathname]);
 
   const isKnowledgeOrNews = useCallback(
-    (path: string) => path === "/knowledge" || path.startsWith("/news") || path.startsWith("/contacts"),
+    (path: string) =>
+      path === "/knowledge" ||
+      path.startsWith("/news") ||
+      path.startsWith("/contacts") ||
+      path.startsWith("/privacy-policy"),
     []
   );
 
   const isSideContent = useCallback(
-    (path: string) => path.startsWith("/projects/") || path === "/about" || path === "/contacts",
+    (path: string) =>
+      path.startsWith("/projects/") ||
+      path === "/about" ||
+      path === "/contacts" ||
+      path === "/privacy-policy",
     []
   );
 
