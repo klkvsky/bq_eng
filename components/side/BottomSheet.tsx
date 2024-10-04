@@ -9,6 +9,7 @@ import SideFooter from "@/components/side/SideFooter";
 
 import { Article } from "@/components/home/types";
 import { getArticleBySlug } from "@/lib/sanity";
+import { cn } from "@/lib/utils";
 
 export default function BottomSheet() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -54,16 +55,20 @@ export default function BottomSheet() {
     <motion.div
       id="scrollable-digest"
       className="fixed top-full right-0 h-screen md:pb-0 w-full xl:w-[calc(9*8.33vw)]"
-      initial={{ y: isSheetOpen && selectedArticle ? "-100%" : "0%" }}
+      initial={{
+        y: isSheetOpen && selectedArticle ? "-100%" : "0%",
+        opacity: isSheetOpen ? 1 : 0,
+      }}
       animate={{
         y: isSheetOpen && selectedArticle ? "-100%" : "0%",
+        opacity: isSheetOpen ? 1 : 0,
       }}
       transition={{ duration: 1 }}
       tabIndex={0}
       onKeyDown={scrollToTop}
     >
       <div className="absolute top-0 right-0 h-full w-full pointer-events-none">
-        <div className="w-full h-full relative custom-shadow-top" />
+        <div className={cn("w-full h-full relative custom-shadow-top")} />
       </div>
       <div className="h-full overflow-y-scroll xl:pt-[44px] max-h-screen bg-white pt-[32px] md:pt-[48px]">
         <AnimatePresence mode="wait">
