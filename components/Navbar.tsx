@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { useTransitionRouter } from "next-view-transitions";
+
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
 import { useEffect, useState } from "react";
-import { useScreenSize } from "@/lib/hooks/useScreenSize";
-import { AnimatePresence, motion } from "framer-motion";
 
 import { getHomeData } from "@/lib/sanity";
 
@@ -15,41 +14,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [localPageTracker, setLocalPageTracker] = useState<
-    "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact"
-  >("/");
-  const {
-    changeDisplayMode,
-    displayMode,
-    selectedCategory,
-    setSelectedCategory,
-  } = useGallery();
+  const router = useTransitionRouter();
 
-  useEffect(() => {
-    setLocalPageTracker(
-      pathname as
-        | "/"
-        | "/studio"
-        | "/culture"
-        | "/knowledge"
-        | "/news"
-        | "/contact"
-    );
-  }, [pathname]);
+  const { changeDisplayMode, displayMode } = useGallery();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [isMobileMenuOpen]);
 
   const [isCategoriesInNavbar, setIsCategoriesInNavbar] = useState(false);
 
@@ -72,84 +41,84 @@ export default function Navbar() {
     };
   }, []);
 
-  const [homeCategories, setHomeCategories] = useState<{ name: string }[]>([]);
+  const isSidePage =
+    pathname === "/knowledge" ||
+    pathname === "/news" ||
+    pathname === "/contacts" ||
+    pathname === "/privacy-policy";
 
-  useEffect(() => {
-    const fetchHomeData = async () => {
-      const data = await getHomeData();
-      setHomeCategories(data.categories);
-    };
-    fetchHomeData();
-  }, []);
+  const isArticlePage =
+    pathname.startsWith("/knowledge/") || pathname.startsWith("/news/");
+
+  const isProjectPage = pathname.includes("/project/");
+
+  const transition = isProjectPage
+    ? slideDown
+    : isSidePage
+      ? slideOut
+      : opacity;
 
   return (
-    <div className="sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[-0.02em] 2xl:-tracking-[0.76px] z-30">
+    <div
+      className="sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[-0.02em] 2xl:-tracking-[0.76px] z-30"
+      style={{
+        viewTransitionName: "navbar",
+      }}
+    >
       <div className="flex flex-row gap-1 md:w-[16.66vw]">
-        <Link
+        <a
           href="/"
-          scroll={false}
-          onClick={() => {
-            setLocalPageTracker("/");
-            if (isMobileMenuOpen) {
-              setIsMobileMenuOpen(false);
-            }
-            if (!searchParams.has("project")) {
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              });
-            }
+          onClick={(e) => {
+            e.preventDefault();
+
+            router.push("/", {
+              onTransitionReady: transition,
+            });
+            setIsMobileMenuOpen(false);
           }}
-          className={`transition-all ${
-            localPageTracker === "/" && !searchParams.has("project")
-              ? "opacity-30 cursor-default"
-              : "opacity-100"
-          }`}
+          className={cn(
+            pathname === "/"
+              ? "opacity-30 cursor-default pointer-events-none"
+              : "hover:opacity-30",
+            "transition-opacity duration-500"
+          )}
         >
           Проекты,
-        </Link>
-        <Link
+        </a>
+        <a
           href="/studio"
-          scroll={false}
-          onClick={() => {
-            setLocalPageTracker("/studio");
-            if (isMobileMenuOpen) {
-              setIsMobileMenuOpen(false);
-            }
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
+          onClick={(e) => {
+            e.preventDefault();
+            router.push("/studio", {
+              onTransitionReady: transition,
             });
           }}
-          className={`transition-all ${
-            localPageTracker === "/studio"
-              ? "opacity-30 cursor-default"
-              : "opacity-100"
-          }`}
+          className={cn(
+            pathname === "/studio"
+              ? "opacity-30 cursor-default pointer-events-none"
+              : "hover:opacity-30",
+            "transition-opacity duration-500"
+          )}
         >
           Студия,
-        </Link>
-        <Link
+        </a>
+        <a
           href="/culture"
-          scroll={false}
-          onClick={() => {
-            setLocalPageTracker("/culture");
-            if (isMobileMenuOpen) {
-              setIsMobileMenuOpen(false);
-            }
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
+          onClick={(e) => {
+            e.preventDefault();
+            router.push("/culture", {
+              onTransitionReady: transition,
             });
           }}
-          className={`transition-all ${
-            localPageTracker === "/culture"
-              ? "opacity-30 cursor-default"
-              : "opacity-100"
-          }`}
+          className={cn(
+            pathname === "/culture"
+              ? "opacity-30 cursor-default pointer-events-none"
+              : "hover:opacity-30",
+            "transition-opacity duration-500"
+          )}
         >
           Культура
-        </Link>
+        </a>
       </div>
       <div
         className={cn(
@@ -162,7 +131,7 @@ export default function Navbar() {
       >
         <div
           className={cn(
-            " h-px bg-black transition-all duration-500",
+            "h-px bg-black transition-all duration-500",
             isMobileMenuOpen ? "rotate-45 w-4 translate-y-[3px] " : "w-7"
           )}
         />
@@ -176,204 +145,120 @@ export default function Navbar() {
       <NavbarMobile
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
-        localPageTracker={localPageTracker}
-        setLocalPageTracker={setLocalPageTracker}
         searchParams={searchParams}
+        pathname={pathname}
       />
       <div className="hidden xl:flex flex-row gap-1 ml-[8.33vw] w-[16.66vw]">
-        <Link
+        <a
           href={`/knowledge`}
-          scroll={false}
-          onClick={() => {
-            setLocalPageTracker("/knowledge");
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
+          onClick={(e) => {
+            e.preventDefault();
+            const transition = isArticlePage
+              ? slideDown
+              : isSidePage
+                ? opacity
+                : slide;
+            router.push("/knowledge", {
+              onTransitionReady: transition,
             });
           }}
-          className={`transition-all ${
-            localPageTracker == "/knowledge" && !searchParams.has("article")
-              ? "opacity-30 cursor-default"
-              : "opacity-100"
-          }`}
+          className={cn(
+            pathname === "/knowledge"
+              ? "opacity-30 cursor-default pointer-events-none"
+              : "hover:opacity-30",
+            "transition-opacity duration-500"
+          )}
         >
           Знания,
-        </Link>
-        <Link
+        </a>
+        <a
           href={`/news`}
-          scroll={false}
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
+          onClick={(e) => {
+            e.preventDefault();
+            const transition = isArticlePage
+              ? slideDown
+              : isSidePage
+                ? opacity
+                : slide;
+
+            router.push("/news", {
+              onTransitionReady: transition,
             });
-            setLocalPageTracker("/news");
           }}
-          className={`transition-all ${
-            localPageTracker == "/news" && !searchParams.has("article")
-              ? "opacity-30 cursor-default"
-              : "opacity-100"
-          }`}
+          className={cn(
+            pathname === "/news"
+              ? "opacity-30 cursor-default pointer-events-none"
+              : "hover:opacity-30",
+            "transition-opacity duration-500"
+          )}
         >
           Новости
-        </Link>
+        </a>
       </div>
-      <AnimatePresence mode="sync">
-        {searchParams.has("project") && (
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+      {pathname.includes("project") && (
+        <button
+          className={cn(
+            "transition-opacity ml-[8.33vw] hidden xl:flex hover:opacity-30 duration-500"
+          )}
+          onClick={() => {
+            handleAboutScroll();
+          }}
+        >
+          О проекте
+        </button>
+      )}
+      {isCategoriesInNavbar && pathname === "/" && <ProjectsCategories />}
+      {pathname === "/" && (
+        <div
+          className={cn(
+            "hidden xl:flex flex-row gap-1 mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000",
+            isCategoriesInNavbar ? "ml-auto" : "ml-auto"
+          )}
+        >
+          <button
             className={cn(
-              "transition-opacity duration-1000 ml-[8.33vw] hidden xl:flex"
+              displayMode === "gallery" ? "opacity-30" : "opacity-100",
+              "transition-opacity duration-1000"
             )}
             onClick={() => {
-              const projectAbout = document.getElementById("project-about");
-              for (let i = 0; i < 100; i++) {
-                projectAbout?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "center",
-                  inline: "center",
-                });
-              }
-              setTimeout(() => {
-                for (let i = 0; i < 100; i++) {
-                  projectAbout?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                    inline: "start",
-                  });
-                }
-                setTimeout(() => {
-                  for (let i = 0; i < 10; i++) {
-                    projectAbout?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                      inline: "start",
-                    });
-                  }
-
-                  setTimeout(() => {
-                    for (let i = 0; i < 10; i++) {
-                      projectAbout?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                        inline: "start",
-                      });
-                    }
-                  }, 100);
-                }, 100);
-              }, 100);
+              changeDisplayMode("gallery");
             }}
           >
-            О проекте
-          </motion.button>
-        )}
-      </AnimatePresence>
-      <AnimatePresence mode="sync">
-        {isCategoriesInNavbar && !searchParams.has("project") && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            Галерея
+          </button>
+          <p>/</p>
+          <button
             className={cn(
-              "hidden xl:flex flex-row gap-1 ml-[8.33vw] w-[calc(2*8.33vw)] transition-opacity duration-1000 relative group"
+              displayMode === "list" ? "opacity-30" : "opacity-100",
+              "transition-opacity duration-1000"
             )}
+            onClick={() => {
+              changeDisplayMode("list");
+            }}
           >
-            Направления работ{" "}
-            <span className="group-hover:rotate-180 transition-transform duration-300">
-              ▼
-            </span>
-            <div className="flex flex-col items-start absolute top-full left-0 w-full h-full  opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mt-3 font-apercu text-[16px] leading-[20px] -tracking-[0.32px] whitespace-nowrap">
-              {homeCategories.map((category) => (
-                <p
-                  key={category.name}
-                  className={cn(
-                    selectedCategory === category.name
-                      ? "opacity-100 hover:opacity-30"
-                      : "opacity-30 hover:opacity-100",
-                    "transition-opacity duration-1000 cursor-pointer"
-                  )}
-                  onClick={() => {
-                    if (selectedCategory !== category.name) {
-                      if (selectedCategory !== category.name) {
-                        changeDisplayMode("list");
-
-                        setTimeout(() => {
-                          setSelectedCategory(category.name);
-                        }, 1000);
-                      } else {
-                        changeDisplayMode("gallery");
-
-                        setTimeout(() => {
-                          setSelectedCategory(null);
-                        }, 1000);
-                      }
-                    }
-                  }}
-                >
-                  {category.name}
-                </p>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <AnimatePresence mode="sync">
-        {localPageTracker === "/" && !searchParams.has("project") && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className={cn(
-              "hidden xl:flex flex-row gap-1 mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000",
-              isCategoriesInNavbar ? "ml-[8.33vw]" : "ml-auto"
-            )}
-          >
-            <button
-              className={cn(
-                displayMode === "gallery" ? "opacity-30" : "opacity-100",
-                "transition-opacity duration-1000"
-              )}
-              onClick={() => {
-                changeDisplayMode("gallery");
-              }}
-            >
-              Галерея
-            </button>
-            <p>/</p>
-            <button
-              className={cn(
-                displayMode === "list" ? "opacity-30" : "opacity-100",
-                "transition-opacity duration-1000"
-              )}
-              onClick={() => {
-                changeDisplayMode("list");
-              }}
-            >
-              Список
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <div
+            Список
+          </button>
+        </div>
+      )}
+      <a
+        href="/contacts"
+        onClick={(e) => {
+          e.preventDefault();
+          router.push("/contacts", {
+            onTransitionReady: isSidePage ? opacity : slide,
+          });
+        }}
         className={cn(
+          pathname === "/contacts"
+            ? "opacity-30 cursor-default pointer-events-none"
+            : "hover:opacity-30",
+          "transition-opacity duration-500",
           "hidden xl:flex flex-row gap-1 w-[9.33vw] justify-end",
-          searchParams.has("project") ? "ml-auto" : "ml-[8.33vw]",
-          pathname !== "/" && "ml-auto"
+          pathname !== "/" ? "ml-auto" : "ml-[8.33vw]"
         )}
       >
-        <Link
-          href="/contacts"
-          className={`transition-all ${
-            pathname == "/contacts"
-              ? "opacity-30 cursor-default"
-              : "opacity-100"
-          }`}
-        >
-          Контакты
-        </Link>
-      </div>
+        Контакты
+      </a>
     </div>
   );
 }
@@ -381,25 +266,16 @@ export default function Navbar() {
 export function NavbarMobile({
   isMobileMenuOpen,
   setIsMobileMenuOpen,
-  localPageTracker,
-  setLocalPageTracker,
   searchParams,
+  pathname,
 }: {
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (value: boolean) => void;
-  localPageTracker:
-    | "/"
-    | "/studio"
-    | "/culture"
-    | "/knowledge"
-    | "/news"
-    | "/contact";
-  setLocalPageTracker: (
-    value: "/" | "/studio" | "/culture" | "/knowledge" | "/news" | "/contact"
-  ) => void;
   searchParams: ReturnType<typeof useSearchParams>;
+  pathname: string;
 }) {
-  const screenSize = useScreenSize();
+  const router = useTransitionRouter();
+
   return (
     <div
       className={cn(
@@ -408,43 +284,61 @@ export function NavbarMobile({
       )}
     >
       <div className="flex flex-col gap-1 justify-start items-center h-full font-spectral font-normal text-[14px] leading-5 -tracking-[0.28px] divide-y-[1px] border-y-[#E7E9EF] relative">
-        <Link
+        <a
           href={`/knowledge`}
-          onClick={() => {
-            setLocalPageTracker("/knowledge");
+          onClick={(e) => {
+            e.preventDefault();
             setIsMobileMenuOpen(false);
+            setTimeout(() => {
+              router.push("/knowledge", {
+                onTransitionReady: opacity,
+              });
+            }, 300);
           }}
           className={`transition-all w-full p-2  border-t-[1px] border-t-[#E7E9EF] ${
-            localPageTracker == "/knowledge" && !searchParams.has("item")
+            pathname == "/knowledge" && !searchParams.has("item")
               ? "opacity-30 cursor-default"
               : "opacity-100"
           }`}
         >
           Знания
-        </Link>
-        <Link
-          href={`/news`}
-          onClick={() => {
-            setLocalPageTracker("/news");
+        </a>
+        <a
+          href="/news"
+          onClick={(e) => {
+            e.preventDefault();
             setIsMobileMenuOpen(false);
+            setTimeout(() => {
+              router.push("/news", {
+                onTransitionReady: opacity,
+              });
+            }, 300);
           }}
           className={`transition-all w-full p-2 ${
-            localPageTracker == "/news"
+            pathname == "/news" ? "opacity-30 cursor-default" : "opacity-100"
+          }`}
+        >
+          Новости
+        </a>
+        <a
+          href="/contacts"
+          onClick={(e) => {
+            e.preventDefault();
+            setIsMobileMenuOpen(false);
+            setTimeout(() => {
+              router.push("/contacts", {
+                onTransitionReady: opacity,
+              });
+            }, 300);
+          }}
+          className={`transition-all w-full p-2 ${
+            pathname == "/contacts"
               ? "opacity-30 cursor-default"
               : "opacity-100"
           }`}
         >
-          Новости
-        </Link>
-        <Link
-          href="/contacts"
-          onClick={() => {
-            setIsMobileMenuOpen(false);
-          }}
-          className="transition-all w-full p-2"
-        >
           Контакты
-        </Link>
+        </a>
 
         <div className="absolute bottom-2 left-2 w-full flex flex-row border-none">
           <a href="/">Телеграм канал,</a>
@@ -452,12 +346,10 @@ export function NavbarMobile({
         </div>
 
         <svg
-          width={screenSize !== "sm" ? `${7 * 8.33}vw` : `${7 * 12.5}vw`}
-          height={screenSize !== "sm" ? `${7 * 8.33}vw` : `${7 * 12.5}vw`}
           viewBox="0 0 334 355"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute top-[180px] lg:top-[376px] right-0 border-none"
+          className="absolute top-[180px] lg:top-[376px] right-0 border-none w-[calc(7*12.5vw)] md:w-[calc(7*8.33vw)] h-[calc(7*12.5vw)] md:h-[calc(7*8.33vw)]"
         >
           <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
             <path
@@ -498,5 +390,315 @@ export function NavbarMobile({
         </svg>
       </div>
     </div>
+  );
+}
+
+function ProjectsCategories() {
+  const pathname = usePathname();
+
+  const { changeDisplayMode, selectedCategory, setSelectedCategory } =
+    useGallery();
+
+  const [homeCategories, setHomeCategories] = useState<{ name: string }[]>([]);
+
+  useEffect(() => {
+    if (pathname === "/") {
+      const fetchHomeData = async () => {
+        const data = await getHomeData();
+        setHomeCategories(data.categories);
+      };
+      fetchHomeData();
+    }
+    return () => {
+      setHomeCategories([]);
+    };
+  }, [pathname]);
+
+  return (
+    <div
+      className={cn(
+        "hidden xl:flex flex-row gap-1 w-[calc(2*8.33vw)] transition-opacity duration-1000 relative group"
+      )}
+    >
+      Направления работ{" "}
+      <span className="group-hover:rotate-180 transition-transform duration-300">
+        ▼
+      </span>
+      <div className="flex flex-col items-start absolute top-full left-0 w-full h-full  opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mt-3 font-apercu text-[16px] leading-[20px] -tracking-[0.32px] whitespace-nowrap">
+        {homeCategories.map((category) => (
+          <p
+            key={category.name}
+            className={cn(
+              selectedCategory === category.name
+                ? "opacity-100 hover:opacity-30"
+                : "opacity-30 hover:opacity-100",
+              "transition-opacity duration-1000 cursor-pointer"
+            )}
+            onClick={() => {
+              if (selectedCategory !== category.name) {
+                if (selectedCategory !== category.name) {
+                  changeDisplayMode("list");
+
+                  setTimeout(() => {
+                    setSelectedCategory(category.name);
+                  }, 1000);
+                } else {
+                  changeDisplayMode("gallery");
+
+                  setTimeout(() => {
+                    setSelectedCategory(null);
+                  }, 1000);
+                }
+              }
+            }}
+          >
+            {category.name}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function handleAboutScroll() {
+  const projectAbout = document.getElementById("project-about");
+  if (projectAbout) {
+    const scrollToAbout = () => {
+      const currentPosition = window.scrollY;
+      const targetPosition =
+        projectAbout.getBoundingClientRect().top +
+        window.scrollY +
+        projectAbout.offsetHeight / 2 -
+        window.innerHeight / 2;
+      const distance = targetPosition - currentPosition;
+      const duration = 2000;
+      let start: number | null = null;
+
+      const step = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const percentage = Math.min(progress / duration, 1);
+
+        window.scrollTo(
+          0,
+          currentPosition + distance * easeInOutCubic(percentage)
+        );
+
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
+      };
+
+      window.requestAnimationFrame(step);
+    };
+
+    // Easing function for smooth scrolling
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+
+    scrollToAbout();
+  }
+}
+
+function opacity() {
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        display: "none",
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      delay: 1000,
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
+  );
+}
+
+function slide() {
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        transform: "translateX(0)",
+      },
+      {
+        opacity: 0,
+        transform: "translateX(-100%)",
+        filter: "blur(5px)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 0,
+        transform: "translateX(100%)",
+        filter: "blur(5px)",
+      },
+      {
+        opacity: 1,
+        transform: "translateX(0)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 0,
+        transform: "translateX(125%)",
+        filter: "blur(5px)",
+      },
+      {
+        opacity: 1,
+        transform: "translateX(0)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(sideshadow)",
+    }
+  );
+}
+
+function slideOut() {
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        transform: "translateX(0)",
+      },
+      {
+        opacity: 0,
+        transform: "translateX(100%)",
+        filter: "blur(5px)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        transform: "translateX(0)",
+      },
+      {
+        opacity: 0,
+        transform: "translateX(125%)",
+        filter: "blur(5px)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-old(sideshadow)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 0,
+        transform: "translateX(-100%)",
+      },
+      {
+        opacity: 1,
+        transform: "translateX(0)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
+  );
+}
+
+function slideDown() {
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        transform: "translateY(0)",
+        zIndex: 1000,
+      },
+      {
+        opacity: 1,
+        transform: "translateY(100%)",
+        zIndex: 1000,
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        transform: "translateY(0%)",
+      },
+      {
+        opacity: 1,
+        transform: "translateY(0)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
   );
 }

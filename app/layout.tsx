@@ -1,6 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
 
+import { ViewTransitions } from "next-view-transitions";
+
 const apercuPro = localFont({
   src: "../public//assets/fonts/ApercuPro-Regular.otf",
   variable: "--apercu",
@@ -16,12 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${apercuPro.variable} ${spectral.variable} antialiased max-w-[100vw] overflow-x-hidden max-h-screen overflow-hidden`}
-      >
-        {children}
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en">
+        <body
+          className={`${apercuPro.variable} ${spectral.variable} antialiased`}
+        >
+          {children}
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

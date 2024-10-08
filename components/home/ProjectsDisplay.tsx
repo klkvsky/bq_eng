@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
-
-import ProjectItem from "@/components/home/Projects-Item";
+import { Link, useTransitionRouter } from "next-view-transitions";
 
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
 import { cn } from "@/lib/utils";
 
 import { HomeData } from "./types";
+import ProjectItem from "@/components/home/Projects-Item";
 
 export default function ProjectsDisplay({ data }: { data: HomeData }) {
   const { displayMode, visible, selectedCategory } = useGallery();
@@ -20,6 +19,8 @@ export default function ProjectsDisplay({ data }: { data: HomeData }) {
       )
     : data.featuredProjects;
 
+  const router = useTransitionRouter();
+
   return (
     <div>
       {displayMode === "gallery" ? (
@@ -30,13 +31,18 @@ export default function ProjectsDisplay({ data }: { data: HomeData }) {
           )}
         >
           {data.featuredProjects.map((item, index) => (
-            <Link
-              href={`?project=${item.slug.current}`}
+            <a
+              href={`/project/${item.slug.current}`}
               key={index}
-              scroll={false}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push(`/project/${item.slug.current}`, {
+                  onTransitionReady: slideUp,
+                });
+              }}
             >
               <ProjectItem key={index} project={item} displayMode="gallery" />
-            </Link>
+            </a>
           ))}
         </div>
       ) : (
@@ -58,5 +64,53 @@ export default function ProjectsDisplay({ data }: { data: HomeData }) {
         </div>
       )}
     </div>
+  );
+}
+
+function slideUp() {
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        transform: "translateY(0)",
+        zIndex: -10,
+        mixBlendMode: "normal",
+      },
+      {
+        opacity: 1,
+        transform: "translateY(0%)",
+        zIndex: -10,
+        mixBlendMode: "normal",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease-in-out",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        transform: "translateY(125%)",
+        zIndex: 100,
+        mixBlendMode: "normal",
+      },
+      {
+        opacity: 1,
+        transform: "translateX(0)",
+        zIndex: 100,
+        mixBlendMode: "normal",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease-in-out",
+      fill: "forwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
   );
 }

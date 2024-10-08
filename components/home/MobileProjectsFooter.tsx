@@ -1,21 +1,18 @@
 "use client";
 
 import { useGallery } from "@/lib/ProjectDisplayModeContext";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function MobileProjectsFooter() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const { displayMode, changeDisplayMode } = useGallery();
 
   return (
     <div
       className={cn(
-        "xl:hidden w-screen h-[36px] md:h-[44px] bg-white sticky left-0 bottom-0 z-30 p-2 md:p-3 border-t border-t-[#E7E9EF] flex flex-row items-center justify-center gap-2",
-        pathname === "/" ? "mt-20" : "hidden",
-        searchParams.has("project") && "hidden"
+        "xl:hidden w-screen h-[36px] md:h-[44px] bg-white sticky left-0 bottom-0 z-40 p-2 md:p-3 border-t border-t-[#E7E9EF] flex flex-row items-center justify-center gap-2",
+        pathname !== "/" && "hidden"
       )}
     >
       <button
@@ -37,18 +34,9 @@ export default function MobileProjectsFooter() {
           changeDisplayMode(displayMode === "gallery" ? "list" : "gallery");
         }}
       >
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={displayMode}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0 flex items-center justify-center"
-          >
-            {displayMode === "gallery" ? "Сетка" : "Галерея"}
-          </motion.span>
-        </AnimatePresence>
+        <span className="absolute inset-0 flex items-center justify-center">
+          {displayMode === "gallery" ? "Сетка" : "Галерея"}
+        </span>
       </button>
     </div>
   );

@@ -68,8 +68,8 @@ function CultureTeam({
           {title}
         </p>
         <div className="relative w-full">
-          <div className="w-40 h-full bg-gradient-to-r from-white absolute top-0 left-0 z-50" />
-          <div className="w-40 h-full bg-gradient-to-l from-white absolute top-0 right-0 z-50" />
+          <div className="w-40 h-full bg-gradient-to-r from-white absolute top-0 left-0 z-20" />
+          <div className="w-40 h-full bg-gradient-to-l from-white absolute top-0 right-0 z-20" />
           <div className="flex flex-row w-full max-h-full overflow-scroll snap-x snap-mandatory no-scrollbar z-40">
             {team.map((member, index) => (
               <div
