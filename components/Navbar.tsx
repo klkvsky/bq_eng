@@ -5,7 +5,6 @@ import { useTransitionRouter } from "next-view-transitions";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { useGallery } from "@/lib/ProjectDisplayModeContext";
 import { useEffect, useState } from "react";
 
 import { getHomeData } from "@/lib/sanity";
@@ -15,8 +14,6 @@ export default function Navbar() {
   const searchParams = useSearchParams();
 
   const router = useTransitionRouter();
-
-  const { changeDisplayMode, displayMode } = useGallery();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -42,25 +39,19 @@ export default function Navbar() {
   }, []);
 
   const isSidePage =
-    pathname === "/knowledge" ||
-    pathname === "/news" ||
+    pathname.includes("/knowledge") ||
+    pathname.includes("/news") ||
     pathname === "/contacts" ||
     pathname === "/privacy-policy";
 
   const isArticlePage =
     pathname.startsWith("/knowledge/") || pathname.startsWith("/news/");
 
-  const isProjectPage = pathname.includes("/project/");
-
-  const transition = isProjectPage
-    ? slideDown
-    : isSidePage
-      ? slideOut
-      : opacity;
+  const transition = isSidePage ? slideOut : opacity;
 
   return (
     <div
-      className="sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[-0.02em] 2xl:-tracking-[0.76px] z-30"
+      className="sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[0.02rem] 2xl:-tracking-[0.76px] z-30"
       style={{
         viewTransitionName: "navbar",
       }}
@@ -70,9 +61,10 @@ export default function Navbar() {
           href="/"
           onClick={(e) => {
             e.preventDefault();
+            const pageTransition = transition;
 
             router.push("/", {
-              onTransitionReady: transition,
+              onTransitionReady: pageTransition,
             });
             setIsMobileMenuOpen(false);
           }}
@@ -207,37 +199,42 @@ export default function Navbar() {
           О проекте
         </button>
       )}
-      {isCategoriesInNavbar && pathname === "/" && <ProjectsCategories />}
-      {pathname === "/" && (
-        <div
-          className={cn(
-            "hidden xl:flex flex-row gap-1 mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000",
-            isCategoriesInNavbar ? "ml-auto" : "ml-auto"
-          )}
-        >
-          <button
+      {isCategoriesInNavbar && (pathname === "/" || pathname === "/list") && (
+        <ProjectsCategories />
+      )}
+      {(pathname === "/" || pathname.includes("/list")) && (
+        <div className="hidden xl:flex flex-row gap-1 mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000 ml-auto">
+          <a
             className={cn(
-              displayMode === "gallery" ? "opacity-30" : "opacity-100",
+              pathname === "/" ? "opacity-30" : "opacity-100",
               "transition-opacity duration-1000"
             )}
-            onClick={() => {
-              changeDisplayMode("gallery");
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/", {
+                onTransitionReady: opacityWithTitle,
+              });
             }}
           >
             Галерея
-          </button>
+          </a>
           <p>/</p>
-          <button
+          <a
             className={cn(
-              displayMode === "list" ? "opacity-30" : "opacity-100",
+              pathname.includes("/list") ? "opacity-30" : "opacity-100",
               "transition-opacity duration-1000"
             )}
-            onClick={() => {
-              changeDisplayMode("list");
+            href="/list"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/list", {
+                onTransitionReady: opacityWithTitle,
+              });
             }}
           >
             Список
-          </button>
+          </a>
         </div>
       )}
       <a
@@ -254,7 +251,9 @@ export default function Navbar() {
             : "hover:opacity-30",
           "transition-opacity duration-500",
           "hidden xl:flex flex-row gap-1 w-[9.33vw] justify-end",
-          pathname !== "/" ? "ml-auto" : "ml-[8.33vw]"
+          pathname === "/" || pathname.includes("/list")
+            ? "ml-[8.33vw]"
+            : "ml-auto"
         )}
       >
         Контакты
@@ -266,7 +265,6 @@ export default function Navbar() {
 export function NavbarMobile({
   isMobileMenuOpen,
   setIsMobileMenuOpen,
-  searchParams,
   pathname,
 }: {
   isMobileMenuOpen: boolean;
@@ -279,7 +277,7 @@ export function NavbarMobile({
   return (
     <div
       className={cn(
-        "fixed top-[36px] left-0 w-screen h-[calc(100vh-36px)] bg-white z-50 transition-opacity duration-300",
+        "xl:hidden fixed top-[36px] left-0 w-screen h-[calc(100vh-36px)] bg-white z-50 transition-opacity duration-300",
         isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
     >
@@ -295,10 +293,8 @@ export function NavbarMobile({
               });
             }, 300);
           }}
-          className={`transition-all w-full p-2  border-t-[1px] border-t-[#E7E9EF] ${
-            pathname == "/knowledge" && !searchParams.has("item")
-              ? "opacity-30 cursor-default"
-              : "opacity-100"
+          className={`w-full p-2  border-t-[1px] border-t-[#E7E9EF] ${
+            pathname == "/knowledge" && "opacity-30 cursor-default"
           }`}
         >
           Знания
@@ -314,8 +310,8 @@ export function NavbarMobile({
               });
             }, 300);
           }}
-          className={`transition-all w-full p-2 ${
-            pathname == "/news" ? "opacity-30 cursor-default" : "opacity-100"
+          className={`w-full p-2 ${
+            pathname == "/news" && "opacity-30 cursor-default"
           }`}
         >
           Новости
@@ -331,10 +327,8 @@ export function NavbarMobile({
               });
             }, 300);
           }}
-          className={`transition-all w-full p-2 ${
-            pathname == "/contacts"
-              ? "opacity-30 cursor-default"
-              : "opacity-100"
+          className={`w-full p-2 ${
+            pathname == "/contacts" && "opacity-30 cursor-default"
           }`}
         >
           Контакты
@@ -396,10 +390,14 @@ export function NavbarMobile({
 function ProjectsCategories() {
   const pathname = usePathname();
 
-  const { changeDisplayMode, selectedCategory, setSelectedCategory } =
-    useGallery();
-
   const [homeCategories, setHomeCategories] = useState<{ name: string }[]>([]);
+
+  const isCategoryInUrl = (categoryName: string) => {
+    const decodedPathname = decodeURIComponent(pathname).toLowerCase();
+    return decodedPathname.includes(categoryName.toLowerCase());
+  };
+
+  const router = useTransitionRouter();
 
   useEffect(() => {
     if (pathname === "/") {
@@ -417,43 +415,36 @@ function ProjectsCategories() {
   return (
     <div
       className={cn(
-        "hidden xl:flex flex-row gap-1 w-[calc(2*8.33vw)] transition-opacity duration-1000 relative group"
+        "hidden xl:flex flex-row gap-1 w-[calc(2*8.33vw)] transition-opacity duration-1000 relative group items-center"
       )}
     >
       Направления работ{" "}
-      <span className="group-hover:rotate-180 transition-transform duration-300">
+      <span className="group-hover:rotate-180 transition-transform duration-300 text-xs">
         ▼
       </span>
       <div className="flex flex-col items-start absolute top-full left-0 w-full h-full  opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mt-3 font-apercu text-[16px] leading-[20px] -tracking-[0.32px] whitespace-nowrap">
         {homeCategories.map((category) => (
-          <p
+          <a
             key={category.name}
             className={cn(
-              selectedCategory === category.name
+              isCategoryInUrl(pathname)
                 ? "opacity-100 hover:opacity-30"
                 : "opacity-30 hover:opacity-100",
               "transition-opacity duration-1000 cursor-pointer"
             )}
-            onClick={() => {
-              if (selectedCategory !== category.name) {
-                if (selectedCategory !== category.name) {
-                  changeDisplayMode("list");
-
-                  setTimeout(() => {
-                    setSelectedCategory(category.name);
-                  }, 1000);
-                } else {
-                  changeDisplayMode("gallery");
-
-                  setTimeout(() => {
-                    setSelectedCategory(null);
-                  }, 1000);
-                }
-              }
+            onClick={(e) => {
+              e.preventDefault();
+              const categoryPath = `/list/${encodeURIComponent(category.name)}`;
+              const newPath = isCategoryInUrl(category.name)
+                ? "/list"
+                : categoryPath;
+              router.push(newPath, {
+                onTransitionReady: opacityWithTitle,
+              });
             }}
           >
             {category.name}
-          </p>
+          </a>
         ))}
       </div>
     </div>
@@ -500,7 +491,51 @@ function handleAboutScroll() {
   }
 }
 
+function opacityWithTitle() {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+          }
+        : {
+            opacity: 0,
+          },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      delay: 1000,
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
+  );
+}
 function opacity() {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   document.documentElement.animate(
     [
       {
@@ -521,9 +556,53 @@ function opacity() {
   document.documentElement.animate(
     [
       {
-        display: "none",
+        opacity: 1,
+      },
+      {
         opacity: 0,
       },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(projectsTitle)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+          }
+        : {
+            opacity: 0,
+          },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      delay: 1000,
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(projectsTitle)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+          }
+        : {
+            opacity: 0,
+          },
       {
         opacity: 1,
       },
@@ -541,18 +620,11 @@ function opacity() {
 function slide() {
   document.documentElement.animate(
     [
-      {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-      {
-        opacity: 0,
-        transform: "translateX(-100%)",
-        filter: "blur(5px)",
-      },
+      { opacity: 1, transform: "translateX(0)" },
+      { opacity: 0, transform: "translateX(-100%)" },
     ],
     {
-      duration: 1000,
+      duration: 1500,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-old(root)",
@@ -561,18 +633,26 @@ function slide() {
 
   document.documentElement.animate(
     [
-      {
-        opacity: 0,
-        transform: "translateX(100%)",
-        filter: "blur(5px)",
-      },
-      {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
+      { opacity: 1, transform: "translateX(0)" },
+      { opacity: 0, transform: "translateX(-100%)" },
     ],
     {
-      duration: 1000,
+      duration: 1500,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-old(projectsTitle)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      { transform: "translateX(75%)", mixBlendMode: "multiply" },
+      { transform: "translateX(35%)", mixBlendMode: "multiply", offset: 0.3 },
+      { transform: "translateX(35%)", mixBlendMode: "multiply", offset: 0.7 },
+      { transform: "translateX(0%)", mixBlendMode: "multiply", offset: 1 },
+    ],
+    {
+      duration: 3000,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
@@ -581,18 +661,13 @@ function slide() {
 
   document.documentElement.animate(
     [
-      {
-        opacity: 0,
-        transform: "translateX(125%)",
-        filter: "blur(5px)",
-      },
-      {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
+      { transform: "translateX(100%)" },
+      { transform: "translateX(45%)", offset: 0.3 },
+      { transform: "translateX(45%)", offset: 0.7 },
+      { transform: "translateX(0%)", offset: 1 },
     ],
     {
-      duration: 1000,
+      duration: 3000,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(sideshadow)",
@@ -604,17 +679,32 @@ function slideOut() {
   document.documentElement.animate(
     [
       {
+        transform: "translateX(0%)",
         opacity: 1,
-        transform: "translateX(0)",
+        mixBlendMode: "multiply",
+        offset: 0,
       },
       {
-        opacity: 0,
+        transform: "translateX(35%)",
+        opacity: 1,
+        mixBlendMode: "multiply",
+        offset: 0.3,
+      },
+      {
+        transform: "translateX(35%)",
+        opacity: 1,
+        mixBlendMode: "multiply",
+        offset: 0.7,
+      },
+      {
         transform: "translateX(100%)",
-        filter: "blur(5px)",
+        opacity: 1,
+        mixBlendMode: "multiply",
+        offset: 1,
       },
     ],
     {
-      duration: 1000,
+      duration: 3000,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-old(root)",
@@ -623,18 +713,13 @@ function slideOut() {
 
   document.documentElement.animate(
     [
-      {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-      {
-        opacity: 0,
-        transform: "translateX(125%)",
-        filter: "blur(5px)",
-      },
+      { transform: "translateX(0%)", opacity: 1, offset: 0 },
+      { transform: "translateX(45%)", opacity: 1, offset: 0.3 },
+      { transform: "translateX(45%)", opacity: 1, offset: 0.7 },
+      { transform: "translateX(125%)", opacity: 1, offset: 1 },
     ],
     {
-      duration: 1000,
+      duration: 3000,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-old(sideshadow)",
@@ -653,10 +738,31 @@ function slideOut() {
       },
     ],
     {
-      duration: 1000,
+      delay: 1500,
+      duration: 1500,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 0,
+        transform: "translateX(-100%)",
+      },
+      {
+        opacity: 1,
+        transform: "translateX(0)",
+      },
+    ],
+    {
+      delay: 1500,
+      duration: 1500,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(projectsTitle)",
     }
   );
 }
@@ -668,17 +774,19 @@ function slideDown() {
         opacity: 1,
         transform: "translateY(0)",
         zIndex: 1000,
+        mixBlendMode: "normal",
       },
       {
         opacity: 1,
-        transform: "translateY(100%)",
+        transform: "translateY(125%)",
         zIndex: 1000,
+        mixBlendMode: "normal",
       },
     ],
     {
       duration: 1000,
-      easing: "ease",
-      fill: "backwards",
+      easing: "ease-in-out",
+      fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
     }
   );
@@ -687,17 +795,45 @@ function slideDown() {
     [
       {
         opacity: 1,
-        transform: "translateY(0%)",
+        transform: "translateY(0)",
+        zIndex: -10,
+        mixBlendMode: "normal",
       },
       {
         opacity: 1,
-        transform: "translateY(0)",
+        transform: "translateY(-125%)",
+        zIndex: -10,
+        mixBlendMode: "normal",
       },
     ],
     {
       duration: 1000,
-      easing: "ease",
-      fill: "backwards",
+      easing: "ease-in-out",
+      fill: "forwards",
+      direction: "reverse",
+      pseudoElement: "::view-transition-new(topShadow)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        transform: "translateY(0%)",
+        zIndex: 1,
+        mixBlendMode: "normal",
+      },
+      {
+        opacity: 1,
+        transform: "translateY(0)",
+        zIndex: 1,
+        mixBlendMode: "normal",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease-in-out",
+      fill: "forwards",
       pseudoElement: "::view-transition-new(root)",
     }
   );

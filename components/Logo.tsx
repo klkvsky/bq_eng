@@ -1,85 +1,71 @@
 "use client";
-import { useEffect, useState } from "react";
-
-import Image from "next/image";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
+import styles from "./Logo.module.css";
 
-import B from "@/public/assets/B.svg";
-import Q from "@/public/assets/Q.svg";
-
-import { cn } from "@/lib/utils";
+type LogoState =
+  | "home"
+  | "gallery"
+  | "list"
+  | "project"
+  | "studio"
+  | "knowledge";
 
 export default function Logo() {
   const pathname = usePathname();
-  const [isAtBottom, setIsAtBottom] = useState(false);
+  const [logoState, setLogoState] = useState<LogoState>("home");
+  const [transitionClass, setTransitionClass] = useState("");
+  const prevStateRef = useRef<LogoState>("home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (pathname === "/") {
-        const isBottom =
-          window.innerHeight + window.scrollY >=
-          document.documentElement.scrollHeight;
-        setIsAtBottom(isBottom);
-      }
-    };
+    let newState: LogoState = "home";
+    if (pathname === "/") newState = "home";
+    else if (pathname.startsWith("/project/")) newState = "project";
+    else if (pathname === "/studio" || pathname === "/culture")
+      newState = "studio";
+    else if (
+      ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(pathname)
+    )
+      newState = "knowledge";
+    else if (pathname === "/gallery") newState = "gallery";
+    else if (pathname === "/list") newState = "list";
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+    if (newState !== logoState) {
+      const prevState = prevStateRef.current;
+      setTransitionClass(`${prevState}-to-${newState}`);
+      console.log(`Logo transition: ${prevState} to ${newState}`);
+
+      const isKnowledgeTransition =
+        ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(
+          pathname
+        ) ||
+        ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(
+          prevState
+        );
+
+      const transitionDuration = isKnowledgeTransition ? 8000 : 8000;
+
+      // Immediately update the logo state and prevStateRef
+      setLogoState(newState);
+      prevStateRef.current = newState;
+
+      // Use a single timeout to remove the transition class
+      const transitionTimeout = setTimeout(() => {
+        setTransitionClass("");
+      }, transitionDuration);
+
+      return () => {
+        clearTimeout(transitionTimeout);
+      };
+    }
+  }, [pathname, logoState]);
 
   return (
     <div
-      className="fixed top-0 left-0 w-screen h-screen z-40 pointer-events-none hidden xl:block"
-      style={{
-        viewTransitionName: "logo",
-      }}
+      className={`${styles.logoContainer} ${styles[logoState]} ${styles[transitionClass]}`}
     >
-      <Image
-        src={B}
-        alt="B"
-        width={0}
-        height={0}
-        className={cn(
-          "fixed transition-all duration-1000",
-          pathname === "/" && "w-[130px] h-[184px] left-3",
-          pathname === "/"
-            ? isAtBottom
-              ? "bottom-10"
-              : "bottom-3"
-            : "bottom-11",
-          (pathname.startsWith("/knowledge") ||
-            pathname.startsWith("/news") ||
-            pathname.startsWith("/contact") ||
-            pathname === "/privacy-policy") &&
-            "w-[73px] h-[103px] left-3 bottom-14",
-          (pathname === "/studio" || pathname === "/culture") &&
-            "w-[82px] h-[116px] left-3 bottom-[87.8px]"
-        )}
-        unoptimized
-      />
-      <Image
-        src={Q}
-        alt="B"
-        width={0}
-        height={0}
-        className={cn(
-          "fixed transition-all duration-0",
-          pathname === "/" && "w-[130px] h-[184px] right-3",
-          pathname === "/"
-            ? "bottom-80"
-            : isAtBottom
-              ? "bottom-10"
-              : "bottom-1.5",
-          (pathname.startsWith("/knowledge") ||
-            pathname.startsWith("/news") ||
-            pathname.startsWith("/contact") ||
-            pathname === "/privacy-policy") &&
-            "w-[73px] h-[103px] bottom-[828px] right-[calc(9*8.33vw+12px)]",
-          (pathname === "/studio" || pathname === "/culture") &&
-            "w-[100px] h-[140px] right-[calc(100vw-99px-100px)] bottom-[115px]"
-        )}
-        unoptimized
-      />
+      <img src="/assets/B.svg" className={styles.bImage} alt="B logo" />
+      <img src="/assets/Q.svg" className={styles.qImage} alt="Q logo" />
     </div>
   );
 }

@@ -78,6 +78,23 @@ function opacity() {
   document.documentElement.animate(
     [
       {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(projectsTitle)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
         display: "none",
         opacity: 0,
       },
@@ -91,6 +108,25 @@ function opacity() {
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        display: "none",
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      delay: 1000,
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(projectsTitle)",
     }
   );
 }

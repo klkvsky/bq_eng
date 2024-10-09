@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { Article } from "@/components/home/types";
-import { ArticleShareAndInfo } from "../../../../../components/article/ShareAndInfo";
-import { ArticleText } from "../../../../../components/article/Text";
-import { ArticleImage } from "../../../../../components/article/Image";
-import { ArticleVideo } from "../../../../../components/article/Video";
-import { ArticleQuote } from "../../../../../components/article/Quote";
+import { ArticleShareAndInfo } from "@/components/article/ShareAndInfo";
+import { ArticleText } from "@/components/article/Text";
+import { ArticleImage } from "@/components/article/Image";
+import { ArticleVideo } from "@/components/article/Video";
+import { ArticleQuote } from "@/components/article/Quote";
 import { getArticleBySlug, urlFor } from "@/lib/sanity";
 
 import { cn } from "@/lib/utils";
-import RelatedItems from "../../../../../components/RelatedItems";
+import RelatedItems from "@/components/RelatedItems";
 
 export default async function ArticlePage({
   params,
@@ -35,7 +35,7 @@ export default async function ArticlePage({
   };
 
   return (
-    <div className="flex flex-col items-center xl:py-20">
+    <div className="flex flex-col items-center xl:py-10 min-h-screen">
       {article.type !== "research" && (
         <div
           className="font-normal text-[20px] md:text-[32px] xl:text-[38px] leading-[24px] md:leading-[36px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.96px] xl:-tracking-[0.03em] text-center w-[calc(6*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(7*8.33vw)]"
@@ -161,7 +161,7 @@ export default async function ArticlePage({
             }
           })}
 
-        {article.relatedArticles && (
+        {article.relatedArticles && article.relatedArticles.length > 0 && (
           <div className="flex flex-row w-full items-center justify-center gap-20 mt-40">
             <RelatedItems
               title="Другие материалы"

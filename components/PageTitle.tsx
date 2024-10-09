@@ -1,7 +1,8 @@
 "use client";
 
-import { useGallery } from "@/lib/ProjectDisplayModeContext";
 import { cn } from "@/lib/utils";
+import { useTransitionRouter } from "next-view-transitions";
+import { usePathname } from "next/navigation";
 
 export default function PageTitle({
   title,
@@ -12,8 +13,14 @@ export default function PageTitle({
   projectPrefix?: string;
   categories: { name: string }[];
 }) {
-  const { changeDisplayMode, selectedCategory, setSelectedCategory } =
-    useGallery();
+  const router = useTransitionRouter();
+  const pathname = usePathname();
+
+  const isCategoryInUrl = (categoryName: string) => {
+    const decodedPathname = decodeURIComponent(pathname).toLowerCase();
+    return decodedPathname.includes(categoryName.toLowerCase());
+  };
+
   return (
     <h1 className="px-2 md:px-3 font-spectral text-[20px] md:text-[28px] xl:text-[36px] 2xl:text-[91.2px] font-normal leading-[24px] md:leading-[32px] xl:leading-[42px] 2xl:leading-[100.8px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[0.03em] 2xl:-tracking-[2.736px]">
       {projectPrefix && (
@@ -24,36 +31,76 @@ export default function PageTitle({
       <br className="md:hidden" />{" "}
       {categories.map((category, index, array) => (
         <>
-          <span
+          <a
             key={index}
             className={cn(
               "transition-opacity font-apercu whitespace-nowrap cursor-pointer duration-500",
-              selectedCategory === category.name
+              isCategoryInUrl(category.name)
                 ? "opacity-75 hover:opacity-100"
                 : "opacity-30 hover:opacity-100"
             )}
-            onClick={() => {
-              if (selectedCategory !== category.name) {
-                changeDisplayMode("list");
-
-                setTimeout(() => {
-                  setSelectedCategory(category.name);
-                }, 1000);
-              } else {
-                changeDisplayMode("gallery");
-
-                setTimeout(() => {
-                  setSelectedCategory(null);
-                }, 1000);
-              }
+            href={`/list/${encodeURIComponent(category.name)}`}
+            onClick={(e) => {
+              e.preventDefault();
+              const categoryPath = `/list/${encodeURIComponent(category.name)}`;
+              const newPath = isCategoryInUrl(category.name)
+                ? "/list"
+                : categoryPath;
+              router.push(newPath, {
+                onTransitionReady: opacity,
+              });
             }}
           >
             {category.name}
-          </span>
+          </a>
           {index < array.length - 2 && ", "}
           {index === array.length - 2 && " и "}
         </>
       ))}
     </h1>
+  );
+}
+
+function opacity() {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+          }
+        : {
+            opacity: 0,
+          },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      delay: 1000,
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
   );
 }

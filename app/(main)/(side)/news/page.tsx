@@ -25,7 +25,7 @@ export default function News() {
   }, []);
 
   return (
-    <div className="md:mt-10 xl:mt-20 flex flex-col xl:mb-32 gap-8 xl:gap-32 min-h-[70vh]">
+    <div className="md:mt-10 xl:mt-20 flex flex-col xl:mb-32 gap-8 xl:gap-32 min-h-screen">
       {magazineArticles.length > 0 && (
         <div>
           <NewsSection title="Пресса о нас" items={magazineArticles} />

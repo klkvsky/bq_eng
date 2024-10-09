@@ -1,0 +1,641 @@
+.logoContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  pointer-events: none;
+  view-transition-name: logo;
+  display: none; /* Hide by default */
+}
+
+@media (min-width: 1024px) {
+  .logoContainer {
+    display: block; /* Show on large devices */
+  }
+}
+
+.bImage,
+.qImage {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transition: none;
+}
+
+.home .bImage {
+  width: 8.125vw;
+  transform: translate(0.75vw, 77.2vh);
+}
+
+.home .qImage {
+  width: 10vw;
+  transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+}
+
+.list .bImage {
+  width: 8.125vw;
+  transform: translate(0.75vw, 77.2vh);
+}
+.list .qImage {
+  width: 10vw;
+  transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
+}
+.studio .bImage {
+  width: 5.133125vw;
+  transform: translate(0.75vw, 79.5vh);
+}
+.studio .qImage {
+  width: 6.25vw;
+  transform: translate(6.15vw, 74vh);
+}
+
+.project .bImage {
+  width: 8.125vw;
+  transform: translate(-100%, 77.2vh);
+}
+.project .qImage {
+  width: 10vw;
+  transform: translate(calc(100vw + 100%), 45vh);
+}
+
+.knowledge .bImage {
+  width: 6vw;
+  transform: translate(0.75vw, 84.1vh);
+}
+.knowledge .qImage {
+  width: 8vw;
+  transform: translate(calc(18.5vw - 25%), 4.4vh);
+}
+
+/* Keyframe animations for transitions */
+@keyframes home-to-list-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+}
+@keyframes home-to-list-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
+  }
+}
+@keyframes home-to-studio-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+  100% {
+    width: 5.133125vw;
+    transform: translate(0.75vw, 79.5vh);
+  }
+}
+@keyframes home-to-studio-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+  }
+  50% {
+    width: 6.25vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 74vh);
+  }
+  100% {
+    width: 6.25vw;
+    transform: translate(6.15vw, 74vh);
+  }
+}
+@keyframes home-to-project-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(-100%, 77.2vh);
+  }
+}
+@keyframes home-to-project-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw + 100%), 45vh);
+  }
+}
+@keyframes home-to-knowledge-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+  100% {
+    width: 6vw;
+    transform: translate(0.75vw, 84.1vh);
+  }
+}
+
+@keyframes home-to-knowledge-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+  }
+  5% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+  }
+  30% {
+    width: 8vw;
+    transform: translate(calc(100vw - 45vw - 100%), 45vh);
+  }
+  40% {
+    width: 8vw;
+    transform: translate(calc(100vw - 45vw - 100%), 45vh);
+  }
+  100% {
+    width: 8vw;
+    transform: translate(calc(18.5vw - 25%), 4.4vh);
+  }
+}
+
+@keyframes list-to-home-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+}
+@keyframes list-to-home-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
+    opacity: 1;
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+  }
+}
+@keyframes list-to-studio-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+  100% {
+    width: 5.133125vw;
+    transform: translate(0.75vw, 79.5vh);
+  }
+}
+@keyframes list-to-studio-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
+  }
+  100% {
+    width: 6.25vw;
+    transform: translate(6.15vw, 74vh);
+  }
+}
+@keyframes list-to-project-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(-100%, 77.2vh);
+  }
+}
+@keyframes list-to-project-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw + 100%), 45vh);
+  }
+}
+@keyframes list-to-knowledge-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+  100% {
+    width: 6vw;
+    transform: translate(0.75vw, 84.1vh);
+  }
+}
+@keyframes list-to-knowledge-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
+  }
+  100% {
+    width: 8vw;
+    transform: translate(calc(18.5vw - 25%), 4.4vh);
+  }
+}
+
+@keyframes studio-to-home-b {
+  0% {
+    width: 5.133125vw;
+    transform: translate(0.75vw, 79.5vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+}
+@keyframes studio-to-home-q {
+  0% {
+    width: 6.25vw;
+    transform: translate(6.15vw, 74vh);
+  }
+  50% {
+    width: 6.25vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 74vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+  }
+}
+@keyframes studio-to-list-b {
+  0% {
+    width: 5.133125vw;
+    transform: translate(0.75vw, 79.5vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+}
+@keyframes studio-to-list-q {
+  0% {
+    width: 6.25vw;
+    transform: translate(6.15vw, 74vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
+  }
+}
+@keyframes studio-to-project-b {
+  0% {
+    width: 5.133125vw;
+    transform: translate(0.75vw, 79.5vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(-100%, 77.2vh);
+  }
+}
+@keyframes studio-to-project-q {
+  0% {
+    width: 6.25vw;
+    transform: translate(6.15vw, 74vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw + 100%), 45vh);
+  }
+}
+@keyframes studio-to-knowledge-b {
+  0% {
+    width: 5.133125vw;
+    transform: translate(0.75vw, 79.5vh);
+  }
+  100% {
+    width: 6vw;
+    transform: translate(0.75vw, 84.1vh);
+  }
+}
+@keyframes studio-to-knowledge-q {
+  0% {
+    width: 6.25vw;
+    transform: translate(6.15vw, 74vh);
+  }
+  25% {
+    width: 8vw;
+    transform: translate(calc(100vw - 44vw - 100%), 74vh);
+  }
+  35% {
+    width: 8vw;
+    transform: translate(calc(100vw - 44vw - 100%), 74vh);
+  }
+  100% {
+    width: 8vw;
+    transform: translate(calc(18.5vw - 25%), 4.4vh);
+  }
+}
+@keyframes project-to-home-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(-100%, 77.2vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+}
+@keyframes project-to-home-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw + 100%), 45vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+  }
+}
+@keyframes project-to-list-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(-100%, 77.2vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+}
+@keyframes project-to-list-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw + 100%), 45vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
+  }
+}
+@keyframes project-to-studio-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(-100%, 77.2vh);
+  }
+  100% {
+    width: 5.133125vw;
+    transform: translate(0.75vw, 79.5vh);
+  }
+}
+@keyframes project-to-studio-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw + 100%), 45vh);
+  }
+  100% {
+    width: 6.25vw;
+    transform: translate(6.15vw, 74vh);
+  }
+}
+@keyframes project-to-knowledge-b {
+  0% {
+    width: 8.125vw;
+    transform: translate(-100%, 77.2vh);
+  }
+  100% {
+    width: 6vw;
+    transform: translate(0.75vw, 84.1vh);
+  }
+}
+@keyframes project-to-knowledge-q {
+  0% {
+    width: 10vw;
+    transform: translate(calc(100vw + 100%), 45vh);
+  }
+  100% {
+    width: 8vw;
+    transform: translate(calc(18.5vw - 25%), 4.4vh);
+  }
+}
+
+@keyframes knowledge-to-home-b {
+  0% {
+    width: 6vw;
+    transform: translate(0.75vw, 84.1vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+}
+@keyframes knowledge-to-home-q {
+  0% {
+    width: 8vw;
+    transform: translate(calc(18.5vw - 25%), 4.4vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
+  }
+}
+@keyframes knowledge-to-list-b {
+  0% {
+    width: 6vw;
+    transform: translate(0.75vw, 84.1vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(0.75vw, 77.2vh);
+  }
+}
+@keyframes knowledge-to-list-q {
+  0% {
+    width: 8vw;
+    transform: translate(calc(18.5vw - 25%), 4.4vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
+  }
+}
+@keyframes knowledge-to-studio-b {
+  0% {
+    width: 6vw;
+    transform: translate(0.75vw, 84.1vh);
+  }
+  100% {
+    width: 5.133125vw;
+    transform: translate(0.75vw, 79.5vh);
+  }
+}
+@keyframes knowledge-to-studio-q {
+  0% {
+    width: 8vw;
+    transform: translate(calc(18.5vw - 25%), 4.4vh);
+  }
+  35% {
+    width: 8vw;
+    transform: translate(calc(100vw - 45vw - 100%), 74vh);
+  }
+  40% {
+    width: 8vw;
+    transform: translate(calc(100vw - 45vw - 100%), 74vh);
+  }
+  100% {
+    width: 6.25vw;
+    transform: translate(6.15vw, 74vh);
+  }
+}
+
+@keyframes knowledge-to-project-b {
+  0% {
+    width: 6vw;
+    transform: translate(0.75vw, 84.1vh);
+  }
+  100% {
+    width: 8.125vw;
+    transform: translate(-100%, 77.2vh);
+  }
+}
+@keyframes knowledge-to-project-q {
+  0% {
+    width: 8vw;
+    transform: translate(calc(18.5vw - 25%), 4.4vh);
+  }
+  100% {
+    width: 10vw;
+    transform: translate(calc(100vw + 100%), 45vh);
+  }
+}
+
+/* Animation classes */
+.home-to-list .bImage {
+  animation: home-to-list-b 1s forwards;
+}
+.home-to-list .qImage {
+  animation: home-to-list-q 1s forwards;
+}
+.home-to-studio .bImage {
+  animation: home-to-studio-b 1s forwards;
+}
+.home-to-studio .qImage {
+  animation: home-to-studio-q 1s forwards;
+}
+.home-to-project .bImage {
+  animation: home-to-project-b 1s forwards;
+}
+.home-to-project .qImage {
+  animation: home-to-project-q 1s forwards;
+}
+.home-to-knowledge .bImage {
+  animation: home-to-knowledge-b 1s forwards;
+}
+
+.home-to-knowledge .qImage {
+  animation: home-to-knowledge-q 3s ease forwards;
+}
+
+.list-to-home .bImage {
+  animation: list-to-home-b 1s forwards;
+}
+.list-to-home .qImage {
+  animation: list-to-home-q 1s forwards;
+}
+.list-to-studio .bImage {
+  animation: list-to-studio-b 1s forwards;
+}
+.list-to-studio .qImage {
+  animation: list-to-studio-q 1s forwards;
+}
+.list-to-project .bImage {
+  animation: list-to-project-b 1s forwards;
+}
+.list-to-project .qImage {
+  animation: list-to-project-q 1s forwards;
+}
+.list-to-knowledge .bImage {
+  animation: list-to-knowledge-b 1s forwards;
+}
+.list-to-knowledge .qImage {
+  animation: list-to-knowledge-q 1s forwards;
+}
+
+.studio-to-home .bImage {
+  animation: studio-to-home-b 1s forwards;
+}
+.studio-to-home .qImage {
+  animation: studio-to-home-q 1s forwards;
+}
+.studio-to-list .bImage {
+  animation: studio-to-list-b 1s forwards;
+}
+.studio-to-list .qImage {
+  animation: studio-to-list-q 1s forwards;
+}
+.studio-to-project .bImage {
+  animation: studio-to-project-b 1s forwards;
+}
+.studio-to-project .qImage {
+  animation: studio-to-project-q 1s forwards;
+}
+.studio-to-knowledge .bImage {
+  animation: studio-to-knowledge-b 1s forwards;
+}
+.studio-to-knowledge .qImage {
+  animation: studio-to-knowledge-q 3s ease forwards;
+}
+
+.project-to-home .bImage {
+  animation: project-to-home-b 1s forwards;
+}
+.project-to-home .qImage {
+  animation: project-to-home-q 1s forwards;
+}
+.project-to-list .bImage {
+  animation: project-to-list-b 1s forwards;
+}
+.project-to-list .qImage {
+  animation: project-to-list-q 1s forwards;
+}
+.project-to-studio .bImage {
+  animation: project-to-studio-b 1s forwards;
+}
+.project-to-studio .qImage {
+  animation: project-to-studio-q 1s forwards;
+}
+.project-to-knowledge .bImage {
+  animation: project-to-knowledge-b 1s forwards;
+}
+.project-to-knowledge .qImage {
+  animation: project-to-knowledge-q 1s forwards;
+}
+
+.knowledge-to-home .bImage {
+  animation: knowledge-to-home-b 0 1s forwards;
+}
+.knowledge-to-home .qImage {
+  animation: knowledge-to-home-q 1s forwards;
+}
+.knowledge-to-list .bImage {
+  animation: knowledge-to-list-b 1s forwards;
+}
+.knowledge-to-list .qImage {
+  animation: knowledge-to-list-q 1s forwards;
+}
+.knowledge-to-studio .bImage {
+  animation: knowledge-to-studio-b 1s forwards;
+}
+.knowledge-to-studio .qImage {
+  animation: knowledge-to-studio-q 3s ease forwards;
+}
+.knowledge-to-project .bImage {
+  animation: knowledge-to-project-b 1s forwards;
+}
+.knowledge-to-project .qImage {
+  animation: knowledge-to-project-q 1s forwards;
+}

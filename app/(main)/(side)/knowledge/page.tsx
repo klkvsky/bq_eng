@@ -61,8 +61,16 @@ export default function Knowledge() {
   };
 
   return (
-    <div className="flex flex-col">
-      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] xl:mt-[44px] p-2 md:pl-3 md:py-0">
+    <div className="flex flex-col min-h-screen">
+      <div
+        className="fixed top-[125%] right-0 w-full xl:w-[calc(9*8.33vw)] h-full"
+        style={{
+          viewTransitionName: "topShadow",
+        }}
+      >
+        <div className="relative w-full h-full custom-shadow-top" />
+      </div>
+      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] p-2 md:pl-3 md:py-0">
         Мы развиваем архитектуру как культурную практику, реализуя различные
         форматы, такие как: <br className="md:hidden" />
         <br className="md:hidden" />
@@ -72,8 +80,8 @@ export default function Knowledge() {
               <button
                 onClick={() => toggleFilter(type)}
                 className={cn(
-                  "font-apercu transition-opacity duration-500",
-                  filter === type ? "opacity-100" : "opacity-30"
+                  "font-apercu transition-opacity duration-500 hover:opacity-100",
+                  filter === type ? "opacity-75" : "opacity-30"
                 )}
               >
                 {getArticleType(type)}
@@ -85,7 +93,7 @@ export default function Knowledge() {
         )}
       </h1>
 
-      <div className="flex flex-col max-md:items-center md:grid md:grid-cols-2 xl:grid-cols-3 xl:px-[calc(0.5*8.33vw)] xl:gap-x-[calc(8.33vw)] xl:gap-y-[120px] mt-20 xl:pb-[120px] gap-y-20 md:justify-items-center md:min-h-screen">
+      <div className="flex flex-col max-md:items-center md:grid md:grid-cols-2 xl:grid-cols-3 xl:px-[calc(0.5*8.33vw)] xl:gap-x-[calc(8.33vw)] xl:gap-y-[120px] mt-20 gap-y-20 md:justify-items-center md:min-h-screen">
         {filteredArticles.map((article) => (
           <a
             href={`/knowledge/${article.slug.current}`}
@@ -169,13 +177,36 @@ function slideUp() {
     [
       {
         opacity: 1,
+        transform: "translateY(0)",
+        zIndex: -10,
+        mixBlendMode: "normal",
+      },
+      {
+        opacity: 1,
+        transform: "translateY(-125%)",
+        zIndex: -10,
+        mixBlendMode: "normal",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "ease-in-out",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(topShadow)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
         transform: "translateY(125%)",
         zIndex: 100,
         mixBlendMode: "normal",
       },
       {
         opacity: 1,
-        transform: "translateX(0)",
+        transform: "translateY(0)",
         zIndex: 100,
         mixBlendMode: "normal",
       },

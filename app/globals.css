@@ -48,7 +48,3 @@
     scrollbar-width: none; /* Firefox */
   }
 }
-
-.overflow-hidden-custom {
-  overflow: hidden !important;
-}

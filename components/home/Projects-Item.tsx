@@ -1,3 +1,7 @@
+"use client";
+
+import { useTransitionRouter } from "next-view-transitions";
+
 import { cn } from "@/lib/utils";
 
 import Image from "next/image";
@@ -29,8 +33,18 @@ export default function ProjectItem({
   const screenSize = useScreenSize();
   const calculatedWidth = calculateWidth(displayMode, project.cols, screenSize);
 
+  const router = useTransitionRouter();
+
   return (
-    <>
+    <a
+      href={`/project/${project.slug.current}`}
+      onClick={(e) => {
+        e.preventDefault();
+        router.push(`/project/${project.slug.current}`, {
+          onTransitionReady: opacity,
+        });
+      }}
+    >
       {project.image?.alignment === "left" ? (
         <div className="flex flex-col gap-2 md:gap-3">
           <div
@@ -173,6 +187,90 @@ export default function ProjectItem({
           </div>
         </div>
       )}
-    </>
+    </a>
+  );
+}
+
+function opacity() {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+    ],
+    {
+      duration: 2000,
+      easing: "ease",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+    ],
+    {
+      duration: 2000,
+      easing: "ease",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(projectsTitle)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+          }
+        : {
+            opacity: 0,
+          },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      delay: 2000,
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(projectsTitle)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+          }
+        : {
+            opacity: 0,
+          },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      delay: 2000,
+      duration: 1000,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
   );
 }
