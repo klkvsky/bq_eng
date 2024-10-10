@@ -18,7 +18,7 @@ export default async function Home() {
         alt="project-1"
         width={0}
         height={0}
-        className="-mt-[44px] z-10 w-screen h-screen"
+        className="-mt-[44px] z-10 w-screen object-cover object-center xl:h-screen"
         unoptimized
       />
       <div className="mt-4 md:mt-6">

@@ -49,7 +49,7 @@ export default async function ArticlePage({
         </div>
       )}
       {article.image && (
-        <div className="relative custom-shadow-left mt-4 md:mt-6">
+        <div className="relative custom-shadow-right mt-4 md:mt-6">
           <Image
             src={urlFor(article.image?.asset.url || "").url()}
             alt="Article image"
@@ -61,7 +61,7 @@ export default async function ArticlePage({
         </div>
       )}
       {article.images && article.images.length > 0 && (
-        <div className="bg-[#B09FB5] w-screen xl:w-[calc(9*8.33vw)] relative h-[50vh] xl:h-screen flex flex-row overflow-scroll snap-x snap-mandatory lg:-mt-[80px] no-scrollbar">
+        <div className="bg-[#B09FB5] w-screen xl:w-[calc(9*8.33vw)] relative h-[50vh] xl:h-screen flex flex-row overflow-scroll snap-x snap-mandatory lg:-mt-[88px] no-scrollbar">
           {article.images.map((image, index) => (
             <div
               key={index}
@@ -95,7 +95,7 @@ export default async function ArticlePage({
       )}
       <div
         className={cn(
-          "flex flex-col items-center relative w-full gap-8 md:gap-20",
+          "flex flex-col items-center relative w-full gap-8 md:gap-10",
           article.type !== "research" && "md:mt-6"
         )}
       >

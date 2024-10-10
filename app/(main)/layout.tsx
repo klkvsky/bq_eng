@@ -3,8 +3,8 @@ import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-import Logo from "@/components/Logo";
 import Gradient from "@/components/Gradient";
+import Logo from "@/components/Logo";
 
 export default function RootLayout({
   children,

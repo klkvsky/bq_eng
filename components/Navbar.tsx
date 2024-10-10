@@ -245,7 +245,11 @@ export default function Navbar() {
         onClick={(e) => {
           e.preventDefault();
           router.push("/contacts", {
-            onTransitionReady: isArticlePage ? slideDown : isSidePage ? opacity : slide,
+            onTransitionReady: isArticlePage
+              ? slideDown
+              : isSidePage
+                ? opacity
+                : slide,
           });
         }}
         className={cn(
@@ -519,7 +523,7 @@ function opacityWithTitle() {
       },
     ],
     {
-      duration: 1000,
+      duration: 1500,
       easing: "ease",
       fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
@@ -542,7 +546,7 @@ function opacityWithTitle() {
     ],
     {
       delay: 1000,
-      duration: 1000,
+      duration: 1500,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
@@ -561,7 +565,7 @@ function opacity() {
       },
     ],
     {
-      duration: 1000,
+      duration: 1500,
       easing: "ease",
       fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
@@ -578,7 +582,7 @@ function opacity() {
       },
     ],
     {
-      duration: 1000,
+      duration: 1500,
       easing: "ease",
       fill: "forwards",
       pseudoElement: "::view-transition-old(projectsTitle)",
@@ -601,7 +605,7 @@ function opacity() {
     ],
     {
       delay: 1000,
-      duration: 1000,
+      duration: 1500,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(projectsTitle)",
@@ -624,7 +628,7 @@ function opacity() {
     ],
     {
       delay: 1000,
-      duration: 1000,
+      duration: 1500,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
@@ -667,7 +671,7 @@ function slide() {
       { transform: "translateX(0%)", mixBlendMode: "multiply", offset: 1 },
     ],
     {
-      duration: 3000,
+      duration: 1500,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
@@ -682,7 +686,7 @@ function slide() {
       { transform: "translateX(0%)", offset: 1 },
     ],
     {
-      duration: 3000,
+      duration: 1500,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(sideshadow)",
@@ -719,7 +723,7 @@ function slideOut() {
       },
     ],
     {
-      duration: 3000,
+      duration: 1500,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-old(root)",
@@ -734,7 +738,7 @@ function slideOut() {
       { transform: "translateX(125%)", opacity: 1, offset: 1 },
     ],
     {
-      duration: 3000,
+      duration: 1500,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-old(sideshadow)",
@@ -799,8 +803,8 @@ function slideDown() {
       },
     ],
     {
-      duration: 1000,
-      easing: "ease-in-out",
+      duration: 1500,
+      easing: "ease",
       fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
     }
@@ -810,22 +814,21 @@ function slideDown() {
     [
       {
         opacity: 1,
-        transform: "translateY(0)",
+        transform: "translateY(-125%)",
         zIndex: -10,
         mixBlendMode: "normal",
       },
       {
         opacity: 1,
-        transform: "translateY(-125%)",
+        transform: "translateY(0)",
         zIndex: -10,
         mixBlendMode: "normal",
       },
     ],
     {
-      duration: 1000,
-      easing: "ease-in-out",
+      duration: 1500,
+      easing: "ease",
       fill: "forwards",
-      direction: "reverse",
       pseudoElement: "::view-transition-new(topShadow)",
     }
   );
@@ -846,8 +849,8 @@ function slideDown() {
       },
     ],
     {
-      duration: 1000,
-      easing: "ease-in-out",
+      duration: 1500,
+      easing: "ease",
       fill: "forwards",
       pseudoElement: "::view-transition-new(root)",
     }

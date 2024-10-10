@@ -21,7 +21,7 @@
     "next-view-transitions": "^0.3.2",
     "react": "^18",
     "react-dom": "^18",
-    "react-multi-carousel": "^2.8.5",
+    "react-multi-carousel": "2.8.2",
     "react-slick": "^0.30.2",
     "sanity": "^3.58.0",
     "styled-components": "^6.1.13",

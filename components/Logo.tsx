@@ -17,7 +17,6 @@ export default function Logo() {
   const [transitionClass, setTransitionClass] = useState("");
   const prevStateRef = useRef<LogoState>("home");
   const [isInitialized, setIsInitialized] = useState(false);
-  const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
     let newState: LogoState = "home";
@@ -26,7 +25,11 @@ export default function Logo() {
     else if (pathname === "/studio" || pathname === "/culture")
       newState = "studio";
     else if (
-      ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(pathname)
+      ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(
+        pathname
+      ) ||
+      pathname.startsWith("/knowledge/") ||
+      pathname.startsWith("/news/")
     )
       newState = "knowledge";
     else if (pathname === "/gallery") newState = "gallery";
@@ -34,13 +37,25 @@ export default function Logo() {
 
     if (newState !== logoState) {
       const prevState = prevStateRef.current;
-      setTransitionClass(`${prevState}-to-${newState}`);
+
+      // Check if the transition involves the "project" state
+      const isProjectTransition =
+        newState === "project" || prevState === "project";
+
+      if (isProjectTransition) {
+        setTransitionClass("project-transition");
+      } else {
+        setTransitionClass(`${prevState}-to-${newState}`);
+      }
+
       console.log(`Logo transition: ${prevState} to ${newState}`);
 
       const isKnowledgeTransition =
         ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(
           pathname
         ) ||
+        pathname.startsWith("/knowledge/") ||
+        pathname.startsWith("/news/") ||
         ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(
           prevState
         );
@@ -62,22 +77,20 @@ export default function Logo() {
     } else if (!isInitialized) {
       // If the state hasn't changed but it's the initial load, set isInitialized
       setIsInitialized(true);
-      // Fade in the logo
-      setTimeout(() => setOpacity(1), 50);
+      // We'll handle the fade-in using CSS instead of hiding the element
     }
   }, [pathname, logoState, isInitialized]);
 
-  if (!isInitialized) {
-    return null; // or return a loading placeholder
-  }
-
   return (
     <div
-      className={`${styles.logoContainer} ${styles[logoState]} ${styles[transitionClass]}`}
-      style={{
-        opacity: opacity,
-        transition: 'opacity 0.5s ease-in-out'
-      }}
+      key={logoState}
+      className={`${styles.logoContainer} ${styles[logoState]} ${styles[transitionClass]} ${
+        isInitialized ? styles.initialized : ""
+      } ${
+        logoState === "project" || transitionClass.includes("project")
+          ? styles.noViewTransition
+          : ""
+      }`}
     >
       <img src="/assets/B.svg" className={styles.bImage} alt="B logo" />
       <img src="/assets/Q.svg" className={styles.qImage} alt="Q logo" />

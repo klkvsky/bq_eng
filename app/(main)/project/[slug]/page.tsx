@@ -25,7 +25,7 @@ export default async function Project({
         projectPrefix={`${project.title}.`}
         categories={[]}
       />
-      <div className="flex flex-col items-center pb-20 gap-40 mt-20">
+      <div className="flex flex-col items-center pb-10 xl:pb-20 gap-20 xl:gap-40 mt-10 xl:mt-20">
         {project.content.map((item, index) => {
           if (item.type === "text") {
             return (
@@ -55,7 +55,7 @@ export default async function Project({
           }
         })}
       </div>
-      <div className="flex flex-row w-full border-t border-[#E7E9EF] pt-3 mb-40">
+      <div className="flex flex-col max-xl:items-center xl:flex-row w-full border-t border-[#E7E9EF] pt-3 xl:mb-40 max-xl:gap-10 max-xl:text-center">
         <p
           className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] pl-3"
           id="project-about"
@@ -89,7 +89,7 @@ export default async function Project({
         {project.connectedResearch && (
           <Link
             href={`/knowledge?article=${project.connectedResearch.slug.current}`}
-            className="flex flex-col gap-3 w-[calc(2*8.33vw)] ml-auto mr-3"
+            className="flex flex-col gap-3 w-6/12 xl:w-[calc(2*8.33vw)] xl:ml-auto xl:mr-3"
           >
             <Image
               src={project.connectedResearch?.images?.[0]?.asset.url || ""}
