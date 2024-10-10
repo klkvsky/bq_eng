@@ -93,7 +93,7 @@ export default function Knowledge() {
         )}
       </h1>
 
-      <div className="flex flex-col max-md:items-center md:grid md:grid-cols-2 xl:grid-cols-3 xl:px-[calc(0.5*8.33vw)] xl:gap-x-[calc(8.33vw)] xl:gap-y-[120px] mt-20 gap-y-20 md:justify-items-center md:min-h-screen">
+      <div className="flex flex-col max-md:items-center md:grid md:grid-cols-2 xl:grid-cols-3 xl:px-[calc(0.5*8.33vw)] xl:gap-x-[calc(8.33vw)] xl:gap-y-0 mt-20 gap-y-0 md:justify-items-center md:min-h-screen">
         {filteredArticles.map((article) => (
           <a
             href={`/knowledge/${article.slug.current}`}
@@ -111,20 +111,16 @@ export default function Knowledge() {
                 <Image
                   src={article.image.asset.url}
                   alt={article.title}
-                  width={253}
-                  height={320}
-                  className="w-[calc(6*12.5vw)] md:w-[calc(3*8.33vw)] xl:w-[calc(2*8.33vw)] h-auto max-h-[320px]"
-                  unoptimized
+                  fill
+                  className="object-cover object-center"
                 />
               )}
               {article.images && (
                 <Image
                   src={article.images[0].asset.url}
                   alt={article.title}
-                  width={253}
-                  height={320}
-                  className="w-[calc(6*12.5vw)] md:w-[calc(3*8.33vw)] xl:w-[calc(2*8.33vw)] h-auto max-h-[320px]"
-                  unoptimized
+                  fill
+                  className="object-cover object-center"
                 />
               )}
               <div className="xl:absolute xl:top-0 xl:left-0 xl:w-full xl:h-full xl:bg-white xl:group-hover:opacity-100 xl:opacity-0 flex flex-col xl:transition-opacity max-md:gap-1">

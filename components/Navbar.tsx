@@ -51,7 +51,10 @@ export default function Navbar() {
 
   return (
     <div
-      className="sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[0.02rem] 2xl:-tracking-[0.76px] z-30"
+      className={cn(
+        "sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[0.02rem] 2xl:-tracking-[0.76px] z-30",
+        isMobileMenuOpen && "z-[999]"
+      )}
       style={{
         viewTransitionName: "navbar",
       }}
@@ -242,7 +245,7 @@ export default function Navbar() {
         onClick={(e) => {
           e.preventDefault();
           router.push("/contacts", {
-            onTransitionReady: isSidePage ? opacity : slide,
+            onTransitionReady: isArticlePage ? slideDown : isSidePage ? opacity : slide,
           });
         }}
         className={cn(
@@ -338,6 +341,18 @@ export function NavbarMobile({
           <a href="/">Телеграм канал,</a>
           <a href="/">Youtube</a>
         </div>
+
+        <img
+          src="/assets/b.svg"
+          alt="b part of logo"
+          className="absolute bottom-[5.2vh] left-[2.05vw] w-[26vw]"
+        />
+
+        <img
+          src="/assets/q.svg"
+          alt="q part of logo"
+          className="absolute bottom-[calc(58.6vw+40%)] left-[66.2vw] w-[30vw]"
+        />
 
         <svg
           viewBox="0 0 334 355"

@@ -114,7 +114,7 @@ export default async function ArticlePage({
                     key={index}
                     text={item.text || ""}
                     type={"center"}
-                    title={item.textTitle}
+                    title={item.textTitle || item.textSubtitle}
                   />
                 );
               case "image":
@@ -149,8 +149,8 @@ export default async function ArticlePage({
                 );
               case "list":
                 return (
-                  <div className="flex flex-col gap-4 xl:gap-6 px-2 font-normal text-[17px] xl:text-[18px] leading-[20px] xl:leading-[24px] -tracking-[0.51px] xl:-tracking-[0.02em] w-full md:w-[calc(6*8.33vw)] xl:w-[calc(4*8.33vw)]">
-                    <p className="font-spectral">{item.listTitle}</p>
+                  <div className="flex flex-col gap-4 xl:gap-6 px-2 font-normal text-[17px] xl:text-[18px] leading-[20px] xl:leading-[24px] -tracking-[0.51px] xl:-tracking-[0.02em] w-full md:w-[calc(6*8.33vw)] xl:w-[calc(4*8.33vw)] font-spectral">
+                    <p>{item.listTitle}</p>
                     <ul className="list-disc list-inside">
                       {item.list?.map((item, index) => (
                         <li key={index}>{item}</li>

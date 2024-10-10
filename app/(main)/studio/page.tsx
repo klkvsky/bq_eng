@@ -73,7 +73,12 @@ export default async function Home() {
                 >
                   <p className="font-spectral">{direction.name}</p>
                   <p className="font-spectral opacity-30">
-                    {direction.details.join("\n")}
+                    {direction.details.map((detail, index) => (
+                      <React.Fragment key={index}>
+                        {detail}
+                        {index < direction.details.length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
                   </p>
                 </div>
               ))}

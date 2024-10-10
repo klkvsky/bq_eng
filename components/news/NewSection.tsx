@@ -9,9 +9,11 @@ import { usePathname } from "next/navigation";
 export function NewsSection({
   title,
   items,
+  isClose,
 }: {
   title: string;
   items: Article[];
+  isClose: boolean;
 }): React.ReactNode {
   const pathname = usePathname();
   const router = useTransitionRouter();
@@ -34,7 +36,7 @@ export function NewsSection({
           });
         }}
       >
-        {title} →
+        {title} <span className="text-xs">{isClose ? "✕" : "→"}</span>
       </a>
       <div className="flex flex-col gap-8 md:gap-10">
         {items.map((item, index) => (

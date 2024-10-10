@@ -16,6 +16,8 @@ export default function Logo() {
   const [logoState, setLogoState] = useState<LogoState>("home");
   const [transitionClass, setTransitionClass] = useState("");
   const prevStateRef = useRef<LogoState>("home");
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
     let newState: LogoState = "home";
@@ -57,12 +59,25 @@ export default function Logo() {
       return () => {
         clearTimeout(transitionTimeout);
       };
+    } else if (!isInitialized) {
+      // If the state hasn't changed but it's the initial load, set isInitialized
+      setIsInitialized(true);
+      // Fade in the logo
+      setTimeout(() => setOpacity(1), 50);
     }
-  }, [pathname, logoState]);
+  }, [pathname, logoState, isInitialized]);
+
+  if (!isInitialized) {
+    return null; // or return a loading placeholder
+  }
 
   return (
     <div
       className={`${styles.logoContainer} ${styles[logoState]} ${styles[transitionClass]}`}
+      style={{
+        opacity: opacity,
+        transition: 'opacity 0.5s ease-in-out'
+      }}
     >
       <img src="/assets/B.svg" className={styles.bImage} alt="B logo" />
       <img src="/assets/Q.svg" className={styles.qImage} alt="Q logo" />

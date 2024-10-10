@@ -22,7 +22,7 @@ export default function News() {
   return (
     <div className="md:mt-10 xl:mt-20 flex flex-col xl:mb-32 gap-8 xl:gap-32 min-h-screen">
       {bqArticles.length > 0 && (
-        <NewsSection title="Материалы BQ" items={bqArticles} />
+        <NewsSection title="Материалы BQ" items={bqArticles} isClose={true} />
       )}
     </div>
   );

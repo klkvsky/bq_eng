@@ -5,7 +5,7 @@ import { getCultureData } from "@/lib/sanity";
 import { urlFor } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
 
-import { TeamMember } from "@/components/home/types";
+import CultureTeam from "./CultureTeam";
 import RelatedItems from "@/components/RelatedItems";
 
 export default async function Home() {
@@ -18,8 +18,7 @@ export default async function Home() {
         alt="project-1"
         width={0}
         height={0}
-        style={{ width: "100%", height: "auto" }}
-        className="-mt-[44px] z-10"
+        className="-mt-[44px] z-10 w-screen h-screen"
         unoptimized
       />
       <div className="mt-4 md:mt-6">
@@ -50,61 +49,6 @@ export default async function Home() {
         </div>
       ))}
       <RelatedItems title="Знания BQ Studio" items={data.relatedArticles} />
-    </div>
-  );
-}
-
-function CultureTeam({
-  title,
-  team,
-}: {
-  title: string;
-  team: Array<TeamMember>;
-}) {
-  return (
-    <div className="flex flex-col xl:flex-row xl:items-end xl:justify-end mt-[100px]">
-      <div className="flex flex-col gap-8 xl:gap-10 items-center xl:justify-center max-xl:custom-shadow-top xl:custom-shadow-left relative px-2 pt-4 md:pt-3 xl:py-[200px] w-full xl:w-[calc(9*8.33vw)]">
-        <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] xl:absolute xl:left-[12px] xl:top-[20px] max-xl:mr-auto">
-          {title}
-        </p>
-        <div className="relative w-full">
-          <div className="w-40 h-full bg-gradient-to-r from-white absolute top-0 left-0 z-20" />
-          <div className="w-40 h-full bg-gradient-to-l from-white absolute top-0 right-0 z-20" />
-          <div className="flex flex-row w-full max-h-full overflow-scroll snap-x snap-mandatory no-scrollbar z-40">
-            {team.map((member, index) => (
-              <div
-                className="snap-center flex flex-col items-center gap-8  xl:gap-10 min-w-full"
-                key={index}
-              >
-                <h1 className="font-spectral font-normal text-[20px] md:text-[28px] 2xl:text-[38px] leading-[24px] md:leading-[32px] 2xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.84px] 2xl:-tracking-[0.03em] text-center md:w-[calc(10*8.33vw)] xl:w-[calc(7*8.33vw)]">
-                  <span className="font-apercu opacity-30">{member.name}</span>{" "}
-                  <br />
-                  <span className="font-apercu opacity-30">
-                    {member.position}
-                  </span>{" "}
-                  {member.quote}
-                </h1>
-
-                <Image
-                  src={urlFor(member.image?.asset.url || "").url()}
-                  alt="project-1"
-                  width={0}
-                  height={0}
-                  className="aspect-[253/320] w-[calc(4*12.5vw)] md:w-[calc(4*8.33vw)] h-auto relative"
-                  unoptimized
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* <div className="flex flex-row gap-1.5">
-        <div className="w-2 h-2 rounded-full bg-black" />
-        <div className="w-2 h-2 rounded-full bg-black opacity-30" />
-        <div className="w-2 h-2 rounded-full bg-black opacity-30" />
-        <div className="w-2 h-2 rounded-full bg-black opacity-30" />
-      </div> */}
-      </div>
     </div>
   );
 }
