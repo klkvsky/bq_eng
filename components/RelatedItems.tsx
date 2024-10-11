@@ -43,11 +43,11 @@ export default function RelatedItems({
 
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 1280 },
       items: 4,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 640 },
+      breakpoint: { max: 1280, min: 640 },
       items: 2,
     },
     mobile: {
@@ -76,10 +76,10 @@ export default function RelatedItems({
           arrows={false}
           showDots={false}
           responsive={responsive}
-          infinite={true}
+          infinite={false}
           transitionDuration={1000}
-          containerClass="relative"
-          itemClass="xl:ml-[22px] px-4"
+          containerClass="relative w-full"
+          itemClass="px-[12.33vw] md:px-4 xl:px-0 xl:mx-[22px] w-full xl:aspect-[4/5] relative group"
         >
           {items.map(
             (item, index) =>
@@ -87,8 +87,8 @@ export default function RelatedItems({
                 <a
                   href={linkURL(item)}
                   key={index}
-                  draggable={false} // Prevent dragging the link
-                  onDragStart={(e) => e.preventDefault()} // Additional prevention
+                  draggable={false}
+                  onDragStart={(e) => e.preventDefault()}
                   style={{
                     userSelect: "none",
                     WebkitUserSelect: "none",
@@ -100,7 +100,7 @@ export default function RelatedItems({
                     src={item.image?.asset.url}
                     width={0}
                     height={0}
-                    className="w-full object-cover object-center max-h-[300px] min-h-[300px]"
+                    className="w-full xl:h-full object-cover object-center"
                     unoptimized
                     alt={item.description || item.title}
                     draggable={false}
@@ -111,7 +111,8 @@ export default function RelatedItems({
                       msUserSelect: "none",
                     }}
                   />
-                  <div className="flex flex-col font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] pt-3">
+
+                  <div className="flex flex-col font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] pt-3 xl:opacity-0 xl:hover:opacity-100 xl:transition-opacity xl:bg-white xl:w-full xl:h-full xl:absolute xl:top-0 xl:left-0 xl:hover:custom-shadow-right-no-margin">
                     <p className="opacity-30">
                       {getArticleType("type" in item ? item.type : "digest")}
                       {"date" in item && item.date && (
