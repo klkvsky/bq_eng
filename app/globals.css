@@ -48,9 +48,3 @@
     scrollbar-width: none; /* Firefox */
   }
 }
-
-@media (min-width: 1280px) {
-  .react-multi-carousel-track {
-    width: 100%;
-  }
-}

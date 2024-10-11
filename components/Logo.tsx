@@ -39,14 +39,14 @@ export default function Logo() {
       const prevState = prevStateRef.current;
 
       // Check if the transition involves the "project" state
-      const isProjectTransition =
-        newState === "project" || prevState === "project";
+      // const isProjectTransition =
+      //   newState === "project" || prevState === "project";
 
-      if (isProjectTransition) {
-        setTransitionClass("project-transition");
-      } else {
-        setTransitionClass(`${prevState}-to-${newState}`);
-      }
+      // if (isProjectTransition) {
+      //   setTransitionClass("project-transition");
+      // } else {
+      setTransitionClass(`${prevState}-to-${newState}`);
+      // }
 
       console.log(`Logo transition: ${prevState} to ${newState}`);
 
@@ -86,10 +86,6 @@ export default function Logo() {
       key={logoState}
       className={`${styles.logoContainer} ${styles[logoState]} ${styles[transitionClass]} ${
         isInitialized ? styles.initialized : ""
-      } ${
-        logoState === "project" || transitionClass.includes("project")
-          ? styles.noViewTransition
-          : ""
       }`}
     >
       <img src="/assets/B.svg" className={styles.bImage} alt="B logo" />

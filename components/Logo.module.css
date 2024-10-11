@@ -10,10 +10,6 @@
   display: none; /* Hide by default */
 }
 
-.noViewTransition {
-  view-transition-name: none;
-}
-
 @media (min-width: 1280px) {
   .logoContainer {
     display: block; /* Show on large devices */

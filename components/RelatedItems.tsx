@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Article, Project } from "./home/types";
 import Image from "next/image";
 
@@ -41,10 +42,12 @@ export default function RelatedItems({
     }
   };
 
+  const isProject = items.length > 0 && !("type" in items[0]);
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1280 },
-      items: 4,
+      items: isProject ? 4 : 3,
     },
     tablet: {
       breakpoint: { max: 1280, min: 640 },
@@ -79,7 +82,7 @@ export default function RelatedItems({
           infinite={false}
           transitionDuration={1000}
           containerClass="relative w-full"
-          itemClass="px-[12.33vw] md:px-4 xl:px-0 xl:mx-[22px] w-full xl:aspect-[4/5] relative group"
+          itemClass="px-[12.33vw] md:px-4 xl:px-[44px] w-full xl:aspect-[13/12] relative group"
         >
           {items.map(
             (item, index) =>
@@ -89,6 +92,7 @@ export default function RelatedItems({
                   key={index}
                   draggable={false}
                   onDragStart={(e) => e.preventDefault()}
+                  className="relative w-full h-full"
                   style={{
                     userSelect: "none",
                     WebkitUserSelect: "none",
@@ -100,7 +104,12 @@ export default function RelatedItems({
                     src={item.image?.asset.url}
                     width={0}
                     height={0}
-                    className="w-full xl:h-full object-cover object-center"
+                    className={cn(
+                      "w-full xl:h-full",
+                      isProject
+                        ? "object-contain object-top"
+                        : "object-cover object-center"
+                    )}
                     unoptimized
                     alt={item.description || item.title}
                     draggable={false}

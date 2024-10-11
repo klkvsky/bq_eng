@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const router = useTransitionRouter();
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
 
   const [isCategoriesInNavbar, setIsCategoriesInNavbar] = useState(false);
 
@@ -341,7 +341,7 @@ export function NavbarMobile({
           Контакты
         </a>
 
-        <div className="absolute bottom-2 left-2 w-full flex flex-row border-none">
+        <div className="fixed bottom-2 left-2 w-full flex flex-row border-none">
           <a href="/">Телеграм канал,</a>
           <a href="/">Youtube</a>
         </div>
@@ -349,13 +349,13 @@ export function NavbarMobile({
         <img
           src="/assets/b.svg"
           alt="b part of logo"
-          className="absolute bottom-[5.2vh] left-[2.05vw] w-[26vw]"
+          className="absolute bottom-[16vh] xl:bottom-[5.2vh] left-[2.05vw] w-[26vw]"
         />
 
         <img
           src="/assets/q.svg"
           alt="q part of logo"
-          className="absolute bottom-[calc(58.6vw+40%)] left-[66.2vw] w-[30vw]"
+          className="absolute bottom-[calc(58.6vw+25%)] xl:bottom-[calc(58.6vw+40%)] left-[66.2vw] w-[30vw] border-t-0 border-t-transparent"
         />
 
         <svg
