@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./Logo.module.css";
 
@@ -15,7 +15,7 @@ function Logo() {
   const pathname = usePathname();
   const logoContainerRef = useRef<HTMLDivElement>(null);
   const prevStateRef = useRef<LogoState>("home");
-  const isInitializedRef = useRef(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     let newState: LogoState = "home";
@@ -71,13 +71,11 @@ function Logo() {
         }
       }
 
+      // Set initialized state
+      setIsInitialized(true);
+
       // Update previous state
       prevStateRef.current = newState;
-
-      // Set initialized flag
-      if (!isInitializedRef.current) {
-        isInitializedRef.current = true;
-      }
     };
 
     const shouldDelay = newState === "project" || prevState === "project";
@@ -92,9 +90,8 @@ function Logo() {
   return (
     <div
       ref={logoContainerRef}
-      className={`${styles.logoContainer} ${styles.home} ${
-        isInitializedRef.current ? styles.initialized : ""
-      }`}
+      className={`${styles.logoContainer} ${styles.home}`}
+      style={{ opacity: isInitialized ? 1 : 0 }}
     >
       <img src="/assets/B.svg" className={styles.bImage} alt="B logo" />
       <img src="/assets/Q.svg" className={styles.qImage} alt="Q logo" />
@@ -102,5 +99,4 @@ function Logo() {
   );
 }
 
-// Use React.memo to prevent unnecessary re-renders
-export default React.memo(Logo);
+export default Logo;
