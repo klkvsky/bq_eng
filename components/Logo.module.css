@@ -97,7 +97,7 @@
   }
   100% {
     width: 5.133125vw;
-    transform: translate(0.75vw, 79.5vh);
+    transform: translate(0.75vw, 84.5vh);
   }
 }
 @keyframes home-to-studio-q {
@@ -192,7 +192,7 @@
   }
   100% {
     width: 5.133125vw;
-    transform: translate(0.75vw, 79.5vh);
+    transform: translate(0.75vw, 84.5vh);
   }
 }
 @keyframes list-to-studio-q {
@@ -249,7 +249,7 @@
 @keyframes studio-to-home-b {
   0% {
     width: 5.133125vw;
-    transform: translate(0.75vw, 79.5vh);
+    transform: translate(0.75vw, 84.5vh);
   }
   100% {
     width: 8.125vw;
@@ -273,7 +273,7 @@
 @keyframes studio-to-list-b {
   0% {
     width: 5.133125vw;
-    transform: translate(0.75vw, 79.5vh);
+    transform: translate(0.75vw, 84.5vh);
   }
   100% {
     width: 8.125vw;
@@ -293,7 +293,7 @@
 @keyframes studio-to-project-b {
   0% {
     width: 5.133125vw;
-    transform: translate(0.75vw, 79.5vh);
+    transform: translate(0.75vw, 84.5vh);
   }
   100% {
     width: 8.125vw;
@@ -313,7 +313,7 @@
 @keyframes studio-to-knowledge-b {
   0% {
     width: 5.133125vw;
-    transform: translate(0.75vw, 79.5vh);
+    transform: translate(0.75vw, 84.5vh);
   }
   100% {
     width: 6vw;
@@ -385,7 +385,7 @@
   }
   100% {
     width: 5.133125vw;
-    transform: translate(0.75vw, 79.5vh);
+    transform: translate(0.75vw, 84.5vh);
   }
 }
 @keyframes project-to-studio-q {

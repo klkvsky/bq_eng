@@ -89,7 +89,7 @@ export default function ProjectItem({
                     </span>
                   ))}
                 </p>
-                <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px]  2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1 2xl:pb-3 whitespace-nowrap">
+                <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px]  2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1 2xl:pb-3 whitespace-nowrap md:max-xl:min-w-[calc(2*8.33vw)]">
                   {project.projectCodeName}
                 </p>
               </div>
@@ -173,7 +173,7 @@ export default function ProjectItem({
                       ))}
                     </span>
                   </p>
-                  <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1">
+                  <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1 md:max-xl:min-w-[calc(2*8.33vw)]">
                     {project.projectCodeName}
                   </p>
                 </div>

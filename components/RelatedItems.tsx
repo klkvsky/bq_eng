@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import React from "react";
 
 export default function RelatedItems({
   title,
@@ -61,7 +62,7 @@ export default function RelatedItems({
 
   return (
     <div
-      className="grid w-full mt-14 -mb-12 xl:-mb-32"
+      className="grid w-full mt-14 md:-mb-20 xl:mb-0"
       style={{
         userSelect: "none",
         WebkitUserSelect: "none",
@@ -72,7 +73,7 @@ export default function RelatedItems({
       <p className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] pl-3 w-full border-b border-[#E7E9EF] pb-3">
         {title}
       </p>
-      <div className="relative overflow-hidden mt-8">
+      <div className="relative overflow-hidden mt-20 xl:mt-40">
         <Carousel
           swipeable={true}
           draggable={true}
@@ -82,7 +83,7 @@ export default function RelatedItems({
           infinite={false}
           transitionDuration={1000}
           containerClass="relative w-full"
-          itemClass="px-[12.33vw] md:px-4 xl:px-[44px] w-full xl:aspect-[13/12] relative group"
+          itemClass="px-[12.33vw] md:px-4 xl:px-[4.165vw] w-full xl:aspect-[15/12] relative group"
         >
           {items.map(
             (item, index) =>
@@ -132,13 +133,20 @@ export default function RelatedItems({
                     </p>
                     <p>
                       {item.title}
-                      <br className="xl:hidden" />
+                      <br />
                       <span className="opacity-30">
                         {"categories" in item &&
                           item.categories &&
-                          item.categories
-                            .map((cat: { name: string }) => cat.name)
-                            .join(", ")}
+                          item.categories.map(
+                            (cat: { name: string }, index: number) => (
+                              <React.Fragment key={index}>
+                                <span className="whitespace-nowrap">
+                                  {cat.name}
+                                </span>
+                                {index < item.categories.length - 1 && ", "}
+                              </React.Fragment>
+                            )
+                          )}
                       </span>
                     </p>
                     <p className="mt-auto pb-3">

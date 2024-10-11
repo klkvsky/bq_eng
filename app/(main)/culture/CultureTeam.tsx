@@ -83,7 +83,7 @@ export default function CultureTeam({
                 className="flex flex-col items-center gap-8 xl:gap-10 min-w-full select-none"
                 key={index}
               >
-                <h1 className="font-spectral font-normal text-[20px] md:text-[28px] xl:text-[38px] leading-[24px] md:leading-[32px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[1.14px] text-center md:w-[calc(10*8.33vw)] xl:w-[calc(7*8.33vw)] select-none">
+                <h1 className="font-spectral font-normal text-[20px] md:text-[28px] xl:text-[38px] leading-[24px] md:leading-[32px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[1.14px] text-center md:w-[calc(6*8.33vw)] xl:w-[calc(7*8.33vw)] select-none">
                   <span className="font-apercu opacity-30">{member.name}</span>{" "}
                   <br />
                   <span className="font-apercu opacity-30">

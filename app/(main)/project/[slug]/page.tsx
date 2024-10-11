@@ -57,7 +57,7 @@ export default async function Project({
       </div>
       <div className="flex flex-col max-xl:items-center xl:flex-row w-full border-t border-[#E7E9EF] pt-3 xl:mb-40 max-xl:gap-10 max-xl:text-center">
         <p
-          className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] pl-3"
+          className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] xl:pl-3"
           id="project-about"
         >
           О проекте
@@ -89,7 +89,7 @@ export default async function Project({
         {project.connectedResearch && (
           <Link
             href={`/knowledge?article=${project.connectedResearch.slug.current}`}
-            className="flex flex-col gap-3 w-6/12 xl:w-[calc(2*8.33vw)] xl:ml-auto xl:mr-3"
+            className="flex flex-col gap-3 w-6/12 md:w-3/12 xl:w-[calc(2*8.33vw)] xl:ml-auto xl:mr-3"
           >
             <Image
               src={project.connectedResearch?.images?.[0]?.asset.url || ""}
@@ -108,7 +108,7 @@ export default async function Project({
       {project.relatedProjects && (
         <div className="flex flex-col w-full max-xl:mb-14">
           <RelatedItems
-            title="Похожие проекты"
+            title="Больше материалов"
             items={project.relatedProjects}
           />
         </div>

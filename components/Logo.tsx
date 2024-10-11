@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./Logo.module.css";
 
@@ -11,81 +11,89 @@ type LogoState =
   | "studio"
   | "knowledge";
 
-export default function Logo() {
+function Logo() {
   const pathname = usePathname();
-  const [logoState, setLogoState] = useState<LogoState>("home");
-  const [transitionClass, setTransitionClass] = useState("");
+  const logoContainerRef = useRef<HTMLDivElement>(null);
   const prevStateRef = useRef<LogoState>("home");
-  const [isInitialized, setIsInitialized] = useState(false);
+  const isInitializedRef = useRef(false);
 
   useEffect(() => {
     let newState: LogoState = "home";
-    if (pathname === "/") newState = "home";
-    else if (pathname.startsWith("/project/")) newState = "project";
-    else if (pathname === "/studio" || pathname === "/culture")
+
+    if (pathname === "/") {
+      newState = "home";
+    } else if (pathname.startsWith("/project/")) {
+      newState = "project";
+    } else if (pathname === "/studio" || pathname === "/culture") {
       newState = "studio";
-    else if (
+    } else if (
       ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(
         pathname
       ) ||
       pathname.startsWith("/knowledge/") ||
       pathname.startsWith("/news/")
-    )
+    ) {
       newState = "knowledge";
-    else if (pathname === "/gallery") newState = "gallery";
-    else if (pathname === "/list") newState = "list";
+    } else if (pathname === "/gallery") {
+      newState = "gallery";
+    } else if (pathname === "/list") {
+      newState = "list";
+    }
 
-    if (newState !== logoState) {
-      const prevState = prevStateRef.current;
+    const prevState = prevStateRef.current;
 
-      // Check if the transition involves the "project" state
-      // const isProjectTransition =
-      //   newState === "project" || prevState === "project";
+    const updateClasses = () => {
+      if (logoContainerRef.current) {
+        const container = logoContainerRef.current;
 
-      // if (isProjectTransition) {
-      //   setTransitionClass("project-transition");
-      // } else {
-      setTransitionClass(`${prevState}-to-${newState}`);
-      // }
-
-      console.log(`Logo transition: ${prevState} to ${newState}`);
-
-      const isKnowledgeTransition =
-        ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(
-          pathname
-        ) ||
-        pathname.startsWith("/knowledge/") ||
-        pathname.startsWith("/news/") ||
-        ["/knowledge", "/news", "/contacts", "/privacy-policy"].includes(
-          prevState
+        // Remove previous state and transition classes
+        container.classList.remove(styles[prevState]);
+        container.classList.remove(
+          styles[`${prevState}-to-${newState}` as keyof typeof styles]
         );
 
-      const transitionDuration = isKnowledgeTransition ? 8000 : 8000;
+        // Add new state class
+        container.classList.add(styles[newState]);
 
-      // Immediately update the logo state and prevStateRef
-      setLogoState(newState);
+        // Add transition class
+        const transitionClass = `${prevState}-to-${newState}`;
+        if (styles[transitionClass as keyof typeof styles]) {
+          container.classList.add(styles[transitionClass as keyof typeof styles]);
+
+          // Remove transition class after animation ends
+          const onAnimationEnd = () => {
+            container.classList.remove(
+              styles[transitionClass as keyof typeof styles]
+            );
+            container.removeEventListener("animationend", onAnimationEnd);
+          };
+          container.addEventListener("animationend", onAnimationEnd);
+        }
+      }
+
+      // Update previous state
       prevStateRef.current = newState;
 
-      // Use a single timeout to remove the transition class
-      const transitionTimeout = setTimeout(() => {
-        setTransitionClass("");
-      }, transitionDuration);
+      // Set initialized flag
+      if (!isInitializedRef.current) {
+        isInitializedRef.current = true;
+      }
+    };
 
-      return () => {
-        clearTimeout(transitionTimeout);
-      };
-    } else if (!isInitialized) {
-      // If the state hasn't changed but it's the initial load, set isInitialized
-      setIsInitialized(true);
-      // We'll handle the fade-in using CSS instead of hiding the element
+    const shouldDelay = newState === "project" || prevState === "project";
+
+    if (shouldDelay) {
+      setTimeout(updateClasses, 1500); // 1.5 seconds delay
+    } else {
+      updateClasses();
     }
-  }, [pathname, logoState, isInitialized]);
+  }, [pathname]);
 
   return (
     <div
-      key={logoState}
-      className={`${styles.logoContainer} ${styles[logoState]} ${styles[transitionClass]} ${
-        isInitialized ? styles.initialized : ""
+      ref={logoContainerRef}
+      className={`${styles.logoContainer} ${styles.home} ${
+        isInitializedRef.current ? styles.initialized : ""
       }`}
     >
       <img src="/assets/B.svg" className={styles.bImage} alt="B logo" />
@@ -93,3 +101,6 @@ export default function Logo() {
     </div>
   );
 }
+
+// Use React.memo to prevent unnecessary re-renders
+export default React.memo(Logo);

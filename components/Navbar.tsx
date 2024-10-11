@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const router = useTransitionRouter();
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const [isCategoriesInNavbar, setIsCategoriesInNavbar] = useState(false);
 

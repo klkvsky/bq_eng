@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import { ViewTransitions } from "next-view-transitions";
+import Logo from "@/components/Logo";
 
 const apercuPro = localFont({
   src: "../public//assets/fonts/ApercuPro-Regular.otf",
@@ -23,6 +24,7 @@ export default function RootLayout({
         <body
           className={`${apercuPro.variable} ${spectral.variable} antialiased`}
         >
+          <Logo />
           {children}
         </body>
       </html>
