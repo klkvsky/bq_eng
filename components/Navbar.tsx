@@ -671,6 +671,7 @@ function slide() {
       { transform: "translateX(0%)", mixBlendMode: "multiply", offset: 1 },
     ],
     {
+      delay: 750,
       duration: 1500,
       easing: "ease",
       fill: "backwards",
@@ -686,6 +687,7 @@ function slide() {
       { transform: "translateX(0%)", offset: 1 },
     ],
     {
+      delay: 750,
       duration: 1500,
       easing: "ease",
       fill: "backwards",
@@ -723,6 +725,7 @@ function slideOut() {
       },
     ],
     {
+      delay: 750,
       duration: 1500,
       easing: "ease",
       fill: "backwards",
@@ -738,6 +741,7 @@ function slideOut() {
       { transform: "translateX(125%)", opacity: 1, offset: 1 },
     ],
     {
+      delay: 750,
       duration: 1500,
       easing: "ease",
       fill: "backwards",

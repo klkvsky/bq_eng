@@ -46,33 +46,35 @@ function Logo() {
       if (logoContainerRef.current) {
         const container = logoContainerRef.current;
 
-        // Remove previous state and transition classes
-        container.classList.remove(styles[prevState]);
-        container.classList.remove(
-          styles[`${prevState}-to-${newState}` as keyof typeof styles]
-        );
+        setTimeout(() => {
+          // Remove previous state and transition classes
+          container.classList.remove(styles[prevState]);
+          container.classList.remove(
+            styles[`${prevState}-to-${newState}` as keyof typeof styles]
+          );
 
-        // Add new state class
-        container.classList.add(styles[newState]);
+          // Add new state class
+          container.classList.add(styles[newState]);
 
-        // Add transition class
-        const transitionClass = `${prevState}-to-${newState}`;
-        if (styles[transitionClass as keyof typeof styles]) {
-          container.classList.add(styles[transitionClass as keyof typeof styles]);
+          // Add transition class
+          const transitionClass = `${prevState}-to-${newState}`;
+          if (styles[transitionClass as keyof typeof styles]) {
+            container.classList.add(styles[transitionClass as keyof typeof styles]);
 
-          // Remove transition class after animation ends
-          const onAnimationEnd = () => {
-            container.classList.remove(
-              styles[transitionClass as keyof typeof styles]
-            );
-            container.removeEventListener("animationend", onAnimationEnd);
-          };
-          container.addEventListener("animationend", onAnimationEnd);
-        }
+            // Remove transition class after animation ends
+            const onAnimationEnd = () => {
+              container.classList.remove(
+                styles[transitionClass as keyof typeof styles]
+              );
+              container.removeEventListener("animationend", onAnimationEnd);
+            };
+            container.addEventListener("animationend", onAnimationEnd);
+          }
+
+          // Set initialized state
+          setIsInitialized(true);
+        }, 750); // 750ms delay
       }
-
-      // Set initialized state
-      setIsInitialized(true);
 
       // Update previous state
       prevStateRef.current = newState;

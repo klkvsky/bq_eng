@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useTransitionRouter } from "next-view-transitions";
 import { Article, Project } from "./home/types";
 import Image from "next/image";
 
@@ -36,10 +37,15 @@ export default function RelatedItems({
 
   const linkURL = (item: Article | Project) => {
     if ("type" in item) {
-      const baseUrl = item.type === "press-release" ? "/news" : "/knowledge";
-      return `${baseUrl}/${item.slug.current}`;
+      // Item is an Article
+      if (item.type === "press-release") {
+        return `/news/${item.slug.current}`;
+      } else {
+        return `/knowledge/${item.slug.current}`;
+      }
     } else {
-      return `/news/${item.slug.current}`;
+      // Item is a Project
+      return `/project/${item.slug.current}`;
     }
   };
 
@@ -59,6 +65,8 @@ export default function RelatedItems({
       items: 1,
     },
   };
+
+  const router = useTransitionRouter();
 
   return (
     <div
@@ -94,6 +102,12 @@ export default function RelatedItems({
                   draggable={false}
                   onDragStart={(e) => e.preventDefault()}
                   className="relative w-full h-full"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push(linkURL(item), {
+                      onTransitionReady: opacity,
+                    });
+                  }}
                   style={{
                     userSelect: "none",
                     WebkitUserSelect: "none",
@@ -164,5 +178,88 @@ export default function RelatedItems({
         </Carousel>
       </div>
     </div>
+  );
+}
+
+function opacity() {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+    ],
+    {
+      duration: 1500,
+      easing: "ease",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+    ],
+    {
+      duration: 1500,
+      easing: "ease",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(projectsTitle)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+          }
+        : {
+            opacity: 0,
+          },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      delay: 1000,
+      duration: 1500,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(projectsTitle)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+          }
+        : {
+            opacity: 0,
+          },
+      {
+        opacity: 1,
+      },
+    ],
+    {
+      delay: 1000,
+      duration: 1500,
+      easing: "ease",
+      fill: "backwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
   );
 }
