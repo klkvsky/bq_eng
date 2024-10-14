@@ -59,7 +59,7 @@ export default function Navbar() {
         viewTransitionName: "navbar",
       }}
     >
-      <div className="flex flex-row gap-1 ">
+      <div className="flex flex-row gap-1 w-2/12">
         <a
           href="/"
           onClick={(e) => {
@@ -143,7 +143,7 @@ export default function Navbar() {
         searchParams={searchParams}
         pathname={pathname}
       />
-      <div className="hidden xl:flex flex-row gap-1">
+      <div className="hidden xl:flex flex-row gap-1 ml-[8.33%] w-2/12 pl-[7px]">
         <a
           href={`/knowledge`}
           onClick={(e) => {
@@ -193,7 +193,7 @@ export default function Navbar() {
       {pathname.includes("project") && (
         <button
           className={cn(
-            "transition-opacity hidden xl:flex hover:opacity-30 duration-500"
+            "transition-opacity hidden xl:flex hover:opacity-30 duration-500 w-1/12 ml-[8.33%]"
           )}
           onClick={() => {
             handleAboutScroll();
@@ -206,7 +206,12 @@ export default function Navbar() {
         <ProjectsCategories />
       )}
       {(pathname === "/" || pathname.includes("/list")) && (
-        <div className="hidden xl:flex flex-row gap-1 transition-opacity duration-1000">
+        <div
+          className={cn(
+            "hidden xl:flex flex-row gap-1 transition-opacity duration-1000 w-2/12",
+            isCategoriesInNavbar ? "ml-[8%]" : "ml-[33%]"
+          )}
+        >
           <a
             className={cn(
               pathname === "/" ? "opacity-30" : "opacity-100",
@@ -257,10 +262,8 @@ export default function Navbar() {
             ? "opacity-30 cursor-default pointer-events-none"
             : "hover:opacity-30",
           "transition-opacity duration-500",
-          "hidden xl:flex flex-row gap-1 justify-end",
-          pathname === "/" || pathname.includes("/list")
-            ? ""
-            : ""
+          "hidden xl:flex flex-row gap-1 justify-end ml-auto w-1/12",
+          pathname === "/" || pathname.includes("/list") ? "" : ""
         )}
       >
         Контакты
@@ -434,7 +437,7 @@ function ProjectsCategories() {
   return (
     <div
       className={cn(
-        "hidden xl:flex flex-row gap-1 w-[calc(2*8.33vw)] transition-opacity duration-1000 relative group items-center"
+        "hidden xl:flex flex-row gap-1 transition-opacity duration-1000 relative group items-center w-2/12 ml-[8.33%] cursor-pointer"
       )}
     >
       Направления работ{" "}
