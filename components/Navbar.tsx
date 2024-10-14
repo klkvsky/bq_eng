@@ -59,7 +59,7 @@ export default function Navbar() {
         viewTransitionName: "navbar",
       }}
     >
-      <div className="flex flex-row gap-1 md:w-[16.66vw]">
+      <div className="flex flex-row gap-1 ">
         <a
           href="/"
           onClick={(e) => {
@@ -117,7 +117,7 @@ export default function Navbar() {
       </div>
       <div
         className={cn(
-          "xl:hidden flex flex-col gap-1 pr-2 justify-center ml-auto transition-transform duration-500 cursor-pointer",
+          "xl:hidden flex flex-col gap-1 pr-2 justify-center transition-transform duration-500 cursor-pointer",
           isMobileMenuOpen ? "-translate-x-2" : ""
         )}
         onClick={() => {
@@ -143,7 +143,7 @@ export default function Navbar() {
         searchParams={searchParams}
         pathname={pathname}
       />
-      <div className="hidden xl:flex flex-row gap-1 ml-[8.33vw] w-[16.66vw]">
+      <div className="hidden xl:flex flex-row gap-1">
         <a
           href={`/knowledge`}
           onClick={(e) => {
@@ -193,7 +193,7 @@ export default function Navbar() {
       {pathname.includes("project") && (
         <button
           className={cn(
-            "transition-opacity ml-[8.33vw] hidden xl:flex hover:opacity-30 duration-500"
+            "transition-opacity hidden xl:flex hover:opacity-30 duration-500"
           )}
           onClick={() => {
             handleAboutScroll();
@@ -206,7 +206,7 @@ export default function Navbar() {
         <ProjectsCategories />
       )}
       {(pathname === "/" || pathname.includes("/list")) && (
-        <div className="hidden xl:flex flex-row gap-1 mr-[8.33vw] w-[8.33vw] transition-opacity duration-1000 ml-auto">
+        <div className="hidden xl:flex flex-row gap-1 transition-opacity duration-1000">
           <a
             className={cn(
               pathname === "/" ? "opacity-30" : "opacity-100",
@@ -257,10 +257,10 @@ export default function Navbar() {
             ? "opacity-30 cursor-default pointer-events-none"
             : "hover:opacity-30",
           "transition-opacity duration-500",
-          "hidden xl:flex flex-row gap-1 w-[9.33vw] justify-end",
+          "hidden xl:flex flex-row gap-1 justify-end",
           pathname === "/" || pathname.includes("/list")
-            ? "ml-[8.33vw]"
-            : "ml-auto"
+            ? ""
+            : ""
         )}
       >
         Контакты
@@ -672,7 +672,7 @@ function slide() {
     ],
     {
       delay: 750,
-      duration: 1500,
+      duration: 1200,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
@@ -688,7 +688,7 @@ function slide() {
     ],
     {
       delay: 750,
-      duration: 1500,
+      duration: 1200,
       easing: "ease",
       fill: "backwards",
       pseudoElement: "::view-transition-new(sideshadow)",
