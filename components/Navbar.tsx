@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const router = useTransitionRouter();
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
 
   const [isCategoriesInNavbar, setIsCategoriesInNavbar] = useState(false);
 
@@ -117,7 +117,7 @@ export default function Navbar() {
       </div>
       <div
         className={cn(
-          "xl:hidden flex flex-col gap-1 pr-2 justify-center transition-transform duration-500 cursor-pointer",
+          "xl:hidden flex flex-col gap-1 pr-2 justify-center transition-transform duration-500 cursor-pointer ml-auto",
           isMobileMenuOpen ? "-translate-x-2" : ""
         )}
         onClick={() => {
@@ -284,6 +284,21 @@ export function NavbarMobile({
 }) {
   const router = useTransitionRouter();
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      // Disable body scroll when mobile menu is open
+      document.body.style.overflow = "hidden";
+    } else {
+      // Enable body scroll when mobile menu is closed
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup in case the component unmounts while the menu is open
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <div
       className={cn(
@@ -352,13 +367,13 @@ export function NavbarMobile({
         <img
           src="/assets/b.svg"
           alt="b part of logo"
-          className="absolute bottom-[16vh] xl:bottom-[5.2vh] left-[2.05vw] w-[26vw]"
+          className="absolute bottom-[44px] left-2 w-[26vw] md:w-[21vw] border-t-0 border-t-transparent"
         />
 
         <img
           src="/assets/q.svg"
           alt="q part of logo"
-          className="absolute bottom-[calc(58.6vw+25%)] xl:bottom-[calc(58.6vw+40%)] left-[66.2vw] w-[30vw] border-t-0 border-t-transparent"
+          className="absolute top-[11vh] right-3 w-[25vw] md:w-[21vw] border-t-0 border-t-transparent"
         />
 
         <svg
