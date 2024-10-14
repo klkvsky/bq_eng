@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const router = useTransitionRouter();
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const [isCategoriesInNavbar, setIsCategoriesInNavbar] = useState(false);
 
@@ -59,7 +59,7 @@ export default function Navbar() {
         viewTransitionName: "navbar",
       }}
     >
-      <div className="flex flex-row gap-1 w-2/12">
+      <div className="flex flex-row gap-1 w-2/12 xl:pl-px">
         <a
           href="/"
           onClick={(e) => {
