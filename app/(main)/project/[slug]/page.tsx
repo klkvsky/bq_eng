@@ -50,6 +50,7 @@ export default async function Project({
                     ? urlFor(item.secondaryImage.asset.url).url()
                     : undefined
                 }
+                title={project.title}
               />
             );
           }
@@ -88,7 +89,7 @@ export default async function Project({
         </div>
         {project.connectedResearch && (
           <Link
-            href={`/knowledge?article=${project.connectedResearch.slug.current}`}
+            href={`/knowledge/${project.connectedResearch.slug.current}`}
             className="flex flex-col gap-3 w-6/12 md:w-3/12 xl:w-[calc(2*8.33vw)] xl:ml-auto xl:mr-3"
           >
             <Image

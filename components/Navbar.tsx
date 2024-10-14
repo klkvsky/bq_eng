@@ -306,7 +306,7 @@ export function NavbarMobile({
         isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
       style={{
-        viewTransitionName: "mobileMenu"
+        viewTransitionName: "mobileMenu",
       }}
     >
       <div className="flex flex-col gap-1 justify-start items-center h-full font-spectral font-normal text-[14px] leading-5 -tracking-[0.28px] divide-y-[1px] border-y-[#E7E9EF] relative">
@@ -538,9 +538,11 @@ function opacityWithTitle() {
     [
       {
         opacity: 1,
+        filter: "blur(0px)"
       },
       {
         opacity: 0,
+        filter: "blur(5px)"
       },
     ],
     {
@@ -557,12 +559,15 @@ function opacityWithTitle() {
         ? {
             display: "none",
             opacity: 0,
+            filter: "blur(5px)"
           }
         : {
             opacity: 0,
+            filter: "blur(5px)"
           },
       {
         opacity: 1,
+        filter: "blur(0px)"
       },
     ],
     {
@@ -580,9 +585,11 @@ function opacity() {
     [
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
       {
         opacity: 0,
+        filter: "blur(5px)",
       },
     ],
     {
@@ -597,9 +604,11 @@ function opacity() {
     [
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
       {
         opacity: 0,
+        filter: "blur(5px)",
       },
     ],
     {
@@ -616,12 +625,15 @@ function opacity() {
         ? {
             display: "none",
             opacity: 0,
+            filter: "blur(5px)",
           }
         : {
             opacity: 0,
+            filter: "blur(5px)",
           },
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
     ],
     {
@@ -639,12 +651,15 @@ function opacity() {
         ? {
             display: "none",
             opacity: 0,
+            filter: "blur(5px)",
           }
         : {
             opacity: 0,
+            filter: "blur(5px)",
           },
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
     ],
     {
@@ -660,8 +675,8 @@ function opacity() {
 function slide() {
   document.documentElement.animate(
     [
-      { opacity: 1, transform: "translateX(0)" },
-      { opacity: 0, transform: "translateX(-100%)" },
+      { opacity: 1, transform: "translateX(0)", filter: "blur(0px)" },
+      { opacity: 0, transform: "translateX(-100%)", filter: "blur(5px)" },
     ],
     {
       duration: 1500,
@@ -673,8 +688,8 @@ function slide() {
 
   document.documentElement.animate(
     [
-      { opacity: 1, transform: "translateX(0)" },
-      { opacity: 0, transform: "translateX(-100%)" },
+      { opacity: 1, transform: "translateX(0)", filter: "blur(0px)" },
+      { opacity: 0, transform: "translateX(-100%)", filter: "blur(5px)" },
     ],
     {
       duration: 1500,
@@ -686,10 +701,16 @@ function slide() {
 
   document.documentElement.animate(
     [
-      { transform: "translateX(75%)", mixBlendMode: "multiply" },
-      { transform: "translateX(35%)", mixBlendMode: "multiply", offset: 0.3 },
-      { transform: "translateX(35%)", mixBlendMode: "multiply", offset: 0.7 },
-      { transform: "translateX(0%)", mixBlendMode: "multiply", offset: 1 },
+      {
+        transform: "translateX(100%)",
+        mixBlendMode: "multiply",
+        filter: "blur(5px)",
+      },
+      {
+        transform: "translateX(0%)",
+        mixBlendMode: "multiply",
+        filter: "blur(0px)",
+      },
     ],
     {
       delay: 750,
@@ -702,10 +723,8 @@ function slide() {
 
   document.documentElement.animate(
     [
-      { transform: "translateX(100%)" },
-      { transform: "translateX(45%)", offset: 0.3 },
-      { transform: "translateX(45%)", offset: 0.7 },
-      { transform: "translateX(0%)", offset: 1 },
+      { transform: "translateX(135%)", filter: "blur(5px)" },
+      { transform: "translateX(0%)", filter: "blur(0px)" },
     ],
     {
       delay: 750,
@@ -724,25 +743,11 @@ function slideOut() {
         transform: "translateX(0%)",
         opacity: 1,
         mixBlendMode: "multiply",
-        offset: 0,
-      },
-      {
-        transform: "translateX(35%)",
-        opacity: 1,
-        mixBlendMode: "multiply",
-        offset: 0.3,
-      },
-      {
-        transform: "translateX(35%)",
-        opacity: 1,
-        mixBlendMode: "multiply",
-        offset: 0.7,
       },
       {
         transform: "translateX(100%)",
         opacity: 1,
         mixBlendMode: "multiply",
-        offset: 1,
       },
     ],
     {
@@ -756,10 +761,8 @@ function slideOut() {
 
   document.documentElement.animate(
     [
-      { transform: "translateX(0%)", opacity: 1, offset: 0 },
-      { transform: "translateX(45%)", opacity: 1, offset: 0.3 },
-      { transform: "translateX(45%)", opacity: 1, offset: 0.7 },
-      { transform: "translateX(125%)", opacity: 1, offset: 1 },
+      { transform: "translateX(0%)", opacity: 1 },
+      { transform: "translateX(132%)", opacity: 1 },
     ],
     {
       delay: 750,
