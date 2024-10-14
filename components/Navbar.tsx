@@ -52,7 +52,7 @@ export default function Navbar() {
   return (
     <div
       className={cn(
-        "sticky top-0 bg-white xl:bg-transparent flex flex-row w-screen xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[0.02rem] 2xl:-tracking-[0.76px] z-30",
+        "sticky top-0 bg-white xl:bg-transparent flex flex-row w-full xl:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 2xl:leading-[48px] -tracking-[0.28px] xl:-tracking-[0.02rem] 2xl:-tracking-[0.76px] z-30",
         isMobileMenuOpen && "z-[999]"
       )}
       style={{
