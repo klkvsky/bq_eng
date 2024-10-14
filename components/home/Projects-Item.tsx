@@ -122,7 +122,7 @@ export default function ProjectItem({
                   unoptimized
                 />
               </div>
-              <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px]">
+              <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px] pl-2 md:pl-3">
                 {project.secondCodeName}
               </p>
             </div>

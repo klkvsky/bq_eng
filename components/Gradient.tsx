@@ -105,7 +105,7 @@ export default function Gradient() {
 
   return (
     <motion.div
-      className="w-screen h-screen fixed top-0 left-0 z-[39]" // Add responsive classes
+      className="hidden xl:block w-screen h-screen fixed top-0 left-0 z-[39]" // Add responsive classes
       style={{
         background: useMotionTemplate`linear-gradient(${smoothAngle}deg, ${fromColor}, ${toColor})`,
       }}

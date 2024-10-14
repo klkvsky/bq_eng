@@ -26,7 +26,7 @@ export default function Footer() {
     <>
       <div
         className={cn(
-          "flex flex-row max-md:items-end w-screen h-auto md:h-[44px] 2xl:h-[104px] max-md:px-2 max-md:py-3 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] md:text-[16px] 2xl:text-[38px] leading-4 md:leading-5 2xl:leading-[48px] -tracking-[0.28px] md:-tracking-[-0.02em] 2xl:-tracking-[0.76px] xl:mt-[160px] 2xl:mt-[352px] z-40 transition-opacity mt-[80px]"
+          "flex flex-row max-md:items-end h-auto md:h-[44px] 2xl:h-[104px] max-md:px-2 max-md:py-3 md:p-3 2xl:px-6 2xl:py-7 font-spectral text-[14px] md:text-[16px] 2xl:text-[38px] leading-4 md:leading-5 2xl:leading-[48px] -tracking-[0.28px] md:-tracking-[-0.02em] 2xl:-tracking-[0.76px] xl:mt-[160px] 2xl:mt-[352px] z-40 transition-opacity mt-[80px]"
         )}
         style={{
           viewTransitionName: "footer",
@@ -42,15 +42,15 @@ export default function Footer() {
             });
           }}
           className={cn(
-            "whitespace-nowrap w-auto md:w-[16.66vw] hover:opacity-30 transition-opacity duration-500"
+            "whitespace-nowrap hover:opacity-30 transition-opacity duration-500"
           )}
         >
           BQStudio, 2024
         </a>
-        <div className="flex flex-col max-md:gap-1 md:flex-row max-md:ml-[12.5vw] w-full md:ml-[calc(1.5*8.33vw)]">
+        <div className="flex flex-col max-md:gap-1 md:flex-row">
           <a
             className={cn(
-              "whitespace-nowrap md:w-[calc(3*8.33vw)] xl:w-[16.66vw]",
+              "whitespace-nowrap",
               pathname === "/privacy-policy"
                 ? "opacity-30 pointer-events-none cursor-default"
                 : "hover:opacity-30 transition-opacity duration-500"
@@ -70,7 +70,7 @@ export default function Footer() {
 
           <div
             className={cn(
-              "flex flex-row gap-1 md:w-[calc(2*8.33vw)] xl:w-[8.33vw] xl:ml-[calc(2.5*8.33vw)] md:ml-[calc(1*8.33vw)]",
+              "flex flex-row gap-1",
               pathname === "/contacts"
                 ? "opacity-30 pointer-events-none cursor-default"
                 : "hover:opacity-30 transition-opacity duration-500"
@@ -104,7 +104,7 @@ export default function Footer() {
           </div>
 
           <a
-            className="whitespace-nowrap md:w-[calc(2*8.33vw)] md:ml-[calc(2*8.33vw)] xl:ml-auto xl:text-right hover:opacity-30 transition-opacity duration-500"
+            className="whitespace-nowrap xl:text-right hover:opacity-30 transition-opacity duration-500"
             href="http://vosk.design/"
             target="_blank"
           >
@@ -114,12 +114,12 @@ export default function Footer() {
       </div>
       <div
         className={cn(
-          "xl:hidden w-screen h-[36px] md:h-[44px] bg-white sticky left-0 bottom-0 z-40 p-2 md:p-3 border-t border-t-[#E7E9EF] flex flex-row items-center justify-center gap-2",
+          "xl:hidden h-[36px] md:h-[44px] bg-white sticky left-0 bottom-0 z-40 p-2 md:p-3 border-t border-t-[#E7E9EF] flex flex-row items-center justify-center gap-2",
           !(pathname === "/" || pathname.includes("/list")) && "hidden"
         )}
       >
         <a
-          className="font-spectral text-[14px] leading-[20px] -tracking-[0.28px] w-[50vw] text-center"
+          className="font-spectral text-[14px] leading-[20px] -tracking-[0.28px] text-center"
           href="/list"
           onClick={(e) => {
             e.preventDefault();
@@ -133,7 +133,7 @@ export default function Footer() {
         </a>
         <div className="w-px h-3 bg-[#E7E9EF]" />
         <a
-          className="font-spectral text-[14px] leading-[20px] -tracking-[0.28px] w-[50vw] relative"
+          className="font-spectral text-[14px] leading-[20px] -tracking-[0.28px] relative"
           href={pathname === "/" ? "/list" : "/"}
           onClick={(e) => {
             e.preventDefault();
