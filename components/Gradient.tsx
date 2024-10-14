@@ -6,7 +6,7 @@ import {
   useTransform,
   useAnimationFrame,
   useSpring,
-  useMotionTemplate
+  useMotionTemplate,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -31,6 +31,21 @@ export default function Gradient() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    if (!isActive && !isMobile) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden"; // Add this line
+    } else {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto"; // Add this line
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto"; // Add this line
+    };
+  }, [isActive, isMobile]);
+
+  useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       mouseX.set(event.clientX);
       mouseY.set(event.clientY);
@@ -48,7 +63,7 @@ export default function Gradient() {
       const newWidth = window.innerWidth;
       const newHeight = window.innerHeight;
       setWindowSize({ width: newWidth, height: newHeight });
-      setIsMobile(newWidth <= 768); // Adjust this breakpoint as needed
+      setIsMobile(newWidth <= 1280); // Adjust this breakpoint as needed
     };
 
     // Initial call to set the window size and check if mobile
@@ -113,7 +128,7 @@ export default function Gradient() {
         opacity: !isActive ? 1 : 0,
         transition: { duration: 3 },
         pointerEvents: !isActive ? ("auto" as const) : ("none" as const),
-        cursor: !isActive ? "pointer" as const : "none" as const,
+        cursor: !isActive ? ("pointer" as const) : ("none" as const),
       }}
       onClick={() => !isMobile && setIsActive(true)}
     />

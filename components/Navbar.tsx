@@ -305,6 +305,9 @@ export function NavbarMobile({
         "xl:hidden fixed top-[36px] left-0 w-screen h-[calc(100vh-36px)] bg-white z-50 transition-opacity duration-300",
         isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       )}
+      style={{
+        viewTransitionName: "mobileMenu"
+      }}
     >
       <div className="flex flex-col gap-1 justify-start items-center h-full font-spectral font-normal text-[14px] leading-5 -tracking-[0.28px] divide-y-[1px] border-y-[#E7E9EF] relative">
         <a

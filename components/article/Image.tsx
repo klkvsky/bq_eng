@@ -10,7 +10,7 @@ function ImageOverlay({ src, onClose }: { src: string; onClose: () => void }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-70 backdrop-blur-sm cursor-pointer"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white cursor-pointer"
       onClick={onClose}
     >
       <motion.div
@@ -18,16 +18,16 @@ function ImageOverlay({ src, onClose }: { src: string; onClose: () => void }) {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="w-full flex flex-col items-center"
+        className="w-full h-full flex items-center justify-center"
+        onClick={onClose}
       >
         <Image
           src={src}
           alt="Full screen image"
           width={0}
           height={0}
-          className="w-4/5 h-auto cursor-default shadow-lg"
+          className="max-h-[100vh] w-full object-contain cursor-default shadow-lg"
           unoptimized
-          onClick={(e) => e.stopPropagation()}
         />
       </motion.div>
     </motion.div>

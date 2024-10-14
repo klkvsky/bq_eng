@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// import Gradient from "@/components/Gradient";
+import Gradient from "@/components/Gradient";
 
 export default function RootLayout({
   children,
@@ -15,7 +15,7 @@ export default function RootLayout({
       <Suspense>
         <Navbar />
       </Suspense>
-      {/* <Gradient /> */}
+      <Gradient />
       {children}
       <Suspense>
         <Footer />

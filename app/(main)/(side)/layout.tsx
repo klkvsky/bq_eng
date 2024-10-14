@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-fit ml-auto">
+    <div className="w-full xl:w-fit ml-auto">
       <div
         className="hidden xl:block fixed top-0 right-0 w-[calc(9*8.33vw)] h-full pointer-events-none"
         style={{
