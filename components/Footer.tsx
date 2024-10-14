@@ -47,10 +47,10 @@ export default function Footer() {
         >
           BQStudio, 2024
         </a>
-        <div className="flex flex-col max-md:gap-1 md:flex-row w-full ">
+        <div className="flex flex-col max-md:gap-1 md:flex-row w-full">
           <a
             className={cn(
-              "whitespace-nowrap md:w-fit md:ml-[4.165%] xl:w-[17.5%] xl:ml-[16.66%]",
+              "whitespace-nowrap md:w-fit md:ml-[4.165%] xl:w-[17.5%] xl:ml-[19.2%] ",
               pathname === "/privacy-policy"
                 ? "opacity-30 pointer-events-none cursor-default"
                 : "hover:opacity-30 transition-opacity duration-500"

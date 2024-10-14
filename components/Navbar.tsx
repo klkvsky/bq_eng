@@ -52,7 +52,7 @@ export default function Navbar() {
   return (
     <div
       className={cn(
-        "sticky top-0 bg-white xl:bg-transparent flex flex-row xl:h-[44px]  p-2 md:p-3 font-spectral text-[14px] xl:text-[16px]  leading-5  -tracking-[0.28px] xl:-tracking-[0.02rem]  z-30",
+        "sticky top-0 left-0 bg-white xl:bg-transparent flex flex-row xl:h-[44px] p-2 md:p-3 font-spectral text-[14px] xl:text-[16px]  leading-5  -tracking-[0.28px] xl:-tracking-[0.02rem]  z-30",
         isMobileMenuOpen && "z-[999]"
       )}
       style={{
@@ -538,16 +538,16 @@ function opacityWithTitle() {
     [
       {
         opacity: 1,
-        filter: "blur(0px)"
+        filter: "blur(0px)",
       },
       {
         opacity: 0,
-        filter: "blur(5px)"
+        filter: "blur(5px)",
       },
     ],
     {
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
     }
@@ -559,21 +559,21 @@ function opacityWithTitle() {
         ? {
             display: "none",
             opacity: 0,
-            filter: "blur(5px)"
+            filter: "blur(5px)",
           }
         : {
             opacity: 0,
-            filter: "blur(5px)"
+            filter: "blur(5px)",
           },
       {
         opacity: 1,
-        filter: "blur(0px)"
+        filter: "blur(0px)",
       },
     ],
     {
       delay: 1000,
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
     }
@@ -594,7 +594,7 @@ function opacity() {
     ],
     {
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
     }
@@ -613,7 +613,7 @@ function opacity() {
     ],
     {
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-old(projectsTitle)",
     }
@@ -639,7 +639,7 @@ function opacity() {
     {
       delay: 1000,
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "backwards",
       pseudoElement: "::view-transition-new(projectsTitle)",
     }
@@ -665,7 +665,7 @@ function opacity() {
     {
       delay: 1000,
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
     }
@@ -675,12 +675,12 @@ function opacity() {
 function slide() {
   document.documentElement.animate(
     [
-      { opacity: 1, transform: "translateX(0)", filter: "blur(0px)" },
-      { opacity: 0, transform: "translateX(-100%)", filter: "blur(5px)" },
+      { opacity: 1, filter: "blur(0px)" },
+      { opacity: 0, filter: "blur(5px)" },
     ],
     {
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "backwards",
       pseudoElement: "::view-transition-old(root)",
     }
@@ -688,12 +688,12 @@ function slide() {
 
   document.documentElement.animate(
     [
-      { opacity: 1, transform: "translateX(0)", filter: "blur(0px)" },
-      { opacity: 0, transform: "translateX(-100%)", filter: "blur(5px)" },
+      { opacity: 1, filter: "blur(0px)" },
+      { opacity: 0, filter: "blur(5px)" },
     ],
     {
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "backwards",
       pseudoElement: "::view-transition-old(projectsTitle)",
     }
@@ -713,9 +713,9 @@ function slide() {
       },
     ],
     {
-      delay: 750,
-      duration: 1200,
-      easing: "ease",
+      delay: 1750,
+      duration: 1500,
+      easing: "cubic-bezier(0.33, 1, 0.68, 1)",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
     }
@@ -727,9 +727,9 @@ function slide() {
       { transform: "translateX(0%)", filter: "blur(0px)" },
     ],
     {
-      delay: 750,
-      duration: 1200,
-      easing: "ease",
+      delay: 1750,
+      duration: 1500,
+      easing: "cubic-bezier(0.33, 1, 0.68, 1)",
       fill: "backwards",
       pseudoElement: "::view-transition-new(sideshadow)",
     }
@@ -743,17 +743,18 @@ function slideOut() {
         transform: "translateX(0%)",
         opacity: 1,
         mixBlendMode: "multiply",
+        filter: "blur(0px)",
       },
       {
         transform: "translateX(100%)",
         opacity: 1,
         mixBlendMode: "multiply",
+        filter: "blur(5px)",
       },
     ],
     {
-      delay: 750,
-      duration: 1500,
-      easing: "ease",
+      duration: 2400,
+      easing: "cubic-bezier(0.33, 1, 0.68, 1)",
       fill: "backwards",
       pseudoElement: "::view-transition-old(root)",
     }
@@ -761,13 +762,12 @@ function slideOut() {
 
   document.documentElement.animate(
     [
-      { transform: "translateX(0%)", opacity: 1 },
-      { transform: "translateX(132%)", opacity: 1 },
+      { transform: "translateX(0%)", opacity: 1, filter: "blur(0px)" },
+      { transform: "translateX(132%)", opacity: 1, filter: "blur(5px)" },
     ],
     {
-      delay: 750,
-      duration: 1500,
-      easing: "ease",
+      duration: 2400,
+      easing: "cubic-bezier(0.33, 1, 0.68, 1)",
       fill: "backwards",
       pseudoElement: "::view-transition-old(sideshadow)",
     }
@@ -777,17 +777,17 @@ function slideOut() {
     [
       {
         opacity: 0,
-        transform: "translateX(-100%)",
+        filter: "blur(5px)",
       },
       {
         opacity: 1,
-        transform: "translateX(0)",
+        filter: "blur(0px)",
       },
     ],
     {
       delay: 1500,
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
     }
@@ -797,17 +797,17 @@ function slideOut() {
     [
       {
         opacity: 0,
-        transform: "translateX(-100%)",
+        filter: "blur(5px)",
       },
       {
         opacity: 1,
-        transform: "translateX(0)",
+        filter: "blur(0px)",
       },
     ],
     {
       delay: 1500,
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "backwards",
       pseudoElement: "::view-transition-new(projectsTitle)",
     }
@@ -832,7 +832,7 @@ function slideDown() {
     ],
     {
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
     }
@@ -855,7 +855,7 @@ function slideDown() {
     ],
     {
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-new(topShadow)",
     }
@@ -878,7 +878,7 @@ function slideDown() {
     ],
     {
       duration: 1500,
-      easing: "ease",
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-new(root)",
     }

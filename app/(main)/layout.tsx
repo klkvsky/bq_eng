@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 import Gradient from "@/components/Gradient";
+import Logo from "@/components/Logo";
 
 export default function RootLayout({
   children,
@@ -16,6 +17,7 @@ export default function RootLayout({
         <Navbar />
       </Suspense>
       <Gradient />
+      <Logo />
       {children}
       <Suspense>
         <Footer />

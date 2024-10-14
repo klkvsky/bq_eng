@@ -145,18 +145,21 @@
   }
 }
 
-@keyframes home-to-knowledge-q {
+@keyframes home-to-knowledge-q-part1 {
   0% {
     width: 10vw;
     transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
   }
-  35% {
+  100% {
     width: 8vw;
-    transform: translate(calc(100vw - 44vw - 100%), 45vh);
+    transform: translate(calc(100vw - 100% - 12px), 4.4vh);
   }
-  35% {
+}
+
+@keyframes home-to-knowledge-q-part2 {
+  0% {
     width: 8vw;
-    transform: translate(calc(100vw - 44vw - 100%), 45vh);
+    transform: translate(calc(100vw - 100% - 12px), 4.4vh);
   }
   100% {
     width: 8vw;
@@ -235,18 +238,21 @@
     transform: translate(0.75vw, calc(84.1vh - 15%));
   }
 }
-@keyframes list-to-knowledge-q {
+@keyframes list-to-knowledge-q-part1 {
   0% {
     width: 10vw;
     transform: translate(calc(100vw - 0.75vw - 100%), calc(76vh - 15%));
   }
-  35% {
+  100% {
     width: 8vw;
-    transform: translate(calc(100vw - 44vw - 100%), 45vh);
+    transform: translate(calc(100vw - 100% - 12px), 4.4vh);
   }
-  35% {
+}
+
+@keyframes list-to-knowledge-q-part2 {
+  0% {
     width: 8vw;
-    transform: translate(calc(100vw - 44vw - 100%), 45vh);
+    transform: translate(calc(100vw - 100% - 12px), 4.4vh);
   }
   100% {
     width: 8vw;
@@ -298,26 +304,6 @@
     transform: translate(calc(100vw - 0.75vw - 100%), 76vh);
   }
 }
-@keyframes studio-to-project-b {
-  0% {
-    width: 5.133125vw;
-    transform: translate(0.75vw, 84.5vh);
-  }
-  100% {
-    width: 8.125vw;
-    transform: translate(-100%, 77.2vh);
-  }
-}
-@keyframes studio-to-project-q {
-  0% {
-    width: 6.25vw;
-    transform: translate(6.15vw, 79vh);
-  }
-  100% {
-    width: 10vw;
-    transform: translate(calc(100vw + 100%), 45vh);
-  }
-}
 @keyframes studio-to-knowledge-b {
   0% {
     width: 5.133125vw;
@@ -328,24 +314,29 @@
     transform: translate(0.75vw, calc(84.1vh - 15%));
   }
 }
-@keyframes studio-to-knowledge-q {
+
+@keyframes studio-to-knowledge-q-part1 {
   0% {
     width: 6.25vw;
     transform: translate(6.15vw, 79vh);
   }
-  25% {
-    width: 8vw;
-    transform: translate(50vw, 79vh);
+  100% {
+    width: 6.25vw;
+    transform: translate(calc(100vw - 100% - 12px), 79vh);
   }
-  35% {
-    width: 8vw;
-    transform: translate(50vw, 79vh);
+}
+
+@keyframes studio-to-knowledge-q-part2 {
+  0% {
+    width: 6.25vw;
+    transform: translate(calc(100vw - 100% - 12px), 79vh);
   }
   100% {
     width: 8vw;
     transform: translate(16.5vw, 4.4vh);
   }
 }
+
 @keyframes project-to-home-b {
   0% {
     width: 8.125vw;
@@ -388,8 +379,8 @@
 }
 @keyframes project-to-studio-b {
   0% {
-    width: 8.125vw;
-    transform: translate(-100%, 77.2vh);
+    width: 5.133125vw;
+    transform: translate(-100%, 84.5vh);
   }
   100% {
     width: 5.133125vw;
@@ -398,8 +389,8 @@
 }
 @keyframes project-to-studio-q {
   0% {
-    width: 10vw;
-    transform: translate(calc(100vw + 100%), 45vh);
+    width: 6.25vw;
+    transform: translate(calc(100vw + 100%), 79vh);
   }
   100% {
     width: 6.25vw;
@@ -408,8 +399,8 @@
 }
 @keyframes project-to-knowledge-b {
   0% {
-    width: 8.125vw;
-    transform: translate(-100%, 77.2vh);
+    width: 6vw;
+    transform: translate(-100%, calc(84.1vh - 15%));
   }
   100% {
     width: 6vw;
@@ -418,8 +409,8 @@
 }
 @keyframes project-to-knowledge-q {
   0% {
-    width: 10vw;
-    transform: translate(calc(100vw + 100%), 45vh);
+    width: 8vw;
+    transform: translate(calc(100vw), 4.4vh);
   }
   100% {
     width: 8vw;
@@ -442,14 +433,6 @@
     width: 8vw;
     transform: translate(16.5vw, 4.4vh);
   }
-  39.5% {
-    width: 8vw;
-    transform: translate(calc(18.5vw - 25%), 45vh);
-  }
-  45% {
-    width: 8vw;
-    transform: translate(calc(18.5vw - 25%), 45vh);
-  }
   100% {
     width: 10vw;
     transform: translate(calc(100vw - 0.75vw - 100%), 45vh);
@@ -466,18 +449,21 @@
   }
 }
 
-@keyframes knowledge-to-studio-q {
+@keyframes knowledge-to-studio-q-part1 {
   0% {
     width: 8vw;
     transform: translate(16.5vw, 4.4vh);
   }
-  39.5% {
+  100% {
     width: 8vw;
-    transform: translate(6.15vw, 4.4vh);
+    transform: translate(calc(100vw - 100% - 12px), 79vh);
   }
-  40% {
+}
+
+@keyframes knowledge-to-studio-q-part2 {
+  0% {
     width: 8vw;
-    transform: translate(6.15vw, 4.4vh);
+    transform: translate(calc(100vw - 100% - 12px), 79vh);
   }
   100% {
     width: 6.25vw;
@@ -487,116 +473,128 @@
 
 /* Animation classes */
 .home-to-list .bImage {
-  animation: home-to-list-b 1.5s ease forwards;
+  animation: home-to-list-b 1.5s ease-in-out forwards;
 }
 .home-to-list .qImage {
-  animation: home-to-list-q 1.5s ease forwards;
+  animation: home-to-list-q 1.5s ease-in-out forwards;
 }
 .home-to-studio .bImage {
-  animation: home-to-studio-b 1.5s ease forwards;
+  animation: home-to-studio-b 1.5s ease-in-out forwards;
 }
 .home-to-studio .qImage {
-  animation: home-to-studio-q 1.5s ease forwards;
+  animation: home-to-studio-q 1.5s ease-in-out forwards;
 }
 .home-to-project .bImage {
-  animation: home-to-project-b 1.5s ease forwards;
+  animation: home-to-project-b 1.5s ease-in-out forwards;
 }
 .home-to-project .qImage {
-  animation: home-to-project-q 1.5s ease forwards;
+  animation: home-to-project-q 1.5s ease-in-out forwards;
 }
 
 .home-to-knowledge .bImage {
-  animation: home-to-knowledge-b 1.5s ease forwards;
+  animation: home-to-knowledge-b 1.5s ease-in-out forwards;
 }
 
 .home-to-knowledge .qImage {
-  animation: home-to-knowledge-q 1.5s ease forwards;
+  animation:
+    home-to-knowledge-q-part1 1.5s ease-in-out forwards,
+    home-to-knowledge-q-part2 1.44s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: 0s, 1.75s;
 }
 
 .list-to-home .bImage {
-  animation: list-to-home-b 1.5s ease forwards;
+  animation: list-to-home-b 1.5s ease-in-out forwards;
 }
 .list-to-home .qImage {
-  animation: list-to-home-q 1.5s ease forwards;
+  animation: list-to-home-q 1.5s ease-in-out forwards;
 }
 .list-to-studio .bImage {
-  animation: list-to-studio-b 1.5s ease forwards;
+  animation: list-to-studio-b 1.5s ease-in-out forwards;
 }
 .list-to-studio .qImage {
-  animation: list-to-studio-q 1.5s ease forwards;
+  animation: list-to-studio-q 1.5s ease-in-out forwards;
 }
 .list-to-project .bImage {
-  animation: list-to-project-b 1.5s ease forwards;
+  animation: list-to-project-b 1.5s ease-in-out forwards;
 }
 .list-to-project .qImage {
-  animation: list-to-project-q 1.5s ease forwards;
+  animation: list-to-project-q 1.5s ease-in-out forwards;
 }
 .list-to-knowledge .bImage {
-  animation: list-to-knowledge-b 1.5s ease forwards;
+  animation: list-to-knowledge-b 1.5s ease-in-out forwards;
 }
 .list-to-knowledge .qImage {
-  animation: list-to-knowledge-q 1.5s ease forwards;
+  animation:
+    list-to-knowledge-q-part1 1.5s ease-in-out forwards,
+    list-to-knowledge-q-part2 1.44s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: 0s, 1.75s;
 }
 
 .studio-to-home .bImage {
-  animation: studio-to-home-b 1.5s ease forwards;
+  animation: studio-to-home-b 1.5s ease-in-out forwards;
 }
 .studio-to-home .qImage {
-  animation: studio-to-home-q 1.5s ease forwards;
+  animation: studio-to-home-q 1.5s ease-in-out forwards;
 }
 .studio-to-list .bImage {
-  animation: studio-to-list-b 1.5s ease forwards;
+  animation: studio-to-list-b 1.5s ease-in-out forwards;
 }
 .studio-to-list .qImage {
-  animation: studio-to-list-q 1.5s ease forwards;
+  animation: studio-to-list-q 1.5s ease-in-out forwards;
 }
 .studio-to-project .bImage {
-  animation: studio-to-project-b 1.5s ease forwards;
+  animation: studio-to-project-b 1.5s ease-in-out forwards;
 }
 .studio-to-project .qImage {
-  animation: studio-to-project-q 1.5s ease forwards;
+  animation: studio-to-project-q 1.5s ease-in-out forwards;
 }
 .studio-to-knowledge .bImage {
-  animation: studio-to-knowledge-b 1.5s ease forwards;
+  animation: studio-to-knowledge-b 3s ease-in-out forwards;
 }
 .studio-to-knowledge .qImage {
-  animation: studio-to-knowledge-q 1.5s ease forwards;
+  animation:
+    studio-to-knowledge-q-part1 1.5s ease-in-out forwards,
+    studio-to-knowledge-q-part2 1.44s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: 0s, 1.75s;
 }
 
 .project-to-home .bImage {
-  animation: project-to-home-b 1.5s ease forwards;
+  animation: project-to-home-b 1.5s ease-in-out forwards;
 }
 .project-to-home .qImage {
-  animation: project-to-home-q 1.5s ease forwards;
+  animation: project-to-home-q 1.5s ease-in-out forwards;
 }
 .project-to-list .bImage {
-  animation: project-to-list-b 1.5s ease forwards;
+  animation: project-to-list-b 1.5s ease-in-out forwards;
 }
 .project-to-list .qImage {
-  animation: project-to-list-q 1.5s ease forwards;
+  animation: project-to-list-q 1.5s ease-in-out forwards;
 }
 .project-to-studio .bImage {
-  animation: project-to-studio-b 1.5s ease forwards;
+  animation: project-to-studio-b 1.5s ease-in-out forwards;
 }
 .project-to-studio .qImage {
-  animation: project-to-studio-q 1.5s ease forwards;
+  animation: project-to-studio-q 1.5s ease-in-out forwards;
 }
 .project-to-knowledge .bImage {
-  animation: project-to-knowledge-b 1.5s ease forwards;
+  animation: project-to-knowledge-b 1.5s ease-in-out forwards;
 }
 .project-to-knowledge .qImage {
-  animation: project-to-knowledge-q 1.5s ease forwards;
+  animation: project-to-knowledge-q 1.5s cubic-bezier(0.33, 1, 0.68, 1) forwards;
 }
 
 .knowledge-to-home .bImage {
-  animation: knowledge-to-home-b 1.5s ease forwards;
+  animation: knowledge-to-home-b 1.5s ease-in-out forwards;
 }
 .knowledge-to-home .qImage {
-  animation: knowledge-to-home-q 1.5s ease forwards;
+  animation: knowledge-to-home-q 1.4s cubic-bezier(0.33, 1, 0.68, 1) forwards;
 }
 .knowledge-to-studio .bImage {
-  animation: knowledge-to-studio-b 1.5s ease forwards;
+  animation: knowledge-to-studio-b 1.5s ease-in-out forwards;
 }
 .knowledge-to-studio .qImage {
-  animation: knowledge-to-studio-q 1.5s ease forwards;
+  animation:
+    knowledge-to-studio-q-part1 1.4s cubic-bezier(0.33, 1, 0.68, 1) forwards,
+    knowledge-to-studio-q-part2 1.5s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: 0s, 1.45s;
 }
