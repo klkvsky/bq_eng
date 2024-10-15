@@ -52,7 +52,7 @@ export default function Navbar() {
   return (
     <div
       className={cn(
-        "sticky top-0 left-0 bg-white xl:bg-transparent flex flex-row xl:h-[44px] p-2 md:p-3 font-spectral text-[14px] xl:text-[16px]  leading-5  -tracking-[0.28px] xl:-tracking-[0.02rem]  z-30",
+        "sticky top-0 left-0 bg-white xl:bg-transparent flex flex-row xl:h-[44px] p-2 md:p-3 font-spectral text-[14px] xl:text-[16px] leading-5  -tracking-[0.28px] xl:-tracking-[0.02rem] z-30",
         isMobileMenuOpen && "z-[999]"
       )}
       style={{
@@ -715,7 +715,7 @@ function slide() {
     {
       delay: 1750,
       duration: 1500,
-      easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
       fill: "backwards",
       pseudoElement: "::view-transition-new(root)",
     }
@@ -729,7 +729,7 @@ function slide() {
     {
       delay: 1750,
       duration: 1500,
-      easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
       fill: "backwards",
       pseudoElement: "::view-transition-new(sideshadow)",
     }

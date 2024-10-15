@@ -23,8 +23,8 @@ export default async function Contacts() {
       : data.columns;
 
   return (
-    <div className="flex flex-col h-screen ">
-      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] xl:mt-[44px] p-2 md:pl-3 md:py-0">
+    <div className="flex flex-col min-h-[75vh]">
+      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] p-2 md:pl-3 md:py-0">
         {data.pageTitle}
       </h1>
 
@@ -91,7 +91,7 @@ function Columns({
             >
               {item.type === "email" ? (
                 <>
-                  {item.text}{" "}
+                  {item.text} <br />
                   <a
                     href={`mailto:${item.email}`}
                     className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500"
@@ -194,7 +194,7 @@ function Columns({
                     >
                       {item.type === "email" ? (
                         <>
-                          {item.text}{" "}
+                          {item.text} <br />
                           <a
                             href={`mailto:${item.email}`}
                             className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500"

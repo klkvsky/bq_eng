@@ -35,13 +35,13 @@ export default function Gradient() {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden"; // Add this line
     } else {
-      document.body.style.overflow = "auto";
-      document.documentElement.style.overflow = "auto"; // Add this line
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset"; // Add this line
     }
 
     return () => {
-      document.body.style.overflow = "auto";
-      document.documentElement.style.overflow = "auto"; // Add this line
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset"; // Add this line
     };
   }, [isActive, isMobile]);
 
@@ -123,7 +123,7 @@ export default function Gradient() {
       className="hidden xl:block w-screen h-screen fixed top-0 left-0 z-[39]"
       style={{
         background: useMotionTemplate`linear-gradient(${smoothAngle}deg, ${fromColor}, ${toColor})`,
-        viewTransitionName: "gradient"
+        viewTransitionName: "gradient",
       }}
       animate={{
         opacity: !isActive ? 1 : 0,
