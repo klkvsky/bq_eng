@@ -40,6 +40,7 @@ export default function ProjectItem({
       href={`/project/${project.slug.current}`}
       onClick={(e) => {
         e.preventDefault();
+        console.log(`/project/${project.slug.current}`)
         router.push(`/project/${project.slug.current}`, {
           onTransitionReady: opacity,
         });
@@ -198,11 +199,11 @@ function opacity() {
     [
       {
         opacity: 1,
-        filter: "blur(0px)"
+        filter: "blur(0px)",
       },
       {
         opacity: 0,
-        filter: "blur(5px)"
+        filter: "blur(5px)",
       },
     ],
     {
@@ -217,11 +218,11 @@ function opacity() {
     [
       {
         opacity: 1,
-        filter: "blur(0px)"
+        filter: "blur(0px)",
       },
       {
         opacity: 0,
-        filter: "blur(5px)"
+        filter: "blur(5px)",
       },
     ],
     {
@@ -238,15 +239,15 @@ function opacity() {
         ? {
             display: "none",
             opacity: 0,
-            filter: "blur(5px)"
+            filter: "blur(5px)",
           }
         : {
             opacity: 0,
-            filter: "blur(5px)"
+            filter: "blur(5px)",
           },
       {
         opacity: 1,
-        filter: "blur(0px)"
+        filter: "blur(0px)",
       },
     ],
     {
@@ -264,15 +265,15 @@ function opacity() {
         ? {
             display: "none",
             opacity: 0,
-            filter: "blur(5px)"
+            filter: "blur(5px)",
           }
         : {
             opacity: 0,
-            filter: "blur(5px)"
+            filter: "blur(5px)",
           },
       {
         opacity: 1,
-        filter: "blur(0px)"
+        filter: "blur(0px)",
       },
     ],
     {

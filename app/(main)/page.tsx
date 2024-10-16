@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 export default async function Home() {
   const data = await getHomeData();
+
   return (
     <div className="flex flex-col min-h-[100vh]">
       <div

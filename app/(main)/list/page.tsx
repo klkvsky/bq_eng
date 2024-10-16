@@ -2,13 +2,12 @@ import { cn } from "@/lib/utils";
 
 import { getHomeData } from "@/lib/sanity";
 
-import { HomeData } from "@/components/home/types";
-
 import PageTitle from "@/components/PageTitle";
 import ProjectItem from "@/components/home/Projects-Item";
 
-export default async function ListView() {
-  const data: HomeData = await getHomeData();
+export default async function Page() {
+  const data = await getHomeData();
+  console.log(data)
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-248px)]">

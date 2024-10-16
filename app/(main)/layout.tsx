@@ -18,7 +18,7 @@ export default function RootLayout({
       </Suspense>
       <Gradient />
       <Logo />
-      {children}
+      <Suspense>{children}</Suspense>
       <Suspense>
         <Footer />
       </Suspense>

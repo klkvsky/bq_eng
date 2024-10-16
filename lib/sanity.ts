@@ -8,7 +8,7 @@ import {
   Article,
   Position,
   ContactsPage,
-  PrivacyPolicy
+  PrivacyPolicy,
 } from "@/components/home/types";
 
 const builder = imageUrlBuilder(client);
