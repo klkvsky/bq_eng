@@ -41,7 +41,7 @@ export function NewsSection({
         {title} <span className="text-xs">{isClose ? "✕" : "→"}</span>
       </a>
       <div className="flex flex-col gap-8 md:gap-10">
-        {items.slice(isMain ? 5 : items.length).map((item, index) => (
+        {items.slice(0, isMain ? 5 : items.length).map((item, index) => (
           <a
             href={`/news/${item.slug.current}`}
             key={index}
