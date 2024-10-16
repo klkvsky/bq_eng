@@ -5,9 +5,11 @@ import { getHomeData } from "@/lib/sanity";
 import PageTitle from "@/components/PageTitle";
 import ProjectItem from "@/components/home/Projects-Item";
 
-export default async function Page() {
+export const revalidate = 0;
+
+export default async function List() {
   const data = await getHomeData();
-  console.log(data)
+  console.log(data);
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-248px)]">

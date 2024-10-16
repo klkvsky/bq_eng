@@ -11,6 +11,8 @@ import type { Project } from "@/components/home/types";
 import Link from "next/link";
 import Image from "next/image";
 
+export const revalidate = 0;
+
 export default async function Project({
   params,
 }: {
