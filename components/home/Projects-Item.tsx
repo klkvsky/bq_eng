@@ -74,10 +74,7 @@ export default function ProjectItem({
                   width={0}
                   height={0}
                   style={{ width: calculatedWidth, height: "auto" }}
-                  className={cn(
-                    displayMode !== "gallery" &&
-                      "object-cover"
-                  )}
+                  className={cn(displayMode !== "gallery" && "object-cover")}
                   unoptimized
                 />
               </div>
@@ -159,10 +156,7 @@ export default function ProjectItem({
                     width={0}
                     height={0}
                     style={{ width: calculatedWidth, height: "auto" }}
-                    className={cn(
-                      displayMode !== "gallery" &&
-                        "object-cover"
-                    )}
+                    className={cn(displayMode !== "gallery" && "object-cover")}
                     unoptimized
                   />
                 </div>

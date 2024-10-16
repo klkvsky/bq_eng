@@ -459,7 +459,7 @@ function ProjectsCategories() {
       )}
     >
       Направления работ{" "}
-      <span className="group-hover:rotate-180 transition-transform duration-300 text-xs">
+      <span className="group-hover:rotate-180 transition-transform duration-300 text-[8px]">
         ▼
       </span>
       <div className="flex flex-col items-start absolute top-full left-0 w-full h-full  opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mt-3 font-apercu text-[16px] leading-[20px] -tracking-[0.32px] whitespace-nowrap">

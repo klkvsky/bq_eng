@@ -164,7 +164,7 @@ export const culture = defineType({
       name: "relatedArticles",
       title: "Related Articles",
       type: "array",
-      of: [{ type: "reference", to: [{ type: "article" }] }]
+      of: [{ type: "reference", to: [{ type: "article" }] }],
     }),
   ],
 });
