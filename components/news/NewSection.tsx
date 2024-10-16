@@ -60,18 +60,21 @@ export function NewsSection({
 }
 
 function opacity() {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   document.documentElement.animate(
     [
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
       {
         opacity: 0,
+        filter: "blur(5px)",
       },
     ],
     {
-      duration: 1000,
-      easing: "ease",
+      duration: 1500,
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
     }
@@ -81,14 +84,16 @@ function opacity() {
     [
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
       {
         opacity: 0,
+        filter: "blur(5px)",
       },
     ],
     {
-      duration: 1000,
-      easing: "ease",
+      duration: 1500,
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-old(projectsTitle)",
     }
@@ -96,39 +101,53 @@ function opacity() {
 
   document.documentElement.animate(
     [
-      {
-        display: "none",
-        opacity: 0,
-      },
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+            filter: "blur(5px)",
+          }
+        : {
+            opacity: 0,
+            filter: "blur(5px)",
+          },
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
     ],
     {
       delay: 1000,
-      duration: 1000,
-      easing: "ease",
+      duration: 1500,
+      easing: "ease-in-out",
       fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
+      pseudoElement: "::view-transition-new(projectsTitle)",
     }
   );
 
   document.documentElement.animate(
     [
-      {
-        display: "none",
-        opacity: 0,
-      },
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+            filter: "blur(5px)",
+          }
+        : {
+            opacity: 0,
+            filter: "blur(5px)",
+          },
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
     ],
     {
       delay: 1000,
-      duration: 1000,
-      easing: "ease",
+      duration: 1500,
+      easing: "ease-in-out",
       fill: "backwards",
-      pseudoElement: "::view-transition-new(projectsTitle)",
+      pseudoElement: "::view-transition-new(root)",
     }
   );
 }

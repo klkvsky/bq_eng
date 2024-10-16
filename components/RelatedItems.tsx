@@ -54,7 +54,7 @@ export default function RelatedItems({
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1280 },
-      items: isProject ? 4 : 3,
+      items: isProject ? 4 : 4,
     },
     tablet: {
       breakpoint: { max: 1280, min: 640 },
@@ -105,7 +105,7 @@ export default function RelatedItems({
                   onClick={(e) => {
                     e.preventDefault();
                     router.push(linkURL(item), {
-                      onTransitionReady: opacity,
+                      onTransitionReady: slide,
                     });
                   }}
                   style={{
@@ -181,85 +181,66 @@ export default function RelatedItems({
   );
 }
 
-function opacity() {
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+function slide() {
   document.documentElement.animate(
     [
-      {
-        opacity: 1,
-      },
-      {
-        opacity: 0,
-      },
+      { opacity: 1, filter: "blur(0px)" },
+      { opacity: 0, filter: "blur(5px)" },
     ],
     {
       duration: 1500,
-      easing: "ease",
-      fill: "forwards",
+      easing: "ease-in-out",
+      fill: "backwards",
       pseudoElement: "::view-transition-old(root)",
     }
   );
 
   document.documentElement.animate(
     [
-      {
-        opacity: 1,
-      },
-      {
-        opacity: 0,
-      },
+      { opacity: 1, filter: "blur(0px)" },
+      { opacity: 0, filter: "blur(5px)" },
     ],
     {
       duration: 1500,
-      easing: "ease",
-      fill: "forwards",
+      easing: "ease-in-out",
+      fill: "backwards",
       pseudoElement: "::view-transition-old(projectsTitle)",
     }
   );
 
   document.documentElement.animate(
     [
-      isSafari
-        ? {
-            display: "none",
-            opacity: 0,
-          }
-        : {
-            opacity: 0,
-          },
       {
-        opacity: 1,
+        transform: "translateX(100%)",
+        mixBlendMode: "multiply",
+        filter: "blur(5px)",
+      },
+      {
+        transform: "translateX(0%)",
+        mixBlendMode: "multiply",
+        filter: "blur(0px)",
       },
     ],
     {
-      delay: 1000,
+      delay: 1750,
       duration: 1500,
-      easing: "ease",
+      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
       fill: "backwards",
-      pseudoElement: "::view-transition-new(projectsTitle)",
+      pseudoElement: "::view-transition-new(root)",
     }
   );
 
   document.documentElement.animate(
     [
-      isSafari
-        ? {
-            display: "none",
-            opacity: 0,
-          }
-        : {
-            opacity: 0,
-          },
-      {
-        opacity: 1,
-      },
+      { transform: "translateX(135%)", filter: "blur(5px)" },
+      { transform: "translateX(0%)", filter: "blur(0px)" },
     ],
     {
-      delay: 1000,
+      delay: 1750,
       duration: 1500,
-      easing: "ease",
+      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
       fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
+      pseudoElement: "::view-transition-new(sideshadow)",
     }
   );
 }

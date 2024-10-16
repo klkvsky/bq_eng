@@ -127,7 +127,10 @@ export async function getProject(slug: string) {
         categories[]->{name}
       }
     }`,
-    { slug }
+    { slug },
+    {
+      next: { revalidate: 30 },
+    }
   );
 }
 

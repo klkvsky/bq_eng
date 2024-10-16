@@ -1,10 +1,22 @@
 import { Article } from "@/components/home/types";
+import { cn } from "@/lib/utils";
 
 export function NewsItem({ item }: { item: Article }): React.ReactNode {
   return (
-    <div className="flex flex-col gap-0 border-t border-[#E7E9EF] p-2 md:p-3">
+    <div
+      className={cn(
+        "flex flex-col gap-0 border-t border-[#E7E9EF] p-2 md:p-3",
+        item.type === "press-release" &&
+          item.pressReleaseCategory === "magazines"
+          ? "flex flex-col"
+          : "flex flex-col-reverse gap-1.5"
+      )}
+    >
       <p className="font-apercu font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-6 md:leading-7 xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] opacity-30 xl:opacity-100">
-        {item.source}{" "}
+        {item.type === "press-release" &&
+          item.pressReleaseCategory === "magazines" &&
+          item.source &&
+          item.source}{" "}
         <span className="xl:opacity-30">
           {new Date(item.date).toLocaleDateString("ru-RU")}
         </span>

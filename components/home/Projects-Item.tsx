@@ -40,7 +40,7 @@ export default function ProjectItem({
       href={`/project/${project.slug.current}`}
       onClick={(e) => {
         e.preventDefault();
-        console.log(`/project/${project.slug.current}`)
+        console.log(`/project/${project.slug.current}`);
         router.push(`/project/${project.slug.current}`, {
           onTransitionReady: opacity,
         });
@@ -53,7 +53,7 @@ export default function ProjectItem({
               "relative cursor-pointer",
               displayMode === "gallery"
                 ? "custom-shadow-right"
-                : "group max-xl:flex max-xl:flex-row-reverse w-full max-xl:p-2 md:py-0 max-xl:gap-[12.5vw] h-[110px] md:h-[200px] xl:h-[320px] 2xl:h-[520px] max-h-[110px] md:max-h-[200px] xl:max-h-[320px] 2xl:max-h-[520px]"
+                : "group max-xl:flex max-xl:flex-row-reverse w-full max-xl:p-2 md:py-0 max-xl:gap-[12.5vw] h-[110px] md:h-[200px] xl:h-[unset] xl:aspect-[254/320]"
             )}
             style={{
               width:
@@ -74,7 +74,10 @@ export default function ProjectItem({
                   width={0}
                   height={0}
                   style={{ width: calculatedWidth, height: "auto" }}
-                  className={cn(displayMode !== "gallery" && "object-cover")}
+                  className={cn(
+                    displayMode !== "gallery" &&
+                      "object-cover xl:aspect-[254/320]"
+                  )}
                   unoptimized
                 />
               </div>
@@ -139,7 +142,7 @@ export default function ProjectItem({
                 "relative cursor-pointer",
                 displayMode === "gallery"
                   ? "custom-shadow-left"
-                  : "group max-xl:h-[110px] max-xl:flex max-xl:flex-row-reverse max-xl:p-2 md:py-0 max-xl:gap-[12.5vw] max-xl:justify-between h-[110px] md:h-[200px] xl:h-[320px] 2xl:h-[520px] max-h-[110px] md:max-h-[200px] xl:max-h-[320px] 2xl:max-h-[520px]"
+                  : "group max-xl:h-[110px] max-xl:flex max-xl:flex-row-reverse max-xl:p-2 md:py-0 max-xl:gap-[12.5vw] max-xl:justify-between h-[110px] md:h-[200px] xl:h-[unset] xl:aspect-[254/320]"
               )}
               style={{
                 width:
@@ -156,7 +159,10 @@ export default function ProjectItem({
                     width={0}
                     height={0}
                     style={{ width: calculatedWidth, height: "auto" }}
-                    className={cn(displayMode !== "gallery" && "object-cover")}
+                    className={cn(
+                      displayMode !== "gallery" &&
+                        "object-cover xl:aspect-[254/320]"
+                    )}
                     unoptimized
                   />
                 </div>
