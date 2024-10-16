@@ -76,7 +76,7 @@ export default function ProjectItem({
                   style={{ width: calculatedWidth, height: "auto" }}
                   className={cn(
                     displayMode !== "gallery" &&
-                      "object-cover xl:aspect-[254/320]"
+                      "object-cover"
                   )}
                   unoptimized
                 />
@@ -161,7 +161,7 @@ export default function ProjectItem({
                     style={{ width: calculatedWidth, height: "auto" }}
                     className={cn(
                       displayMode !== "gallery" &&
-                        "object-cover xl:aspect-[254/320]"
+                        "object-cover"
                     )}
                     unoptimized
                   />
