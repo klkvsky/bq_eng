@@ -147,7 +147,7 @@ function Columns({
               {column.items.length > 0 && (
                 <p
                   className={cn(
-                    "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em]"
+                    "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] mb-[24px]"
                   )}
                 >
                   {column.items[0].type === "email" ? (
@@ -178,7 +178,7 @@ function Columns({
               {column.items.length > 1 && (
                 <div
                   className={cn(
-                    "flex flex-col gap-0",
+                    "flex flex-col gap-0 md:gap-[24px]",
                     column.items[0].type === "email" ||
                       column.items[0].type === "link"
                       ? "-mt-3"
@@ -189,7 +189,8 @@ function Columns({
                     <p
                       key={itemIndex}
                       className={cn(
-                        "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] mt-2 "
+                        "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] mt-2"
+                        , item.type === "link" && "-translate-y-[24px]"
                       )}
                     >
                       {item.type === "email" ? (

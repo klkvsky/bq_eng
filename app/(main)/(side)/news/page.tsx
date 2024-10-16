@@ -25,7 +25,7 @@ export default function News() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-8 mt-[34px] xl:gap-[120px] min-h-screen">
+    <div className="flex flex-col gap-8 mt-[34px] md:gap-[160px] xl:gap-[120px] min-h-screen">
       {magazineArticles.length > 0 && (
         <div>
           <NewsSection
