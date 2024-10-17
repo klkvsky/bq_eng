@@ -9,6 +9,10 @@ import { useEffect, useState } from "react";
 
 import { getHomeData } from "@/lib/sanity";
 
+import Image from "next/image";
+import B from "@/public/assets/B.svg";
+import Q from "@/public/assets/Q.svg";
+
 export default function Navbar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -367,14 +371,14 @@ export function NavbarMobile({
           <a href="/">Youtube</a>
         </div>
 
-        <img
-          src="/assets/b.svg"
+        <Image
+          src={B}
           alt="b part of logo"
           className="absolute bottom-[44px] left-2 w-[26vw] md:w-[21vw] border-t-0 border-t-transparent"
         />
 
-        <img
-          src="/assets/q.svg"
+        <Image
+          src={Q}
           alt="q part of logo"
           className="absolute top-[11vh] right-3 w-[25vw] md:w-[21vw] border-t-0 border-t-transparent"
         />
