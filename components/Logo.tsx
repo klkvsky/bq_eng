@@ -1,7 +1,12 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./Logo.module.css";
+
+import Image from "next/image";
+import B from "@/public/assets/B.svg";
+import Q from "@/public/assets/Q.svg";
 
 type LogoState =
   | "home"
@@ -208,8 +213,8 @@ function Logo() {
       className={`${styles.logoContainer} ${styles.home} transition-opacity duration-500`}
       style={{ opacity: isInitialized ? 1 : 0 }}
     >
-      <img src="/assets/B.svg" className={styles.bImage} alt="B logo" />
-      <img src="/assets/Q.svg" className={styles.qImage} alt="Q logo" />
+      <Image src={B} className={styles.bImage} alt="B logo" />
+      <Image src={Q} className={styles.qImage} alt="Q logo" />
     </div>
   );
 }
