@@ -67,20 +67,24 @@ export default function Navbar() {
     pathname.startsWith("/knowledge/") || pathname.startsWith("/news/");
 
   const transition = isLargeScreen
-    ? isSidePage ? slideOut : isArticlePage ? slideDown : opacity
+    ? isSidePage
+      ? slideOut
+      : isArticlePage
+        ? slideDown
+        : opacity
     : opacity;
 
   return (
     <div
       className={cn(
-        "sticky top-0 left-0 bg-white xl:bg-transparent flex flex-row xl:h-[44px] p-2 md:p-3 font-spectral text-[14px] xl:text-[16px] leading-5  -tracking-[0.28px] xl:-tracking-[0.02rem] z-30",
+        "sticky top-0 left-0 bg-white xl:bg-transparent flex flex-row md:h-[44px] 2xl:h-[104px] p-2 md:p-3 2xl:px-6 2xl:py-[28px] font-spectral text-[14px] xl:text-[16px] 2xl:text-[38px] leading-5 -tracking-[0.28px] xl:-tracking-[0.02rem] 2xl:leading-[48px] 2xl:-tracking-[0.76px] z-30",
         isMobileMenuOpen && "z-[999]"
       )}
       style={{
         viewTransitionName: "navbar",
       }}
     >
-      <div className="flex flex-row gap-1 w-2/12 xl:pl-px">
+      <div className="flex flex-row gap-1 w-2/12 xl:pl-px 2xl:gap-2">
         <a
           href="/"
           onClick={(e) => {
@@ -163,7 +167,7 @@ export default function Navbar() {
         searchParams={searchParams}
         pathname={pathname}
       />
-      <div className="hidden xl:flex flex-row gap-1 ml-[8.33%] w-2/12 pl-[7px]">
+      <div className="hidden xl:flex flex-row gap-1 ml-[8.33%] w-2/12 pl-[7px] 2xl:pl-0">
         <a
           href={`/knowledge`}
           onClick={(e) => {
@@ -228,7 +232,7 @@ export default function Navbar() {
       {(pathname === "/" || pathname.includes("/list")) && (
         <div
           className={cn(
-            "hidden xl:flex flex-row gap-1 transition-opacity duration-1000 w-2/12",
+            "hidden xl:flex flex-row gap-1 transition-opacity duration-1000 w-2/12 2xl:gap-2",
             isCategoriesInNavbar ? "ml-[8%]" : "ml-[33%]"
           )}
         >
@@ -475,14 +479,14 @@ function ProjectsCategories() {
   return (
     <div
       className={cn(
-        "hidden xl:flex flex-row gap-1 transition-opacity duration-1000 relative group items-center w-2/12 ml-[8.33%] cursor-pointer"
+        "hidden xl:flex flex-row gap-1 2xl:gap-2 transition-opacity duration-1000 relative group items-center w-2/12 ml-[8.33%] cursor-pointer"
       )}
     >
       Направления работ{" "}
-      <span className="group-hover:rotate-180 transition-transform duration-300 text-[8px]">
+      <span className="group-hover:rotate-180 transition-transform duration-300 text-[8px] 2xl:text-[22.5px]">
         ▼
       </span>
-      <div className="flex flex-col items-start absolute top-full left-0 w-full h-full  opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mt-3 font-apercu text-[16px] leading-[20px] -tracking-[0.32px] whitespace-nowrap">
+      <div className="flex flex-col items-start absolute top-full left-0 w-full h-full  opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mt-3 font-apercu text-[16px] leading-[20px] -tracking-[0.32px] whitespace-nowrap 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
         {homeCategories.map((category) => (
           <a
             key={category.name}

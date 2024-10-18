@@ -70,7 +70,7 @@ export default function Knowledge() {
       >
         <div className="relative w-full h-full custom-shadow-top" />
       </div>
-      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] p-2 md:pl-3 md:py-0">
+      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] p-2 md:pl-3 md:py-0 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]">
         Мы развиваем архитектуру как культурную практику, реализуя различные
         форматы, такие как: <br className="md:hidden" />
         <br className="md:hidden" />
@@ -126,16 +126,16 @@ export default function Knowledge() {
                 )}
               </div>
               <div className="xl:absolute xl:top-0 xl:left-0 xl:w-full xl:h-full xl:bg-white xl:group-hover:opacity-100 xl:opacity-0 flex flex-col xl:transition-opacity max-md:gap-0">
-                <div className="max-md:flex max-md:flex-row max-md:gap-2 font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] opacity-30">
+                <div className="max-md:flex max-md:flex-row max-md:gap-2 font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] opacity-30 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
                   <p className="xl:pt-3">{getArticleType(article.type)}</p>
                   <p className="xl:hidden">
                     {new Date(article.date).toLocaleDateString()}
                   </p>
                 </div>
-                <p className="font-spectral font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] pr-1">
+                <p className="font-spectral font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] pr-1 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
                   {article.title}
                 </p>
-                <p className="mt-auto font-apercu text-[16px] leading-[20px] -tracking-[0.02em] opacity-30 pb-3 hidden xl:block">
+                <p className="mt-auto font-apercu text-[16px] leading-[20px] -tracking-[0.02em] opacity-30 pb-3 hidden xl:block 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
                   {new Date(article.date).toLocaleDateString("ru-RU")}
                 </p>
               </div>

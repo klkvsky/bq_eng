@@ -12,7 +12,7 @@ export function ArticleShareAndInfo({
   return (
     <div
       className={cn(
-        "flex flex-row md:flex-col gap-2 md:gap-3 md:absolute md:left-3 max-md:items-start max-md:w-full max-md:p-2 font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]",
+        "flex flex-row md:flex-col gap-2 md:gap-3 md:absolute md:left-3 max-md:items-start max-md:w-full max-md:p-2 font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]",
         type === "press-release" ? "md:top-52" : "md:top-0",
       )}
     >

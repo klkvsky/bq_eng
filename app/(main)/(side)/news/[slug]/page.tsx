@@ -38,7 +38,7 @@ export default async function ArticlePage({
     <div className="flex flex-col items-center xl:py-10 min-h-screen">
       {article.type !== "research" && (
         <div
-          className="font-normal text-[20px] md:text-[32px] xl:text-[38px] leading-[24px] md:leading-[36px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.96px] xl:-tracking-[0.03em] text-center w-[calc(6*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(7*8.33vw)]"
+          className="font-normal text-[20px] md:text-[32px] xl:text-[38px] leading-[24px] md:leading-[36px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.96px] xl:-tracking-[0.03em] text-center w-[calc(6*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(7*8.33vw)] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
           id="article-page"
         >
           <p className="font-spectral xl:font-apercu xl:opacity-30">
@@ -58,35 +58,6 @@ export default async function ArticlePage({
             unoptimized
           />
         </div>
-      )}
-      {article.images && article.images.length > 0 && (
-        <div className="bg-[#B09FB5] w-screen xl:w-[calc(9*8.33vw)] relative h-[50vh] xl:h-screen flex flex-row overflow-scroll snap-x snap-mandatory lg:-mt-[80px] no-scrollbar">
-          {article.images.map((image, index) => (
-            <div
-              key={index}
-              className="snap-center snap-always min-w-[100vw] xl:min-w-[calc(9*8.33vw)] h-full flex flex-col items-center justify-center px-[calc(2.5*8.33vw)]"
-            >
-              <Image
-                src={urlFor(image.asset.url).url()}
-                alt="Article image"
-                width={0}
-                height={0}
-                className="w-full h-auto"
-                unoptimized
-              />
-            </div>
-          ))}
-        </div>
-      )}
-      {article.type === "research" && (
-        <p className="font-normal text-[20px] md:text-[28px] leading-[24px] md:leading-[32px] -tracking-[0.6px] md:-tracking-[-0.01rem] p-2 xl:p-3 font-spectral">
-          <span className="font-apercu opacity-30">
-            {getArticleType(article.type)}. <br className="md:hidden" />
-          </span>
-          <span className="font-apercu opacity-30">{article.title}.</span>{" "}
-          <br className="md:hidden" />
-          {article.description}
-        </p>
       )}
       {article.type !== "research" && (
         <div className="w-full h-px bg-[#E7E9EF] mt-8 md:mt-10" />
@@ -147,7 +118,7 @@ export default async function ArticlePage({
                 );
               case "list":
                 return (
-                  <div className="flex flex-col gap-4 xl:gap-6 px-2 font-normal text-[17px] xl:text-[18px] leading-[20px] xl:leading-[24px] -tracking-[0.51px] xl:-tracking-[0.02em] w-full md:w-[calc(6*8.33vw)] xl:w-[calc(4*8.33vw)]">
+                  <div className="flex flex-col gap-4 xl:gap-6 px-2 font-normal text-[17px] xl:text-[18px] leading-[20px] xl:leading-[24px] -tracking-[0.51px] xl:-tracking-[0.02em] w-full md:w-[calc(6*8.33vw)] xl:w-[calc(4*8.33vw)]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
                     <p className="font-spectral">{item.listTitle}</p>
                     <ul className="list-disc list-inside">
                       {item.list?.map((item, index) => (

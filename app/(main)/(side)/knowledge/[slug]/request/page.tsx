@@ -72,7 +72,7 @@ export default function ResearchRequest() {
         "bg-white flex flex-col p-2 md:pl-3 md:py-0 gap-10 transition-all duration-1000 justify-start align-top min-h-[78vh] md:min-h-[85vh] xl:min-h-[75vh]"
       )}
     >
-      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.04em]">
+      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.04em] 2xl:text-[42px] 2xl:leading-[58px] 2xl:-tracking-[0.84px]">
         <span className="font-apercu opacity-30">
           {isFormSubmitted
             ? "Спасибо за оставленную заявку!"
@@ -93,7 +93,7 @@ export default function ResearchRequest() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             autoComplete="name"
-            className="w-full border-b border-b-[#E7E9EF] text-black font-spectral text-[28px] font-normal leading-[32px] tracking-[-0.56px] outline-none pb-3"
+            className="w-full border-b border-b-[#E7E9EF] text-black font-spectral text-[28px] font-normal leading-[32px] tracking-[-0.56px] outline-none pb-3 2xl:text-[42px] 2xl:leading-[58px] 2xl:-tracking-[0.84px]"
           />
           <div className="flex flex-col md:flex-row gap-10 md:gap-3">
             <input
@@ -102,7 +102,7 @@ export default function ResearchRequest() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
-              className="w-full border-b border-b-[#E7E9EF] text-black font-spectral text-[28px] font-normal leading-[32px] tracking-[-0.56px] outline-none pb-3"
+              className="w-full border-b border-b-[#E7E9EF] text-black font-spectral text-[28px] font-normal leading-[32px] tracking-[-0.56px] outline-none pb-3 2xl:text-[42px] 2xl:leading-[58px] 2xl:-tracking-[0.84px]"
             />
             <input
               type="text"
@@ -110,7 +110,7 @@ export default function ResearchRequest() {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               autoComplete="organization"
-              className="w-full border-b border-b-[#E7E9EF] text-black font-spectral text-[28px] font-normal leading-[32px] tracking-[-0.56px] outline-none pb-3"
+              className="w-full border-b border-b-[#E7E9EF] text-black font-spectral text-[28px] font-normal leading-[32px] tracking-[-0.56px] outline-none pb-3 2xl:text-[42px] 2xl:leading-[58px] 2xl:-tracking-[0.84px]"
             />
           </div>
         </div>
@@ -118,7 +118,7 @@ export default function ResearchRequest() {
       <button
         type="submit"
         disabled={isLoading}
-        className="bg-black text-white font-apercu text-[18px] px-[82px] py-2 max-md:w-[90vw] w-fit"
+        className="bg-black text-white font-apercu text-[18px] px-[82px] py-2 max-md:w-[90vw] w-fit 2xl:text-[42px] 2xl:leading-[58px] 2xl:-tracking-[0.84px]"
         onClick={() => {
           if (isFormSubmitted) {
             router.push(`/${pathname.split("/").slice(1, 3).join("/")}`, {

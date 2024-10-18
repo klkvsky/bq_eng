@@ -29,7 +29,7 @@ export function NewsSection({
     <div className="flex flex-col">
       <a
         href={linkURL}
-        className="font-spectral font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] p-2 md:p-3 xl:pb-3 md:pt-0 xl:px-0 xl:pl-3 hover:opacity-30 duration-500"
+        className="font-spectral font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] p-2 md:p-3 xl:pb-3 md:pt-0 xl:px-0 xl:pl-3 hover:opacity-30 duration-500  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
         onClick={(e) => {
           e.preventDefault();
 
@@ -38,7 +38,8 @@ export function NewsSection({
           });
         }}
       >
-        {title} <span className="text-xs">{isClose ? "✕" : "→"}</span>
+        {title}{" "}
+        <span className="text-xs 2xl:text-[22.5px]">{isClose ? "✕" : "→"}</span>
       </a>
       <div className="flex flex-col gap-8 md:gap-10">
         {items.slice(0, isMain ? 5 : items.length).map((item, index) => (

@@ -5,7 +5,7 @@ export default function RequestLink({ slug }: { slug: string }) {
   const router = useTransitionRouter();
   return (
     <a
-      className="bg-black text-white font-apercu text-[18px] px-[82px] py-2 xl:mr-auto xl:ml-3 mt-6 max-md:w-[90vw] max-xl:md:mr-auto max-xl:md:ml-3"
+      className="bg-black text-white font-apercu text-[18px] px-[82px] py-2 xl:mr-auto xl:ml-3 mt-6 max-md:w-[90vw] max-xl:md:mr-auto max-xl:md:ml-3  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
       href={`/knowledge/${slug}/request`}
       onClick={(e) => {
         e.preventDefault();

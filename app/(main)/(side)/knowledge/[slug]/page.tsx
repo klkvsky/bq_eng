@@ -35,7 +35,7 @@ export default async function ArticlePage({
     }
   };
 
-  console.log(article.images)
+  console.log(article.images);
 
   return (
     <div className="flex flex-col items-center xl:py-10 md:min-h-[85vh]">
@@ -63,26 +63,28 @@ export default async function ArticlePage({
         </div>
       )}
       {article.images && article.images.length > 0 && (
-        <div className="bg-[#B09FB5] w-screen xl:w-[calc(9*8.33vw)] relative h-[50vh] xl:h-screen flex flex-row overflow-scroll snap-x snap-mandatory lg:-mt-[88px] no-scrollbar">
-          {article.images.filter(image => image.asset).map((image, index) => (
-            <div
-              key={index}
-              className="snap-center snap-always min-w-[100vw] xl:min-w-[calc(9*8.33vw)] h-full flex flex-col items-center justify-center px-[calc(2.5*8.33vw)]"
-            >
-              <Image
-                src={image.asset.url}
-                alt="Article image"
-                width={0}
-                height={0}
-                className="w-full h-auto"
-                unoptimized
-              />
-            </div>
-          ))}
+        <div className="bg-[#B09FB5] w-screen xl:w-[calc(9*8.33vw)] relative h-[50vh] xl:h-screen flex flex-row overflow-scroll snap-x snap-mandatory lg:-mt-[88px] 2xl:-mt-[154px] no-scrollbar">
+          {article.images
+            .filter((image) => image.asset)
+            .map((image, index) => (
+              <div
+                key={index}
+                className="snap-center snap-always min-w-[100vw] xl:min-w-[calc(9*8.33vw)] h-full flex flex-col items-center justify-center px-[calc(2.5*8.33vw)]"
+              >
+                <Image
+                  src={image.asset.url}
+                  alt="Article image"
+                  width={0}
+                  height={0}
+                  className="w-full h-auto"
+                  unoptimized
+                />
+              </div>
+            ))}
         </div>
       )}
       {article.type === "research" && (
-        <p className="font-normal text-[20px] md:text-[28px] leading-[24px] md:leading-[32px] -tracking-[0.6px] md:-tracking-[-0.01rem] p-2 xl:p-3 font-spectral">
+        <p className="font-normal text-[20px] md:text-[28px] leading-[24px] md:leading-[32px] -tracking-[0.6px] md:-tracking-[-0.01rem] p-2 xl:p-3 font-spectral 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]">
           <span className="font-apercu opacity-30">
             {getArticleType(article.type)}. <br className="md:hidden" />
           </span>

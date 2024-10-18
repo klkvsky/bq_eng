@@ -12,7 +12,7 @@ export function NewsItem({ item }: { item: Article }): React.ReactNode {
           : "flex flex-col-reverse gap-1.5"
       )}
     >
-      <p className="font-apercu font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-6 md:leading-7 xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] opacity-30 xl:opacity-100">
+      <p className="font-apercu font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-6 md:leading-7 xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] opacity-30 xl:opacity-100  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
         {item.type === "press-release" &&
           item.pressReleaseCategory === "magazines" &&
           item.source &&
@@ -21,7 +21,7 @@ export function NewsItem({ item }: { item: Article }): React.ReactNode {
           {new Date(item.date).toLocaleDateString("ru-RU")}
         </span>
       </p>
-      <p className="font-spectral font-normal text-[20px] xl:text-[28px] leading-6 xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em]">
+      <p className="font-spectral font-normal text-[20px] xl:text-[28px] leading-6 xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em] 2xl:text-[42px] 2xl:leading-[58px] 2xl:-tracking-[0.84px]">
         {item.title}
       </p>
     </div>

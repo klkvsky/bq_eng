@@ -26,7 +26,7 @@ export default function Footer() {
     <>
       <div
         className={cn(
-          "flex flex-row max-md:items-end h-auto md:h-[44px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px]  leading-4 md:leading-5 -tracking-[0.28px] md:-tracking-[0.02em]  xl:mt-[160px] z-30 transition-opacity mt-[80px]"
+          "flex flex-row max-md:items-end h-auto md:h-[44px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px]  leading-4 md:leading-5 -tracking-[0.28px] md:-tracking-[0.02em]  xl:mt-[160px] z-30 transition-opacity mt-[80px] 2xl:px-6 2xl:py-[28px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
         )}
         style={{
           viewTransitionName: "footer",
@@ -50,7 +50,7 @@ export default function Footer() {
         <div className="flex flex-col max-md:gap-1 max-md:ml-auto md:flex-row md:w-full">
           <a
             className={cn(
-              "whitespace-nowrap md:w-fit md:ml-[4.165%] xl:w-[17.5%] xl:ml-[19.2%] ",
+              "whitespace-nowrap md:w-fit md:ml-[4.165%] xl:w-[17.5%] xl:ml-[19.2%] 2xl:ml-[18.9%]",
               pathname === "/privacy-policy"
                 ? "opacity-30 pointer-events-none cursor-default"
                 : "hover:opacity-30 transition-opacity duration-500"

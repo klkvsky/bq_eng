@@ -98,7 +98,7 @@ export default function RelatedItems({
         msUserSelect: "none",
       }}
     >
-      <p className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] pl-3 w-full border-b border-[#E7E9EF] pb-3">
+      <p className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] pl-3 w-full border-b border-[#E7E9EF] pb-3 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
         {title}
       </p>
       <div className="relative overflow-hidden mt-20 xl:mt-40">

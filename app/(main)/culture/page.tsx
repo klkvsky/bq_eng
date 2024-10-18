@@ -18,7 +18,7 @@ export default async function Home() {
         alt="project-1"
         width={0}
         height={0}
-        className="-mt-[44px] z-10 w-screen object-cover object-center xl:h-screen"
+        className="-mt-[44px] 2xl:-mt-[104px] z-10 w-screen object-cover object-center xl:h-screen"
         unoptimized
       />
       <div className="mt-4 md:mt-6">
@@ -55,7 +55,7 @@ export default async function Home() {
 
 function CultureText({ text }: { text: string }) {
   return (
-    <h1 className="font-spectral font-normal text-[20px] md:text-[28px] xl:text-[38px] leading-[24px] md:leading-[32px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[0.03em] px-3 mt-20 md:mt-40 max-xl:relative max-xl:pt-4 max-xl:custom-shadow-botton">
+    <h1 className="font-spectral font-normal text-[20px] md:text-[28px] xl:text-[38px] leading-[24px] md:leading-[32px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[0.03em] px-3 mt-20 md:mt-40 max-xl:relative max-xl:pt-4 max-xl:custom-shadow-botton 2xl:text-[86.4px] 2xl:leading-[100.8px] 2xl:-tracking-[2.592px]">
       {text}
     </h1>
   );
@@ -98,7 +98,7 @@ function CultureImage({
           />
         </div>
         {caption && (
-          <p className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] px-2 xl:pr-3 xl:pl-0 mt-8 xl:mt-6 w-full xl:w-[calc(9*8.33vw)]">
+          <p className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] px-2 xl:pr-3 xl:pl-0 mt-8 xl:mt-6 w-full xl:w-[calc(9*8.33vw)] 2xl:text-[86.4px] 2xl:leading-[100.8px] 2xl:-tracking-[2.592px]">
             {caption}
           </p>
         )}
@@ -135,13 +135,13 @@ function Columns({
         )}
       >
         <div className="flex flex-col gap-2 md:gap-3 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)] ">
-          <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]">
+          <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
             {firstColumn.title}
           </p>
           {firstColumn.items.map((item, index) => (
             <p
               key={index}
-              className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em]"
+              className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
             >
               {item.type === "email" ? (
                 <>
@@ -168,13 +168,13 @@ function Columns({
         >
           {restColumns.map((column, columnIndex) => (
             <div key={columnIndex} className="flex flex-col gap-2 md:gap-3">
-              <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]">
+              <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
                 {column.title}
               </p>
               {column.items.length > 0 && (
                 <p
                   className={cn(
-                    "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em]"
+                    "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
                   )}
                 >
                   {column.items[0].text}
@@ -186,7 +186,7 @@ function Columns({
                     <p
                       key={itemIndex}
                       className={cn(
-                        "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em]"
+                        "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
                       )}
                     >
                       {item.text}

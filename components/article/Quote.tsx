@@ -8,7 +8,7 @@ export function ArticleQuote({
   text: string;
 }) {
   return (
-    <p className="font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] font-spectral px-2 md:px-3">
+    <p className="font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] font-spectral px-2 md:px-3  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
       <span className="font-apercu opacity-30">{author}</span>, {" "}
       <span className="font-apercu opacity-30">{position}</span>: {" "}
       {text}

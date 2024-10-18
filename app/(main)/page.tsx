@@ -18,7 +18,7 @@ export default async function Home() {
       </div>
       <div
         className={cn(
-          "flex flex-col transition-opacity duration-1000 gap-[80px] md:gap-[160px] 2xl:gap-[422px] mt-[48px] md:mt-20 xl:mt-[189px] 2xl:mt-[454px]"
+          "flex flex-col transition-opacity duration-1000 gap-[80px] md:gap-[160px]  mt-[48px] md:mt-20 xl:mt-[189px] "
         )}
       >
         {data.featuredProjects.map((item, index) => (

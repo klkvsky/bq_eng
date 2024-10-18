@@ -60,7 +60,7 @@ export default async function Project({
       </div>
       <div className="flex flex-col max-xl:items-center xl:flex-row w-full border-t border-[#E7E9EF] pt-3 xl:mb-40 max-xl:gap-10 max-xl:text-center">
         <p
-          className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] xl:pl-3"
+          className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] xl:pl-3 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
           id="project-about"
         >
           О проекте
@@ -80,7 +80,7 @@ export default async function Project({
                 {group.map((label, index) => (
                   <div
                     key={index}
-                    className="flex flex-col text-[16px] font-normal leading-5 -tracking-[0.32px]"
+                    className="flex flex-col text-[16px] font-normal leading-5 -tracking-[0.32px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
                   >
                     <p className="font-apercu">{label.label}:</p>
                     <p className="font-spectral">{label.value}</p>
@@ -102,7 +102,7 @@ export default async function Project({
               className="w-full h-auto"
               unoptimized
             />
-            <p className="font-apercu text-[16px] font-normal leading-5 -tracking-[0.32px]">
+            <p className="font-apercu text-[16px] font-normal leading-5 -tracking-[0.32px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
               {project.connectedResearch.title}
             </p>
           </Link>

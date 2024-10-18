@@ -81,7 +81,7 @@ export default function ProjectItem({
             </div>
             {displayMode === "list" && (
               <div className="xl:absolute xl:left-0 xl:top-0 w-full h-full xl:bg-white xl:opacity-0 transition-opacity xl:custom-shadow-right-no-margin xl:group-hover:opacity-100 flex md:flex-row-reverse xl:flex-col flex-col-reverse max-xl:justify-end">
-                <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] 2xl:text-[32px] leading-[20px] md:leading-[32px] xl:leading-[20px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 2xl:pt-6 md:pl-[calc(2*8.33vw)] xl:pl-0">
+                <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px]  leading-[20px] md:leading-[32px] xl:leading-[20px]  -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3  md:pl-[calc(2*8.33vw)] xl:pl-0 2xl:leading-[48px] 2xl:-tracking-[0.76px] 2xl:text-[38px]">
                   {project.title} <br className="xl:hidden" />
                   {project.categories.map((category, index) => (
                     <span key={index} className="opacity-30">
@@ -90,14 +90,14 @@ export default function ProjectItem({
                     </span>
                   ))}
                 </p>
-                <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px]  2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1 2xl:pb-3 whitespace-nowrap md:max-xl:min-w-[calc(2*8.33vw)]">
+                <p className="font-apercu font-normal text-[14px] md:text-[28px]  leading-[20px] md:leading-[32px]   -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1  whitespace-nowrap md:max-xl:min-w-[calc(2*8.33vw)] 2xl:leading-[48px] 2xl:-tracking-[0.76px] 2xl:text-[38px]">
                   {project.projectCodeName}
                 </p>
               </div>
             )}
           </div>
           {displayMode === "gallery" && (
-            <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px] pl-2 md:pl-3">
+            <p className="font-apercu font-normal text-[14px] xl:text-[16px]  leading-[20px]  -tracking-[0.02em] xl:-tracking-[0.02em]  pl-2 md:pl-3 2xl:leading-[48px] 2xl:-tracking-[0.76px] 2xl:text-[38px]">
               {project.projectCodeName}
             </p>
           )}
@@ -123,7 +123,7 @@ export default function ProjectItem({
                   unoptimized
                 />
               </div>
-              <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px] pl-2 md:pl-3">
+              <p className="font-apercu font-normal text-[14px] xl:text-[16px]  leading-[20px]  -tracking-[0.02em] xl:-tracking-[0.02em]  pl-2 md:pl-3 2xl:leading-[48px] 2xl:-tracking-[0.76px] 2xl:text-[38px]">
                 {project.secondCodeName}
               </p>
             </div>
@@ -163,7 +163,7 @@ export default function ProjectItem({
               </div>
               {displayMode === "list" && (
                 <div className="xl:absolute xl:left-0 xl:top-0 w-full h-full xl:bg-white xl:opacity-0 transition-opacity xl:custom-shadow-right-no-margin xl:group-hover:opacity-100 flex md:flex-row-reverse xl:flex-col flex-col-reverse max-xl:justify-end xl:pr-4">
-                  <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px] 2xl:text-[32px] leading-[20px] md:leading-[32px] xl:leading-[20px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3 2xl:pt-6 md:pl-[calc(2*8.33vw)] xl:pl-0">
+                  <p className="font-apercu font-normal text-[14px] md:text-[28px] xl:text-[16px]  leading-[20px] md:leading-[32px] xl:leading-[20px]  -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:pt-3  md:pl-[calc(2*8.33vw)] xl:pl-0 2xl:leading-[48px] 2xl:-tracking-[0.76px] 2xl:text-[38px]">
                     {project.title} <br className="xl:hidden" />
                     <span className="opacity-30">
                       {project.categories.map((category, index) => (
@@ -174,14 +174,14 @@ export default function ProjectItem({
                       ))}
                     </span>
                   </p>
-                  <p className="font-apercu font-normal text-[14px] md:text-[28px] 2xl:text-[32px] leading-[20px] md:leading-[32px] 2xl:leading-[40px] -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1 md:max-xl:min-w-[calc(2*8.33vw)]">
+                  <p className="font-apercu font-normal text-[14px] md:text-[28px]  leading-[20px] md:leading-[32px]  -tracking-[0.28px] md:-tracking-[0.56px] xl:-tracking-[0.02em] xl:mt-auto xl:pb-1 md:max-xl:min-w-[calc(2*8.33vw)] 2xl:leading-[48px] 2xl:-tracking-[0.76px] 2xl:text-[38px]">
                     {project.projectCodeName}
                   </p>
                 </div>
               )}
             </div>
             {displayMode === "gallery" && (
-              <p className="font-apercu font-normal text-[14px] xl:text-[16px] 2xl:text-[38px] leading-[20px] 2xl:leading-[48px] -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:-tracking-[0.76px]">
+              <p className="font-apercu font-normal text-[14px] xl:text-[16px]  leading-[20px]  -tracking-[0.02em] xl:-tracking-[0.02em] 2xl:leading-[48px] 2xl:-tracking-[0.76px] 2xl:text-[38px]">
                 {project.projectCodeName}
               </p>
             )}
