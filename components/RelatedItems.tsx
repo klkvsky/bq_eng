@@ -106,11 +106,15 @@ export default function RelatedItems({
           swipeable={true}
           draggable={true}
           arrows={false}
-          showDots={title === "Знания BQ Studio" ? true : false}
+          showDots={
+            title === "Знания BQ Studio" || title === "Больше материалов"
+              ? true
+              : false
+          }
           responsive={responsive}
           infinite={false}
           transitionDuration={1000}
-          containerClass="relative w-full"
+          containerClass="relative w-full pb-5"
           itemClass="px-[12.33vw] md:px-4 xl:px-[4.165vw] w-full xl:aspect-[15/12] relative group"
           renderDotsOutside={true}
           customDot={
