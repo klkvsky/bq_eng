@@ -38,7 +38,7 @@ export default async function Home() {
           {data.heroDescription}
         </p>
 
-        <div className="flex flex-col md:flex-row mt-[32px] md:mt-[24px] xl:mt-[80px] px-2 md:px-3 xl:pr-[calc(0.5*8.33vw)] xl:pl-0 gap-[16px] md:gap-[calc(1.85*8.33vw)] w-full xl:w-[calc(9*8.33vw)] xl:gap-[calc(0.5*8.33vw)]">
+        <div className="flex flex-col md:flex-row mt-[32px] md:mt-[24px] xl:mt-[80px] px-2 md:px-3 xl:pr-[calc(0.5*8.33vw)] xl:pl-0 gap-[16px] md:gap-[calc(1.85*8.33vw)] w-full xl:w-[calc(9*8.33vw)] xl:gap-[calc(0.5*8.33vw)] bg-red-500">
           <div
             className="flex flex-col max-sm:gap-[16px] w-full md:w-[calc(4*8.33vw)] xl:w-[calc(4*8.33vw)] "
             id="positions"

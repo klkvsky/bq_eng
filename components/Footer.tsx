@@ -26,7 +26,7 @@ export default function Footer() {
     <>
       <div
         className={cn(
-          "flex flex-row max-md:items-end h-auto md:h-[44px]max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px]  leading-4 md:leading-5 -tracking-[0.28px] md:-tracking-[0.02em]  xl:mt-[160px] z-30 transition-opacity mt-[80px]"
+          "flex flex-row max-md:items-end h-auto md:h-[44px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px]  leading-4 md:leading-5 -tracking-[0.28px] md:-tracking-[0.02em]  xl:mt-[160px] z-30 transition-opacity mt-[80px]"
         )}
         style={{
           viewTransitionName: "footer",
@@ -47,7 +47,7 @@ export default function Footer() {
         >
           BQStudio, 2024
         </a>
-        <div className="flex flex-col max-md:gap-1 md:flex-row w-full">
+        <div className="flex flex-col max-md:gap-1 max-md:ml-auto md:flex-row md:w-full">
           <a
             className={cn(
               "whitespace-nowrap md:w-fit md:ml-[4.165%] xl:w-[17.5%] xl:ml-[19.2%] ",
@@ -70,7 +70,7 @@ export default function Footer() {
 
           <div
             className={cn(
-              "flex flex-row gap-1 md:w-fit md:ml-[8.33%] xl:w-2/12 xl:ml-[16.66%]",
+              "flex flex-row gap-1 md:w-fit md:ml-[8.33%] xl:w-2/12 xl:ml-[22.8%]",
               pathname === "/contacts"
                 ? "opacity-30 pointer-events-none cursor-default"
                 : "hover:opacity-30 transition-opacity duration-500"

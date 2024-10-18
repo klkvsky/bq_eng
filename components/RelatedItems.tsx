@@ -66,6 +66,26 @@ export default function RelatedItems({
     },
   };
 
+  const CustomDot = ({
+    onClick,
+    ...rest
+  }: {
+    onClick: () => void;
+    active: boolean;
+  }) => {
+    const { active } = rest;
+    return (
+      <button
+        className={cn(
+          active
+            ? "w-2 h-2 mx-1 rounded-full bg-black"
+            : "w-2 h-2 mx-1 rounded-full bg-black/30"
+        )}
+        onClick={() => onClick()}
+      ></button>
+    );
+  };
+
   const router = useTransitionRouter();
 
   return (
@@ -86,12 +106,22 @@ export default function RelatedItems({
           swipeable={true}
           draggable={true}
           arrows={false}
-          showDots={false}
+          showDots={title === "Знания BQ Studio" ? true : false}
           responsive={responsive}
           infinite={false}
           transitionDuration={1000}
           containerClass="relative w-full"
           itemClass="px-[12.33vw] md:px-4 xl:px-[4.165vw] w-full xl:aspect-[15/12] relative group"
+          renderDotsOutside={true}
+          customDot={
+            <CustomDot
+              onClick={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+              active={false}
+            />
+          }
+          dotListClass="custom-dot-list-style"
         >
           {items.map(
             (item, index) =>

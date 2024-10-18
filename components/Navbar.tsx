@@ -67,11 +67,7 @@ export default function Navbar() {
     pathname.startsWith("/knowledge/") || pathname.startsWith("/news/");
 
   const transition = isLargeScreen
-    ? isSidePage
-      ? slideOut
-      : isArticlePage
-        ? slideDown
-        : slide
+    ? isSidePage ? slideOut : isArticlePage ? slideDown : opacity
     : opacity;
 
   return (
