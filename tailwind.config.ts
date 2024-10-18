@@ -22,7 +22,7 @@ const config: Config = {
       md: "768px",
       lg: "1024px",
       xl: "1280px",
-      "2xl": "2048px", // Changed from the default 1536px to 2048px (2K)
+      "2xl": "3840px",
     },
   },
   plugins: [],
