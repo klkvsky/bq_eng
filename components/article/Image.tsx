@@ -20,7 +20,7 @@ function ImageOverlay({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-white cursor-pointer"
-      onClick={onClose} 
+      onClick={onClose}
     >
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
@@ -143,8 +143,8 @@ export function ArticleImage({
         )}
         {type === "center" && (
           <div className="w-full h-auto flex justify-center items-center">
-            <div className="w-[calc(6*8.33vw)] h-full relative custom-shadow-left">
-              {renderImage(src, "w-[calc(6*8.33vw)] h-auto")}
+            <div className="w-[calc(6*12.5vw)] md:w-[calc(6*8.33vw)] h-full relative custom-shadow-left">
+              {renderImage(src, "w-[calc(6*12.5vw)] md:w-[calc(6*8.33vw)] h-auto")}
             </div>
           </div>
         )}

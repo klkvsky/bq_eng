@@ -106,7 +106,7 @@ export default function Knowledge() {
               });
             }}
           >
-            <div className="aspect-[253/320] relative group xl:hover:custom-shadow-right-articles cursor-pointer max-xl:gap-4 max-xl:flex max-xl:flex-col w-[calc(6*12.5vw)] md:w-[calc(3*8.33vw)] xl:w-[calc(2*8.33vw)] max-xl:mt-10">
+            <div className="aspect-[253/320] relative group xl:hover:custom-shadow-right-articles cursor-pointer max-md:gap-2 max-xl:gap-4 max-xl:flex max-xl:flex-col w-[calc(6*12.5vw)] md:w-[calc(3*8.33vw)] xl:w-[calc(2*8.33vw)] max-xl:mt-10">
               <div className="relative aspect-[253/320]">
                 {article.image && (
                   <Image
@@ -125,7 +125,7 @@ export default function Knowledge() {
                   />
                 )}
               </div>
-              <div className="xl:absolute xl:top-0 xl:left-0 xl:w-full xl:h-full xl:bg-white xl:group-hover:opacity-100 xl:opacity-0 flex flex-col xl:transition-opacity max-md:gap-1">
+              <div className="xl:absolute xl:top-0 xl:left-0 xl:w-full xl:h-full xl:bg-white xl:group-hover:opacity-100 xl:opacity-0 flex flex-col xl:transition-opacity max-md:gap-0">
                 <div className="max-md:flex max-md:flex-row max-md:gap-2 font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] opacity-30">
                   <p className="xl:pt-3">{getArticleType(article.type)}</p>
                   <p className="xl:hidden">
