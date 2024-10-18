@@ -52,7 +52,8 @@ export default function CultureTeam({
 
   return (
     <div className="flex flex-col xl:flex-row xl:items-end xl:justify-end mt-[100px]">
-      <div className="flex flex-col gap-8 xl:gap-10 items-center xl:justify-center max-xl:custom-shadow-top xl:custom-shadow-left relative px-2 pt-4 md:pt-3 xl:py-[200px] w-full xl:w-[calc(9*8.33vw)]">
+      <div className="flex flex-col gap-8 xl:gap-10 items-center xl:justify-center xl:custom-shadow-left relative px-2 pt-4 md:pt-3 xl:py-[200px] w-full xl:w-[calc(9*8.33vw)]">
+        <div className="absolute top-0 left-0 w-1/2 max-xl:custom-shadow-top" />
         <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] xl:absolute xl:left-[12px] xl:top-[20px] max-xl:mr-auto">
           {title}
         </p>

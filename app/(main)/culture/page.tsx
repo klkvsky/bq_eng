@@ -55,7 +55,8 @@ export default async function Home() {
 
 function CultureText({ text }: { text: string }) {
   return (
-    <h1 className="font-spectral font-normal text-[20px] md:text-[28px] xl:text-[38px] leading-[24px] md:leading-[32px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[0.03em] px-3 mt-20 md:mt-40 max-xl:relative max-xl:pt-4 max-xl:custom-shadow-botton 2xl:text-[86.4px] 2xl:leading-[100.8px] 2xl:-tracking-[2.592px]">
+    <h1 className="font-spectral font-normal text-[20px] md:text-[28px] xl:text-[38px] leading-[24px] md:leading-[32px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.84px] xl:-tracking-[0.03em] px-3 mt-20 md:mt-40 max-xl:relative max-xl:pt-4 2xl:text-[86.4px] 2xl:leading-[100.8px] 2xl:-tracking-[2.592px]">
+      <div className="absolute top-0 left-0 w-1/2 max-xl:custom-shadow-top" />
       {text}
     </h1>
   );
