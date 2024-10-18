@@ -23,7 +23,7 @@ export default async function Contacts() {
       : data.columns;
 
   return (
-    <div className="flex flex-col min-h-[75vh]">
+    <div className="flex flex-col min-h-screen md:min-h-[calc(100vh-170px)] xl:min-h-[75vh]">
       <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] p-2 md:pl-3 md:py-0">
         {data.pageTitle}
       </h1>
@@ -189,8 +189,8 @@ function Columns({
                     <p
                       key={itemIndex}
                       className={cn(
-                        "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] mt-2"
-                        , item.type === "link" && "-translate-y-[24px]"
+                        "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] mt-2",
+                        item.type === "link" && "-translate-y-[24px]"
                       )}
                     >
                       {item.type === "email" ? (

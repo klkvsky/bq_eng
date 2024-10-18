@@ -35,8 +35,10 @@ export default async function ArticlePage({
     }
   };
 
+  console.log(article.images)
+
   return (
-    <div className="flex flex-col items-center xl:py-10">
+    <div className="flex flex-col items-center xl:py-10 md:min-h-[85vh]">
       {article.type !== "research" && (
         <div
           className="font-normal text-[20px] md:text-[32px] xl:text-[38px] leading-[24px] md:leading-[36px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.96px] xl:-tracking-[0.03em] text-center w-[calc(6*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(7*8.33vw)]"
@@ -62,13 +64,13 @@ export default async function ArticlePage({
       )}
       {article.images && article.images.length > 0 && (
         <div className="bg-[#B09FB5] w-screen xl:w-[calc(9*8.33vw)] relative h-[50vh] xl:h-screen flex flex-row overflow-scroll snap-x snap-mandatory lg:-mt-[88px] no-scrollbar">
-          {article.images.map((image, index) => (
+          {article.images.filter(image => image.asset).map((image, index) => (
             <div
               key={index}
               className="snap-center snap-always min-w-[100vw] xl:min-w-[calc(9*8.33vw)] h-full flex flex-col items-center justify-center px-[calc(2.5*8.33vw)]"
             >
               <Image
-                src={urlFor(image.asset.url).url()}
+                src={image.asset.url}
                 alt="Article image"
                 width={0}
                 height={0}

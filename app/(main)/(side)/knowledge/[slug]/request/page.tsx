@@ -69,10 +69,10 @@ export default function ResearchRequest() {
     <form
       onSubmit={handleSubmit}
       className={cn(
-        "bg-white flex flex-col p-2 md:pl-3 md:py-0 gap-10 transition-all duration-1000 justify-start align-top h-screen"
+        "bg-white flex flex-col p-2 md:pl-3 md:py-0 gap-10 transition-all duration-1000 justify-start align-top min-h-[78vh] md:min-h-[85vh] xl:min-h-[75vh]"
       )}
     >
-      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.04em] xl:mt-[44px] max-xl:pt-[44px]">
+      <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.04em]">
         <span className="font-apercu opacity-30">
           {isFormSubmitted
             ? "Спасибо за оставленную заявку!"
@@ -95,7 +95,7 @@ export default function ResearchRequest() {
             autoComplete="name"
             className="w-full border-b border-b-[#E7E9EF] text-black font-spectral text-[28px] font-normal leading-[32px] tracking-[-0.56px] outline-none pb-3"
           />
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-col md:flex-row gap-10 md:gap-3">
             <input
               type="text"
               placeholder="Email"

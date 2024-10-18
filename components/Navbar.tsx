@@ -23,6 +23,21 @@ export default function Navbar() {
 
   const [isCategoriesInNavbar, setIsCategoriesInNavbar] = useState(false);
 
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1280);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -51,7 +66,13 @@ export default function Navbar() {
   const isArticlePage =
     pathname.startsWith("/knowledge/") || pathname.startsWith("/news/");
 
-  const transition = isSidePage ? slideOut : opacity;
+  const transition = isLargeScreen
+    ? isSidePage
+      ? slideOut
+      : isArticlePage
+        ? slideDown
+        : slide
+    : opacity;
 
   return (
     <div
@@ -68,10 +89,9 @@ export default function Navbar() {
           href="/"
           onClick={(e) => {
             e.preventDefault();
-            const pageTransition = transition;
 
             router.push("/", {
-              onTransitionReady: pageTransition,
+              onTransitionReady: transition,
             });
             setIsMobileMenuOpen(false);
           }}
@@ -537,52 +557,58 @@ function handleAboutScroll() {
 
 function opacityWithTitle() {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const isLargeScreen = window.innerWidth >= 1280;
 
-  document.documentElement.animate(
-    [
+  if (isLargeScreen) {
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+        },
+        {
+          opacity: 0,
+          filter: "blur(5px)",
+        },
+      ],
       {
-        opacity: 1,
-        filter: "blur(0px)",
-      },
-      {
-        opacity: 0,
-        filter: "blur(5px)",
-      },
-    ],
-    {
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "forwards",
-      pseudoElement: "::view-transition-old(root)",
-    }
-  );
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "forwards",
+        pseudoElement: "::view-transition-old(root)",
+      }
+    );
 
-  document.documentElement.animate(
-    [
-      isSafari
-        ? {
-            display: "none",
-            opacity: 0,
-            filter: "blur(5px)",
-          }
-        : {
-            opacity: 0,
-            filter: "blur(5px)",
-          },
+    document.documentElement.animate(
+      [
+        isSafari
+          ? {
+              display: "none",
+              opacity: 0,
+              filter: "blur(5px)",
+            }
+          : {
+              opacity: 0,
+              filter: "blur(5px)",
+            },
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+        },
+      ],
       {
-        opacity: 1,
-        filter: "blur(0px)",
-      },
-    ],
-    {
-      delay: 1000,
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
-    }
-  );
+        delay: 1000,
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "backwards",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+  } else {
+    opacity();
+  }
 }
+
 function opacity() {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   document.documentElement.animate(
@@ -677,214 +703,232 @@ function opacity() {
 }
 
 function slide() {
-  document.documentElement.animate(
-    [
-      { opacity: 1, filter: "blur(0px)" },
-      { opacity: 0, filter: "blur(5px)" },
-    ],
-    {
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "backwards",
-      pseudoElement: "::view-transition-old(root)",
-    }
-  );
+  const isLargeScreen = window.innerWidth >= 1280;
 
-  document.documentElement.animate(
-    [
-      { opacity: 1, filter: "blur(0px)" },
-      { opacity: 0, filter: "blur(5px)" },
-    ],
-    {
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "backwards",
-      pseudoElement: "::view-transition-old(projectsTitle)",
-    }
-  );
-
-  document.documentElement.animate(
-    [
+  if (isLargeScreen) {
+    document.documentElement.animate(
+      [
+        { opacity: 1, filter: "blur(0px)" },
+        { opacity: 0, filter: "blur(5px)" },
+      ],
       {
-        transform: "translateX(100%)",
-        mixBlendMode: "multiply",
-        filter: "blur(5px)",
-      },
-      {
-        transform: "translateX(0%)",
-        mixBlendMode: "multiply",
-        filter: "blur(0px)",
-      },
-    ],
-    {
-      delay: 1750,
-      duration: 1500,
-      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-      fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
-    }
-  );
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "backwards",
+        pseudoElement: "::view-transition-old(root)",
+      }
+    );
 
-  document.documentElement.animate(
-    [
-      { transform: "translateX(135%)", filter: "blur(5px)" },
-      { transform: "translateX(0%)", filter: "blur(0px)" },
-    ],
-    {
-      delay: 1750,
-      duration: 1500,
-      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-      fill: "backwards",
-      pseudoElement: "::view-transition-new(sideshadow)",
-    }
-  );
+    document.documentElement.animate(
+      [
+        { opacity: 1, filter: "blur(0px)" },
+        { opacity: 0, filter: "blur(5px)" },
+      ],
+      {
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "backwards",
+        pseudoElement: "::view-transition-old(projectsTitle)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          transform: "translateX(100%)",
+          mixBlendMode: "multiply",
+          filter: "blur(5px)",
+        },
+        {
+          transform: "translateX(0%)",
+          mixBlendMode: "multiply",
+          filter: "blur(0px)",
+        },
+      ],
+      {
+        delay: 1750,
+        duration: 1500,
+        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        fill: "backwards",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        { transform: "translateX(135%)", filter: "blur(5px)" },
+        { transform: "translateX(0%)", filter: "blur(0px)" },
+      ],
+      {
+        delay: 1750,
+        duration: 1500,
+        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        fill: "backwards",
+        pseudoElement: "::view-transition-new(sideshadow)",
+      }
+    );
+  } else {
+    opacity();
+  }
 }
 
 function slideOut() {
-  document.documentElement.animate(
-    [
-      {
-        transform: "translateX(0%)",
-        opacity: 1,
-        mixBlendMode: "multiply",
-        filter: "blur(0px)",
-      },
-      {
-        transform: "translateX(100%)",
-        opacity: 1,
-        mixBlendMode: "multiply",
-        filter: "blur(5px)",
-      },
-    ],
-    {
-      duration: 2400,
-      easing: "cubic-bezier(0.33, 1, 0.68, 1)",
-      fill: "backwards",
-      pseudoElement: "::view-transition-old(root)",
-    }
-  );
+  const isLargeScreen = window.innerWidth >= 1280;
 
-  document.documentElement.animate(
-    [
-      { transform: "translateX(0%)", opacity: 1, filter: "blur(0px)" },
-      { transform: "translateX(132%)", opacity: 1, filter: "blur(5px)" },
-    ],
-    {
-      duration: 2400,
-      easing: "cubic-bezier(0.33, 1, 0.68, 1)",
-      fill: "backwards",
-      pseudoElement: "::view-transition-old(sideshadow)",
-    }
-  );
+  if (isLargeScreen) {
+    document.documentElement.animate(
+      [
+        {
+          transform: "translateX(0%)",
+          opacity: 1,
+          mixBlendMode: "multiply",
+          filter: "blur(0px)",
+        },
+        {
+          transform: "translateX(100%)",
+          opacity: 1,
+          mixBlendMode: "multiply",
+          filter: "blur(5px)",
+        },
+      ],
+      {
+        duration: 2400,
+        easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+        fill: "backwards",
+        pseudoElement: "::view-transition-old(root)",
+      }
+    );
 
-  document.documentElement.animate(
-    [
+    document.documentElement.animate(
+      [
+        { transform: "translateX(0%)", opacity: 1, filter: "blur(0px)" },
+        { transform: "translateX(132%)", opacity: 1, filter: "blur(5px)" },
+      ],
       {
-        opacity: 0,
-        filter: "blur(5px)",
-      },
-      {
-        opacity: 1,
-        filter: "blur(0px)",
-      },
-    ],
-    {
-      delay: 1500,
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
-    }
-  );
+        duration: 2400,
+        easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+        fill: "backwards",
+        pseudoElement: "::view-transition-old(sideshadow)",
+      }
+    );
 
-  document.documentElement.animate(
-    [
+    document.documentElement.animate(
+      [
+        {
+          opacity: 0,
+          filter: "blur(5px)",
+        },
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+        },
+      ],
       {
-        opacity: 0,
-        filter: "blur(5px)",
-      },
+        delay: 1500,
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "backwards",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          opacity: 0,
+          filter: "blur(5px)",
+        },
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+        },
+      ],
       {
-        opacity: 1,
-        filter: "blur(0px)",
-      },
-    ],
-    {
-      delay: 1500,
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "backwards",
-      pseudoElement: "::view-transition-new(projectsTitle)",
-    }
-  );
+        delay: 1500,
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "backwards",
+        pseudoElement: "::view-transition-new(projectsTitle)",
+      }
+    );
+  } else {
+    opacity();
+  }
 }
 
 function slideDown() {
-  document.documentElement.animate(
-    [
-      {
-        opacity: 1,
-        transform: "translateY(0)",
-        zIndex: 1000,
-        mixBlendMode: "normal",
-      },
-      {
-        opacity: 1,
-        transform: "translateY(125%)",
-        zIndex: 1000,
-        mixBlendMode: "normal",
-      },
-    ],
-    {
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "forwards",
-      pseudoElement: "::view-transition-old(root)",
-    }
-  );
+  const isLargeScreen = window.innerWidth >= 1280;
 
-  document.documentElement.animate(
-    [
+  if (isLargeScreen) {
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(0)",
+          zIndex: 1000,
+          mixBlendMode: "normal",
+        },
+        {
+          opacity: 1,
+          transform: "translateY(125%)",
+          zIndex: 1000,
+          mixBlendMode: "normal",
+        },
+      ],
       {
-        opacity: 1,
-        transform: "translateY(-125%)",
-        zIndex: -10,
-        mixBlendMode: "normal",
-      },
-      {
-        opacity: 1,
-        transform: "translateY(0)",
-        zIndex: -10,
-        mixBlendMode: "normal",
-      },
-    ],
-    {
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "forwards",
-      pseudoElement: "::view-transition-new(topShadow)",
-    }
-  );
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "forwards",
+        pseudoElement: "::view-transition-old(root)",
+      }
+    );
 
-  document.documentElement.animate(
-    [
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(-125%)",
+          zIndex: -10,
+          mixBlendMode: "normal",
+        },
+        {
+          opacity: 1,
+          transform: "translateY(0)",
+          zIndex: -10,
+          mixBlendMode: "normal",
+        },
+      ],
       {
-        opacity: 1,
-        transform: "translateY(0%)",
-        zIndex: 1,
-        mixBlendMode: "normal",
-      },
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "forwards",
+        pseudoElement: "::view-transition-new(topShadow)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(0%)",
+          zIndex: 1,
+          mixBlendMode: "normal",
+        },
+        {
+          opacity: 1,
+          transform: "translateY(0)",
+          zIndex: 1,
+          mixBlendMode: "normal",
+        },
+      ],
       {
-        opacity: 1,
-        transform: "translateY(0)",
-        zIndex: 1,
-        mixBlendMode: "normal",
-      },
-    ],
-    {
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "forwards",
-      pseudoElement: "::view-transition-new(root)",
-    }
-  );
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "forwards",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+  } else {
+    opacity();
+  }
 }
