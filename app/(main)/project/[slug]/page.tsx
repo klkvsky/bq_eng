@@ -20,6 +20,12 @@ export default async function Project({
 }) {
   const project: Project = await getProject(params.slug);
 
+  // Extract all image URLs from the project content
+  const allImages = project.content
+    .filter(item => item.type === "image")
+    .map(item => item.image?.asset.url ? urlFor(item.image.asset.url).url() : "")
+    .filter(Boolean);
+
   return (
     <div className="flex flex-col relative">
       <PageTitle
@@ -53,6 +59,7 @@ export default async function Project({
                     : undefined
                 }
                 title={project.title}
+                allImages={allImages}
               />
             );
           }

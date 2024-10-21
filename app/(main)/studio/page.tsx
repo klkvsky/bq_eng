@@ -3,16 +3,14 @@ import { cn } from "@/lib/utils";
 
 import Image from "next/image";
 
-import { getPositions, getStudioData } from "@/lib/sanity";
-import { Position, StudioPage } from "@/components/home/types";
+import { getStudioData } from "@/lib/sanity";
+import { StudioPage } from "@/components/home/types";
 
 import { urlFor } from "@/lib/sanity";
 import React from "react";
-import Link from "next/link";
 
 export default async function Home() {
   const data: StudioPage = await getStudioData();
-  const positions: Position[] = await getPositions();
   return (
     <div className="flex flex-col">
       <PageTitle title={data.heroDescription} categories={[]} />
@@ -38,38 +36,40 @@ export default async function Home() {
           {data.heroDescription}
         </p>
 
-        <div className="flex flex-col md:flex-row mt-[32px] md:mt-[24px] xl:mt-[80px] px-2 md:px-3 xl:pr-[calc(0.5*8.33vw)] xl:pl-0 gap-[16px] md:gap-[calc(1.85*8.33vw)] w-full xl:w-[calc(9*8.33vw)] xl:gap-[calc(0.5*8.33vw)] ">
-          <div
-            className="flex flex-col max-sm:gap-[16px] w-full md:w-[calc(4*8.33vw)] xl:w-[calc(4*8.33vw)] "
-            id="positions"
-          >
+        <div className="flex flex-col md:flex-row mt-[32px] md:mt-[24px] xl:mt-[80px] px-2 md:px-3 xl:pr-[calc(0.5*8.33vw)] xl:pl-0 gap-[16px] md:gap-[calc(1.85*8.33vw)] w-full xl:w-[calc(9*8.33vw)] xl:gap-[calc(0.5*8.33vw)]">
+          <div className="flex flex-col gap-2 md:gap-3 w-full md:w-[calc(4*8.33vw)] xl:w-[calc(4*8.33vw)]">
             <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] max-sm:mt-[8px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
               {data.contactSection.title}
             </p>
             {data.contactSection.contacts.map((contact) => (
               <div
-                className="flex flex-col gap-0 mt-3 xl:mt-[24px] font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
+                className={cn(
+                  "flex flex-col gap-0 font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]",
+                  data.contactSection.contacts.indexOf(contact) !== 0 && "mt-3"
+                )}
                 key={contact.name}
               >
                 <p className="font-spectral">{contact.name}</p>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="font-apercu opacity-30"
+                  className="font-apercu opacity-30 hover:opacity-100 transition-opacity duration-500"
                 >
                   {contact.email}
                 </a>
               </div>
             ))}
           </div>
-          <div className="flex flex-col w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)] ">
+          <div className="flex flex-col gap-2 xl:gap-3 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)]">
             <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
               {data.workDirections.title}
             </p>
-            <div className="flex flex-col mt-3 xl:mt-6 font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em] gap-3 xl:gap-6">
+            <div className="flex flex-col gap-5 md:gap-6 font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em]">
               {data.workDirections.directions.map((direction) => (
                 <div
                   key={direction.name}
-                  className="flex flex-col gap-px font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
+                  className={cn(
+                    "flex flex-col gap-px font-normal text-[20px] xl:text-[28px] leading-[24px] xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px] "
+                  )}
                 >
                   <p className="font-spectral">{direction.name}</p>
                   <p className="font-spectral opacity-30">
@@ -104,7 +104,7 @@ export default async function Home() {
       </h1>
       <div className="flex flex-col md:flex-row xl:justify-between mt-[32px] md:mt-20 xl:mt-[80px] gap-4 xl:gap-0 px-2 md:px-3 xl:pl-3 xl:pr-[calc(0.5*8.33vw)]  md:gap-[calc(0.85*8.33vw)]">
         <div className="flex flex-col gap-4 md:gap-6 xl:gap-10 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)] ">
-          <div className="flex flex-col gap-3 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)]">
+          <div className="flex flex-col gap-2 xl:gap-3 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)] ">
             <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
               {data.partnershipSection.title}
             </p>
@@ -118,61 +118,47 @@ export default async function Home() {
               <br className="hidden md:block xl:hidden" />
               <a
                 href={`mailto:${data.partnershipSection.email}`}
-                className="font-spectral xl:font-apercu font-normal opacity-100 xl:opacity-30 md:pl-0 xl:pl-1 pl-1 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
+                className="font-spectral xl:font-apercu font-normal opacity-100 xl:opacity-30 md:pl-0 xl:pl-1 pl-1 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px] hover:opacity-100 transition-opacity duration-500"
               >
                 {data.partnershipSection.email}
               </a>
             </p>
           </div>
-          {positions && positions.length > 0 && (
-            <div className="flex flex-col gap-0 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)]">
-              <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
-                {positions.length} открыт{positions.length === 1 ? "а" : "ы"}
-                {positions.length === 1 ? "я" : "х"} позици
-                {positions.length === 1 ? "я" : "и"}
-              </p>
-              {positions.map((position) => (
-                <Link
-                  href={position.link}
-                  target="_blank"
-                  key={position.title}
-                  className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] hover:opacity-30 transition-opacity duration-500 group 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
-                >
-                  {position.title}
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    ↗
-                  </span>
-                </Link>
-              ))}
-            </div>
-          )}
         </div>
-        <div className="flex flex-col gap-4 md:gap-6 xl:gap-10 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)] ">
+        <div className="flex flex-col gap-6 md:gap-10 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)] ">
           <div className="flex flex-col gap-3">
             <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
               {data.clientsSection.title}
             </p>
-            <p className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]">
-              {data.clientsSection.clients.map((client, index) => (
-                <React.Fragment key={index}>
-                  {client}
-                  {index < data.clientsSection.clients.length - 1 && <br />}
-                </React.Fragment>
-              ))}
-            </p>
+            {data.clientsSection.clients.map((client, index) => (
+              <p
+                key={index}
+                className={cn(
+                  "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]",
+                  index !== 0 && "-mt-3"
+                )}
+              >
+                {client}
+                {index < data.clientsSection.clients.length - 1 && <br />}
+              </p>
+            ))}
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2 xl:gap-3">
             <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
               {data.partnersSection.title}
             </p>
-            <p className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]">
-              {data.partnersSection.partners.map((partner, index) => (
-                <React.Fragment key={index}>
-                  {partner}
-                  {index < data.partnersSection.partners.length - 1 && <br />}
-                </React.Fragment>
-              ))}
-            </p>
+            {data.partnersSection.partners.map((partner, index) => (
+              <p
+                key={index}
+                className={cn(
+                  "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]",
+                  index !== 0 && "-mt-3"
+                )}
+              >
+                {partner}
+                {index < data.partnersSection.partners.length - 1 && <br />}
+              </p>
+            ))}
           </div>
         </div>
       </div>

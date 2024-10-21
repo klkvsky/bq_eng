@@ -345,7 +345,7 @@ export function NavbarMobile({
               });
             }, 300);
           }}
-          className={`w-full p-2  border-t-[1px] border-t-[#E7E9EF] ${
+          className={`w-full p-2 md:p-3 border-t-[1px] border-t-[#E7E9EF] ${
             pathname == "/knowledge" && "opacity-30 cursor-default"
           }`}
         >
@@ -362,7 +362,7 @@ export function NavbarMobile({
               });
             }, 300);
           }}
-          className={`w-full p-2 ${
+          className={`w-full p-2 md:p-3 ${
             pathname == "/news" && "opacity-30 cursor-default"
           }`}
         >
@@ -379,14 +379,14 @@ export function NavbarMobile({
               });
             }, 300);
           }}
-          className={`w-full p-2 ${
+          className={`w-full p-2 md:p-3 ${
             pathname == "/contacts" && "opacity-30 cursor-default"
           }`}
         >
           Контакты
         </a>
 
-        <div className="fixed bottom-2 left-2 w-full flex flex-row border-none">
+        <div className="fixed bottom-2 left-2 md:bottom-3 md:left-3 w-full flex flex-row border-none">
           <a href="/">Телеграм канал,</a>
           <a href="/">Youtube</a>
         </div>
@@ -404,45 +404,30 @@ export function NavbarMobile({
         />
 
         <svg
-          viewBox="0 0 334 355"
+          width="590"
+          height="627"
+          viewBox="0 0 590 627"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="absolute top-[180px] lg:top-[376px] right-0 border-none w-[calc(7*12.5vw)] md:w-[calc(7*8.33vw)] h-[calc(7*12.5vw)] md:h-[calc(7*8.33vw)]"
         >
-          <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
+          <g style={{ mixBlendMode: 'multiply', opacity: 0.25 }}>
             <path
-              d="M339 354C67.8937 354 7.72459 118.667 6 0.999969H339V354Z"
-              fill="url(#paint0_linear_5287_1446)"
-            />
-          </g>
-          <g style={{ mixBlendMode: "multiply" }} opacity="0.25">
-            <path
-              d="M334 355C62.0796 355 1.72977 118.333 0 0H334V355Z"
-              fill="url(#paint1_linear_5287_1446)"
+              d="M590 627C109.661 627 3.05559 209 0 0H590V627Z"
+              fill="url(#paint0_linear_5287_5268)"
             />
           </g>
           <defs>
             <linearGradient
-              id="paint0_linear_5287_1446"
-              x1="-103.982"
-              y1="202.729"
-              x2="61.3561"
-              y2="45.5788"
+              id="paint0_linear_5287_5268"
+              x1="-194.864"
+              y1="358.311"
+              x2="98.7731"
+              y2="79.9138"
               gradientUnits="userSpaceOnUse"
             >
-              <stop offset="0.233439" stopOpacity="0.45" />
-              <stop offset="1" stopColor="white" stopOpacity="0.05" />
-            </linearGradient>
-            <linearGradient
-              id="paint1_linear_5287_1446"
-              x1="-110.313"
-              y1="202.872"
-              x2="55.9397"
-              y2="45.2716"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop offset="0.233439" stopOpacity="0.45" />
-              <stop offset="1" stopColor="white" stopOpacity="0.05" />
+              <stop offset="0.233439" stop-opacity="0.45" />
+              <stop offset="1" stop-color="white" stop-opacity="0.05" />
             </linearGradient>
           </defs>
         </svg>
@@ -483,7 +468,7 @@ function ProjectsCategories() {
       )}
     >
       Направления работ{" "}
-      <span className="group-hover:rotate-180 transition-transform duration-300 text-[8px] 2xl:text-[22.5px]">
+      <span className="group-hover:rotate-180 transition-transform duration-100 text-[8px] 2xl:text-[22.5px]">
         ▼
       </span>
       <div className="flex flex-col items-start absolute top-full left-0 w-full h-full  opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mt-3 font-apercu text-[16px] leading-[20px] -tracking-[0.32px] whitespace-nowrap 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">

@@ -1,18 +1,37 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function ImageOverlay({
   src,
   onClose,
   title,
+  onNext,
+  onPrevious,
 }: {
   src: string;
   onClose: () => void;
   title?: string;
+  onNext: () => void;
+  onPrevious: () => void;
 }) {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        onPrevious();
+      } else if (event.key === "ArrowRight") {
+        onNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onNext, onPrevious]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -20,34 +39,62 @@ function ImageOverlay({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-white cursor-pointer"
-      onClick={onClose}
     >
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.8, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="w-full h-full flex items-center justify-center"
-        onClick={onClose}
-      >
-        <Image
-          src={src}
-          alt="Full screen image"
-          width={0}
-          height={0}
-          className="max-h-[calc(100vh-44px)] w-full object-contain cursor-default z-40"
-          unoptimized
-        />
+      <motion.div className="w-full h-full flex items-center justify-center">
+        <motion.div
+          className="w-fit h-fit flex items-center justify-center relative"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Image
+            src={src}
+            alt="Full screen image"
+            width={0}
+            height={0}
+            className="max-h-[calc(100vh-88px)] w-full object-contain cursor-default z-40"
+            unoptimized
+          />
+          <button
+            className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6 bg-white rounded-full flex flex-col items-center justify-center z-50 rotate-180"
+            onClick={() => {
+              onPrevious();
+            }}
+          >
+            <svg
+              width="4"
+              height="8"
+              viewBox="0 0 4 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 8L4 4L3.49691e-07 -1.74846e-07L0 8Z" fill="black" />
+            </svg>
+          </button>
+          <button
+            className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6 bg-white rounded-full flex flex-col items-center justify-center z-50"
+            onClick={() => {
+              onNext();
+            }}
+          >
+            <svg
+              width="4"
+              height="8"
+              viewBox="0 0 4 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 8L4 4L3.49691e-07 -1.74846e-07L0 8Z" fill="black" />
+            </svg>
+          </button>
+        </motion.div>
         <div className="flex flex-row z-50 fixed top-0 left-0 gap-4 items-center w-full bg-white p-3 max-h-[44px]">
           <p className="font-spectral text-[16px] -tracking-[0.32px]">
             {title}
           </p>
           <div className="h-3 w-px bg-black/30" />
-          <button
-            onClick={() => {
-              onclose;
-            }}
-          >
+          <button onClick={onClose}>
             <svg
               width="16"
               height="16"
@@ -75,17 +122,36 @@ export function ArticleImage({
   subtext,
   secondaryImage,
   title,
+  allImages,
 }: {
   src: string;
   type: "left" | "right" | "full" | "center";
   subtext?: string | null;
   secondaryImage?: string | null;
   title?: string;
+  allImages?: string[];
 }) {
   const [overlayImage, setOverlayImage] = useState<string | null>(null);
 
   const openOverlay = (imageSrc: string) => setOverlayImage(imageSrc);
   const closeOverlay = () => setOverlayImage(null);
+
+  const handleNext = () => {
+    if (allImages) {
+      const currentIndex = allImages.indexOf(overlayImage!);
+      const nextIndex = (currentIndex + 1) % allImages.length;
+      setOverlayImage(allImages[nextIndex]);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (allImages) {
+      const currentIndex = allImages.indexOf(overlayImage!);
+      const previousIndex =
+        (currentIndex - 1 + allImages.length) % allImages.length;
+      setOverlayImage(allImages[previousIndex]);
+    }
+  };
 
   const renderImage = (imageSrc: string, className: string) => (
     <div
@@ -144,7 +210,10 @@ export function ArticleImage({
         {type === "center" && (
           <div className="w-full h-auto flex justify-center items-center">
             <div className="w-[calc(6*12.5vw)] md:w-[calc(6*8.33vw)] h-full relative custom-shadow-left">
-              {renderImage(src, "w-[calc(6*12.5vw)] md:w-[calc(6*8.33vw)] h-auto")}
+              {renderImage(
+                src,
+                "w-[calc(6*12.5vw)] md:w-[calc(6*8.33vw)] h-auto"
+              )}
             </div>
           </div>
         )}
@@ -155,6 +224,8 @@ export function ArticleImage({
             src={overlayImage}
             onClose={closeOverlay}
             title={title}
+            onNext={handleNext}
+            onPrevious={handlePrevious}
           />
         )}
       </AnimatePresence>

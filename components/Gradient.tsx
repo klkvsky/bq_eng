@@ -63,7 +63,11 @@ export default function Gradient() {
       const newWidth = window.innerWidth;
       const newHeight = window.innerHeight;
       setWindowSize({ width: newWidth, height: newHeight });
-      setIsMobile(newWidth <= 1280); // Adjust this breakpoint as needed
+      const newIsMobile = newWidth <= 1280; // Adjust this breakpoint as needed
+      setIsMobile(newIsMobile);
+      
+      // Set isActive to true when resizing, hiding the gradient
+      setIsActive(true);
     };
 
     // Initial call to set the window size and check if mobile
@@ -109,14 +113,6 @@ export default function Gradient() {
     useTransform([mouseX, mouseY], calculateAngle),
     { stiffness: 5, damping: 10 }
   );
-
-  useEffect(() => {
-    if (isMobile) {
-      setIsActive(true);
-    } else {
-      setIsActive(false); // Reset to false for non-mobile devices
-    }
-  }, [isMobile]);
 
   return (
     <motion.div

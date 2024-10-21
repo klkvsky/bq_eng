@@ -3,10 +3,26 @@
 import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 export default function Footer() {
   const pathname = usePathname();
   const router = useTransitionRouter();
+
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1280);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
 
   const isSidePage =
     pathname.includes("/knowledge") ||
@@ -14,13 +30,16 @@ export default function Footer() {
     pathname === "/contacts" ||
     pathname === "/privacy-policy";
 
-  const isProjectPage = pathname.includes("/project/");
+  const isArticlePage =
+    pathname.startsWith("/knowledge/") || pathname.startsWith("/news/");
 
-  const transition = isProjectPage
-    ? slideDown
-    : isSidePage
+  const transition = isLargeScreen
+    ? isSidePage
       ? slideOut
-      : opacity;
+      : isArticlePage
+        ? slideDown
+        : opacity
+    : opacity;
 
   return (
     <>
@@ -70,14 +89,16 @@ export default function Footer() {
 
           <div
             className={cn(
-              "flex flex-row gap-1 md:w-fit md:ml-[8.33%] xl:w-2/12 xl:ml-[22.8%]",
-              pathname === "/contacts"
-                ? "opacity-30 pointer-events-none cursor-default"
-                : "hover:opacity-30 transition-opacity duration-500"
+              "flex flex-row gap-1 md:w-fit md:ml-[14.6%] xl:w-2/12 xl:ml-[22.8%]"
             )}
           >
             <a
               href="/contacts"
+              className={cn(
+                pathname === "/contacts"
+                  ? "opacity-30 pointer-events-none cursor-default"
+                  : "hover:opacity-30 transition-opacity duration-500"
+              )}
               onClick={(e) => {
                 e.preventDefault();
                 const transition = isSidePage ? opacity : slide;
@@ -90,6 +111,11 @@ export default function Footer() {
             </a>
             <a
               href="/contacts"
+              className={cn(
+                pathname === "/contacts"
+                  ? "opacity-30 pointer-events-none cursor-default"
+                  : "hover:opacity-30 transition-opacity duration-500"
+              )}
               onClick={(e) => {
                 e.preventDefault();
                 const transition = isSidePage ? opacity : slide;
@@ -154,18 +180,21 @@ export default function Footer() {
 }
 
 function opacity() {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   document.documentElement.animate(
     [
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
       {
         opacity: 0,
+        filter: "blur(5px)",
       },
     ],
     {
-      duration: 1000,
-      easing: "ease",
+      duration: 1500,
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
     }
@@ -175,14 +204,16 @@ function opacity() {
     [
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
       {
         opacity: 0,
+        filter: "blur(5px)",
       },
     ],
     {
-      duration: 1000,
-      easing: "ease",
+      duration: 1500,
+      easing: "ease-in-out",
       fill: "forwards",
       pseudoElement: "::view-transition-old(projectsTitle)",
     }
@@ -190,204 +221,284 @@ function opacity() {
 
   document.documentElement.animate(
     [
-      {
-        display: "none",
-        opacity: 0,
-      },
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+            filter: "blur(5px)",
+          }
+        : {
+            opacity: 0,
+            filter: "blur(5px)",
+          },
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
     ],
     {
       delay: 1000,
-      duration: 1000,
-      easing: "ease",
+      duration: 1500,
+      easing: "ease-in-out",
       fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
+      pseudoElement: "::view-transition-new(projectsTitle)",
     }
   );
 
   document.documentElement.animate(
     [
-      {
-        display: "none",
-        opacity: 0,
-      },
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+            filter: "blur(5px)",
+          }
+        : {
+            opacity: 0,
+            filter: "blur(5px)",
+          },
       {
         opacity: 1,
+        filter: "blur(0px)",
       },
     ],
     {
       delay: 1000,
-      duration: 1000,
-      easing: "ease",
+      duration: 1500,
+      easing: "ease-in-out",
       fill: "backwards",
-      pseudoElement: "::view-transition-new(projectsTitle)",
+      pseudoElement: "::view-transition-new(root)",
     }
   );
 }
 
 function slide() {
-  document.documentElement.animate(
-    [
-      {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-      {
-        opacity: 0,
-        transform: "translateX(-100%)",
-        filter: "blur(5px)",
-      },
-    ],
-    {
-      duration: 1000,
-      easing: "ease",
-      fill: "backwards",
-      pseudoElement: "::view-transition-old(root)",
-    }
-  );
+  const isLargeScreen = window.innerWidth >= 1280;
 
-  document.documentElement.animate(
-    [
+  if (isLargeScreen) {
+    document.documentElement.animate(
+      [
+        { opacity: 1, filter: "blur(0px)" },
+        { opacity: 0, filter: "blur(5px)" },
+      ],
       {
-        opacity: 0,
-        transform: "translateX(100%)",
-        filter: "blur(5px)",
-      },
-      {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-    ],
-    {
-      duration: 1000,
-      easing: "ease",
-      fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
-    }
-  );
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "backwards",
+        pseudoElement: "::view-transition-old(root)",
+      }
+    );
 
-  document.documentElement.animate(
-    [
+    document.documentElement.animate(
+      [
+        { opacity: 1, filter: "blur(0px)" },
+        { opacity: 0, filter: "blur(5px)" },
+      ],
       {
-        opacity: 0,
-        transform: "translateX(125%)",
-        filter: "blur(5px)",
-      },
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "backwards",
+        pseudoElement: "::view-transition-old(projectsTitle)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          transform: "translateX(100%)",
+          mixBlendMode: "multiply",
+          filter: "blur(5px)",
+        },
+        {
+          transform: "translateX(0%)",
+          mixBlendMode: "multiply",
+          filter: "blur(0px)",
+        },
+      ],
       {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-    ],
-    {
-      duration: 1000,
-      easing: "ease",
-      fill: "backwards",
-      pseudoElement: "::view-transition-new(sideshadow)",
-    }
-  );
+        delay: 1750,
+        duration: 1500,
+        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        fill: "backwards",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        { transform: "translateX(135%)", filter: "blur(5px)" },
+        { transform: "translateX(0%)", filter: "blur(0px)" },
+      ],
+      {
+        delay: 1750,
+        duration: 1500,
+        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        fill: "backwards",
+        pseudoElement: "::view-transition-new(sideshadow)",
+      }
+    );
+  } else {
+    opacity();
+  }
 }
 
 function slideOut() {
-  document.documentElement.animate(
-    [
-      {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-      {
-        opacity: 0,
-        transform: "translateX(100%)",
-        filter: "blur(5px)",
-      },
-    ],
-    {
-      duration: 1000,
-      easing: "ease",
-      fill: "backwards",
-      pseudoElement: "::view-transition-old(root)",
-    }
-  );
+  const isLargeScreen = window.innerWidth >= 1280;
 
-  document.documentElement.animate(
-    [
+  if (isLargeScreen) {
+    document.documentElement.animate(
+      [
+        {
+          transform: "translateX(0%)",
+          opacity: 1,
+          mixBlendMode: "multiply",
+          filter: "blur(0px)",
+        },
+        {
+          transform: "translateX(100%)",
+          opacity: 1,
+          mixBlendMode: "multiply",
+          filter: "blur(5px)",
+        },
+      ],
       {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-      {
-        opacity: 0,
-        transform: "translateX(125%)",
-        filter: "blur(5px)",
-      },
-    ],
-    {
-      duration: 1000,
-      easing: "ease",
-      fill: "backwards",
-      pseudoElement: "::view-transition-old(sideshadow)",
-    }
-  );
+        duration: 2400,
+        easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+        fill: "backwards",
+        pseudoElement: "::view-transition-old(root)",
+      }
+    );
 
-  document.documentElement.animate(
-    [
+    document.documentElement.animate(
+      [
+        { transform: "translateX(0%)", opacity: 1, filter: "blur(0px)" },
+        { transform: "translateX(132%)", opacity: 1, filter: "blur(5px)" },
+      ],
       {
-        opacity: 0,
-        transform: "translateX(-100%)",
-      },
+        duration: 2400,
+        easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+        fill: "backwards",
+        pseudoElement: "::view-transition-old(sideshadow)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          opacity: 0,
+          filter: "blur(5px)",
+        },
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+        },
+      ],
       {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-    ],
-    {
-      duration: 1000,
-      easing: "ease",
-      fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
-    }
-  );
+        delay: 1500,
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "backwards",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          opacity: 0,
+          filter: "blur(5px)",
+        },
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+        },
+      ],
+      {
+        delay: 1500,
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "backwards",
+        pseudoElement: "::view-transition-new(projectsTitle)",
+      }
+    );
+  } else {
+    opacity();
+  }
 }
 
 function slideDown() {
-  document.documentElement.animate(
-    [
-      {
-        opacity: 1,
-        transform: "translateY(0)",
-        zIndex: 1000,
-      },
-      {
-        opacity: 1,
-        transform: "translateY(100%)",
-        zIndex: 1000,
-      },
-    ],
-    {
-      duration: 1000,
-      easing: "ease",
-      fill: "backwards",
-      pseudoElement: "::view-transition-old(root)",
-    }
-  );
+  const isLargeScreen = window.innerWidth >= 1280;
 
-  document.documentElement.animate(
-    [
+  if (isLargeScreen) {
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(0)",
+          zIndex: 1000,
+          mixBlendMode: "normal",
+        },
+        {
+          opacity: 1,
+          transform: "translateY(125%)",
+          zIndex: 1000,
+          mixBlendMode: "normal",
+        },
+      ],
       {
-        opacity: 1,
-        transform: "translateY(0%)",
-      },
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "forwards",
+        pseudoElement: "::view-transition-old(root)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(-125%)",
+          zIndex: -10,
+          mixBlendMode: "normal",
+        },
+        {
+          opacity: 1,
+          transform: "translateY(0)",
+          zIndex: -10,
+          mixBlendMode: "normal",
+        },
+      ],
       {
-        opacity: 1,
-        transform: "translateY(0)",
-      },
-    ],
-    {
-      duration: 1000,
-      easing: "ease",
-      fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
-    }
-  );
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "forwards",
+        pseudoElement: "::view-transition-new(topShadow)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(0%)",
+          zIndex: 1,
+          mixBlendMode: "normal",
+        },
+        {
+          opacity: 1,
+          transform: "translateY(0)",
+          zIndex: 1,
+          mixBlendMode: "normal",
+        },
+      ],
+      {
+        duration: 1500,
+        easing: "ease-in-out",
+        fill: "forwards",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+  } else {
+    opacity();
+  }
 }

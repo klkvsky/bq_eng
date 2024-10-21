@@ -2,12 +2,14 @@
 
 import { cn } from "@/lib/utils";
 import { useTransitionRouter } from "next-view-transitions";
+import { usePathname } from "next/navigation";
 import { Article, Project } from "./home/types";
 import Image from "next/image";
 
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+import React, { useState, useEffect } from "react";
 
 export default function RelatedItems({
   title,
@@ -49,44 +51,12 @@ export default function RelatedItems({
     }
   };
 
+  const router = useTransitionRouter();
+  const pathname = usePathname();
   const isProject = items.length > 0 && !("type" in items[0]);
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1280 },
-      items: isProject ? 4 : 4,
-    },
-    tablet: {
-      breakpoint: { max: 1280, min: 640 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 640, min: 0 },
-      items: 1,
-    },
-  };
-
-  const CustomDot = ({
-    onClick,
-    ...rest
-  }: {
-    onClick: () => void;
-    active: boolean;
-  }) => {
-    const { active } = rest;
-    return (
-      <button
-        className={cn(
-          active
-            ? "w-2 h-2 mx-1 rounded-full bg-black"
-            : "w-2 h-2 mx-1 rounded-full bg-black/30"
-        )}
-        onClick={() => onClick()}
-      ></button>
-    );
-  };
-
-  const router = useTransitionRouter();
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <div
@@ -98,183 +68,258 @@ export default function RelatedItems({
         msUserSelect: "none",
       }}
     >
-      <p className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] pl-3 w-full border-b border-[#E7E9EF] pb-3 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
-        {title}
-      </p>
-      <div className="relative overflow-hidden mt-20 xl:mt-40">
-        <Carousel
-          swipeable={true}
-          draggable={true}
-          arrows={false}
-          showDots={
-            title === "Знания BQ Studio" || title === "Больше материалов"
-              ? true
-              : false
-          }
-          responsive={responsive}
-          infinite={false}
-          transitionDuration={1000}
-          containerClass="relative w-full pb-5"
-          itemClass="px-[12.33vw] md:px-4 xl:px-[4.165vw] w-full xl:aspect-[15/12] relative group"
-          renderDotsOutside={true}
-          customDot={
-            <CustomDot
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-              active={false}
-            />
-          }
-          dotListClass="custom-dot-list-style"
+      <div className="flex flex-row items-center justify-between border-b border-[#E7E9EF] p-3">
+        <p className="font-apercu font-normal text-[16px] -tracking-[0.32px]  w-full 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
+          {title}
+        </p>
+        <CustomPagination
+          totalSlides={items.length}
+          activeIndex={activeIndex}
+          swiper={swiper}
+        />
+      </div>
+      <div className="relative overflow-hidden mt-20 xl:mt-40 px-[calc(0.5*8.33vw)] ">
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={1}
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1280: {
+              slidesPerView: isProject || pathname === "/culture" ? 4 : 3,
+            },
+          }}
+          autoHeight
+          onSwiper={setSwiper}
+          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         >
           {items.map(
             (item, index) =>
               item.image && (
-                <a
-                  href={linkURL(item)}
-                  key={index}
-                  draggable={false}
-                  onDragStart={(e) => e.preventDefault()}
-                  className="relative w-full h-full"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    router.push(linkURL(item), {
-                      onTransitionReady: slide,
-                    });
-                  }}
-                  style={{
-                    userSelect: "none",
-                    WebkitUserSelect: "none",
-                    MozUserSelect: "none",
-                    msUserSelect: "none",
-                  }}
-                >
-                  <Image
-                    src={item.image?.asset.url}
-                    width={0}
-                    height={0}
-                    className={cn(
-                      "w-full xl:h-full",
-                      isProject
-                        ? "object-contain object-top"
-                        : "object-cover object-center"
-                    )}
-                    unoptimized
-                    alt={item.description || item.title}
+                <SwiperSlide key={item.id}>
+                  <a
+                    href={linkURL(item)}
+                    key={index}
                     draggable={false}
+                    onDragStart={(e) => e.preventDefault()}
+                    className="relative w-full h-full"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push(linkURL(item), {
+                        onTransitionReady: opacity,
+                      });
+                    }}
                     style={{
                       userSelect: "none",
                       WebkitUserSelect: "none",
                       MozUserSelect: "none",
                       msUserSelect: "none",
                     }}
-                  />
+                  >
+                    <Image
+                      src={item.image?.asset.url}
+                      width={0}
+                      height={0}
+                      className={cn(
+                        "w-full xl:h-full xl:aspect-[253/360] max-xl:md:max-w-[241px] max-xl:md:mx-auto",
+                        isProject
+                          ? "object-contain object-top"
+                          : "object-cover object-center"
+                      )}
+                      unoptimized
+                      alt={item.description || item.title}
+                      draggable={false}
+                      style={{
+                        userSelect: "none",
+                        WebkitUserSelect: "none",
+                        MozUserSelect: "none",
+                        msUserSelect: "none",
+                      }}
+                    />
 
-                  <div className="flex flex-col font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] pt-3 xl:opacity-0 xl:hover:opacity-100 xl:transition-opacity xl:bg-white xl:w-full xl:h-full xl:absolute xl:top-0 xl:left-0 xl:hover:custom-shadow-right-no-margin">
-                    <p className="opacity-30">
-                      {getArticleType("type" in item ? item.type : "digest")}
-                      {"date" in item && item.date && (
-                        <span className="ml-1 xl:hidden">
-                          {new Date(item.date).toLocaleDateString("ru-RU")}
+                    <div className="flex flex-col font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] pt-3 xl:opacity-0 xl:hover:opacity-100 xl:transition-opacity xl:bg-white xl:w-full xl:h-full xl:absolute xl:top-0 xl:left-0 xl:hover:custom-shadow-right-no-margin max-xl:md:max-w-[241px] max-xl:md:mx-auto">
+                      <p className="opacity-30">
+                        {!isProject &&
+                          getArticleType("type" in item ? item.type : "digest")}
+                        {"date" in item && item.date && (
+                          <span className="ml-1 xl:hidden">
+                            {new Date(item.date).toLocaleDateString("ru-RU")}
+                          </span>
+                        )}
+                      </p>
+                      <p>
+                        {item.title}
+                        <br />
+                        <span className="opacity-30">
+                          {"categories" in item &&
+                            item.categories &&
+                            item.categories.map(
+                              (cat: { name: string }, index: number) => (
+                                <React.Fragment key={index}>
+                                  <span className="whitespace-nowrap">
+                                    {cat.name}
+                                  </span>
+                                  {index < item.categories.length - 1 && ", "}
+                                </React.Fragment>
+                              )
+                            )}
                         </span>
-                      )}
-                    </p>
-                    <p>
-                      {item.title}
-                      <br />
-                      <span className="opacity-30">
-                        {"categories" in item &&
-                          item.categories &&
-                          item.categories.map(
-                            (cat: { name: string }, index: number) => (
-                              <React.Fragment key={index}>
-                                <span className="whitespace-nowrap">
-                                  {cat.name}
-                                </span>
-                                {index < item.categories.length - 1 && ", "}
-                              </React.Fragment>
-                            )
+                      </p>
+                      {!isProject && (
+                        <p className="mt-auto pb-3">
+                          {"projectCodeName" in item && item.projectCodeName}
+                          {"date" in item && item.date && (
+                            <span className="opacity-30 hidden xl:block">
+                              {new Date(item.date).toLocaleDateString("ru-RU")}
+                            </span>
                           )}
-                      </span>
-                    </p>
-                    <p className="mt-auto pb-3">
-                      {"projectCodeName" in item && item.projectCodeName}
-                      {"date" in item && item.date && (
-                        <span className="opacity-30 hidden xl:block">
-                          {new Date(item.date).toLocaleDateString("ru-RU")}
-                        </span>
+                        </p>
                       )}
-                    </p>
-                  </div>
-                </a>
+                    </div>
+                  </a>
+                </SwiperSlide>
               )
           )}
-        </Carousel>
+        </Swiper>
       </div>
     </div>
   );
 }
 
-function slide() {
+function CustomPagination({
+  totalSlides,
+  activeIndex,
+  swiper,
+}: {
+  totalSlides: number;
+  activeIndex: number;
+  swiper: SwiperType | null;
+}) {
+  const [visibleDots, setVisibleDots] = useState(totalSlides);
+
+  useEffect(() => {
+    const updateVisibleDots = () => {
+      if (window.innerWidth >= 1280) {
+        setVisibleDots(0); // No dots on desktop
+      } else if (window.innerWidth >= 768) {
+        setVisibleDots(Math.max(0, totalSlides - 1)); // One less dot on tablet
+      } else {
+        setVisibleDots(totalSlides); // All dots on mobile
+      }
+    };
+
+    updateVisibleDots();
+    window.addEventListener("resize", updateVisibleDots);
+
+    return () => window.removeEventListener("resize", updateVisibleDots);
+  }, [totalSlides]);
+
+  if (visibleDots === 0) return null; // Don't render anything on desktop
+
+  return (
+    <div className="flex justify-center gap-1.5">
+      {Array.from({ length: visibleDots }).map((_, index) => (
+        <button
+          key={index}
+          className={cn(
+            "w-1.5 h-1.5 rounded-full",
+            activeIndex === index ? "bg-black" : "bg-black/30"
+          )}
+          onClick={() => swiper?.slideTo(index)}
+        ></button>
+      ))}
+    </div>
+  );
+}
+
+function opacity() {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   document.documentElement.animate(
     [
-      { opacity: 1, filter: "blur(0px)" },
-      { opacity: 0, filter: "blur(5px)" },
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+      },
+      {
+        opacity: 0,
+        filter: "blur(5px)",
+      },
     ],
     {
       duration: 1500,
       easing: "ease-in-out",
-      fill: "backwards",
+      fill: "forwards",
       pseudoElement: "::view-transition-old(root)",
     }
   );
 
   document.documentElement.animate(
     [
-      { opacity: 1, filter: "blur(0px)" },
-      { opacity: 0, filter: "blur(5px)" },
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+      },
+      {
+        opacity: 0,
+        filter: "blur(5px)",
+      },
     ],
     {
       duration: 1500,
       easing: "ease-in-out",
-      fill: "backwards",
+      fill: "forwards",
       pseudoElement: "::view-transition-old(projectsTitle)",
     }
   );
 
   document.documentElement.animate(
     [
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+            filter: "blur(5px)",
+          }
+        : {
+            opacity: 0,
+            filter: "blur(5px)",
+          },
       {
-        transform: "translateX(100%)",
-        mixBlendMode: "multiply",
-        filter: "blur(5px)",
-      },
-      {
-        transform: "translateX(0%)",
-        mixBlendMode: "multiply",
+        opacity: 1,
         filter: "blur(0px)",
       },
     ],
     {
-      delay: 1750,
+      delay: 1000,
       duration: 1500,
-      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+      easing: "ease-in-out",
       fill: "backwards",
-      pseudoElement: "::view-transition-new(root)",
+      pseudoElement: "::view-transition-new(projectsTitle)",
     }
   );
 
   document.documentElement.animate(
     [
-      { transform: "translateX(135%)", filter: "blur(5px)" },
-      { transform: "translateX(0%)", filter: "blur(0px)" },
+      isSafari
+        ? {
+            display: "none",
+            opacity: 0,
+            filter: "blur(5px)",
+          }
+        : {
+            opacity: 0,
+            filter: "blur(5px)",
+          },
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+      },
     ],
     {
-      delay: 1750,
+      delay: 1000,
       duration: 1500,
-      easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+      easing: "ease-in-out",
       fill: "backwards",
-      pseudoElement: "::view-transition-new(sideshadow)",
+      pseudoElement: "::view-transition-new(root)",
     }
   );
 }

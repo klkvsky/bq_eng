@@ -1,18 +1,19 @@
 import Image from "next/image";
 import PageTitle from "@/components/PageTitle";
 
-import { getCultureData } from "@/lib/sanity";
+import { getCultureData, getPositions } from "@/lib/sanity";
 import { urlFor } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
 
 import CultureTeam from "./CultureTeam";
 import RelatedItems from "@/components/RelatedItems";
+import { Link } from "next-view-transitions";
 
 export default async function Home() {
   const data = await getCultureData();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col md:max-xl:pb-20">
       <Image
         src={urlFor(data.heroImage.asset.url).url()}
         alt="project-1"
@@ -82,7 +83,7 @@ function CultureImage({
       )}
     >
       <div className="flex flex-col items-end">
-        <div className="xl:relative xl:custom-shadow-left w-full xl:w-[calc(9*8.33vw)] h-auto">
+        <div className="xl:relative xl:custom-shadow-left w-full xl:w-[calc(9*8.33vw-12px)] h-auto">
           <Image
             src={urlFor(src).url()}
             alt="project-1"
@@ -99,7 +100,7 @@ function CultureImage({
           />
         </div>
         {caption && (
-          <p className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] px-2 xl:pr-3 xl:pl-0 mt-8 xl:mt-6 w-full xl:w-[calc(9*8.33vw)] 2xl:text-[86.4px] 2xl:leading-[100.8px] 2xl:-tracking-[2.592px]">
+          <p className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] px-2 xl:pr-3 xl:pl-0 mt-8 xl:mt-6 w-full xl:w-[calc(9*8.33vw-12px)] 2xl:text-[86.4px] 2xl:leading-[100.8px] 2xl:-tracking-[2.592px]">
             {caption}
           </p>
         )}
@@ -108,7 +109,7 @@ function CultureImage({
   );
 }
 
-function Columns({
+async function Columns({
   columns,
   width,
 }: {
@@ -124,6 +125,8 @@ function Columns({
 }) {
   const [firstColumn, ...restColumns] = columns;
 
+  const positions = await getPositions();
+
   return (
     <div
       className={cn(width === "short" && "w-full flex flex-row justify-end")}
@@ -131,8 +134,8 @@ function Columns({
       <div
         className={cn(
           width === "full"
-            ? "flex flex-col md:flex-row xl:justify-between mt-8 md:mt-10 xl:mt-20 px-2 xl:pl-3 max-md:gap-4 md:gap-[calc(0.5*8.33vw)] xl:pr-[calc(0.5*8.33vw)]"
-            : "flex flex-col  md:flex-row px-2 md:px-3 xl:pl-0 mt-8 md:mt-20 w-full xl:w-[calc(9*8.33vw)] gap-4 md:gap-[calc(8.33vw)] xl:gap-[calc(0.5*8.33vw)] xl:pr-[calc(0.5*8.33vw)]"
+            ? "flex flex-col md:flex-row xl:justify-between mt-8 md:mt-10 xl:mt-20 px-2 xl:pl-3 max-md:gap-4 md:gap-[calc(0.9*8.33vw)] xl:pr-[calc(0.5*8.33vw)] "
+            : "flex flex-col  md:flex-row px-2 md:px-3 xl:pl-0 mt-8 md:mt-20 w-full xl:w-[calc(9*8.33vw-12px)] gap-4 md:gap-[calc(0.9*8.33vw)] xl:gap-[calc(0.5*8.33vw)] xl:pr-[calc(0.5*8.33vw)]"
         )}
       >
         <div className="flex flex-col gap-2 md:gap-3 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)] ">
@@ -149,7 +152,7 @@ function Columns({
                   {item.text}{" "}
                   <a
                     href={`mailto:${item.email}`}
-                    className="font-spectral xl:font-apercu opacity-100 xl:opacity-30"
+                    className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 transition-opacity duration-500"
                   >
                     {item.email}
                   </a>
@@ -159,11 +162,38 @@ function Columns({
               )}
             </p>
           ))}
+
+          {firstColumn.title === "Вакансии" &&
+            positions &&
+            positions.length > 0 && (
+              <div className="flex flex-col gap-2 md:gap-3 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)] xl:mt-10">
+                <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
+                  {positions.length} открыт{positions.length === 1 ? "а" : "ы"}
+                  {positions.length === 1 ? "я" : "х"} позици
+                  {positions.length === 1 ? "я" : "и"}
+                </p>
+                <div className="flex flex-col gap-0">
+                  {positions.map((position) => (
+                    <Link
+                      href={position.link}
+                      target="_blank"
+                      key={position.title}
+                      className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] hover:opacity-30 transition-opacity duration-500 group 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
+                    >
+                      {position.title}
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        ↗
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
         </div>
 
         <div
           className={cn(
-            "flex flex-col gap-4 md:gap-6 xl:gap-10 w-full ",
+            "flex flex-col gap-4 md:gap-6 xl:gap-10 w-full",
             width === "full" ? "md:w-[calc(4*8.33vw)]" : "md:w-[calc(6*8.33vw)]"
           )}
         >

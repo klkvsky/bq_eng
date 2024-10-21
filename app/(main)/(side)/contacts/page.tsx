@@ -76,43 +76,45 @@ function Columns({
       <div
         className={cn(
           width === "full"
-            ? "flex flex-col md:flex-row xl:justify-between mt-8 md:mt-10 xl:mt-20 px-2 xl:pl-3 max-md:gap-4 md:gap-[8.33vw] xl:pr-[calc(0.5*8.33vw)]"
+            ? "flex flex-col md:flex-row xl:justify-between mt-8 md:mt-10 xl:mt-20 px-2 md:px-3 xl:pr-[calc(0.5*8.33vw)] xl:pl-3 gap-[16px] md:gap-[calc(1.85*8.33vw)] w-full xl:w-[calc(9*8.33vw)] xl:gap-[calc(0.5*8.33vw-12px)]"
             : "flex flex-col  md:flex-row px-2 md:px-3 xl:pl-0 mt-8 md:mt-20 w-full xl:w-[calc(9*8.33vw)] gap-4 md:gap-[calc(8.33vw)] xl:gap-[calc(2*8.33vw)] xl:pr-[calc(0.5*8.33vw)]"
         )}
       >
-        <div className="flex flex-col gap-2 md:gap-3 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)]">
-          <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]">
-            {firstColumn.title}
-          </p>
-          {firstColumn.items.map((item, index) => (
-            <p
-              key={index}
-              className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em]"
-            >
-              {item.type === "email" ? (
-                <>
-                  {item.text} <br />
-                  <a
-                    href={`mailto:${item.email}`}
-                    className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500"
-                  >
-                    {item.email}
-                  </a>
-                </>
-              ) : (
-                item.text
-              )}
+        <div className="flex flex-col w-full md:w-[calc(4*8.33vw)] xl:w-[calc(4*8.33vw)] gap-4 md:gap-8">
+          <div className="flex flex-col w-full gap-2 md:gap-3">
+            <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]">
+              {firstColumn.title}
             </p>
-          ))}
+            {firstColumn.items.map((item, index) => (
+              <p
+                key={index}
+                className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] "
+              >
+                {item.type === "email" ? (
+                  <>
+                    {item.text} <br />
+                    <a
+                      href={`mailto:${item.email}`}
+                      className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500"
+                    >
+                      {item.email}
+                    </a>
+                  </>
+                ) : (
+                  item.text
+                )}
+              </p>
+            ))}
+          </div>
           {openPositionsColumn && (
-            <>
-              <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] mt-4 mb-3">
+            <div className="flex flex-col w-full">
+              <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em]">
                 {openPositionsColumn.title}
               </p>
               {openPositionsColumn.items.map((item, index) => (
                 <p
                   key={index}
-                  className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] -mt-3 group"
+                  className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] group"
                 >
                   {item.type === "link" ? (
                     <a
@@ -129,14 +131,16 @@ function Columns({
                   )}
                 </p>
               ))}
-            </>
+            </div>
           )}
         </div>
 
         <div
           className={cn(
-            "flex flex-col gap-4 md:gap-6 xl:gap-10 w-full",
-            width === "full" ? "md:w-[calc(5*8.33vw)]" : "md:w-[calc(6*8.33vw)]"
+            "flex flex-col gap-4 md:gap-6 xl:gap-10",
+            width === "full"
+              ? "w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)]"
+              : "w-full md:w-[calc(5*8.33vw)] xl:w-[calc(4*8.33vw)]"
           )}
         >
           {otherColumns.map((column, columnIndex) => (
@@ -145,52 +149,15 @@ function Columns({
                 {column.title}
               </p>
               {column.items.length > 0 && (
-                <p
-                  className={cn(
-                    "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] mb-[24px]"
-                  )}
-                >
-                  {column.items[0].type === "email" ? (
-                    <>
-                      {column.items[0].text} <br />
-                      <a
-                        href={`mailto:${column.items[0].email}`}
-                        className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500"
-                      >
-                        {column.items[0].email}
-                      </a>
-                    </>
-                  ) : column.items[0].type === "link" ? (
-                    <a
-                      href={column.items[0].link}
-                      className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500 group"
-                    >
-                      {column.items[0].text}{" "}
-                      <span className="opacity-0 group-hover:opacity-100 duration-500 transition-opacity font-spectral">
-                        ↗
-                      </span>
-                    </a>
-                  ) : (
-                    column.items[0].text
-                  )}
-                </p>
-              )}
-              {column.items.length > 1 && (
-                <div
-                  className={cn(
-                    "flex flex-col gap-0 md:gap-[24px]",
-                    column.items[0].type === "email" ||
-                      column.items[0].type === "link"
-                      ? "-mt-3"
-                      : "mt-4"
-                  )}
-                >
-                  {column.items.slice(1).map((item, itemIndex) => (
+                <div className="flex flex-col gap-4 xl:gap-6">
+                  {column.items.map((item, itemIndex) => (
                     <p
                       key={itemIndex}
                       className={cn(
-                        "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] mt-2",
-                        item.type === "link" && "-translate-y-[24px]"
+                        "font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em]",
+                        item.type === "link" &&
+                          itemIndex !== 0 &&
+                          "-mt-4 xl:-mt-6"
                       )}
                     >
                       {item.type === "email" ? (
@@ -198,7 +165,7 @@ function Columns({
                           {item.text} <br />
                           <a
                             href={`mailto:${item.email}`}
-                            className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500"
+                            className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500 "
                           >
                             {item.email}
                           </a>
