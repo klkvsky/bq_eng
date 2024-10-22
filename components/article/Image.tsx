@@ -176,10 +176,10 @@ export function ArticleImage({
           <div className="flex flex-col gap-2 xl:gap-3 items-start w-full">
             {renderImage(
               src,
-              "w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto custom-shadow-right"
+              "w-[calc(7*12.5vw)] md:w-[calc(9*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto custom-shadow-right"
             )}
             {subtext && (
-              <p className="font-spectral font-normal text-[14px] md:text-[16px] leading-[20px] -tracking-[0.28px] md:-tracking-[0.02em] opacity-30 pl-2 md:pl-3 w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto">
+              <p className="font-spectral font-normal text-[14px] md:text-[16px] leading-[20px] -tracking-[0.28px] md:-tracking-[0.02em] opacity-30 pl-2 md:pl-3 w-[calc(7*12.5vw)] md:w-[calc(9*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto">
                 {subtext}
               </p>
             )}
@@ -189,10 +189,10 @@ export function ArticleImage({
           <div className="flex flex-col gap-2 xl:gap-3 items-end w-full">
             {renderImage(
               src,
-              "w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto custom-shadow-left"
+              "w-[calc(7*12.5vw)] md:w-[calc(9*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto custom-shadow-left"
             )}
             {subtext && (
-              <p className="font-spectral font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] opacity-30 pr-2 md:pr-3 w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto">
+              <p className="font-spectral font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] xl:-tracking-[0.02em] opacity-30 pr-2 md:pr-3 w-[calc(7*12.5vw)] md:w-[calc(9*8.33vw)] xl:w-[calc(6.5*8.33vw)] h-auto">
                 {subtext}
               </p>
             )}

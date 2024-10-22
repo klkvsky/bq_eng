@@ -22,8 +22,10 @@ export default async function Project({
 
   // Extract all image URLs from the project content
   const allImages = project.content
-    .filter(item => item.type === "image")
-    .map(item => item.image?.asset.url ? urlFor(item.image.asset.url).url() : "")
+    .filter((item) => item.type === "image")
+    .map((item) =>
+      item.image?.asset.url ? urlFor(item.image.asset.url).url() : ""
+    )
     .filter(Boolean);
 
   return (
@@ -65,14 +67,14 @@ export default async function Project({
           }
         })}
       </div>
-      <div className="flex flex-col max-xl:items-center xl:flex-row w-full border-t border-[#E7E9EF] pt-3 xl:mb-40 max-xl:gap-10 max-xl:text-center">
+      <div className="flex flex-col max-md:items-center md:flex-row w-full border-t border-[#E7E9EF] pt-3 md:mb-40 max-md:gap-10 max-md:text-center">
         <p
-          className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] xl:pl-3 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
+          className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] md:pl-3 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
           id="project-about"
         >
           О проекте
         </p>
-        <div className="flex flex-col gap-10 w-[calc((4.5*8.33vw)-3px)]">
+        <div className="flex flex-col gap-10 w-[calc((4.5*8.33vw)-3px)] md:max-xl:-ml-2">
           {project.projectLabels
             .reduce<Array<Array<{ label: string; value: string }>>>(
               (acc, label, index) => {
@@ -99,7 +101,7 @@ export default async function Project({
         {project.connectedResearch && (
           <Link
             href={`/knowledge/${project.connectedResearch.slug.current}`}
-            className="flex flex-col gap-3 w-6/12 md:w-3/12 xl:w-[calc(2*8.33vw)] xl:ml-auto xl:mr-3"
+            className="flex flex-col gap-3 w-6/12 md:w-3/12 xl:w-[calc(2*8.33vw)] xl:ml-auto xl:mr-3 md:max-xl:ml-auto md:max-xl:mr-3"
           >
             <Image
               src={project.connectedResearch?.images?.[0]?.asset.url || ""}

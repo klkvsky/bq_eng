@@ -6,11 +6,14 @@ import { Article } from "@/components/home/types";
 import { cn } from "@/lib/utils";
 import { getArticleBySlug } from "@/lib/sanity";
 
+import Image from "next/image";
+
 import { useTransitionRouter } from "next-view-transitions";
 
 export default function ResearchRequest() {
   const pathname = usePathname();
   const router = useTransitionRouter();
+
   const [article, setArticle] = useState<Article>();
 
   useEffect(() => {
@@ -69,7 +72,7 @@ export default function ResearchRequest() {
     <form
       onSubmit={handleSubmit}
       className={cn(
-        "bg-white flex flex-col p-2 md:pl-3 md:py-0 gap-10 transition-all duration-1000 justify-start align-top min-h-[78vh] md:min-h-[85vh] xl:min-h-[75vh]"
+        "bg-white flex flex-col p-2 md:pl-3 md:py-0 gap-10 transition-all duration-1000 justify-start align-top min-h-[78vh] md:min-h-[85vh] xl:min-h-[calc(100vh-88px)]"
       )}
     >
       <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.04em] 2xl:text-[42px] 2xl:leading-[58px] 2xl:-tracking-[0.84px]">
@@ -129,6 +132,15 @@ export default function ResearchRequest() {
       >
         {isLoading ? "Отправка..." : isFormSubmitted ? "Спасибо!" : "Отправить"}
       </button>
+
+      <Image
+        src={article?.images?.[0]?.asset.url || ""}
+        width={0}
+        height={0}
+        alt={""}
+        className="w-6/12 md:w-3/12 xl:w-[calc(2*8.33vw)] xl:mt-auto"
+        unoptimized
+      />
     </form>
   );
 }

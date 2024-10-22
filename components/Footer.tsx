@@ -45,7 +45,8 @@ export default function Footer() {
     <>
       <div
         className={cn(
-          "flex flex-row max-md:items-end h-auto md:h-[44px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px]  leading-4 md:leading-5 -tracking-[0.28px] md:-tracking-[0.02em]  xl:mt-[160px] z-30 transition-opacity mt-[80px] 2xl:px-6 2xl:py-[28px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
+          "flex flex-row max-md:items-end h-auto md:h-[44px] max-md:px-2 max-md:py-3 md:p-3 font-spectral text-[14px] md:text-[16px]  leading-4 md:leading-5 -tracking-[0.28px] md:-tracking-[0.02em]  xl:mt-[160px] z-30 transition-opacity mt-[80px] 2xl:px-6 2xl:py-[28px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]",
+          pathname.includes("/request") && "xl:mt-0"
         )}
         style={{
           viewTransitionName: "footer",

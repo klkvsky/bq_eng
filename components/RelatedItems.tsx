@@ -60,7 +60,7 @@ export default function RelatedItems({
 
   return (
     <div
-      className="grid w-full mt-14 md:-mb-20 xl:mb-0"
+      className="grid w-full mt-14 xl:mb-0"
       style={{
         userSelect: "none",
         WebkitUserSelect: "none",
@@ -69,7 +69,7 @@ export default function RelatedItems({
       }}
     >
       <div className="flex flex-row items-center justify-between border-b border-[#E7E9EF] p-3">
-        <p className="font-apercu font-normal text-[16px] -tracking-[0.32px]  w-full 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
+        <p className="font-apercu font-normal text-[16px] -tracking-[0.32px]  w-full 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px] md:max-xl:w-fit">
           {title}
         </p>
         <CustomPagination
@@ -120,7 +120,7 @@ export default function RelatedItems({
                       width={0}
                       height={0}
                       className={cn(
-                        "w-full xl:h-full xl:aspect-[253/360] max-xl:md:max-w-[241px] max-xl:md:mx-auto",
+                        "w-full xl:h-full xl:aspect-[253/360] max-xl:md:max-w-[241px] md:mx-auto xl:max-w-[253px]",
                         isProject
                           ? "object-contain object-top"
                           : "object-cover object-center"
@@ -136,7 +136,7 @@ export default function RelatedItems({
                       }}
                     />
 
-                    <div className="flex flex-col font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] pt-3 xl:opacity-0 xl:hover:opacity-100 xl:transition-opacity xl:bg-white xl:w-full xl:h-full xl:absolute xl:top-0 xl:left-0 xl:hover:custom-shadow-right-no-margin max-xl:md:max-w-[241px] max-xl:md:mx-auto">
+                    <div className="flex flex-col font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] -tracking-[0.28px] pt-3 xl:opacity-0 xl:hover:opacity-100 xl:transition-opacity xl:bg-white xl:w-full xl:h-full xl:absolute xl:top-0 xl:left-1/2 xl:-translate-x-1/2 xl:hover:custom-shadow-right-no-margin max-xl:md:max-w-[241px] md:mx-auto xl:max-w-[253px]">
                       <p className="opacity-30">
                         {!isProject &&
                           getArticleType("type" in item ? item.type : "digest")}
@@ -216,7 +216,7 @@ function CustomPagination({
   if (visibleDots === 0) return null; // Don't render anything on desktop
 
   return (
-    <div className="flex justify-center gap-1.5">
+    <div className="flex justify-center gap-1.5 md:max-xl:mx-auto md:max-xl:-translate-x-[200%]">
       {Array.from({ length: visibleDots }).map((_, index) => (
         <button
           key={index}
