@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -11,6 +12,11 @@ const spectral = localFont({
   src: "../public/assets/fonts/Spectral-Regular.ttf",
   variable: "--spectral",
 });
+
+export const metadata: Metadata = {
+  title: "BQ",
+  description: "BQ",
+};
 
 export default function RootLayout({
   children,

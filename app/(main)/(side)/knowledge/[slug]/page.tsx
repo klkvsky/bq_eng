@@ -1,4 +1,7 @@
+import { Metadata } from "next";
+
 import Image from "next/image";
+
 import { Article } from "@/components/home/types";
 import { ArticleShareAndInfo } from "@/components/article/ShareAndInfo";
 import { ArticleText } from "@/components/article/Text";
@@ -10,6 +13,18 @@ import { getArticleBySlug, urlFor } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
 import RelatedItems from "@/components/RelatedItems";
 import RequestLink from "./request/requestLink";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const article: Article = await getArticleBySlug(params.slug);
+  return {
+    title: `${article.title} | BQ`,
+    description: article.description || "Знания | BQ",
+  };
+}
 
 export default async function ArticlePage({
   params,
@@ -34,8 +49,6 @@ export default async function ArticlePage({
         return "";
     }
   };
-
-  console.log(article.images);
 
   return (
     <div className="flex flex-col items-center xl:py-10 md:min-h-[85vh]">

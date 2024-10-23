@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import { urlFor, getProject } from "@/lib/sanity";
 
 import { ArticleText } from "@/components/article/Text";
@@ -10,6 +12,18 @@ import type { Project } from "@/components/home/types";
 
 import Link from "next/link";
 import Image from "next/image";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const project: Project = await getProject(params.slug);
+  return {
+    title: `${project.title} | BQ`,
+    description: project.description || "BQ",
+  };
+}
 
 export const revalidate = 0;
 

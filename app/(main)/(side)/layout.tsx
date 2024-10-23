@@ -1,4 +1,11 @@
+import { Metadata } from "next";
+
 import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "Знания | BQ",
+  description: "Знания | BQ",
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

@@ -1,8 +1,15 @@
+import { Metadata } from "next";
+
 import ProjectItem from "@/components/home/Projects-Item";
 import PageTitle from "@/components/PageTitle";
 
 import { getHomeData } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "Проекты | BQ",
+  description: "Проекты | BQ",
+};
 
 export default async function Home() {
   const data = await getHomeData();

@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import Image from "next/image";
 import PageTitle from "@/components/PageTitle";
 
@@ -8,6 +10,11 @@ import { cn } from "@/lib/utils";
 import CultureTeam from "./CultureTeam";
 import RelatedItems from "@/components/RelatedItems";
 import { Link } from "next-view-transitions";
+
+export const metadata: Metadata = {
+  title: "Культура | BQ",
+  description: "Культура | BQ",
+};
 
 export default async function Home() {
   const data = await getCultureData();

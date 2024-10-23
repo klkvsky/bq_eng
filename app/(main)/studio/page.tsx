@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import PageTitle from "@/components/PageTitle";
 import { cn } from "@/lib/utils";
 
@@ -8,6 +10,11 @@ import { StudioPage } from "@/components/home/types";
 
 import { urlFor } from "@/lib/sanity";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Студия | BQ",
+  description: "Студия | BQ",
+};
 
 export default async function Home() {
   const data: StudioPage = await getStudioData();
