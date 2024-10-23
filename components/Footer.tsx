@@ -90,7 +90,7 @@ export default function Footer() {
 
           <div
             className={cn(
-              "flex flex-row gap-1 md:w-fit md:ml-[14.6%] xl:w-2/12 xl:ml-[22.8%]"
+              "flex flex-row gap-1 md:w-fit md:ml-[13.3%] xl:w-2/12 xl:ml-[22.8%]"
             )}
           >
             <a

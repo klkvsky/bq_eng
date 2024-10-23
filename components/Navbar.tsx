@@ -19,7 +19,7 @@ export default function Navbar() {
 
   const router = useTransitionRouter();
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
 
   const [isCategoriesInNavbar, setIsCategoriesInNavbar] = useState(false);
 
@@ -345,7 +345,7 @@ export function NavbarMobile({
               });
             }, 300);
           }}
-          className={`w-full p-2 md:p-3 border-t-[1px] border-t-[#E7E9EF] ${
+          className={`w-full p-2 md:pl-3 xl:p-3 border-t-[1px] border-t-[#E7E9EF] ${
             pathname == "/knowledge" && "opacity-30 cursor-default"
           }`}
         >
@@ -362,7 +362,7 @@ export function NavbarMobile({
               });
             }, 300);
           }}
-          className={`w-full p-2 md:p-3 ${
+          className={`w-full p-2 md:pl-3 xl:p-3 ${
             pathname == "/news" && "opacity-30 cursor-default"
           }`}
         >
@@ -379,14 +379,14 @@ export function NavbarMobile({
               });
             }, 300);
           }}
-          className={`w-full p-2 md:p-3 ${
+          className={`w-full p-2 md:pl-3 xl:p-3 ${
             pathname == "/contacts" && "opacity-30 cursor-default"
           }`}
         >
           Контакты
         </a>
 
-        <div className="fixed bottom-2 left-2 md:bottom-3 md:left-3 w-full flex flex-row border-none">
+        <div className="fixed bottom-2 left-2 xl:bottom-3 xl:left-3 w-full flex flex-row border-none">
           <a href="/">Телеграм канал,</a>
           <a href="/">Youtube</a>
         </div>
@@ -411,7 +411,7 @@ export function NavbarMobile({
           xmlns="http://www.w3.org/2000/svg"
           className="absolute top-[180px] lg:top-[376px] right-0 border-none w-[calc(7*12.5vw)] md:w-[calc(7*8.33vw)] h-[calc(7*12.5vw)] md:h-[calc(7*8.33vw)]"
         >
-          <g style={{ mixBlendMode: 'multiply', opacity: 0.25 }}>
+          <g style={{ mixBlendMode: "multiply", opacity: 0.25 }}>
             <path
               d="M590 627C109.661 627 3.05559 209 0 0H590V627Z"
               fill="url(#paint0_linear_5287_5268)"

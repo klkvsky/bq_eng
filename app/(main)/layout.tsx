@@ -16,7 +16,7 @@ export default function RootLayout({
       <Suspense>
         <Navbar />
       </Suspense>
-      {/* <Gradient /> */}
+      <Gradient />
       <Logo />
       <Suspense>{children}</Suspense>
       <Suspense>
