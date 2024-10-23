@@ -7,8 +7,7 @@ import { getHomeData } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Проекты | BQ",
-  description: "Проекты | BQ",
+  title: "BQ",
 };
 
 export default async function Home() {

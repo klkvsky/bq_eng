@@ -1,5 +1,11 @@
+import { Metadata } from "next";
+
 import { ArticleText } from "@/components/article/Text";
 import { getPrivacyPolicy } from "@/lib/sanity";
+
+export const metadata: Metadata = {
+  title: "Политика конфиденциальности | BQ",
+};
 
 export default async function PrivacyPolicyPage() {
   const data = await getPrivacyPolicy();

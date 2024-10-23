@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import Image from "next/image";
 import { Article } from "@/components/home/types";
 import { ArticleShareAndInfo } from "@/components/article/ShareAndInfo";
@@ -9,6 +11,24 @@ import { getArticleBySlug, urlFor } from "@/lib/sanity";
 
 import { cn } from "@/lib/utils";
 import RelatedItems from "@/components/RelatedItems";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const article: Article = await getArticleBySlug(params.slug);
+
+  return {
+    title: `${article.title} | BQ`,
+    description: article.content?.find(item => item.type === 'text')?.text?.slice(0, 160) || '',
+    openGraph: {
+      title: article.title,
+      description: article.content?.find(item => item.type === 'text')?.text?.slice(0, 160) || '',
+      images: article.image ? [urlFor(article.image.asset.url).url()] : [],
+    },
+  };
+}
 
 export default async function ArticlePage({
   params,

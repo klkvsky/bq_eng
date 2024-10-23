@@ -22,6 +22,11 @@ export async function generateMetadata({
   return {
     title: `${project.title} | BQ`,
     description: project.description || "BQ",
+    openGraph: {
+      title: project.title,
+      description: project.description || "BQ",
+      images: project.image ? [urlFor(project.image.asset.url).url()] : [],
+    },
   };
 }
 

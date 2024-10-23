@@ -1,5 +1,11 @@
+import { Metadata } from "next";
+
 import { cn } from "@/lib/utils";
 import { getContactsData, getPositions } from "@/lib/sanity";
+
+export const metadata: Metadata = {
+  title: "Контакты | BQ",
+};
 
 export default async function Contacts() {
   const data = await getContactsData();

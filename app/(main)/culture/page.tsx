@@ -13,7 +13,6 @@ import { Link } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "Культура | BQ",
-  description: "Культура | BQ",
 };
 
 export default async function Home() {

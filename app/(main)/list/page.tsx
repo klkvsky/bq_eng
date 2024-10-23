@@ -10,7 +10,6 @@ export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Проекты | BQ",
-  description: "Проекты | BQ",
 };
 
 export default async function List() {

@@ -13,7 +13,6 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: "Студия | BQ",
-  description: "Студия | BQ",
 };
 
 export default async function Home() {

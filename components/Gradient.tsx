@@ -65,9 +65,6 @@ export default function Gradient() {
       setWindowSize({ width: newWidth, height: newHeight });
       const newIsMobile = newWidth <= 1280; // Adjust this breakpoint as needed
       setIsMobile(newIsMobile);
-      
-      // Set isActive to true when resizing, hiding the gradient
-      setIsActive(true);
     };
 
     // Initial call to set the window size and check if mobile

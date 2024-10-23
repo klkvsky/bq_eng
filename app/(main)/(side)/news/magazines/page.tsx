@@ -5,7 +5,6 @@ import { getArticles } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "Пресса о нас | BQ",
-  description: "Пресса о нас | BQ",
 };
 
 export default async function News() {
