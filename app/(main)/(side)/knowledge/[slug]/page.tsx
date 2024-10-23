@@ -141,6 +141,7 @@ export default async function ArticlePage({
                     src={item.image ? urlFor(item.image.asset.url).url() : ""}
                     type={item.imagePosition || "center"}
                     subtext={item.imageCaption || null}
+                    notProject={true}
                   />
                 );
               case "video":

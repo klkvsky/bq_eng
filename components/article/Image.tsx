@@ -123,6 +123,7 @@ export function ArticleImage({
   secondaryImage,
   title,
   allImages,
+  notProject,
 }: {
   src: string;
   type: "left" | "right" | "full" | "center";
@@ -130,6 +131,7 @@ export function ArticleImage({
   secondaryImage?: string | null;
   title?: string;
   allImages?: string[];
+  notProject?: boolean;
 }) {
   const [overlayImage, setOverlayImage] = useState<string | null>(null);
 
@@ -156,7 +158,9 @@ export function ArticleImage({
   const renderImage = (imageSrc: string, className: string) => (
     <div
       className={`relative ${className}`}
-      onClick={() => openOverlay(imageSrc)}
+      onClick={() => {
+        !notProject && openOverlay(imageSrc);
+      }}
     >
       <Image
         src={imageSrc}
@@ -164,7 +168,7 @@ export function ArticleImage({
         width={0}
         height={0}
         unoptimized
-        className={`cursor-pointer ${className}`}
+        className={`${!notProject && "cursor-pointer"} ${className}`}
       />
     </div>
   );

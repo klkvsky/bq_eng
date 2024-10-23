@@ -19,7 +19,7 @@ export default function Navbar() {
 
   const router = useTransitionRouter();
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const [isCategoriesInNavbar, setIsCategoriesInNavbar] = useState(false);
 
@@ -333,7 +333,7 @@ export function NavbarMobile({
         viewTransitionName: "mobileMenu",
       }}
     >
-      <div className="flex flex-col gap-1 justify-start items-center h-full font-spectral font-normal text-[14px] leading-5 -tracking-[0.28px] divide-y-[1px] border-y-[#E7E9EF] relative">
+      <div className="flex flex-col gap-1 justify-start items-center h-full font-spectral font-normal text-[14px] leading-5 -tracking-[0.28px] divide-y-[1px] border-y-[#E7E9EF] relative mt-2">
         <a
           href={`/knowledge`}
           onClick={(e) => {

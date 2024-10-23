@@ -101,7 +101,7 @@ function Columns({
                     {item.text} <br />
                     <a
                       href={`mailto:${item.email}`}
-                      className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500"
+                      className="font-apercu opacity-30 hover:opacity-100 duration-500"
                     >
                       {item.email}
                     </a>
@@ -125,7 +125,7 @@ function Columns({
                   {item.type === "link" ? (
                     <a
                       href={item.link}
-                      className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500"
+                      className="font-apercu opacity-30 hover:opacity-100 duration-500"
                     >
                       {item.text}{" "}
                       <span className="opacity-0 group-hover:opacity-100 duration-500 transition-opacity font-spectral">
@@ -171,7 +171,7 @@ function Columns({
                           {item.text} <br />
                           <a
                             href={`mailto:${item.email}`}
-                            className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500 "
+                            className="font-apercu opacity-30 hover:opacity-100 duration-500 "
                           >
                             {item.email}
                           </a>
@@ -179,7 +179,7 @@ function Columns({
                       ) : item.type === "link" ? (
                         <a
                           href={item.link}
-                          className="font-spectral xl:font-apercu opacity-100 xl:opacity-30 hover:opacity-100 duration-500 group"
+                          className="font-apercu opacity-30 hover:opacity-100 duration-500 group"
                         >
                           {item.text}{" "}
                           <span className="opacity-0 group-hover:opacity-100 duration-500 transition-opacity font-spectral">

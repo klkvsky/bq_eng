@@ -69,7 +69,7 @@ export default function Gradient() {
 
     // Initial call to set the window size and check if mobile
     handleResize();
-
+  
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
