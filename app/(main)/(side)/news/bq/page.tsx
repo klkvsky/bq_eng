@@ -17,7 +17,7 @@ export default async function News() {
     <div className="flex flex-col gap-8 mt-[34px] md:gap-[160px] xl:gap-[120px] min-h-screen">
       {magazineArticles.length > 0 && (
         <NewsSection
-          title="Пресса о нас"
+          title="Материалы BQ"
           items={magazineArticles}
           isClose={true}
         />

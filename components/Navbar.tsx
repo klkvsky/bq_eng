@@ -759,6 +759,7 @@ function slide() {
 
 function slideOut() {
   const isLargeScreen = window.innerWidth >= 1280;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   if (isLargeScreen) {
     document.documentElement.animate(
@@ -799,10 +800,16 @@ function slideOut() {
 
     document.documentElement.animate(
       [
-        {
-          opacity: 0,
-          filter: "blur(5px)",
-        },
+        isSafari
+          ? {
+              display: "none",
+              opacity: 0,
+              filter: "blur(5px)",
+            }
+          : {
+              opacity: 0,
+              filter: "blur(5px)",
+            },
         {
           opacity: 1,
           filter: "blur(0px)",
@@ -819,10 +826,16 @@ function slideOut() {
 
     document.documentElement.animate(
       [
-        {
-          opacity: 0,
-          filter: "blur(5px)",
-        },
+        isSafari
+          ? {
+              display: "none",
+              opacity: 0,
+              filter: "blur(5px)",
+            }
+          : {
+              opacity: 0,
+              filter: "blur(5px)",
+            },
         {
           opacity: 1,
           filter: "blur(0px)",

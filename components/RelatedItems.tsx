@@ -88,7 +88,6 @@ export default function RelatedItems({
               slidesPerView: isProject || pathname === "/culture" ? 4 : 3,
             },
           }}
-          autoHeight
           onSwiper={setSwiper}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         >
@@ -120,10 +119,10 @@ export default function RelatedItems({
                       width={0}
                       height={0}
                       className={cn(
-                        "w-full xl:h-full xl:aspect-[253/360] max-xl:md:max-w-[241px] md:mx-auto xl:max-w-[253px]",
+                        "w-full xl:h-full xl:max-w-[253px] max-xl:md:max-w-[241px] md:mx-auto ",
                         isProject
-                          ? "object-contain object-top"
-                          : "object-cover object-center"
+                          ? "object-contain object-top xl:aspect-[253/360]"
+                          : "object-cover object-center xl:aspect-[253/320]"
                       )}
                       unoptimized
                       alt={item.description || item.title}

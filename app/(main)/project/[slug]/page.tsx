@@ -93,7 +93,7 @@ export default async function Project({
         >
           О проекте
         </p>
-        <div className="flex flex-col items-start w-full">
+        <div className="flex flex-col md:flex-row items-start w-full ">
           <div className="flex flex-col gap-5 w-[calc(5*12.5vw)] md:gap-10 md:w-[calc((4.5*8.33vw)-3px)] md:max-xl:-ml-2 ">
             {project.projectLabels
               .reduce<Array<Array<{ label: string; value: string }>>>(

@@ -40,9 +40,7 @@ export function NewsSection({
         }}
       >
         {title}{" "}
-        <span
-          className={cn("text-xs 2xl:text-[22.5px]", isClose && "ml-1")}
-        >
+        <span className={cn("text-xs 2xl:text-[22.5px]", isClose && "ml-1")}>
           {isClose ? "✕" : "→"}
         </span>
       </a>
