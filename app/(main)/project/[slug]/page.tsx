@@ -86,55 +86,57 @@ export default async function Project({
           }
         })}
       </div>
-      <div className="flex flex-col max-md:items-center md:flex-row w-full border-t border-[#E7E9EF] pt-3 md:mb-40 max-md:gap-10 max-md:text-center">
+      <div className="flex flex-row w-full border-t border-[#E7E9EF] pt-3 md:mb-40 max-md:gap-[12.5vw]">
         <p
-          className="font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] w-[calc(3*8.33vw)] md:pl-3 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
+          className="max-md:min-w-[calc(2*12.5vw)] max-md:pl-2 font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] md:w-[calc(3*8.33vw)] md:pl-3 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
           id="project-about"
         >
           О проекте
         </p>
-        <div className="flex flex-col gap-10 w-[calc((4.5*8.33vw)-3px)] md:max-xl:-ml-2">
-          {project.projectLabels
-            .reduce<Array<Array<{ label: string; value: string }>>>(
-              (acc, label, index) => {
-                if (index % 4 === 0) acc.push([]);
-                acc[acc.length - 1].push(label);
-                return acc;
-              },
-              []
-            )
-            .map((group, groupIndex) => (
-              <div key={groupIndex} className="flex flex-col gap-3">
-                {group.map((label, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col text-[16px] font-normal leading-5 -tracking-[0.32px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
-                  >
-                    <p className="font-apercu">{label.label}:</p>
-                    <p className="font-spectral">{label.value}</p>
-                  </div>
-                ))}
-              </div>
-            ))}
+        <div className="flex flex-col items-start w-full">
+          <div className="flex flex-col gap-5 w-[calc(5*12.5vw)] md:gap-10 md:w-[calc((4.5*8.33vw)-3px)] md:max-xl:-ml-2 ">
+            {project.projectLabels
+              .reduce<Array<Array<{ label: string; value: string }>>>(
+                (acc, label, index) => {
+                  if (index % 4 === 0) acc.push([]);
+                  acc[acc.length - 1].push(label);
+                  return acc;
+                },
+                []
+              )
+              .map((group, groupIndex) => (
+                <div key={groupIndex} className="flex flex-col gap-2 md:gap-3">
+                  {group.map((label, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col text-[16px] font-normal leading-5 -tracking-[0.32px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
+                    >
+                      <p className="font-apercu">{label.label}:</p>
+                      <p className="font-spectral">{label.value}</p>
+                    </div>
+                  ))}
+                </div>
+              ))}
+          </div>
+          {project.connectedResearch && (
+            <Link
+              href={`/knowledge/${project.connectedResearch.slug.current}`}
+              className="flex max-md:flex-col-reverse flex-col max-md:mt-10 gap-3 w-[calc(4*12.5vw)] md:w-3/12 xl:w-[calc(2*8.33vw)] xl:ml-auto xl:mr-3 md:max-xl:ml-auto md:max-xl:mr-3"
+            >
+              <Image
+                src={project.connectedResearch?.images?.[0]?.asset.url || ""}
+                width={0}
+                height={0}
+                alt={project.connectedResearch?.title || ""}
+                className="w-full h-auto"
+                unoptimized
+              />
+              <p className="font-apercu text-[16px] font-normal leading-5 -tracking-[0.32px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
+                {project.connectedResearch.title}
+              </p>
+            </Link>
+          )}
         </div>
-        {project.connectedResearch && (
-          <Link
-            href={`/knowledge/${project.connectedResearch.slug.current}`}
-            className="flex flex-col gap-3 w-6/12 md:w-3/12 xl:w-[calc(2*8.33vw)] xl:ml-auto xl:mr-3 md:max-xl:ml-auto md:max-xl:mr-3"
-          >
-            <Image
-              src={project.connectedResearch?.images?.[0]?.asset.url || ""}
-              width={0}
-              height={0}
-              alt={project.connectedResearch?.title || ""}
-              className="w-full h-auto"
-              unoptimized
-            />
-            <p className="font-apercu text-[16px] font-normal leading-5 -tracking-[0.32px] 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
-              {project.connectedResearch.title}
-            </p>
-          </Link>
-        )}
       </div>
       {project.relatedProjects && (
         <div className="flex flex-col w-full max-xl:mb-14">

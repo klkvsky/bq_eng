@@ -5,6 +5,7 @@ import { NewsItem } from "./NewsItem";
 import { useTransitionRouter } from "next-view-transitions";
 import { Article } from "@/components/home/types";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export function NewsSection({
   title,
@@ -39,7 +40,11 @@ export function NewsSection({
         }}
       >
         {title}{" "}
-        <span className="text-xs 2xl:text-[22.5px]">{isClose ? "✕" : "→"}</span>
+        <span
+          className={cn("text-xs 2xl:text-[22.5px]", isClose && "ml-1")}
+        >
+          {isClose ? "✕" : "→"}
+        </span>
       </a>
       <div className="flex flex-col gap-8 md:gap-10">
         {items.slice(0, isMain ? 5 : items.length).map((item, index) => (

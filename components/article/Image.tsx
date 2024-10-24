@@ -212,11 +212,11 @@ export function ArticleImage({
           </div>
         )}
         {type === "center" && (
-          <div className="w-full h-auto flex justify-center items-center">
-            <div className="w-[calc(6*12.5vw)] md:w-[calc(6*8.33vw)] h-full relative custom-shadow-left">
+          <div className="w-full h-auto flex justify-end md:justify-center md:items-center">
+            <div className="w-[calc(7*12.5vw)] md:w-[calc(6*8.33vw)] h-full relative custom-shadow-left">
               {renderImage(
                 src,
-                "w-[calc(6*12.5vw)] md:w-[calc(6*8.33vw)] h-auto"
+                "w-[calc(7*12.5vw)] md:w-[calc(6*8.33vw)] h-auto"
               )}
             </div>
           </div>
