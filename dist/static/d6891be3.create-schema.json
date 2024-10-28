@@ -1,0 +1,1182 @@
+[
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "category"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to category"
+          }
+        ],
+        "name": "categories",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "project"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to project"
+          }
+        ],
+        "name": "featuredProjects",
+        "type": "array"
+      }
+    ],
+    "name": "home",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      }
+    ],
+    "name": "category",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "readOnly": true,
+        "hidden": true,
+        "name": "id",
+        "type": "string",
+        "title": "ID"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "fields": [
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Left",
+                  "value": "left"
+                },
+                {
+                  "title": "Right",
+                  "value": "right"
+                }
+              ]
+            },
+            "initialValue": "left",
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "valid",
+                    "constraint": [
+                      "left",
+                      "right"
+                    ]
+                  },
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "alignment",
+            "type": "string",
+            "title": "Image Alignment"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "initialValue": 8,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 6
+              },
+              {
+                "flag": "max",
+                "constraint": 8
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "cols",
+        "type": "number",
+        "title": "Columns"
+      },
+      {
+        "name": "projectCodeName",
+        "type": "string"
+      },
+      {
+        "hidden": "conditional",
+        "name": "secondImage",
+        "type": "image"
+      },
+      {
+        "hidden": "conditional",
+        "name": "secondCodeName",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "category"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to category"
+          }
+        ],
+        "name": "categories",
+        "type": "array"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Text",
+                      "value": "text"
+                    },
+                    {
+                      "title": "Image",
+                      "value": "image"
+                    },
+                    {
+                      "title": "Video",
+                      "value": "video"
+                    }
+                  ]
+                },
+                "name": "type",
+                "type": "string",
+                "title": "Content Type"
+              },
+              {
+                "hidden": "conditional",
+                "name": "text",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "list": [
+                    "left",
+                    "right"
+                  ]
+                },
+                "hidden": "conditional",
+                "name": "textPosition",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "options": {
+                  "list": [
+                    "center",
+                    "right",
+                    "left",
+                    "full"
+                  ]
+                },
+                "hidden": "conditional",
+                "name": "imagePosition",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "secondaryImage",
+                "type": "image"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "hidden": "conditional",
+                "name": "videoUrl",
+                "type": "url",
+                "title": "Video URL"
+              },
+              {
+                "hidden": "conditional",
+                "name": "videoThumbnail",
+                "type": "image"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "content",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "name": "value",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "projectLabels",
+        "type": "array"
+      },
+      {
+        "to": [
+          {
+            "type": "article"
+          }
+        ],
+        "name": "connectedResearch",
+        "type": "reference"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "project"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to project"
+          }
+        ],
+        "name": "relatedProjects",
+        "type": "array"
+      }
+    ],
+    "name": "project",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "pageTitle",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "heroImage",
+        "type": "image"
+      },
+      {
+        "name": "heroDescription",
+        "type": "text"
+      },
+      {
+        "fields": [
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "of": [
+              {
+                "fields": [
+                  {
+                    "name": "name",
+                    "type": "string"
+                  },
+                  {
+                    "name": "email",
+                    "type": "string"
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "name": "contacts",
+            "type": "array"
+          }
+        ],
+        "name": "contactSection",
+        "type": "object"
+      },
+      {
+        "fields": [
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "of": [
+              {
+                "fields": [
+                  {
+                    "name": "name",
+                    "type": "string"
+                  },
+                  {
+                    "of": [
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "name": "details",
+                    "type": "array"
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "name": "directions",
+            "type": "array"
+          }
+        ],
+        "name": "workDirections",
+        "type": "object"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "bottomImage",
+        "type": "image"
+      },
+      {
+        "name": "bottomDescription",
+        "type": "text"
+      },
+      {
+        "fields": [
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "text"
+          },
+          {
+            "name": "email",
+            "type": "string"
+          }
+        ],
+        "name": "partnershipSection",
+        "type": "object"
+      },
+      {
+        "fields": [
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "clients",
+            "type": "array"
+          }
+        ],
+        "name": "clientsSection",
+        "type": "object"
+      },
+      {
+        "fields": [
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "partners",
+            "type": "array"
+          }
+        ],
+        "name": "partnersSection",
+        "type": "object"
+      }
+    ],
+    "name": "studioPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "pageTitle",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "heroImage",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Text",
+                      "value": "text"
+                    },
+                    {
+                      "title": "Image",
+                      "value": "image"
+                    },
+                    {
+                      "title": "Columns",
+                      "value": "columns"
+                    },
+                    {
+                      "title": "Team Block",
+                      "value": "teamBlock"
+                    }
+                  ]
+                },
+                "name": "type",
+                "type": "string",
+                "title": "Content Type"
+              },
+              {
+                "hidden": "conditional",
+                "name": "text",
+                "type": "text"
+              },
+              {
+                "hidden": "conditional",
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "options": {
+                  "list": [
+                    "center",
+                    "right",
+                    "left",
+                    "full"
+                  ]
+                },
+                "hidden": "conditional",
+                "name": "imagePosition",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "imageCaption",
+                "type": "text"
+              },
+              {
+                "fields": [
+                  {
+                    "name": "title",
+                    "type": "string"
+                  },
+                  {
+                    "validation": [
+                      {
+                        "rules": [
+                          {
+                            "flag": "max",
+                            "constraint": 4
+                          }
+                        ],
+                        "level": "error"
+                      }
+                    ],
+                    "of": [
+                      {
+                        "type": "teamMember"
+                      }
+                    ],
+                    "name": "teamMembers",
+                    "type": "array"
+                  }
+                ],
+                "hidden": "conditional",
+                "name": "teamBlock",
+                "type": "object"
+              },
+              {
+                "fields": [
+                  {
+                    "options": {
+                      "list": [
+                        {
+                          "title": "Full",
+                          "value": "full"
+                        },
+                        {
+                          "title": "Short",
+                          "value": "short"
+                        }
+                      ]
+                    },
+                    "name": "width",
+                    "type": "string"
+                  },
+                  {
+                    "of": [
+                      {
+                        "fields": [
+                          {
+                            "name": "title",
+                            "type": "string"
+                          },
+                          {
+                            "of": [
+                              {
+                                "fields": [
+                                  {
+                                    "options": {
+                                      "list": [
+                                        {
+                                          "title": "Regular",
+                                          "value": "regular"
+                                        },
+                                        {
+                                          "title": "Email",
+                                          "value": "email"
+                                        }
+                                      ]
+                                    },
+                                    "initialValue": "regular",
+                                    "name": "type",
+                                    "type": "string",
+                                    "title": "Item Type"
+                                  },
+                                  {
+                                    "name": "text",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "hidden": "conditional",
+                                    "name": "email",
+                                    "type": "string"
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            ],
+                            "name": "items",
+                            "type": "array"
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "name": "columnContent",
+                    "type": "array"
+                  }
+                ],
+                "hidden": "conditional",
+                "name": "columns",
+                "type": "object"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "content",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "article"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to article"
+          }
+        ],
+        "name": "relatedArticles",
+        "type": "array"
+      }
+    ],
+    "name": "culturePage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "position",
+        "type": "string"
+      },
+      {
+        "name": "quote",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "teamMember",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "readOnly": true,
+        "hidden": true,
+        "name": "id",
+        "type": "string",
+        "title": "ID"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "list": [
+            "digest",
+            "gallery",
+            "press-release",
+            "research"
+          ]
+        },
+        "name": "type",
+        "type": "string"
+      },
+      {
+        "hidden": "conditional",
+        "name": "date",
+        "type": "date"
+      },
+      {
+        "hidden": "conditional",
+        "name": "source",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            "magazines",
+            "bq"
+          ]
+        },
+        "hidden": "conditional",
+        "name": "pressReleaseCategory",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "hidden": "conditional",
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "hidden": "conditional",
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "type": "image"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "images",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Text",
+                      "value": "text"
+                    },
+                    {
+                      "title": "Image",
+                      "value": "image"
+                    },
+                    {
+                      "title": "Video",
+                      "value": "video"
+                    },
+                    {
+                      "title": "Quote",
+                      "value": "quote"
+                    },
+                    {
+                      "title": "List",
+                      "value": "list"
+                    }
+                  ]
+                },
+                "name": "type",
+                "type": "string",
+                "title": "Content Type"
+              },
+              {
+                "hidden": "conditional",
+                "name": "textTitle",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "textSubtitle",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "text",
+                "type": "text"
+              },
+              {
+                "hidden": "conditional",
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "options": {
+                  "list": [
+                    "right",
+                    "left",
+                    "full"
+                  ]
+                },
+                "hidden": "conditional",
+                "name": "imagePosition",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "imageCaption",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "hidden": "conditional",
+                "name": "videoUrl",
+                "type": "url",
+                "title": "Video URL"
+              },
+              {
+                "hidden": "conditional",
+                "name": "videoThumbnail",
+                "type": "image"
+              },
+              {
+                "hidden": "conditional",
+                "name": "quote",
+                "type": "text"
+              },
+              {
+                "hidden": "conditional",
+                "name": "quoteAuthor",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "quoteAuthorPosition",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "listTitle",
+                "type": "string"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "hidden": "conditional",
+                "name": "list",
+                "type": "array"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "content",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "article"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to article"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "relatedArticles",
+        "type": "array"
+      }
+    ],
+    "name": "article",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "link",
+        "type": "url"
+      }
+    ],
+    "name": "position",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "pageTitle",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Column Title"
+              },
+              {
+                "of": [
+                  {
+                    "fields": [
+                      {
+                        "options": {
+                          "list": [
+                            {
+                              "title": "Regular",
+                              "value": "regular"
+                            },
+                            {
+                              "title": "Email",
+                              "value": "email"
+                            },
+                            {
+                              "title": "Link",
+                              "value": "link"
+                            }
+                          ]
+                        },
+                        "name": "type",
+                        "type": "string",
+                        "title": "Item Type"
+                      },
+                      {
+                        "name": "text",
+                        "type": "string"
+                      },
+                      {
+                        "hidden": "conditional",
+                        "name": "email",
+                        "type": "string"
+                      },
+                      {
+                        "validation": [
+                          {
+                            "rules": [
+                              {
+                                "flag": "uri",
+                                "constraint": {
+                                  "options": {
+                                    "scheme": [
+                                      "/^http$/",
+                                      "/^https$/"
+                                    ],
+                                    "allowRelative": false,
+                                    "relativeOnly": false,
+                                    "allowCredentials": false
+                                  }
+                                }
+                              }
+                            ],
+                            "level": "error"
+                          }
+                        ],
+                        "hidden": "conditional",
+                        "name": "link",
+                        "type": "url"
+                      }
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "name": "items",
+                "type": "array",
+                "title": "Column Items"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "columns",
+        "type": "array"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Full",
+              "value": "full"
+            },
+            {
+              "title": "Short",
+              "value": "short"
+            }
+          ]
+        },
+        "name": "width",
+        "type": "string"
+      }
+    ],
+    "name": "contactsPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Title",
+                      "value": "title"
+                    },
+                    {
+                      "title": "Text",
+                      "value": "text"
+                    },
+                    {
+                      "title": "List",
+                      "value": "list"
+                    }
+                  ]
+                },
+                "name": "type",
+                "type": "string",
+                "title": "Content Type"
+              },
+              {
+                "hidden": "conditional",
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "subtitle",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "textTitle",
+                "type": "string"
+              },
+              {
+                "hidden": "conditional",
+                "name": "text",
+                "type": "text"
+              },
+              {
+                "hidden": "conditional",
+                "name": "listTitle",
+                "type": "string"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "hidden": "conditional",
+                "name": "list",
+                "type": "array"
+              },
+              {
+                "hidden": "conditional",
+                "name": "pretext",
+                "type": "text"
+              },
+              {
+                "hidden": "conditional",
+                "name": "posttext",
+                "type": "text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "content",
+        "type": "array"
+      }
+    ],
+    "name": "privacyPolicy",
+    "type": "document"
+  }
+]
