@@ -78,13 +78,13 @@ export default function ResearchRequest() {
       <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.04em] 2xl:text-[42px] 2xl:leading-[58px] 2xl:-tracking-[0.84px]">
         <span className="font-apercu opacity-30">
           {isFormSubmitted
-            ? "Спасибо за оставленную заявку!"
-            : "Добро пожаловать в BQ Studio!"}
+            ? "Thank you for your request!"
+            : "Welcome to BQ Studio!"}
         </span>{" "}
         {isFormSubmitted
-          ? " Пожалуйста, проверьте вашу почту, чтобы скачать исследование. Если вы не получили письмо в течение нескольких минут, проверьте папку «Спам» или «Промоакции»."
+          ? " Please check your email to download the research. If you did not receive an email within a few minutes, check the Spam or Promotions folder."
           : `
-          Вы оставляете заявку на доступ к исследованию "${article?.title ?? ""}"
+          You leave a request to access the research "${article?.title ?? ""}"
           `}
       </h1>
 
@@ -92,7 +92,7 @@ export default function ResearchRequest() {
         <div className="flex flex-col gap-10">
           <input
             type="text"
-            placeholder="Имя Фамилия"
+            placeholder="Name Surname"
             value={name}
             onChange={(e) => setName(e.target.value)}
             autoComplete="name"
@@ -109,7 +109,7 @@ export default function ResearchRequest() {
             />
             <input
               type="text"
-              placeholder="Компания"
+              placeholder="Company"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               autoComplete="organization"
@@ -130,7 +130,7 @@ export default function ResearchRequest() {
           }
         }}
       >
-        {isLoading ? "Отправка..." : isFormSubmitted ? "Спасибо!" : "Отправить"}
+        {isLoading ? "Sending..." : isFormSubmitted ? "Thank you!" : "Send"}
       </button>
 
       <Image

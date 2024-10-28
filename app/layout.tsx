@@ -16,7 +16,7 @@ const spectral = localFont({
 export const metadata: Metadata = {
   title: "BQ",
   description:
-    "BQ - Студия, которая занимается архитектурным проектированием, консалтингом в области городского развития и образовательными проектами для архитекторов, урбанистов и девелоперов.",
+    "BQ - A studio that specializes in architectural design, urban development consulting, and educational projects for architects, urbanists, and developers.",
 };
 
 export default function RootLayout({

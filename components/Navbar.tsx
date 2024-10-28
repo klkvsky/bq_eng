@@ -102,7 +102,7 @@ export default function Navbar() {
             "transition-opacity duration-500"
           )}
         >
-          Проекты,
+          Projects,
         </a>
         <a
           href="/studio"
@@ -119,7 +119,7 @@ export default function Navbar() {
             "transition-opacity duration-500"
           )}
         >
-          Студия,
+          Studio,
         </a>
         <a
           href="/culture"
@@ -136,7 +136,7 @@ export default function Navbar() {
             "transition-opacity duration-500"
           )}
         >
-          Культура
+          Culture
         </a>
       </div>
       <div
@@ -188,7 +188,7 @@ export default function Navbar() {
             "transition-opacity duration-500"
           )}
         >
-          Знания,
+          Knowledge,
         </a>
         <a
           href={`/news`}
@@ -211,7 +211,7 @@ export default function Navbar() {
             "transition-opacity duration-500"
           )}
         >
-          Новости
+          News
         </a>
       </div>
       {pathname.includes("project") && (
@@ -223,7 +223,7 @@ export default function Navbar() {
             handleAboutScroll();
           }}
         >
-          О проекте
+          About the project
         </button>
       )}
       {isCategoriesInNavbar && (pathname === "/" || pathname === "/list") && (
@@ -249,7 +249,7 @@ export default function Navbar() {
               });
             }}
           >
-            Галерея
+            Gallery
           </a>
           <p>/</p>
           <a
@@ -265,7 +265,7 @@ export default function Navbar() {
               });
             }}
           >
-            Список
+            List
           </a>
         </div>
       )}
@@ -290,7 +290,7 @@ export default function Navbar() {
           pathname === "/" || pathname.includes("/list") ? "" : ""
         )}
       >
-        Контакты
+        Contacts
       </a>
     </div>
   );
@@ -349,7 +349,7 @@ export function NavbarMobile({
             pathname == "/knowledge" && "opacity-30 cursor-default"
           }`}
         >
-          Знания
+          Knowledge
         </a>
         <a
           href="/news"
@@ -366,7 +366,7 @@ export function NavbarMobile({
             pathname == "/news" && "opacity-30 cursor-default"
           }`}
         >
-          Новости
+          News
         </a>
         <a
           href="/contacts"
@@ -383,11 +383,11 @@ export function NavbarMobile({
             pathname == "/contacts" && "opacity-30 cursor-default"
           }`}
         >
-          Контакты
+          Contacts
         </a>
 
         <div className="fixed bottom-2 left-2 xl:bottom-3 xl:left-3 w-full flex flex-row border-none">
-          <a href="/">Телеграм канал,</a>
+          <a href="/">Telegram channel,</a>
           <a href="/">Youtube</a>
         </div>
 
@@ -467,7 +467,7 @@ function ProjectsCategories() {
         "hidden xl:flex flex-row gap-1 2xl:gap-2 transition-opacity duration-1000 relative group items-center w-2/12 ml-[8.33%] cursor-pointer"
       )}
     >
-      Направления работ{" "}
+      Directions{" "}
       <span className="group-hover:rotate-180 transition-transform duration-100 text-[8px] 2xl:text-[22.5px]">
         ▼
       </span>

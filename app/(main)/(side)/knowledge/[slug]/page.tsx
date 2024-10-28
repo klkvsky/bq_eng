@@ -22,7 +22,7 @@ export async function generateMetadata({
   const article: Article = await getArticleBySlug(params.slug);
   return {
     title: `${article.title} | BQ`,
-    description: article.description || "Знания | BQ",
+    description: article.description || "Knowledge | BQ",
   };
 }
 
@@ -36,15 +36,15 @@ export default async function ArticlePage({
   const getArticleType = (type: string) => {
     switch (type) {
       case "research":
-        return "Исследование";
+        return "Research";
       case "expedition":
-        return "Экспедиция";
+        return "Expedition";
       case "digest":
-        return "Дайджест";
+        return "Digest";
       case "podcast":
-        return "Подкаст";
+        return "Podcast";
       case "gallery":
-        return "Галерея";
+        return "Gallery";
       default:
         return "";
     }
@@ -184,7 +184,7 @@ export default async function ArticlePage({
         {article.relatedArticles && (
           <div className="flex flex-row w-full items-center justify-center gap-20 mt-40">
             <RelatedItems
-              title="Другие материалы"
+              title="Related materials"
               items={article.relatedArticles}
             />
           </div>

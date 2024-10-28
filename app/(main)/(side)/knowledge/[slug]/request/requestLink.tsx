@@ -15,7 +15,7 @@ export default function RequestLink({ slug }: { slug: string }) {
         });
       }}
     >
-      Получить доступ
+      Get access
     </a>
   );
 }

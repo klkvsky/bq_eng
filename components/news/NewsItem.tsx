@@ -18,7 +18,7 @@ export function NewsItem({ item }: { item: Article }): React.ReactNode {
           item.source &&
           item.source}{" "}
         <span className="xl:opacity-30">
-          {new Date(item.date).toLocaleDateString("ru-RU")}
+          {new Date(item.date).toLocaleDateString("en-US")}
         </span>
       </p>
       <p className="font-spectral font-normal text-[20px] xl:text-[28px] leading-6 xl:leading-[32px] -tracking-[0.6px] xl:-tracking-[0.02em] 2xl:text-[42px] 2xl:leading-[58px] 2xl:-tracking-[0.84px]">

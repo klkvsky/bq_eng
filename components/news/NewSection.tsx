@@ -22,7 +22,7 @@ export function NewsSection({
   const linkURL =
     pathname === "/news/bq" || pathname === "/news/magazines"
       ? "/news"
-      : `/news/${title === "Материалы BQ" ? "bq" : "magazines"}`;
+      : `/news/${title === "BQ Materials" ? "bq" : "magazines"}`;
 
   const isMain = pathname === "/news";
 

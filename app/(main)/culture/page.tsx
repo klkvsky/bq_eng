@@ -174,9 +174,7 @@ async function Columns({
             positions.length > 0 && (
               <div className="flex flex-col gap-2 md:gap-3 w-full md:w-[calc(5*8.33vw)] xl:w-[calc(6*8.33vw)] xl:mt-10">
                 <p className="font-apercu font-normal text-[14px] xl:text-[16px] leading-[20px] xl:leading-[20px] -tracking-[0.02em]  2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]">
-                  {positions.length} открыт{positions.length === 1 ? "а" : "ы"}
-                  {positions.length === 1 ? "я" : "х"} позици
-                  {positions.length === 1 ? "я" : "и"}
+                  {positions.length} open position{positions.length === 1 ? "" : "s"}
                 </p>
                 <div className="flex flex-col gap-0">
                   {positions.map((position) => (

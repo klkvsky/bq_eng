@@ -46,15 +46,15 @@ export default function Knowledge() {
   const getArticleType = (type: string) => {
     switch (type) {
       case "research":
-        return "Исследование";
+        return "Research";
       case "expedition":
-        return "Экспедиция";
+        return "Expedition";
       case "digest":
-        return "Дайджест";
+        return "Digest";
       case "podcast":
-        return "Подкаст";
+        return "Podcast";
       case "gallery":
-        return "Галерея";
+        return "Gallery";
       default:
         return "";
     }
@@ -71,8 +71,8 @@ export default function Knowledge() {
         <div className="relative w-full h-full custom-shadow-top" />
       </div>
       <h1 className="font-spectral font-normal text-[20px] md:text-[24px] xl:text-[28px] leading-[24px] md:leading-[28px] xl:leading-[32px] -tracking-[0.6px] md:-tracking-[0.48px] xl:-tracking-[0.02em] p-2 md:pl-3 md:py-0 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]">
-        Мы развиваем архитектуру как культурную практику, реализуя различные
-        форматы, такие как: <br className="md:hidden" />
+        We develop architecture as a cultural practice, implementing various
+        formats, such as: <br className="md:hidden" />
         <br className="md:hidden" />
         {["research", "expedition", "digest", "podcast", "gallery"].map(
           (type) => (
@@ -87,7 +87,7 @@ export default function Knowledge() {
                 {getArticleType(type)}
               </button>
               {type !== "gallery" && ", "}
-              {type === "podcast" && "и "}
+              {type === "podcast" && "and "}
             </React.Fragment>
           )
         )}

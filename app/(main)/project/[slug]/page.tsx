@@ -91,7 +91,7 @@ export default async function Project({
           className="max-md:min-w-[calc(2*12.5vw)] max-md:pl-2 font-apercu font-normal text-[16px] leading-5 -tracking-[0.32px] md:w-[calc(3*8.33vw)] md:pl-3 2xl:text-[38px] 2xl:leading-[48px] 2xl:-tracking-[0.76px]"
           id="project-about"
         >
-          О проекте
+          About the project
         </p>
         <div className="flex flex-col md:flex-row items-start w-full ">
           <div className="flex flex-col gap-5 w-[calc(5*12.5vw)] md:gap-10 md:w-[calc((4.5*8.33vw)-3px)] md:max-xl:-ml-2 ">
@@ -141,7 +141,7 @@ export default async function Project({
       {project.relatedProjects && (
         <div className="flex flex-col w-full max-xl:mb-14">
           <RelatedItems
-            title="Больше материалов"
+            title="Related projects"
             items={project.relatedProjects}
           />
         </div>

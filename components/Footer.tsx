@@ -85,7 +85,7 @@ export default function Footer() {
               });
             }}
           >
-            Политика конфиденциальности
+            Privacy policy
           </a>
 
           <div
@@ -108,7 +108,7 @@ export default function Footer() {
                 });
               }}
             >
-              Вакансии,
+              Positions
             </a>
             <a
               href="/contacts"
@@ -126,7 +126,7 @@ export default function Footer() {
                 });
               }}
             >
-              Контакты
+              Contacts
             </a>
           </div>
 
@@ -135,7 +135,7 @@ export default function Footer() {
             href="http://vosk.design/"
             target="_blank"
           >
-            Дизайн сайта VOSK
+            Designed by VOSK
           </a>
         </div>
       </div>
@@ -157,7 +157,7 @@ export default function Footer() {
             });
           }}
         >
-          Направления работ
+          Directions
         </a>
         <div className="w-px h-3 bg-[#E7E9EF]" />
         <a
@@ -172,7 +172,7 @@ export default function Footer() {
           }}
         >
           <span className="absolute inset-0 flex items-center justify-center">
-            {pathname === "/" ? "Сетка" : "Галерея"}
+            {pathname === "/" ? "List" : "Gallery"}
           </span>
         </a>
       </div>

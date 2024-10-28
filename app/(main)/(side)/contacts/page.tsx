@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { getContactsData, getPositions } from "@/lib/sanity";
 
 export const metadata: Metadata = {
-  title: "Контакты | BQ",
+  title: "Contacts | BQ",
 };
 
 export default async function Contacts() {
@@ -17,7 +17,7 @@ export default async function Contacts() {
       ? [
           data.columns[0],
           {
-            title: "Открытые позиции",
+            title: "Open positions",
             items: positions.map((position) => ({
               type: "link",
               text: position.title,

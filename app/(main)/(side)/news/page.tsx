@@ -21,7 +21,7 @@ export default async function News() {
       {magazineArticles.length > 0 && (
         <div>
           <NewsSection
-            title="Пресса о нас"
+            title="Press about us"
             items={magazineArticles}
             isClose={false}
           />
@@ -30,7 +30,7 @@ export default async function News() {
       {bqArticles.length > 0 && (
         <div>
           <NewsSection
-            title="Материалы BQ"
+            title="BQ Materials"
             items={bqArticles}
             isClose={false}
           />

@@ -17,11 +17,11 @@ export function ArticleShareAndInfo({
       )}
     >
       <div className="flex flex-col gap-1 w-[calc(3*12.5vw)] md:w-[unset]">
-        <p className="font-spectral">Дата:</p>
+        <p className="font-spectral">Date:</p>
         <p className="font-apercu opacity-30">{date}</p>
       </div>
       <div className="flex flex-col gap-1 items-start">
-        <p className="font-spectral">Поделиться:</p>
+        <p className="font-spectral">Share:</p>
         <button
           className="font-apercu opacity-30  hover:opacity-100 transition-opacity"
           onClick={() => {
@@ -29,7 +29,7 @@ export function ArticleShareAndInfo({
             navigator.clipboard.writeText(url);
           }}
         >
-          Скопировать ссылку
+          Copy link
         </button>
         <button
           className="font-apercu opacity-30  hover:opacity-100 transition-opacity"
@@ -40,7 +40,7 @@ export function ArticleShareAndInfo({
             window.open(`https://t.me/share/url?url=${url}`, "_blank");
           }}
         >
-          Телеграмм
+          Telegram
         </button>
         <button
           className="font-apercu opacity-30 hover:opacity-100 transition-opacity"
@@ -51,7 +51,7 @@ export function ArticleShareAndInfo({
             window.open(`https://vk.com/share.php?url=${url}`, "_blank");
           }}
         >
-          Вконтакте
+          VK
         </button>
       </div>
     </div>

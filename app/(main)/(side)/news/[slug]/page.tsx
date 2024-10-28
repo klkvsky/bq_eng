@@ -156,7 +156,7 @@ export default async function ArticlePage({
         {article.relatedArticles && article.relatedArticles.length > 0 && (
           <div className="flex flex-row w-full items-center justify-center gap-20 mt-40">
             <RelatedItems
-              title="Другие материалы"
+              title="Related materials"
               items={article.relatedArticles}
             />
           </div>
