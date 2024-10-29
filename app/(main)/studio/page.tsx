@@ -19,7 +19,7 @@ export default async function Home() {
   const data: StudioPage = await getStudioData();
   return (
     <div className="flex flex-col">
-      <PageTitle title={data.heroDescription} categories={[]} />
+      <PageTitle title={data.pageTitle} categories={[]} />
       <div className="flex flex-col items-end mt-[32px] md:mt-[24px] xl:mt-[80px]">
         <div className="custom-shadow-left md:after:hidden xl:after:block relative w-[calc(7*12.5vw)] md:w-full xl:w-[calc(9*8.33vw)] h-auto">
           <Image
