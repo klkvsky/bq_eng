@@ -21,10 +21,16 @@ export async function generateMetadata({
 
   return {
     title: `${article.title} | BQ`,
-    description: article.content?.find(item => item.type === 'text')?.text?.slice(0, 160) || '',
+    description:
+      article.content
+        ?.find((item) => item.type === "text")
+        ?.text?.slice(0, 160) || "",
     openGraph: {
       title: article.title,
-      description: article.content?.find(item => item.type === 'text')?.text?.slice(0, 160) || '',
+      description:
+        article.content
+          ?.find((item) => item.type === "text")
+          ?.text?.slice(0, 160) || "",
       images: article.image ? [urlFor(article.image.asset.url).url()] : [],
     },
   };
@@ -61,9 +67,12 @@ export default async function ArticlePage({
           className="font-normal text-[20px] md:text-[32px] xl:text-[38px] leading-[24px] md:leading-[36px] xl:leading-[42px] -tracking-[0.6px] md:-tracking-[0.96px] xl:-tracking-[0.03em] text-center w-[calc(6*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(7*8.33vw)] 2xl:text-[68px] 2xl:leading-[76px] 2xl:-tracking-[1.36px]"
           id="article-page"
         >
-          <p className="font-spectral xl:font-apercu xl:opacity-30">
-            {getArticleType(article.type) || article.source}:
-          </p>
+          {article.type === "press-release" &&
+            article.pressReleaseCategory !== "bq" && (
+              <p className="font-spectral xl:font-apercu xl:opacity-30">
+                {getArticleType(article.type) || article.source}:
+              </p>
+            )}
           <p className="font-spectral">{article.title}</p>
         </div>
       )}
@@ -90,7 +99,7 @@ export default async function ArticlePage({
       >
         {article.type !== "research" && (
           <ArticleShareAndInfo
-            date={new Date(article.date).toLocaleDateString("ru-RU")}
+            date={new Date(article.date).toLocaleDateString("en-US")}
             type={article.type}
           />
         )}
@@ -156,7 +165,7 @@ export default async function ArticlePage({
         {article.relatedArticles && article.relatedArticles.length > 0 && (
           <div className="flex flex-row w-full items-center justify-center gap-20 mt-40">
             <RelatedItems
-              title="Related materials"
+              title="Related articles"
               items={article.relatedArticles}
             />
           </div>
