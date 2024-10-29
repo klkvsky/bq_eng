@@ -69,10 +69,10 @@ function Columns({
 }) {
   const [firstColumn, ...restColumns] = columns;
   const openPositionsColumn = restColumns.find(
-    (column) => column.title === "Открытые позиции"
+    (column) => column.title === "Open positions"
   );
   const otherColumns = restColumns.filter(
-    (column) => column.title !== "Открытые позиции"
+    (column) => column.title !== "Open positions"
   );
 
   return (
