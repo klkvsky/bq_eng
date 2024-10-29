@@ -54,7 +54,7 @@ export default function PageTitle({
             {category.name}
           </a>
           {index < array.length - 2 && ", "}
-          {index === array.length - 2 && " и "}
+          {index === array.length - 2 && " and "}
         </>
       ))}
     </h1>
