@@ -213,11 +213,29 @@ export function ArticleImage({
         )}
         {type === "center" && (
           <div className="w-full h-auto flex justify-end md:justify-center md:items-center">
-            <div className="w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(9*8.33vw)] h-full relative custom-shadow-left">
-              {renderImage(
-                src,
-                "w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] xl:w-[calc(9*8.33vw)] h-auto"
-              )}
+            <div className="w-fit h-full relative custom-shadow-left">
+              <Image
+                src={src}
+                alt="Article image"
+                width={0}
+                height={0}
+                unoptimized
+                onLoadingComplete={({ naturalWidth, naturalHeight }) => {
+                  const isVertical = naturalHeight > naturalWidth;
+                  const isSquare = naturalHeight === naturalWidth;
+                  const element = document.getElementById(`image-${src}`);
+                  if (element) {
+                    element.style.width = `calc(${
+                      isVertical ? "6" : isSquare ? "6" : "9"
+                    }*8.33vw)`;
+                  }
+                }}
+                id={`image-${src}`}
+                className={`${!notProject && "cursor-pointer"} w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] h-auto xl:transition-all xl:duration-300 mx-auto`}
+                onClick={() => {
+                  !notProject && openOverlay(src);
+                }}
+              />
             </div>
           </div>
         )}
