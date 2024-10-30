@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { PortableText, PortableTextComponents } from "@portabletext/react";
