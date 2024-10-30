@@ -73,7 +73,7 @@ export default async function Project({
                     ? urlFor(item.image.asset.url).url()
                     : ""
                 }
-                type={item.imagePosition || "center"}
+                type={item.imagePosition || "center-narrow"}
                 secondaryImage={
                   item.secondaryImage
                     ? urlFor(item.secondaryImage.asset.url).url()

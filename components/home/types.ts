@@ -27,7 +27,7 @@ export interface Project {
         url: string;
       };
     };
-    imagePosition?: "center" | "right" | "left" | "full";
+    imagePosition?: "center-narrow" | "center-wide" | "right" | "left" | "full";
     secondaryImage?: {
       asset: {
         url: string;

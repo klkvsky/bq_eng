@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 function ImageOverlay({
   src,
@@ -126,7 +127,7 @@ export function ArticleImage({
   notProject,
 }: {
   src: string;
-  type: "left" | "right" | "full" | "center";
+  type: "left" | "right" | "full" | "center-narrow" | "center-wide";
   subtext?: string | null;
   secondaryImage?: string | null;
   title?: string;
@@ -211,7 +212,7 @@ export function ArticleImage({
             </div>
           </div>
         )}
-        {type === "center" && (
+        {(type === "center-narrow" || type === "center-wide") && (
           <div className="w-full h-auto flex justify-end md:justify-center md:items-center">
             <div className="w-fit h-full relative custom-shadow-left">
               <Image
@@ -220,18 +221,16 @@ export function ArticleImage({
                 width={0}
                 height={0}
                 unoptimized
-                onLoadingComplete={({ naturalWidth, naturalHeight }) => {
-                  const isVertical = naturalHeight > naturalWidth;
-                  const isSquare = naturalHeight === naturalWidth;
-                  const element = document.getElementById(`image-${src}`);
-                  if (element) {
-                    element.style.width = `calc(${
-                      isVertical ? "6" : isSquare ? "6" : "9"
-                    }*8.33vw)`;
-                  }
-                }}
+                placeholder="blur"
+                blurDataURL={src}
                 id={`image-${src}`}
-                className={`${!notProject && "cursor-pointer"} w-[calc(7*12.5vw)] md:w-[calc(8*8.33vw)] h-auto xl:transition-all xl:duration-300 mx-auto`}
+                className={cn(
+                  !notProject && "cursor-pointer",
+                  "h-auto xl:transition-all xl:duration-300 mx-auto",
+                  type === "center-narrow"
+                    ? "w-[calc(7*12.5vw)] md:w-[calc(6*8.33vw)]"
+                    : "w-[calc(7*12.5vw)] md:w-[calc(9*8.33vw)]"
+                )}
                 onClick={() => {
                   !notProject && openOverlay(src);
                 }}

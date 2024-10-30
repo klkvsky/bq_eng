@@ -118,7 +118,15 @@ export const project = defineType({
               name: "imagePosition",
               title: "Image Position",
               type: "string",
-              options: { list: ["center", "right", "left", "full"] },
+              options: {
+                list: [
+                  { title: "Center Narrow", value: "center-narrow" },
+                  { title: "Center Wide", value: "center-wide" },
+                  { title: "Right", value: "right" },
+                  { title: "Left", value: "left" },
+                  { title: "Full", value: "full" },
+                ],
+              },
               hidden: ({ parent }) => parent?.type !== "image",
             }),
             defineField({
