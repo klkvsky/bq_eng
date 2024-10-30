@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 
+export const dynamic = 'force-dynamic';
+
 import Image from "next/image";
 
 import { Article } from "@/components/home/types";
@@ -25,6 +27,7 @@ export async function generateMetadata({
     description: article.description || "Knowledge | BQ",
   };
 }
+
 
 export default async function ArticlePage({
   params,
@@ -184,7 +187,7 @@ export default async function ArticlePage({
         {article.relatedArticles && (
           <div className="flex flex-row w-full items-center justify-center gap-20 mt-40">
             <RelatedItems
-              title="Related materials"
+              title="Другие материалы"
               items={article.relatedArticles}
             />
           </div>
