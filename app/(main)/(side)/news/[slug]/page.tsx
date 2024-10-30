@@ -120,7 +120,7 @@ export default async function ArticlePage({
                   <ArticleImage
                     key={index}
                     src={item.image ? urlFor(item.image.asset.url).url() : ""}
-                    type={item.imagePosition || "center"}
+                    type={item.imagePosition || "left"}
                     subtext={item.imageCaption || null}
                     notProject={true}
                   />
