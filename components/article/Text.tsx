@@ -26,10 +26,9 @@ export function ArticleText({
       return <PortableText value={text} components={portableTextComponents} />;
     } else if (typeof text === "string") {
       return text.split("\n").map((line, index) => (
-        <React.Fragment key={index}>
+        <p key={index} className="mb-4 whitespace-pre-line">
           {line}
-          {index < text.split("\n").length - 1 && <br />}
-        </React.Fragment>
+        </p>
       ));
     } else {
       return <p>{JSON.stringify(text)}</p>;
