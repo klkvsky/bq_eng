@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 
-export const dynamic = 'force-dynamic';
-
 import Image from "next/image";
 
 import { Article } from "@/components/home/types";
@@ -27,7 +25,6 @@ export async function generateMetadata({
     description: article.description || "Knowledge | BQ",
   };
 }
-
 
 export default async function ArticlePage({
   params,

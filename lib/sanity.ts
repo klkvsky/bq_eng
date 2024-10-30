@@ -414,7 +414,10 @@ export async function getArticleBySlug(slug: string) {
         type,
       }
     }`,
-    { slug }
+    { slug },
+    {
+      next: { revalidate: 30 },
+    }
   );
 }
 
